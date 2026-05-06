@@ -15,8 +15,8 @@ This repo is setup using Poetry. So most commands are based on that. However oth
 
 To install all required dependencies 
 
-```
-poetry install 
+```bash
+poetry install --no-root
 ```
 
 
@@ -83,40 +83,35 @@ poetry run python code/data_setup.py
 
 ## Running CoRegTor Experiment on a specific gene expression data
 
-The first step is to run the experiments. We already have a list of experiment files available in the `experiments` folder. You can also create your own exp file. These are typical CoRegTor exp file defined [here]()
+The first step is to run the experiments. We already have a list of experiment files available in the `experiments` folder. You can also create your own exp file. These are typical CoRegTor exp files defined [here]()
 
-
-In the sections below we describe which experiments need to run first. 
-
-Each experiment generates cluster result files and temp files. These are required for analysis.
+In analysis sections below we describe which experiments need to be run first.  Each experiment generates cluster result files and temp files. These are required for analysis.
 
 ### Run exp and generate results 
 All experiment are run in the same way. 
 
 Before running an exp, identify :
 - path to `.env` file. This can be `$PWD/.env`
-- path to experiment file. To use the experiment folder use  `$PWD/experiments` 
+- path to experiment file. To use the experiment folder use  `$PWD/experiments`  (test1.json is a sample exp file)
 
 ```bash
 #!/bin/bash
 ENV_PATH="$PWD/.env"
-EXP_PATH="$PWD/experiments/exp_name.json"
+EXP_PATH="$PWD/experiments/test1.json"
 
-# 1. Initialized
-poetry run coregtor bulk init  --config env=$ENV_PATH  input=$EXP_PATH
+# Run a batch (run multiple times if needed )
+poetry run coregtor bulk batch  --config env=$ENV_PATH  input=$EXP_PATH item=10
 
-# 2. Run a batch (run multiple times if needed )
-poetry run coregtor bulk batch  --config env=$ENV_PATH  input=$EXP_PATH item=500
-
-# 3. Generate results files
+# Generate results files
 poetry run coregtor bulk result  --config env=$ENV_PATH  input=$EXP_PATH name=result_name
 ```
+
 ## Exploring a single target in an experiment
 
 To explore the results generated for a single target for an experiment
 
 ```python
-
+TODO
 ```
 
 ## Analysis 1 : Parameter selection 
