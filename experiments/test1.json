@@ -638,5 +638,17 @@
   ],
   "run": {
     "checkpointing": true
-  }
+  },
+  "results":[
+    {
+        "id":"r0",
+        "type":"hello",
+        "options":{}
+    },
+    {
+      "id":"r1",
+      "type": "generate_result_file",
+      "result_list":["c1","c2"]
+    }
+  ]
 }
