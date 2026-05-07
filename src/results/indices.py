@@ -14,18 +14,14 @@ def compute_indices_core(data, bio_data_path):
     # Filter to clusters with multiple sources
     data = data[data['sources'].str.split(";").str.len() > 1].copy()
 
-    if len(data) > 100:
-        import os
-        n_job_count = os.cpu_count() or 1
-    else:
-        n_job_count = 1
-
+    n_job_count = 1
+    
     df_score, add_data = compute_indices(
         df=data, data_path=bio_data_path, new_methods_only=True, n_jobs=n_job_count)
     return df_score, add_data
 
 
-def compute_indices_batch(data, parallel=False, n_jobs=4, batch_size=1000,bio_data_path=None):
+def compute_indices_batch(data, parallel=True, n_jobs=4, batch_size=1000,bio_data_path=None):
     """
     Compute indices with batching and optional parallelization.
 
@@ -42,7 +38,7 @@ def compute_indices_batch(data, parallel=False, n_jobs=4, batch_size=1000,bio_da
     """
 
     # bio_data_path = Path(os.path.expandvars(os.getenv("DATA_PATH")))
-
+    #print(bio_data_path)
     # Split into batches
 
     if parallel:
@@ -95,7 +91,7 @@ def performance_indices1(input, env,options ,args):
         data = pd.read_csv(cluster_file)
         data.rename(columns={"uid":"cluster_uid"}, inplace=True)
 
-        run_parallel = len(data) > 1000
+        run_parallel = len(data) > 10
         batch_size = int(len(data)/n_jobs) + 1
         print()
         df, add = compute_indices_batch(
