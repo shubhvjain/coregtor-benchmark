@@ -7,6 +7,9 @@ import  src.results.util as ut
 from joblib import Parallel, delayed, load
 import pandas as pd
 
+from src.results.explore import gene_frequency_analysis
+
+
 def hello(input, env,options ,args):
     target = input.get("target", "world")
     print(f"Hello, {target}!")
@@ -74,7 +77,8 @@ def generate_result_file(input, env,options ,args):
 
 METHOD_REGISTRY = {
     "hello": hello,
-    "generate_result_file":generate_result_file
+    "generate_result_file":generate_result_file,
+    "gene_frequency_analysis":gene_frequency_analysis
 }
 
 # CLI entry point

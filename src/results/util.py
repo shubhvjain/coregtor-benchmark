@@ -3,6 +3,8 @@ import sys
 from pathlib import Path
 from dotenv import dotenv_values
 import sqlite3
+from joblib import  load
+
 
 def get_env(env_path):
     path = Path(env_path)
@@ -50,3 +52,8 @@ def get_exp_target_list(out_path):
     target_list = [r[0] for r in targets]
     return target_list
 
+def get_temp_file(temp_path,target):
+    """"""
+    file_path =  temp_path/"results"/f"{target}.pkl"
+    data = load(file_path)
+    return data 
