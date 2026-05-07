@@ -154,17 +154,28 @@ def save_plot_gene_frequency_dataset(res, out_file):
 
 
 def _get_dist_stats(df):
-    # Convert DataFrame to NumPy array
-    matrix = df.values
+    # Ensure we are working with a NumPy array
+    matrix = df.values if isinstance(df, pd.DataFrame) else np.array(df)
     
     # Get indices for the upper triangle, excluding the diagonal (k=1)
-    # This ignores the 0.0 distance of a point to itself
+    # Number of elements = [n * (n - 1)] / 2
     tri_indices = np.triu_indices_from(matrix, k=1)
     upper_tri_values = matrix[tri_indices]
     
-    # Calculate stats and force conversion to standard Python types for JSON
+    # Check if the array is empty (happens if n_roots < 2)
+    if upper_tri_values.size == 0:
+        return {
+            "n_roots": int(matrix.shape[0]),
+            "min": None,
+            "max": None,
+            "mean": None,
+            "median": None,
+            "std": None
+        }
+    
+    # Calculate stats and force conversion to standard Python types for JSON/CSV
     stats = {
-        "n_roots": df.shape[0],
+        "n_roots": int(matrix.shape[0]),
         "min": float(np.min(upper_tri_values)),
         "max": float(np.max(upper_tri_values)),
         "mean": float(np.mean(upper_tri_values)),
@@ -172,7 +183,6 @@ def _get_dist_stats(df):
         "std": float(np.std(upper_tri_values))
     }   
     return stats
-
 
 
 def distance_measure_analysis(input, env,options ,args):
