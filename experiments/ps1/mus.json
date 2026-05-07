@@ -1,28 +1,28 @@
 {
-  "id": "test_run",
+  "id": "ps1_mus",
   "about": "To run CoRegTor on a simple dataset",
 
   "dataset": {
-    "name": "AMY",
-    "path": "$DATA_PATH/amygdala/gene_tpm_v10_brain_amygdala.gct",
+    "name": "HYP",
+    "path": "$DATA_PATH/muscle_skeletal/gene_tpm_v11_muscle_skeletal.gct",
     "type": "gct",
     "convert_gene_names": true
   },
 
   "sources": {
     "type": "tf",
-    "top_expressed_n": 160
+    "top_expressed_n": 1600
   },
   "targets": {
     "type": "pc_only",
-    "top_expressed_n": 5
+    "top_expressed_n": 500
   },
   "ensemble_model": {
     "method": "rf",
     "options": {
       "max_depth": 5,
       "n_jobs": -1,
-      "n_estimators": 100,
+      "n_estimators": 1000,
       "random_state": 120
     }
   },

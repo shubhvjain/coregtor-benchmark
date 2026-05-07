@@ -1,10 +1,10 @@
 {
-  "id": "ps1_amy",
+  "id": "ps1_hyp",
   "about": "To run CoRegTor on a simple dataset",
 
   "dataset": {
-    "name": "AMY",
-    "path": "$DATA_PATH/amygdala/gene_tpm_v10_brain_amygdala.gct",
+    "name": "HYP",
+    "path": "$DATA_PATH/hypothalamus/gene_tpm_v10_brain_hypothalamus.gct",
     "type": "gct",
     "convert_gene_names": true
   },
@@ -15,7 +15,7 @@
   },
   "targets": {
     "type": "pc_only",
-    "top_expressed_n": 10
+    "top_expressed_n": 500
   },
   "ensemble_model": {
     "method": "rf",
