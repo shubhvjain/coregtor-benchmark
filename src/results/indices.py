@@ -100,3 +100,38 @@ def performance_indices1(input, env,options ,args):
         print("saved")
 
 
+
+def performance_indices_combined(input, env,options ,args):
+    """
+    compute performance indices for cluster results 
+    """
+    out_path, temp_path = ut.get_exp_path(input,env)
+    rerun = args.rerun
+    cluster_folder = out_path/"clusters"
+
+    dataset_name  = input["dataset"]["name"]
+    
+    result_file =  out_path/ "combined_indices.csv.gz"
+    if result_file.exists() and not rerun:
+        print("already exists")
+        return
+
+    all_results = [cl["id"] for cl in input["clustering"]]
+    result_list = options.get("result_list", all_results)
+
+    res = []
+
+    for r in result_list:
+        print(r)
+        index_file = cluster_folder / f"index_{r}.csv"
+        if not index_file.exists():
+            raise ValueError(f"file {index_file} note yet generated")
+        
+        data = pd.read_csv(index_file)
+        data["config_name"] = r
+        res.append(data)
+
+    combined_df = pd.concat(res, ignore_index=True)
+    combined_df["dataset"] = dataset_name
+    combined_df.to_csv(result_file,index=False)
+    print("saved")
