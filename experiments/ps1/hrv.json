@@ -651,6 +651,10 @@
     {
       "id":"r2",
       "type": "performance_indices1"
+    },
+    {
+      "id":"r3",
+      "type": "distance_measure_analysis"
     }
   ]
 }

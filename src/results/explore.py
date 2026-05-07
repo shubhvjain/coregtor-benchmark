@@ -7,7 +7,7 @@ from scipy.stats import skew
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-def get_gene_stats(df):
+def _get_gene_stats(df):
     """
     Analyzes a gene frequency histogram DataFrame.
     Returns a flat dictionary of results.
@@ -78,7 +78,7 @@ def gene_frequency_analysis(input, env,options ,args):
   for t in success_target:
       data = ut.get_temp_file(temp_path,t)
       gf = data["results"]["gene_frequency"]
-      stat = get_gene_stats(gf)
+      stat = _get_gene_stats(gf)
       stat["target"] = t
       stats.append(stat)
 
@@ -151,3 +151,107 @@ def save_plot_gene_frequency_dataset(res, out_file):
     plt.tight_layout()
     # Save as SVG 
     plt.savefig(out_file / "gene_frequency.svg")
+
+
+def _get_dist_stats(df):
+    # Convert DataFrame to NumPy array
+    matrix = df.values
+    
+    # Get indices for the upper triangle, excluding the diagonal (k=1)
+    # This ignores the 0.0 distance of a point to itself
+    tri_indices = np.triu_indices_from(matrix, k=1)
+    upper_tri_values = matrix[tri_indices]
+    
+    # Calculate stats and force conversion to standard Python types for JSON
+    stats = {
+        "n_roots": df.shape[0],
+        "min": float(np.min(upper_tri_values)),
+        "max": float(np.max(upper_tri_values)),
+        "mean": float(np.mean(upper_tri_values)),
+        "median": float(np.median(upper_tri_values)),
+        "std": float(np.std(upper_tri_values))
+    }   
+    return stats
+
+
+
+def distance_measure_analysis(input, env,options ,args):
+    """
+    """
+    out_path, temp_path = ut.get_exp_path(input,env)
+    rerun = args.rerun
+
+    dm_file_path = out_path/"distance.csv"
+    if dm_file_path.exists() and not rerun:
+        print("File already exists")
+        return
+
+    stats = []
+    success_target = ut.get_exp_target_list(out_path)
+    dmeasures = input["context_comparison"]["methods"]
+    for t in success_target:
+        data = ut.get_temp_file(temp_path,t)
+        for dms in dmeasures: 
+            dmatrix = data["results"]["distance"][dms]
+            stat = _get_dist_stats(dmatrix)
+            stat["target"] = t
+            stat["distance"] = dms
+            stats.append(stat)
+            
+        
+    res = pd.DataFrame(stats)
+    res["exp"] = input["id"]
+    res["dataset"] = input["dataset"]["name"] 
+    # print(res)
+    cols_to_front = ["exp", "dataset", "target"]
+    other_cols = [c for c in res.columns if c not in cols_to_front]
+    res = res[cols_to_front + other_cols]
+    res.to_csv(dm_file_path,index=False)
+    save_plot_distance_dataset(res,dmeasures,out_path)
+
+
+def save_plot_distance_dataset(res, dmeasures, out_file):
+    """
+    Generates a grid of boxplots: 
+    Rows = Distance Measures (e.g., Euclidean, Cosine)
+    Cols = Min, Mean, and Max distributions across all targets
+    """
+    n_measures = len(dmeasures)
+    
+    # Grid: Rows = n_measures, Cols = 3 (Min, Mean, Max)
+    fig, axes = plt.subplots(
+        nrows=n_measures, 
+        ncols=3, 
+        figsize=(12, 4 * n_measures), 
+        squeeze=False 
+    )
+
+    # Define columns to plot and their visual settings
+    cols_to_plot = [
+        ('min', 'Min Distance', 'skyblue'),
+        ('mean', 'Average Distance', 'salmon'),
+        ('max', 'Max Distance', 'lightgreen')
+    ]
+
+    for i, dms in enumerate(dmeasures):
+        subset = res[res['distance'] == dms]
+        
+        for j, (col_name, label, color) in enumerate(cols_to_plot):
+            ax = axes[i, j]
+            sns.boxplot(data=subset, x='dataset', y=col_name, ax=ax, color=color)
+            
+            # Formatting
+            ax.set_title(f"{dms}: {label}")
+            ax.set_ylabel(label)
+            ax.set_xlabel("") # Keeps the x-axis clean
+            
+            # Optional: Add a grid for better readability of distance scales
+            ax.grid(axis='y', linestyle='--', alpha=0.7)
+
+    plt.tight_layout()
+    
+    # Save as SVG
+    save_path = out_file / "distance_measures.svg"
+    plt.savefig(save_path)
+    print(f"Comprehensive plot saved to {save_path}")
+    plt.close()

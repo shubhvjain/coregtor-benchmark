@@ -7,7 +7,7 @@ import src.results.util as ut
 from joblib import Parallel, delayed, load
 import pandas as pd
 
-from src.results.explore import gene_frequency_analysis
+from src.results.explore import gene_frequency_analysis, distance_measure_analysis
 from src.results.indices import performance_indices1
 
 
@@ -81,7 +81,8 @@ METHOD_REGISTRY = {
     "hello": hello,
     "generate_result_file": generate_result_file,
     "gene_frequency_analysis": gene_frequency_analysis,
-    "performance_indices1": performance_indices1
+    "performance_indices1": performance_indices1,
+    "distance_measure_analysis":distance_measure_analysis
 }
 
 # CLI entry point
