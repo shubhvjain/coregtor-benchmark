@@ -4,14 +4,16 @@ from pathlib import Path
 from dotenv import dotenv_values
 import sqlite3
 from joblib import  load
-
+import os
 
 def get_env(env_path):
     path = Path(env_path)
     if not path.exists():
         print(f"[error] env file not found: {env_path}", file=sys.stderr)
         sys.exit(1)
-    return dict(dotenv_values(path))
+    values = dict(dotenv_values(path))    
+    os.environ.update(values)
+    return values
 
 
 def get_input(input_path):
@@ -57,3 +59,10 @@ def get_temp_file(temp_path,target):
     file_path =  temp_path/"results"/f"{target}.pkl"
     data = load(file_path)
     return data 
+
+
+def get_analysis_path(env):
+    """"""
+    # print(env)
+    p = Path(env["ANALYSIS_OUTPUT_PATH"])
+    return p
