@@ -638,5 +638,19 @@
   ],
   "run": {
     "checkpointing": true
-  }
+  },
+    "results":[
+    {
+      "id":"r0",
+      "type": "generate_result_file"
+    },
+    {
+      "id":"r1",
+      "type": "gene_frequency_analysis"
+    },
+    {
+      "id":"r2",
+      "type": "performance_indices1"
+    }
+  ]
 }

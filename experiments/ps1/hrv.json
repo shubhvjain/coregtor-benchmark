@@ -3,7 +3,7 @@
   "about": "To run CoRegTor on a simple dataset",
 
   "dataset": {
-    "name": "HYP",
+    "name": "HRV",
     "path": "$DATA_PATH/heart_left_ventricle/gene_tpm_v11_heart_left_ventricle.gct",
     "type": "gct",
     "convert_gene_names": true
@@ -638,5 +638,19 @@
   ],
   "run": {
     "checkpointing": true
-  }
+  },
+    "results":[
+    {
+      "id":"r0",
+      "type": "generate_result_file"
+    },
+    {
+      "id":"r1",
+      "type": "gene_frequency_analysis"
+    },
+    {
+      "id":"r2",
+      "type": "performance_indices1"
+    }
+  ]
 }
