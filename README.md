@@ -100,11 +100,39 @@ ENV_PATH="$PWD/.env"
 EXP_PATH="$PWD/experiments/test1.json"
 
 # Run a batch (run multiple times if needed )
-poetry run coregtor bulk batch  --config env=$ENV_PATH  input=$EXP_PATH item=10
+poetry run coregtor bulk batch  --config env=$ENV_PATH  input=$EXP_PATH items=10
 
 # Generate results files
 poetry run coregtor bulk result  --config env=$ENV_PATH  input=$EXP_PATH name=result_name
 ```
+The bulk command gives you the flexibility to run parallel jobs.
+
+Here's a simple script to run bulk jobs on SLURM system:
+
+```bash
+#!/bin/bash -l
+#SBATCH --nodes=1
+#SBATCH --cpus-per-task=16
+#SBATCH --mem=32G
+#SBATCH --time=6:00:00
+#SBATCH --partition=work
+#SBATCH --job-name=test_results_bulk1
+#SBATCH --export=NONE
+#SBATCH --output=run.out
+
+unset SLURM_EXPORT_ENV
+module load python
+cd $SLURM_SUBMIT_DIR
+export http_proxy=http://proxy.nhr.fau.de:80
+export https_proxy=http://proxy.nhr.fau.de:80
+
+
+export ENV_PATH="$PWD/.env"
+export EXP_PATH="$PWD/experiments/test1.json"
+
+poetry run coregtor bulk batch  --config env=$ENV_PATH  input=$EXP_PATH items=250
+```
+
 
 ## Exploring a single target in an experiment
 
