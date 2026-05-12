@@ -1,5 +1,5 @@
 {
-  "id": "ps1_amy",
+  "id": "ps_amy",
   "about": "To run CoRegTor on a simple dataset",
 
   "dataset": {
@@ -659,6 +659,15 @@
     {
       "id":"r4",
       "type": "performance_indices_combined"
+    },
+    {
+      "id":"r5",
+      "type": "target_info"
+    },
+    {
+      "id":"r6",
+      "type":"target_diagrams",
+      "diagram_list":["gene_frequency","distance_measure"]
     }
   ]
 }

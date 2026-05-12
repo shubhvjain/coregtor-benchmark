@@ -9,7 +9,7 @@ import pandas as pd
 
 from src.results.explore import gene_frequency_analysis, distance_measure_analysis
 from src.results.indices import performance_indices1,performance_indices_combined
-
+from src.results.target import target_info
 
 def hello(input, env, options, args):
     target = input.get("target", "world")
@@ -44,7 +44,7 @@ def generate_result_file(input, env, options, args):
     #     print("Experiment not run successfully")
     #     return
 
-    cluster_folder = out_path/"clusters"
+    cluster_folder = temp_path/"clusters"
     cluster_folder.mkdir(exist_ok=True, parents=True)
 
     # with open(out_path/"input.json") as f:
@@ -83,11 +83,11 @@ METHOD_REGISTRY = {
     "gene_frequency_analysis": gene_frequency_analysis,
     "performance_indices1": performance_indices1,
     "distance_measure_analysis":distance_measure_analysis,
-    "performance_indices_combined":performance_indices_combined
+    "performance_indices_combined":performance_indices_combined,
+    "target_info":target_info
 }
 
 # CLI entry point
-
 
 def build_parser():
     parser = argparse.ArgumentParser(

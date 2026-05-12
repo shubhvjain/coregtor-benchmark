@@ -133,6 +133,14 @@ export EXP_PATH="$PWD/experiments/test1.json"
 poetry run coregtor bulk batch  --config env=$ENV_PATH  input=$EXP_PATH items=250
 ```
 
+The next step is to generate the result files. The options for each result type are defined in the experiment files under the "results" list. 
+
+```bach
+poetry run python src/results/main.py --env=$ENV_PATH --input=$EXP_PATH --id=r1
+```
+
+Then, we add validation indices to the results generated. 
+
 
 ## Exploring a single target in an experiment
 
@@ -149,7 +157,7 @@ The goal of this analysis is to explore how different input parameters influence
 Here we use data from 500 targets run on 10 different GTEx tissue datasets. All the parameters are specified in the experiment files. 
 
 Experiments to run:  
-Run all the experiment in the folder `experiments/ps1` and `experiments/ps2` first. The folder `ps1` contains experiments with 1000 trees with depth of 5. 
+Run all the experiment in the folder `experiments/ps1` first. The folder `ps1` contains experiments with 1000 trees with depth of 5. 
 
 ### Configurations 
 ![Parameters](configs.excalidraw.svg)

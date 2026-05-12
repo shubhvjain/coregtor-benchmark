@@ -70,7 +70,7 @@ def performance_indices1(input, env,options ,args):
     print(n_jobs)
     bio_path = env["DATA_PATH"]
 
-    cluster_folder = out_path/"clusters"
+    cluster_folder = temp_path/"clusters"
     cluster_folder.mkdir(exist_ok=True, parents=True)
 
     all_results = [cl["id"] for cl in input["clustering"]]

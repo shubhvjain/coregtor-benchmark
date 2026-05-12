@@ -51,10 +51,10 @@ def _get_gene_stats(df):
         "sparsity_pcr": round(float(sparsity_pcr),2),
         "total_root_nodes": int(total_rows),
         "total_sources": int(total_cols),
-        "count_min": float(c_min),
-        "count_max": float(c_max),
-        "count_avg": float(c_avg),
-        "count_median": float(c_med),
+        "count_min": round(float(c_min),5),
+        "count_max": round(float(c_max),5),
+        "count_avg": round(float(c_avg),5),
+        "count_median": round(float(c_med),5),
         "count_std": round(float(c_std),5),
         "count_skew": round(float(c_skew),5)
     }
@@ -176,11 +176,11 @@ def _get_dist_stats(df):
     # Calculate stats and force conversion to standard Python types for JSON/CSV
     stats = {
         "n_roots": int(matrix.shape[0]),
-        "min": float(np.min(upper_tri_values)),
-        "max": float(np.max(upper_tri_values)),
-        "mean": float(np.mean(upper_tri_values)),
-        "median": float(np.median(upper_tri_values)),
-        "std": float(np.std(upper_tri_values))
+        "min": round(float(np.min(upper_tri_values)),5),
+        "max": round(float(np.max(upper_tri_values)),5),
+        "mean": round(float(np.mean(upper_tri_values)),5),
+        "median": round(float(np.median(upper_tri_values)),5),
+        "std": round(float(np.std(upper_tri_values)),5)
     }   
     return stats
 

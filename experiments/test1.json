@@ -649,6 +649,23 @@
       "id":"r1",
       "type": "generate_result_file",
       "result_list":["c1","c2"]
+    },
+     {
+      "id":"r2",
+      "type": "gene_frequency_analysis"
+    },
+    {
+      "id":"r3",
+      "type": "performance_indices1",
+      "result_list":["c1","c2"]
+    },
+     {
+      "id":"r4",
+      "type": "distance_measure_analysis"
+    },{
+      "id":"r5",
+      "type":"performance_indices_combined",
+      "result_list":["c1","c2"]
     }
   ]
 }

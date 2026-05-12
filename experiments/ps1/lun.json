@@ -1,5 +1,5 @@
 {
-  "id": "ps1_lun",
+  "id": "ps_lun",
   "about": "To run CoRegTor on a simple dataset",
 
   "dataset": {
@@ -31,7 +31,7 @@
       "cosine_distance",
       "euclidean_distance",
       "weighted_jaccard",
-      "wasserstein_distance"
+      "manhattan_distance"
     ]
   },
   "clustering": [
