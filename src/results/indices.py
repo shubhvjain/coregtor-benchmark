@@ -107,7 +107,7 @@ def performance_indices_combined(input, env,options ,args):
     """
     out_path, temp_path = ut.get_exp_path(input,env)
     rerun = args.rerun
-    cluster_folder = out_path/"clusters"
+    cluster_folder = temp_path/"clusters"
 
     dataset_name  = input["dataset"]["name"]
     

@@ -35,7 +35,7 @@ def generate_result_file(input, env, options, args):
     """
     out_path, temp_path = ut.get_exp_path(input, env)
 
-    n_jobs = args.n_jobs if args.n_jobs is not None else -1
+    n_jobs = args.njobs if args.njobs is not None else -1
     rerun = args.rerun
 
     run_done = temp_path / "run_success.txt"
