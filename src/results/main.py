@@ -9,7 +9,7 @@ import pandas as pd
 
 from src.results.explore import gene_frequency_analysis, distance_measure_analysis
 from src.results.indices import performance_indices1,performance_indices_combined
-from src.results.target import target_info
+from src.results.target import target_info,target_run_diagram
 
 def hello(input, env, options, args):
     target = input.get("target", "world")
@@ -84,7 +84,8 @@ METHOD_REGISTRY = {
     "performance_indices1": performance_indices1,
     "distance_measure_analysis":distance_measure_analysis,
     "performance_indices_combined":performance_indices_combined,
-    "target_info":target_info
+    "target_info":target_info,
+    "target_run_diagram":target_run_diagram
 }
 
 # CLI entry point

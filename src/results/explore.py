@@ -63,6 +63,7 @@ def _get_gene_stats(df):
     
     return stats
 
+## old 
 def gene_frequency_analysis(input, env,options ,args):
   """
   generate per target gene frequency stats for the whole dataset
@@ -96,7 +97,7 @@ def gene_frequency_analysis(input, env,options ,args):
 
 
 
-def plot_skewness_dist(df, ax=None, save_path=None):
+def plot_skewness_dist(df, ax=None, col_name="count_skew",save_path=None):
     """
     Returns a KDE plot of skewness. 
     Integrates into subplots if 'ax' is provided.
@@ -104,14 +105,14 @@ def plot_skewness_dist(df, ax=None, save_path=None):
     if ax is None:
         fig, ax = plt.subplots(figsize=(8, 5))
     
-    sns.kdeplot(data=df, x='count_skew', hue='dataset', fill=True, ax=ax)
-    ax.set_title("Gene Frequency Skewness Distribution")
+    sns.kdeplot(data=df, x=col_name, hue='dataset', fill=True, ax=ax)
+    ax.set_title("Gene Frequency Skewness")
     
     if save_path:
         plt.savefig(save_path)
     return ax
 
-def plot_metric_boxplot(df, y_col, title=None ,ax=None, save_path=None):
+def plot_metric_boxplot(df, y_col, title=None, ylabel=None,ax=None, save_path=None):
     """
     Returns a boxplot for any metric (active_source_pcr, root_count, etc.)
     """
@@ -124,8 +125,13 @@ def plot_metric_boxplot(df, y_col, title=None ,ax=None, save_path=None):
       title = f"Target-wise {y_col.replace('_', ' ').title()}"
     ax.set_title(title)
     
+    if ylabel is None:
+        ylabel = y_col.replace('_', ' ')
+    ax.set_ylabel(ylabel)
+
     if save_path:
         plt.savefig(save_path)
+    
     return ax
 
 
