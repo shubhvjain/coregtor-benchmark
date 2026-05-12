@@ -111,7 +111,9 @@ def performance_indices_combined(input, env,options ,args):
 
     dataset_name  = input["dataset"]["name"]
     
-    result_file =  out_path/ "combined_indices.csv.gz"
+    file_name = options.get("name","default")
+
+    result_file =  out_path/ f"{file_name}_indices.csv.gz"
     if result_file.exists() and not rerun:
         print("already exists")
         return
