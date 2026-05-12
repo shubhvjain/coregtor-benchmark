@@ -12,15 +12,24 @@ def get_target_info(target, input, data):
     gf_status = _get_gene_stats(data["results"]["gene_frequency"])
     results = {
         "target": target,
-        "gf": gf_status,
-
+        "gf": gf_status,   
     }
     dmeasures = input["context_comparison"]["methods"]
     for dms in dmeasures:
         dmatrix = data["results"]["distance"][dms]
         stat = _get_dist_stats(dmatrix)
         results[f"{dms}"] = stat
-
+    # print(data)
+    results["stats"] = {
+        "n_cores_used": data["stats"]["n_cores"],
+        "n_paths":data["stats"]["quality"]["n_paths"],
+        "n_unique_roots":data["stats"]["quality"]["n_unique_roots"],
+    
+        "model_train_time": round(data["stats"]["timing"]["model_train"],5),
+        "tree_path_time" : round(data["stats"]["timing"]["context_create"],5),
+        "paths_extract_time": round(data["stats"]["timing"]["paths_extract"],5),
+        "total_time": round(data["stats"]["timing"]["model_train"]+ data["stats"]["timing"]["context_create"]+ data["stats"]["timing"]["paths_extract"] ,5) ,
+    }
     
     return results
 

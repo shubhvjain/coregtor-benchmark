@@ -7,6 +7,8 @@ from scipy.stats import skew
 import seaborn as sns
 import matplotlib.pyplot as plt
 
+### Gene frequency histogram stats
+
 def _get_gene_stats(df):
     """
     Analyzes a gene frequency histogram DataFrame.
@@ -152,6 +154,8 @@ def save_plot_gene_frequency_dataset(res, out_file):
     # Save as SVG 
     plt.savefig(out_file / "gene_frequency.svg")
 
+
+### Distance stats
 
 def _get_dist_stats(df):
     # Ensure we are working with a NumPy array

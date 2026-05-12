@@ -1007,32 +1007,23 @@
   "results": [
     {
       "id": "r0",
-      "type": "generate_result_file"
+      "type": "target_info"
     },
     {
       "id": "r1",
-      "type": "gene_frequency_analysis"
+      "type": "target_diagrams"
     },
     {
       "id": "r2",
-      "type": "performance_indices1"
+      "type": "generate_result_file"
     },
     {
       "id": "r3",
-      "type": "distance_measure_analysis"
+      "type": "performance_indices1"
     },
     {
       "id": "r4",
       "type": "performance_indices_combined"
-    },
-    {
-      "id": "r5",
-      "type": "target_info"
-    },
-    {
-      "id": "r6",
-      "type": "target_diagrams",
-      "diagram_list": ["gene_frequency", "distance_measure"]
     }
   ]
 }
