@@ -30,8 +30,12 @@
     "methods": [
       "cosine_distance",
       "euclidean_distance",
+      "manhattan_distance",
       "weighted_jaccard",
-      "manhattan_distance"
+      "jensenshannon_distance",
+      "canberra_distance",
+      "sorensen_distance",
+      "chebyshev_distance"
     ]
   },
   "clustering": [
