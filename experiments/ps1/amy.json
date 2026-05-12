@@ -1011,7 +1011,7 @@
     },
     {
       "id": "r1",
-      "type": "target_diagrams"
+      "type": "target_run_diagram"
     },
     {
       "id": "r2",
