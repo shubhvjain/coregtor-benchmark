@@ -1,10 +1,11 @@
-from tfitpy import compute_indices
+from tfitpy import compute_indices, compute_module_network_metrics, load_all_network_data
 import json
 import os
 from pathlib import Path
 import pandas as pd
 import  src.results.util as ut 
-
+import numpy as np
+from joblib import Parallel, delayed
 
 def compute_indices_core(data, bio_data_path):
     """Core computation - single dataframe in, scored dataframe out."""
@@ -93,12 +94,97 @@ def performance_indices1(input, env,options ,args):
 
         run_parallel = len(data) > 10
         batch_size = int(len(data)/n_jobs) + 1
-        print()
         df, add = compute_indices_batch(
             data, run_parallel, n_jobs, batch_size,bio_path)
         df.to_csv(index_file,index=False)
         print("saved")
 
+
+def compute_network_scores(df, ppi_key, data_path, n_models=500):
+    """
+    Computes PPI3, PPI4, and PPI5 for a single PPI source.
+    Returns a DataFrame containing only the new metrics, indexed identically to input df.
+    """
+    # 1. Load the specific PPI data
+    G, NULL_MODELS, MAPPING = load_all_network_data(data_path, ppi_key, n_models)
+    
+    # 2. Compute results row by row
+    results = []
+    for _, row in df.iterrows():
+        # Call the worker logic we refined earlier
+        # (Assuming compute_module_metrics is the function returning the 6-tuple)
+        metrics = compute_module_network_metrics(
+            M=row['sources'].split(';'),
+            t=row['target'],
+            ppi=G,
+            null_graphs=NULL_MODELS,
+            mapping=MAPPING
+        )
+        results.append(metrics)
+    
+    # 3. Create a result DataFrame with specific column names
+    col_names = [
+        f"density_{ppi_key}", f"density_score_{ppi_key}", 
+        f"lcc_{ppi_key}", f"lcc_score_{ppi_key}",
+        f"tc_{ppi_key}", f"tc_score_{ppi_key}"
+    ]
+    
+    result_df = pd.DataFrame(results, columns=col_names, index=df.index)
+    return result_df.round(5)
+
+
+def performance_indices_ppi_network(input, env,options ,args):
+    """
+    compute performance indices for cluster results 
+    """
+    out_path, temp_path = ut.get_exp_path(input,env)
+    rerun = args.rerun
+    n_jobs = args.njobs if args.njobs is not None else 4
+    # print(n_jobs)
+    bio_path = env["DATA_PATH"]
+
+    cluster_folder = temp_path/"clusters"
+    cluster_folder.mkdir(exist_ok=True, parents=True)
+
+    all_results = [cl["id"] for cl in input["clustering"]]
+    result_list_input = options.get("result_list", all_results)
+
+    result_list = []  # only that are not already done
+    for r in result_list_input:
+        result_file_path = cluster_folder / f"index_network_{r}.csv"
+        if result_file_path.exists() and not rerun:
+            continue
+        result_list.append(r)
+
+
+    for r in result_list:
+        print(r)
+        cluster_file = cluster_folder / f"{r}.csv"
+        index_file = cluster_folder / f"index_network_{r}.csv"
+        data = pd.read_csv(cluster_file)
+        data.rename(columns={"uid":"cluster_uid"}, inplace=True)
+
+        ppi_list = ['hippie', 'stringdb', 'biogrid']
+
+        # This returns a list of 3 DataFrames
+        list_of_result_dfs = Parallel(n_jobs=3)(
+            delayed(compute_network_scores)(data, ppi, bio_path,10) for ppi in ppi_list
+        )
+
+        # Combine horizontally: result will have original df cols + 18 new PPI cols
+        # axis=1 tells pandas to align by the index (cluster_uid)
+        final_df = pd.concat([data] + list_of_result_dfs, axis=1)
+        # result = compute_network_scores(data,"stringdb",bio_path,10)
+        final_df.to_csv(index_file,index=False)
+
+
+        # run_parallel = len(data) > 10
+        # batch_size = int(len(data)/n_jobs) + 1
+        # print()
+        # df, add = compute_indices_batch(
+        #     data, run_parallel, n_jobs, batch_size,bio_path)
+        # df.to_csv(index_file,index=False)
+        # print("saved")
 
 
 def performance_indices_combined(input, env,options ,args):

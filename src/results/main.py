@@ -8,8 +8,9 @@ from joblib import Parallel, delayed, load
 import pandas as pd
 
 from src.results.explore import gene_frequency_analysis, distance_measure_analysis
-from src.results.indices import performance_indices1,performance_indices_combined
+from src.results.indices import performance_indices1,performance_indices_combined,performance_indices_ppi_network
 from src.results.target import target_info,target_run_diagram
+from src.results.parameter_selection import parameter_selection_plot
 
 def hello(input, env, options, args):
     target = input.get("target", "world")
@@ -85,7 +86,9 @@ METHOD_REGISTRY = {
     "distance_measure_analysis":distance_measure_analysis,
     "performance_indices_combined":performance_indices_combined,
     "target_info":target_info,
-    "target_run_diagram":target_run_diagram
+    "target_run_diagram":target_run_diagram,
+    "parameter_selection_plot":parameter_selection_plot,
+    "performance_indices_ppi_network":performance_indices_ppi_network
 }
 
 # CLI entry point
