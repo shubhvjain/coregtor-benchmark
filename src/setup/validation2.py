@@ -14,7 +14,7 @@ def generate_files(env,args):
     ppis = ["hippie","stringdb","biogrid"]
     options = {
         "njobs":  args.njobs if args.njobs is not None else -1 ,
-        "nmodels":  500,
+        "nmodels":  200,
         "rerun": args.rerun if args.rerun is not None else False,
     }
     for p in ppis:

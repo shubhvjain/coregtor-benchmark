@@ -1,4 +1,4 @@
-from tfitpy import compute_indices, compute_module_network_metrics, load_all_network_data
+from tfitpy import compute_indices, load_all_network_data
 import json
 import os
 from pathlib import Path
@@ -100,6 +100,89 @@ def performance_indices1(input, env,options ,args):
         print("saved")
 
 
+def compute_module_network_metrics(M,t, ppi, null_graphs, mapping, debug=False):
+    """
+    M: List of gene symbols
+    ppi: Original aligned igraph object
+    null_graphs: List of  pre-built igraph objects
+    mapping: Symbol -> Int dictionary
+    debug: If True, prints mapping and subgraph samples
+    """
+    # 1. Map symbols to indices
+    m_indices = [mapping[g] for g in M if g in mapping]
+    n_m = len(m_indices)
+    target_idx = mapping.get(t)
+        
+    if n_m < 2:
+        # lcc is 1/1
+        return 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, round(n_m/len(M),4)
+
+    possible_edges = (n_m * (n_m - 1)) / 2
+
+    # --- 2. Observed Metrics ---
+    sub_obs = ppi.induced_subgraph(m_indices)
+    e_obs = sub_obs.ecount()
+    
+    obs_density = e_obs / possible_edges if possible_edges > 0 else 0.0
+    obs_lcc_count = sub_obs.connected_components().giant().vcount() if e_obs > 0 else 1
+    obs_lcc_ratio = obs_lcc_count / n_m
+
+    obs_tc_count = 0
+    if target_idx is not None:
+        # Get neighbors of target and find intersection with module indices
+        target_neighbors = set(ppi.neighbors(target_idx))
+        obs_tc_count = len(target_neighbors.intersection(m_indices))
+    
+    obs_tc_ratio = obs_tc_count / n_m
+
+    # --- 3. Null Distribution ---
+    density_hits = 0
+    lcc_hits = 0
+    tc_hits = 0
+    R = len(null_graphs)
+    
+    for i, g_null in enumerate(null_graphs):
+        sub_null = g_null.induced_subgraph(m_indices)
+        e_null = sub_null.ecount()
+        
+        # Null Density
+        null_density = e_null / possible_edges if possible_edges > 0 else 0.0
+        if null_density >= obs_density:
+            density_hits += 1
+            
+        # Null LCC Ratio
+        null_lcc_count = sub_null.connected_components().giant().vcount() if e_null > 0 else 1
+        null_lcc_ratio = null_lcc_count / n_m
+        
+        if null_lcc_ratio >= obs_lcc_ratio:
+            lcc_hits += 1
+
+        if target_idx is not None:
+            null_target_neighbors = set(g_null.neighbors(target_idx))
+            null_tc_count = len(null_target_neighbors.intersection(m_indices))
+            if (null_tc_count / n_m) >= obs_tc_ratio:
+                tc_hits += 1
+            
+
+    # --- 4. Final Scores (-ln(p)) ---
+    p_density = (density_hits + 1) / (R + 1)
+    density_score = max(0.0, -np.log(p_density))
+    
+    p_lcc = (lcc_hits + 1) / (R + 1)
+    lcc_score = max(0.0, -np.log(p_lcc))
+
+    p_tc = 0
+    target_connectivity_score = 0
+    if target_idx is not None:
+        p_tc = (tc_hits + 1) / (R + 1)
+        target_connectivity_score = max(0.0,-np.log(p_tc))        
+
+
+    nodes_found_ratio = n_m/ len(M) 
+
+    return obs_density, density_score, obs_lcc_ratio, lcc_score, obs_tc_ratio, target_connectivity_score, nodes_found_ratio
+
+
 def compute_network_scores(df, ppi_key, data_path, n_models=500):
     """
     Computes PPI3, PPI4, and PPI5 for a single PPI source.
@@ -109,10 +192,20 @@ def compute_network_scores(df, ppi_key, data_path, n_models=500):
     G, NULL_MODELS, MAPPING = load_all_network_data(data_path, ppi_key, n_models)
     
     # 2. Compute results row by row
+    zero_result = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0,0.0)
     results = []
+    print(f"starting {len(df)} rows")
+    
     for _, row in df.iterrows():
-        # Call the worker logic we refined earlier
-        # (Assuming compute_module_metrics is the function returning the 6-tuple)
+        sources = row['sources'].split(';')
+        target = row['target']
+        
+        # Check Condition 1: Module size must be at least 3
+        if len(sources) < 2:
+            results.append(zero_result)
+            continue
+            
+        
         metrics = compute_module_network_metrics(
             M=row['sources'].split(';'),
             t=row['target'],
@@ -126,14 +219,40 @@ def compute_network_scores(df, ppi_key, data_path, n_models=500):
     col_names = [
         f"density_{ppi_key}", f"density_score_{ppi_key}", 
         f"lcc_{ppi_key}", f"lcc_score_{ppi_key}",
-        f"tc_{ppi_key}", f"tc_score_{ppi_key}"
+        f"tc_{ppi_key}", f"tc_score_{ppi_key}",f"node_found_ratio_{ppi_key}" 
     ]
     
     result_df = pd.DataFrame(results, columns=col_names, index=df.index)
     return result_df.round(5)
 
+def compute_scores_preloaded(df, ppi_key, G, NULL_MODELS, MAPPING):
+    """Modified version of compute_network_scores that takes pre-loaded data"""
+    results = []
+    zero_result = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+    
+    for _, row in df.iterrows():
+        sources = str(row['sources']).split(';')
+        if len(sources) < 2:
+            results.append(zero_result)
+            continue
+            
+        metrics = compute_module_network_metrics(
+            M=sources,
+            t=row['target'],
+            ppi=G,
+            null_graphs=NULL_MODELS,
+            mapping=MAPPING
+        )
+        results.append(metrics)
+    
+    col_names = [
+        f"density_{ppi_key}", f"density_score_{ppi_key}", 
+        f"lcc_{ppi_key}", f"lcc_score_{ppi_key}",
+        f"tc_{ppi_key}", f"tc_score_{ppi_key}", f"node_found_ratio_{ppi_key}" 
+    ]
+    return pd.DataFrame(results, columns=col_names, index=df.index).round(5)
 
-def performance_indices_ppi_network(input, env,options ,args):
+def performance_indices_ppi_network1(input, env,options ,args):
     """
     compute performance indices for cluster results 
     """
@@ -167,9 +286,16 @@ def performance_indices_ppi_network(input, env,options ,args):
         ppi_list = ['hippie', 'stringdb', 'biogrid']
 
         # This returns a list of 3 DataFrames
-        list_of_result_dfs = Parallel(n_jobs=3)(
-            delayed(compute_network_scores)(data, ppi, bio_path,10) for ppi in ppi_list
-        )
+        # list_of_result_dfs = Parallel(n_jobs=3)(
+        #     delayed(compute_network_scores)(data, ppi, bio_path,500) for ppi in ppi_list
+        # )
+
+        list_of_result_dfs = []
+        for ppi in ppi_list:
+            print(f"starting {ppi}.")
+            r = compute_network_scores(data, ppi, bio_path,500)
+            list_of_result_dfs.append(r)
+            print(f"Finished {ppi}.")
 
         # Combine horizontally: result will have original df cols + 18 new PPI cols
         # axis=1 tells pandas to align by the index (cluster_uid)
@@ -185,6 +311,54 @@ def performance_indices_ppi_network(input, env,options ,args):
         #     data, run_parallel, n_jobs, batch_size,bio_path)
         # df.to_csv(index_file,index=False)
         # print("saved")
+
+
+def performance_indices_ppi_network(input, env, options, args):
+    out_path, temp_path = ut.get_exp_path(input, env)
+    bio_path = env["DATA_PATH"]
+    cluster_folder = temp_path / "clusters"
+    rerun = args.rerun
+    all_results = [cl["id"] for cl in input["clustering"]]
+    result_list_input = options.get("result_list", all_results)
+    
+    ppi_list = ['hippie', 'stringdb', 'biogrid']
+    
+    # 1. Initialize a dictionary to hold DataFrames for each result ID
+    # This prevents constant disk I/O for the cluster files
+    df_store = {}
+    for r in result_list_input:
+        result_file_path = cluster_folder / f"index_network_{r}.csv"
+        if result_file_path.exists() and not rerun:
+            continue
+        cluster_file = cluster_folder / f"{r}.csv"
+        df_store[r] = pd.read_csv(cluster_file)
+        df_store[r].rename(columns={"uid": "cluster_uid"}, inplace=True)
+
+    # 2. Outer Loop: PPI Networks (The "Heavy" objects)
+    for ppi_key in ppi_list:
+        print(f"--- Loading Network Data for: {ppi_key} ---")
+        # Load the 500 models ONCE for this PPI
+        G, NULL_MODELS, MAPPING = load_all_network_data(bio_path, ppi_key, 200)
+        print("now running scores")
+        # Inner Loop: Process all cluster files against this loaded network
+        for r, data_df in df_store.items():
+            print(f"Computing {ppi_key} scores for cluster set: {r}")
+            
+            # We call the computation logic directly here or via a modified helper
+            # that accepts the pre-loaded objects
+            scores_df = compute_scores_preloaded(data_df, ppi_key, G, NULL_MODELS, MAPPING)
+            
+            # Join the new scores to the existing DataFrame in our dictionary
+            df_store[r] = pd.concat([df_store[r], scores_df], axis=1)
+        
+        # Optional: Clear memory of the large graph objects before next PPI
+        del G, NULL_MODELS, MAPPING
+
+    # 3. Final Step: Save consolidated results
+    for r, final_df in df_store.items():
+        index_file = cluster_folder / f"index_network_{r}.csv"
+        final_df.to_csv(index_file, index=False)
+        print(f"Saved consolidated results to {index_file}")
 
 
 def performance_indices_combined(input, env,options ,args):
