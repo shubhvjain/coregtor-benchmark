@@ -389,7 +389,27 @@ def performance_indices_combined(input, env,options ,args):
         if not index_file.exists():
             raise ValueError(f"file {index_file} note yet generated")
         
+        network_file = cluster_folder / f"index_network_{r}.csv"
+        if not network_file.exists():
+            raise ValueError(f"file {network_file} note yet generated")
+        
         data = pd.read_csv(index_file)
+
+        network_score = pd.read_csv(network_file)
+        network_cols = [
+            "density_hippie", "density_score_hippie", "lcc_hippie", "lcc_score_hippie", 
+            "tc_hippie", "tc_score_hippie", "node_found_ratio_hippie", "density_stringdb", 
+            "density_score_stringdb", "lcc_stringdb", "lcc_score_stringdb", "tc_stringdb", 
+            "tc_score_stringdb", "node_found_ratio_stringdb", "density_biogrid", 
+            "density_score_biogrid", "lcc_biogrid", "lcc_score_biogrid", "tc_biogrid", 
+            "tc_score_biogrid", "node_found_ratio_biogrid"
+        ]
+
+        # Merge the network columns into 'data'
+        # If network_score has 1 row and data has many, this broadcasts the values
+        # If they align row-for-row, this joins them side-by-side
+        data = pd.concat([data, network_score[network_cols]], axis=1)
+
         data["config_name"] = r
         res.append(data)
 
