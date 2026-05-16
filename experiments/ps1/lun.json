@@ -1,4 +1,5 @@
 {
+  "type":"coregtor_parameter_selection",
   "id": "ps_lun",
   "about": "To run CoRegTor on a simple dataset",
 
