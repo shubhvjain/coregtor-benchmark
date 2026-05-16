@@ -38,7 +38,7 @@ def generate_gtex_stats(input, env, options, args):
     for d in all_datasets:
         dets = input["datasets"][d]
 
-        dets["path"] = os.path.expandvars(dets["path"])
+        dets["path"] = os.path.expandvars(f"$DATA_PATH/{dets['path']}")
         # print(os.path.expandvars(dets["path"]))
         # print(dets)
         data = read_dataset(dets, CONFIG)
@@ -59,7 +59,7 @@ def generate_gtex_stats(input, env, options, args):
         }
         summary_stats.append(summary)
 
-    dump(detailed_stats, main_stats_file)
+    dump(detailed_stats, main_stats_file,compress=3)
     data = pd.DataFrame(summary_stats)
     data.to_csv(folder/"stats.csv", index=False)
 

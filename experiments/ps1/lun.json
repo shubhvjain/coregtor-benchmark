@@ -4,7 +4,7 @@
 
   "dataset": {
     "name": "LUN",
-    "path": "$DATA_PATH/lung/gene_tpm_v11_lung.gct",
+    "path": "$DATA_PATH/LUN/gene_tpm_v11_lung.gct",
     "type": "gct",
     "convert_gene_names": true
   },

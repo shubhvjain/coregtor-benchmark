@@ -4,7 +4,7 @@
 
   "dataset": {
     "name": "BLD",
-    "path": "$DATA_PATH/blood/gene_tpm_v10_whole_blood.gct",
+    "path": "$DATA_PATH/BLD/gene_tpm_v10_whole_blood.gct",
     "type": "gct",
     "convert_gene_names": true
   },

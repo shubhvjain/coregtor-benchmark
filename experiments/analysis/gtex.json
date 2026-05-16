@@ -61,9 +61,9 @@
     },
     "SKN": {
       "title": "Gene TPMs for Skin - Non Sun Exposed (Suprapubic)",
-      "path": "SKN/gene_tpm_v11_skin_non_sun_exposed_suprapubic.gct",
+      "path": "SKN/gene_tpm_v11_skin_not_sun_exposed_suprapubic.gct",
       "type": "gct",
-      "url": "https://storage.googleapis.com/adult-gtex/bulk-gex/v11/rna-seq/tpms-by-tissue/gene_tpm_v11_skin_non_sun_exposed_suprapubic.gct.gz",
+      "url": "https://storage.googleapis.com/adult-gtex/bulk-gex/v11/rna-seq/tpms-by-tissue/gene_tpm_v11_skin_not_sun_exposed_suprapubic.gct.gz",
       "tissue_name": "Skin - Non Sun Exposed (Suprapubic)"
     },
      "ESM": {
@@ -136,13 +136,6 @@
       "url": "https://storage.googleapis.com/adult-gtex/bulk-gex/v11/rna-seq/tpms-by-tissue/gene_tpm_v11_colon_sigmoid.gct.gz",
       "tissue_name": "Colon - Sigmoid"
     },
-    "TST": {
-      "title": "Gene TPMs for Testis",
-      "path": "TST/gene_tpm_v11_testis.gct",
-      "type": "gct",
-      "url": "https://storage.googleapis.com/adult-gtex/bulk-gex/v11/rna-seq/tpms-by-tissue/gene_tpm_v11_testis.gct.gz",
-      "tissue_name": "Testis"
-    },
     "STM": {
       "title": "Gene TPMs for Stomach",
       "path": "STM/gene_tpm_v11_stomach.gct",
@@ -163,13 +156,6 @@
       "type": "gct",
       "url": "https://storage.googleapis.com/adult-gtex/bulk-gex/v11/rna-seq/tpms-by-tissue/gene_tpm_v11_pancreas.gct.gz",
       "tissue_name": "Pancreas"
-    },
-    "EBV": {
-      "title": "Gene TPMs for Cells - EBV-transformed lymphocytes",
-      "path": "EBV/gene_tpm_v11_cells_ebv_transformed_lymphocytes.gct",
-      "type": "gct",
-      "url": "https://storage.googleapis.com/adult-gtex/bulk-gex/v11/rna-seq/tpms-by-tissue/gene_tpm_v11_cells_ebv_transformed_lymphocytes.gct.gz",
-      "tissue_name": "Cells - EBV-transformed lymphocytes"
     },
     "PIT": {
       "title": "Gene TPMs for Pituitary",
@@ -287,7 +273,7 @@
       "title": "Gene TPMs for Brain - Spinal Cord (Cervical c-1)",
       "path": "SPC/gene_tpm_v10_brain_spinal_cord_cervical_c1.gct",
       "type": "gct",
-      "url": "https://storage.googleapis.com/adult-gtex/bulk-gex/v10/rna-seq/tpms-by-tissue/gene_tpm_v10_brain_spinal_cord_cervical_c1.gct.gz",
+      "url": "https://storage.googleapis.com/adult-gtex/bulk-gex/v11/rna-seq/tpms-by-tissue/gene_tpm_v11_brain_spinal_cord_cervical_c-1.gct.gz",
       "tissue_name": "Brain - Spinal Cord (Cervical c-1)"
     },
     "OVY": {
