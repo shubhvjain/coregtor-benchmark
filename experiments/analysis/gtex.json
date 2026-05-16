@@ -1,5 +1,6 @@
 {
   "id": "gtex_info",
+  "type":"gtex_info",
   "about": "Source https://www.gtexportal.org/home/downloads/adult-gtex/bulk_tissue_expression",
   "datasets": {
      "MUS": {
@@ -374,7 +375,6 @@
       "tissue_name": "Kidney - Medulla"
     }
   },
-
   "results": [
     {
       "id": "r1",
