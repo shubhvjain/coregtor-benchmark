@@ -135,7 +135,7 @@ poetry run coregtor bulk batch  --config env=$ENV_PATH  input=$EXP_PATH items=25
 
 The next step is to generate the result files. The options for each result type are defined in the experiment files under the "results" list. 
 
-```bach
+```bash
 poetry run python src/results/main.py --env=$ENV_PATH --input=$EXP_PATH --id=r1
 ```
 
@@ -157,7 +157,55 @@ The goal of this analysis is to explore how different input parameters influence
 Here we use data from 500 targets run on 10 different GTEx tissue datasets. All the parameters are specified in the experiment files. 
 
 Experiments to run:  
-Run all the experiment in the folder `experiments/ps1` first. The folder `ps1` contains experiments with 1000 trees with depth of 5. 
+Run all the experiment in the folder `experiments/ps1` first. The folder `ps1` contains experiments with 1000 trees with depth of 5. Additionaly some results must be generated.
+
+Here is a script for one dataset
+
+```bash
+#!/bin/bash -l
+#SBATCH --nodes=1
+#SBATCH --cpus-per-task=4
+#SBATCH --mem=30G
+#SBATCH --time=03:00:00
+#SBATCH --partition=work
+#SBATCH --job-name=test
+#SBATCH --mail-type=ALL
+#SBATCH --export=NONE
+#SBATCH --output=run.out
+
+unset SLURM_EXPORT_ENV
+module load python
+cd $SLURM_SUBMIT_DIR
+export http_proxy=http://proxy.nhr.fau.de:80
+export https_proxy=http://proxy.nhr.fau.de:80
+
+export ENV_PATH="$PWD/.env"
+export EXP_PATH="$PWD/experiments/test1.json"
+export EXP_PATH_AMY="$PWD/experiments/ps1/amy.json"
+export EXP_PATH_BLA="$PWD/experiments/ps1/bla.json"
+export EXP_PATH_BLD="$PWD/experiments/ps1/bld.json"
+export EXP_PATH_LUN="$PWD/experiments/ps1/lun.json"
+export EXP_PATH_KDC="$PWD/experiments/ps1/kdc.json"
+export EXP_PATH_STM="$PWD/experiments/ps1/stm.json"
+export EXP_PATH_HRA="$PWD/experiments/ps1/hra.json"
+export EXP_PATH_LIV="$PWD/experiments/ps1/liv.json"
+export EXP_PATH_CDN="$PWD/experiments/ps1/cdn.json"
+export EXP_PATH_PIT="$PWD/experiments/ps1/pit.json"
+
+poetry run coregtor bulk batch  --config env=$ENV_PATH  input=$EXP_PATH_AMY items=500
+
+poetry run python src/results/main.py --env=$ENV_PATH  --input=$EXP_PATH_AMY --id=r0
+poetry run python src/results/main.py --env=$ENV_PATH  --input=$EXP_PATH_AMY --id=r1
+
+
+poetry run python src/results/main.py --env=$ENV_PATH  --input=$EXP_PATH_AMY --id=r2 --njobs=16
+poetry run python src/results/main.py --env=$ENV_PATH  --input=$EXP_PATH_AMY --id=r3 --njobs=16
+
+
+poetry run python src/results/main.py --env=$ENV_PATH  --input=$EXP_PATH_AMY --id=r31
+poetry run python src/results/main.py --env=$ENV_PATH  --input=$EXP_PATH_AMY --id=r32
+
+```
 
 ### Configurations 
 ![Parameters](configs.excalidraw.svg)
