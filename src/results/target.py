@@ -98,6 +98,7 @@ def target_run_diagram(input, env, options, args):
     
     data = pd.json_normalize(data=datajs)
     #print(data)
+    data["exp"]= input["id"]
     data["dataset"]=input["dataset"]["name"]
 
 

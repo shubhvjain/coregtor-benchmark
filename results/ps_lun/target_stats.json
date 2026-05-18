@@ -11,7 +11,12 @@
    "count_avg": 3.15421,
    "count_median": 2.0,
    "count_std": 6.93722,
-   "count_skew": 13.31264
+   "count_skew": 13.31264,
+   "mean_context_density": 0.19969,
+   "mean_entropy": 6.48102,
+   "mean_evenness_index": 0.61383,
+   "mean_peer_density": 0.55078,
+   "mean_peer_rank": 7.62213
   },
   "cosine_distance": {
    "n_roots": 16,
@@ -100,7 +105,12 @@
    "count_avg": 3.563,
    "count_median": 2.0,
    "count_std": 6.58386,
-   "count_skew": 7.86435
+   "count_skew": 7.86435,
+   "mean_context_density": 0.14494,
+   "mean_entropy": 5.55809,
+   "mean_evenness_index": 0.52665,
+   "mean_peer_density": 0.375,
+   "mean_peer_rank": 6.12147
   },
   "cosine_distance": {
    "n_roots": 20,
@@ -189,7 +199,12 @@
    "count_avg": 2.13837,
    "count_median": 1.0,
    "count_std": 4.01474,
-   "count_skew": 17.07541
+   "count_skew": 17.07541,
+   "mean_context_density": 0.04075,
+   "mean_entropy": 4.1155,
+   "mean_evenness_index": 0.40054,
+   "mean_peer_density": 0.0768,
+   "mean_peer_rank": 3.19268
   },
   "cosine_distance": {
    "n_roots": 75,
@@ -278,7 +293,12 @@
    "count_avg": 3.76727,
    "count_median": 2.0,
    "count_std": 8.64767,
-   "count_skew": 12.53007
+   "count_skew": 12.53007,
+   "mean_context_density": 0.12296,
+   "mean_entropy": 4.46317,
+   "mean_evenness_index": 0.42411,
+   "mean_peer_density": 0.23828,
+   "mean_peer_rank": 5.84226
   },
   "cosine_distance": {
    "n_roots": 16,
@@ -367,7 +387,12 @@
    "count_avg": 5.4881,
    "count_median": 3.0,
    "count_std": 16.25194,
-   "count_skew": 18.42999
+   "count_skew": 18.42999,
+   "mean_context_density": 0.52626,
+   "mean_entropy": 7.36031,
+   "mean_evenness_index": 0.69654,
+   "mean_peer_density": 0.77778,
+   "mean_peer_rank": 3.88889
   },
   "cosine_distance": {
    "n_roots": 3,
@@ -456,7 +481,12 @@
    "count_avg": 3.8638,
    "count_median": 2.0,
    "count_std": 10.45446,
-   "count_skew": 12.04136
+   "count_skew": 12.04136,
+   "mean_context_density": 0.15123,
+   "mean_entropy": 5.22848,
+   "mean_evenness_index": 0.49702,
+   "mean_peer_density": 0.40138,
+   "mean_peer_rank": 5.45845
   },
   "cosine_distance": {
    "n_roots": 17,
@@ -545,7 +575,12 @@
    "count_avg": 7.16978,
    "count_median": 3.0,
    "count_std": 16.94229,
-   "count_skew": 11.22534
+   "count_skew": 11.22534,
+   "mean_context_density": 0.25107,
+   "mean_entropy": 6.69017,
+   "mean_evenness_index": 0.63456,
+   "mean_peer_density": 0.72,
+   "mean_peer_rank": 4.18667
   },
   "cosine_distance": {
    "n_roots": 5,
@@ -634,7 +669,12 @@
    "count_avg": 4.3301,
    "count_median": 2.0,
    "count_std": 11.59382,
-   "count_skew": 9.59962
+   "count_skew": 9.59962,
+   "mean_context_density": 0.2013,
+   "mean_entropy": 5.46794,
+   "mean_evenness_index": 0.52106,
+   "mean_peer_density": 0.53719,
+   "mean_peer_rank": 5.25797
   },
   "cosine_distance": {
    "n_roots": 11,
@@ -723,7 +763,12 @@
    "count_avg": 3.63269,
    "count_median": 2.0,
    "count_std": 9.06228,
-   "count_skew": 10.93153
+   "count_skew": 10.93153,
+   "mean_context_density": 0.09597,
+   "mean_entropy": 5.47784,
+   "mean_evenness_index": 0.51995,
+   "mean_peer_density": 0.26873,
+   "mean_peer_rank": 6.05549
   },
   "cosine_distance": {
    "n_roots": 29,
@@ -812,7 +857,12 @@
    "count_avg": 2.43804,
    "count_median": 1.0,
    "count_std": 4.26013,
-   "count_skew": 13.99047
+   "count_skew": 13.99047,
+   "mean_context_density": 0.10172,
+   "mean_entropy": 5.64998,
+   "mean_evenness_index": 0.53363,
+   "mean_peer_density": 0.22437,
+   "mean_peer_rank": 4.97251
   },
   "cosine_distance": {
    "n_roots": 40,
@@ -901,7 +951,12 @@
    "count_avg": 2.47211,
    "count_median": 1.0,
    "count_std": 5.05735,
-   "count_skew": 13.62588
+   "count_skew": 13.62588,
+   "mean_context_density": 0.06014,
+   "mean_entropy": 4.18722,
+   "mean_evenness_index": 0.39978,
+   "mean_peer_density": 0.17495,
+   "mean_peer_rank": 4.21994
   },
   "cosine_distance": {
    "n_roots": 61,
@@ -990,7 +1045,12 @@
    "count_avg": 7.76445,
    "count_median": 3.0,
    "count_std": 25.58364,
-   "count_skew": 18.66693
+   "count_skew": 18.66693,
+   "mean_context_density": 1.0,
+   "mean_entropy": 8.95175,
+   "mean_evenness_index": 0.85644,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 1.0
   },
   "cosine_distance": {
    "n_roots": 1,
@@ -1079,7 +1139,12 @@
    "count_avg": 4.25118,
    "count_median": 2.0,
    "count_std": 12.89118,
-   "count_skew": 11.02083
+   "count_skew": 11.02083,
+   "mean_context_density": 0.17547,
+   "mean_entropy": 6.35092,
+   "mean_evenness_index": 0.60779,
+   "mean_peer_density": 0.6568,
+   "mean_peer_rank": 6.77198
   },
   "cosine_distance": {
    "n_roots": 13,
@@ -1168,7 +1233,12 @@
    "count_avg": 4.65032,
    "count_median": 2.0,
    "count_std": 12.44874,
-   "count_skew": 13.05782
+   "count_skew": 13.05782,
+   "mean_context_density": 0.21902,
+   "mean_entropy": 5.85867,
+   "mean_evenness_index": 0.55579,
+   "mean_peer_density": 0.60494,
+   "mean_peer_rank": 6.61574
   },
   "cosine_distance": {
    "n_roots": 9,
@@ -1257,7 +1327,12 @@
    "count_avg": 2.36846,
    "count_median": 1.0,
    "count_std": 4.8802,
-   "count_skew": 10.8229
+   "count_skew": 10.8229,
+   "mean_context_density": 0.08576,
+   "mean_entropy": 4.89432,
+   "mean_evenness_index": 0.46397,
+   "mean_peer_density": 0.21499,
+   "mean_peer_rank": 5.16437
   },
   "cosine_distance": {
    "n_roots": 39,
@@ -1346,7 +1421,12 @@
    "count_avg": 5.1732,
    "count_median": 2.0,
    "count_std": 14.55044,
-   "count_skew": 10.73431
+   "count_skew": 10.73431,
+   "mean_context_density": 0.25634,
+   "mean_entropy": 6.24592,
+   "mean_evenness_index": 0.59396,
+   "mean_peer_density": 0.63265,
+   "mean_peer_rank": 7.22925
   },
   "cosine_distance": {
    "n_roots": 7,
@@ -1435,7 +1515,12 @@
    "count_avg": 7.74074,
    "count_median": 4.0,
    "count_std": 20.21585,
-   "count_skew": 10.27508
+   "count_skew": 10.27508,
+   "mean_context_density": 0.18185,
+   "mean_entropy": 5.12408,
+   "mean_evenness_index": 0.48746,
+   "mean_peer_density": 0.30556,
+   "mean_peer_rank": 3.63889
   },
   "cosine_distance": {
    "n_roots": 6,
@@ -1524,7 +1609,12 @@
    "count_avg": 4.1546,
    "count_median": 2.0,
    "count_std": 12.25007,
-   "count_skew": 12.83241
+   "count_skew": 12.83241,
+   "mean_context_density": 0.15822,
+   "mean_entropy": 6.04935,
+   "mean_evenness_index": 0.57769,
+   "mean_peer_density": 0.61333,
+   "mean_peer_rank": 5.67415
   },
   "cosine_distance": {
    "n_roots": 15,
@@ -1613,7 +1703,12 @@
    "count_avg": 5.46045,
    "count_median": 2.0,
    "count_std": 14.53189,
-   "count_skew": 8.6995
+   "count_skew": 8.6995,
+   "mean_context_density": 0.24437,
+   "mean_entropy": 6.0355,
+   "mean_evenness_index": 0.5752,
+   "mean_peer_density": 0.65306,
+   "mean_peer_rank": 4.65918
   },
   "cosine_distance": {
    "n_roots": 7,
@@ -1702,7 +1797,12 @@
    "count_avg": 1.99932,
    "count_median": 1.0,
    "count_std": 2.20559,
-   "count_skew": 6.08335
+   "count_skew": 6.08335,
+   "mean_context_density": 0.04233,
+   "mean_entropy": 3.91291,
+   "mean_evenness_index": 0.37541,
+   "mean_peer_density": 0.09938,
+   "mean_peer_rank": 3.17786
   },
   "cosine_distance": {
    "n_roots": 76,
@@ -1791,7 +1891,12 @@
    "count_avg": 2.1829,
    "count_median": 1.0,
    "count_std": 3.15675,
-   "count_skew": 9.04865
+   "count_skew": 9.04865,
+   "mean_context_density": 0.05269,
+   "mean_entropy": 4.32771,
+   "mean_evenness_index": 0.41256,
+   "mean_peer_density": 0.15697,
+   "mean_peer_rank": 3.77707
   },
   "cosine_distance": {
    "n_roots": 63,
@@ -1880,7 +1985,12 @@
    "count_avg": 3.56674,
    "count_median": 2.0,
    "count_std": 8.88312,
-   "count_skew": 11.26155
+   "count_skew": 11.26155,
+   "mean_context_density": 0.18897,
+   "mean_entropy": 6.21204,
+   "mean_evenness_index": 0.59146,
+   "mean_peer_density": 0.58222,
+   "mean_peer_rank": 7.77488
   },
   "cosine_distance": {
    "n_roots": 15,
@@ -1969,7 +2079,12 @@
    "count_avg": 2.35673,
    "count_median": 1.0,
    "count_std": 3.50384,
-   "count_skew": 8.59465
+   "count_skew": 8.59465,
+   "mean_context_density": 0.07282,
+   "mean_entropy": 5.103,
+   "mean_evenness_index": 0.4827,
+   "mean_peer_density": 0.19033,
+   "mean_peer_rank": 4.231
   },
   "cosine_distance": {
    "n_roots": 54,
@@ -2058,7 +2173,12 @@
    "count_avg": 6.84687,
    "count_median": 3.0,
    "count_std": 20.13825,
-   "count_skew": 9.1161
+   "count_skew": 9.1161,
+   "mean_context_density": 0.2134,
+   "mean_entropy": 5.81314,
+   "mean_evenness_index": 0.55497,
+   "mean_peer_density": 0.58333,
+   "mean_peer_rank": 6.16667
   },
   "cosine_distance": {
    "n_roots": 6,
@@ -2147,7 +2267,12 @@
    "count_avg": 6.2475,
    "count_median": 2.0,
    "count_std": 18.92021,
-   "count_skew": 10.14242
+   "count_skew": 10.14242,
+   "mean_context_density": 0.47015,
+   "mean_entropy": 7.80946,
+   "mean_evenness_index": 0.74591,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 6.55556
   },
   "cosine_distance": {
    "n_roots": 3,
@@ -2236,7 +2361,12 @@
    "count_avg": 4.1752,
    "count_median": 2.0,
    "count_std": 10.87636,
-   "count_skew": 11.83622
+   "count_skew": 11.83622,
+   "mean_context_density": 0.22891,
+   "mean_entropy": 6.19693,
+   "mean_evenness_index": 0.58729,
+   "mean_peer_density": 0.61,
+   "mean_peer_rank": 6.94111
   },
   "cosine_distance": {
    "n_roots": 10,
@@ -2325,7 +2455,12 @@
    "count_avg": 3.85199,
    "count_median": 2.0,
    "count_std": 9.40411,
-   "count_skew": 11.47092
+   "count_skew": 11.47092,
+   "mean_context_density": 0.13498,
+   "mean_entropy": 6.07045,
+   "mean_evenness_index": 0.5769,
+   "mean_peer_density": 0.48457,
+   "mean_peer_rank": 6.63574
   },
   "cosine_distance": {
    "n_roots": 18,
@@ -2414,7 +2549,12 @@
    "count_avg": 4.00087,
    "count_median": 2.0,
    "count_std": 11.84306,
-   "count_skew": 12.49896
+   "count_skew": 12.49896,
+   "mean_context_density": 0.18855,
+   "mean_entropy": 6.09102,
+   "mean_evenness_index": 0.58212,
+   "mean_peer_density": 0.5858,
+   "mean_peer_rank": 7.42673
   },
   "cosine_distance": {
    "n_roots": 13,
@@ -2503,7 +2643,12 @@
    "count_avg": 8.31764,
    "count_median": 4.0,
    "count_std": 17.30174,
-   "count_skew": 7.70728
+   "count_skew": 7.70728,
+   "mean_context_density": 0.12555,
+   "mean_entropy": 4.59867,
+   "mean_evenness_index": 0.43646,
+   "mean_peer_density": 0.17284,
+   "mean_peer_rank": 4.60494
   },
   "cosine_distance": {
    "n_roots": 9,
@@ -2592,7 +2737,12 @@
    "count_avg": 5.41656,
    "count_median": 2.0,
    "count_std": 16.3354,
-   "count_skew": 15.08781
+   "count_skew": 15.08781,
+   "mean_context_density": 0.22799,
+   "mean_entropy": 5.81664,
+   "mean_evenness_index": 0.5553,
+   "mean_peer_density": 0.59184,
+   "mean_peer_rank": 4.46429
   },
   "cosine_distance": {
    "n_roots": 7,
@@ -2681,7 +2831,12 @@
    "count_avg": 3.36232,
    "count_median": 2.0,
    "count_std": 6.98175,
-   "count_skew": 9.41648
+   "count_skew": 9.41648,
+   "mean_context_density": 0.12456,
+   "mean_entropy": 5.51728,
+   "mean_evenness_index": 0.52274,
+   "mean_peer_density": 0.34722,
+   "mean_peer_rank": 5.94841
   },
   "cosine_distance": {
    "n_roots": 24,
@@ -2770,7 +2925,12 @@
    "count_avg": 4.79046,
    "count_median": 2.0,
    "count_std": 14.78398,
-   "count_skew": 17.60264
+   "count_skew": 17.60264,
+   "mean_context_density": 0.15001,
+   "mean_entropy": 5.70225,
+   "mean_evenness_index": 0.54449,
+   "mean_peer_density": 0.54167,
+   "mean_peer_rank": 5.60726
   },
   "cosine_distance": {
    "n_roots": 12,
@@ -2859,7 +3019,12 @@
    "count_avg": 4.82677,
    "count_median": 2.0,
    "count_std": 13.00894,
-   "count_skew": 12.13051
+   "count_skew": 12.13051,
+   "mean_context_density": 0.38921,
+   "mean_entropy": 7.37665,
+   "mean_evenness_index": 0.6991,
+   "mean_peer_density": 0.88,
+   "mean_peer_rank": 8.97
   },
   "cosine_distance": {
    "n_roots": 5,
@@ -2948,7 +3113,12 @@
    "count_avg": 3.30547,
    "count_median": 1.0,
    "count_std": 7.91685,
-   "count_skew": 10.583
+   "count_skew": 10.583,
+   "mean_context_density": 0.17768,
+   "mean_entropy": 6.09601,
+   "mean_evenness_index": 0.58271,
+   "mean_peer_density": 0.6263,
+   "mean_peer_rank": 8.57706
   },
   "cosine_distance": {
    "n_roots": 17,
@@ -3037,7 +3207,12 @@
    "count_avg": 3.34474,
    "count_median": 2.0,
    "count_std": 8.50405,
-   "count_skew": 21.73482
+   "count_skew": 21.73482,
+   "mean_context_density": 0.07281,
+   "mean_entropy": 4.50574,
+   "mean_evenness_index": 0.42756,
+   "mean_peer_density": 0.17215,
+   "mean_peer_rank": 4.53385
   },
   "cosine_distance": {
    "n_roots": 34,
@@ -3126,7 +3301,12 @@
    "count_avg": 3.23336,
    "count_median": 1.0,
    "count_std": 10.14332,
-   "count_skew": 12.49119
+   "count_skew": 12.49119,
+   "mean_context_density": 0.0739,
+   "mean_entropy": 4.00961,
+   "mean_evenness_index": 0.38833,
+   "mean_peer_density": 0.24023,
+   "mean_peer_rank": 4.79674
   },
   "cosine_distance": {
    "n_roots": 32,
@@ -3215,7 +3395,12 @@
    "count_avg": 2.88796,
    "count_median": 1.0,
    "count_std": 6.1937,
-   "count_skew": 11.9185
+   "count_skew": 11.9185,
+   "mean_context_density": 0.07571,
+   "mean_entropy": 5.08986,
+   "mean_evenness_index": 0.48348,
+   "mean_peer_density": 0.2283,
+   "mean_peer_rank": 4.78875
   },
   "cosine_distance": {
    "n_roots": 48,
@@ -3304,7 +3489,12 @@
    "count_avg": 3.46725,
    "count_median": 1.0,
    "count_std": 8.54295,
-   "count_skew": 11.98776
+   "count_skew": 11.98776,
+   "mean_context_density": 0.11911,
+   "mean_entropy": 5.50524,
+   "mean_evenness_index": 0.52462,
+   "mean_peer_density": 0.42535,
+   "mean_peer_rank": 6.12502
   },
   "cosine_distance": {
    "n_roots": 24,
@@ -3393,7 +3583,12 @@
    "count_avg": 4.11528,
    "count_median": 2.0,
    "count_std": 10.5797,
-   "count_skew": 9.28022
+   "count_skew": 9.28022,
+   "mean_context_density": 0.23092,
+   "mean_entropy": 5.7916,
+   "mean_evenness_index": 0.55307,
+   "mean_peer_density": 0.57,
+   "mean_peer_rank": 6.91
   },
   "cosine_distance": {
    "n_roots": 10,
@@ -3482,7 +3677,12 @@
    "count_avg": 4.12113,
    "count_median": 2.0,
    "count_std": 10.31715,
-   "count_skew": 13.65471
+   "count_skew": 13.65471,
+   "mean_context_density": 0.12014,
+   "mean_entropy": 5.04536,
+   "mean_evenness_index": 0.47966,
+   "mean_peer_density": 0.2775,
+   "mean_peer_rank": 5.59149
   },
   "cosine_distance": {
    "n_roots": 20,
@@ -3571,7 +3771,12 @@
    "count_avg": 3.66677,
    "count_median": 2.0,
    "count_std": 9.78672,
-   "count_skew": 10.81813
+   "count_skew": 10.81813,
+   "mean_context_density": 0.31903,
+   "mean_entropy": 6.50469,
+   "mean_evenness_index": 0.61892,
+   "mean_peer_density": 0.79592,
+   "mean_peer_rank": 5.30102
   },
   "cosine_distance": {
    "n_roots": 7,
@@ -3660,7 +3865,12 @@
    "count_avg": 3.59013,
    "count_median": 2.0,
    "count_std": 8.1206,
-   "count_skew": 10.91479
+   "count_skew": 10.91479,
+   "mean_context_density": 0.09537,
+   "mean_entropy": 4.2916,
+   "mean_evenness_index": 0.40691,
+   "mean_peer_density": 0.232,
+   "mean_peer_rank": 4.93863
   },
   "cosine_distance": {
    "n_roots": 25,
@@ -3749,7 +3959,12 @@
    "count_avg": 4.51864,
    "count_median": 2.0,
    "count_std": 12.50454,
-   "count_skew": 20.64688
+   "count_skew": 20.64688,
+   "mean_context_density": 0.3254,
+   "mean_entropy": 6.66894,
+   "mean_evenness_index": 0.6363,
+   "mean_peer_density": 0.66667,
+   "mean_peer_rank": 8.72778
   },
   "cosine_distance": {
    "n_roots": 6,
@@ -3838,7 +4053,12 @@
    "count_avg": 4.3251,
    "count_median": 2.0,
    "count_std": 9.69881,
-   "count_skew": 11.27675
+   "count_skew": 11.27675,
+   "mean_context_density": 0.21744,
+   "mean_entropy": 5.98919,
+   "mean_evenness_index": 0.56724,
+   "mean_peer_density": 0.5,
+   "mean_peer_rank": 6.15833
   },
   "cosine_distance": {
    "n_roots": 10,
@@ -3927,7 +4147,12 @@
    "count_avg": 3.50933,
    "count_median": 2.0,
    "count_std": 8.82928,
-   "count_skew": 11.13351
+   "count_skew": 11.13351,
+   "mean_context_density": 0.17278,
+   "mean_entropy": 5.79373,
+   "mean_evenness_index": 0.5505,
+   "mean_peer_density": 0.55078,
+   "mean_peer_rank": 6.49975
   },
   "cosine_distance": {
    "n_roots": 16,
@@ -4016,7 +4241,12 @@
    "count_avg": 8.58359,
    "count_median": 4.0,
    "count_std": 19.80559,
-   "count_skew": 10.75178
+   "count_skew": 10.75178,
+   "mean_context_density": 0.21891,
+   "mean_entropy": 5.56265,
+   "mean_evenness_index": 0.52815,
+   "mean_peer_density": 0.4,
+   "mean_peer_rank": 2.62
   },
   "cosine_distance": {
    "n_roots": 5,
@@ -4105,7 +4335,12 @@
    "count_avg": 8.38784,
    "count_median": 4.0,
    "count_std": 18.91441,
-   "count_skew": 8.94919
+   "count_skew": 8.94919,
+   "mean_context_density": 1.0,
+   "mean_entropy": 9.31743,
+   "mean_evenness_index": 0.88473,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 2.0
   },
   "cosine_distance": {
    "n_roots": 1,
@@ -4194,7 +4429,12 @@
    "count_avg": 5.4663,
    "count_median": 2.0,
    "count_std": 14.97262,
-   "count_skew": 9.90076
+   "count_skew": 9.90076,
+   "mean_context_density": 0.47139,
+   "mean_entropy": 7.59845,
+   "mean_evenness_index": 0.72513,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 3.0
   },
   "cosine_distance": {
    "n_roots": 3,
@@ -4283,7 +4523,12 @@
    "count_avg": 5.13876,
    "count_median": 3.0,
    "count_std": 11.48785,
-   "count_skew": 17.57406
+   "count_skew": 17.57406,
+   "mean_context_density": 0.79022,
+   "mean_entropy": 9.25669,
+   "mean_evenness_index": 0.87553,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 1.5
   },
   "cosine_distance": {
    "n_roots": 2,
@@ -4372,7 +4617,12 @@
    "count_avg": 4.81633,
    "count_median": 2.0,
    "count_std": 12.76634,
-   "count_skew": 11.71243
+   "count_skew": 11.71243,
+   "mean_context_density": 0.12949,
+   "mean_entropy": 4.69265,
+   "mean_evenness_index": 0.44514,
+   "mean_peer_density": 0.28994,
+   "mean_peer_rank": 5.58011
   },
   "cosine_distance": {
    "n_roots": 13,
@@ -4461,7 +4711,12 @@
    "count_avg": 7.58545,
    "count_median": 4.0,
    "count_std": 19.49164,
-   "count_skew": 13.33683
+   "count_skew": 13.33683,
+   "mean_context_density": 0.21898,
+   "mean_entropy": 5.41968,
+   "mean_evenness_index": 0.51335,
+   "mean_peer_density": 0.72,
+   "mean_peer_rank": 3.91667
   },
   "cosine_distance": {
    "n_roots": 5,
@@ -4550,7 +4805,12 @@
    "count_avg": 6.39075,
    "count_median": 3.0,
    "count_std": 15.85738,
-   "count_skew": 10.164
+   "count_skew": 10.164,
+   "mean_context_density": 0.20777,
+   "mean_entropy": 5.43997,
+   "mean_evenness_index": 0.51555,
+   "mean_peer_density": 0.42857,
+   "mean_peer_rank": 5.42347
   },
   "cosine_distance": {
    "n_roots": 7,
@@ -4639,7 +4899,12 @@
    "count_avg": 3.41598,
    "count_median": 2.0,
    "count_std": 6.59764,
-   "count_skew": 7.27307
+   "count_skew": 7.27307,
+   "mean_context_density": 0.13241,
+   "mean_entropy": 5.07962,
+   "mean_evenness_index": 0.48584,
+   "mean_peer_density": 0.39456,
+   "mean_peer_rank": 5.92554
   },
   "cosine_distance": {
    "n_roots": 21,
@@ -4728,7 +4993,12 @@
    "count_avg": 3.26251,
    "count_median": 2.0,
    "count_std": 6.32764,
-   "count_skew": 9.80645
+   "count_skew": 9.80645,
+   "mean_context_density": 0.19083,
+   "mean_entropy": 5.6891,
+   "mean_evenness_index": 0.54091,
+   "mean_peer_density": 0.42969,
+   "mean_peer_rank": 7.49408
   },
   "cosine_distance": {
    "n_roots": 16,
@@ -4817,7 +5087,12 @@
    "count_avg": 2.94809,
    "count_median": 2.0,
    "count_std": 5.57651,
-   "count_skew": 8.53275
+   "count_skew": 8.53275,
+   "mean_context_density": 0.08396,
+   "mean_entropy": 4.24953,
+   "mean_evenness_index": 0.40434,
+   "mean_peer_density": 0.16233,
+   "mean_peer_rank": 4.60886
   },
   "cosine_distance": {
    "n_roots": 31,
@@ -4906,7 +5181,12 @@
    "count_avg": 2.91184,
    "count_median": 2.0,
    "count_std": 5.58409,
-   "count_skew": 10.95247
+   "count_skew": 10.95247,
+   "mean_context_density": 0.10644,
+   "mean_entropy": 5.61779,
+   "mean_evenness_index": 0.53097,
+   "mean_peer_density": 0.35111,
+   "mean_peer_rank": 5.10527
   },
   "cosine_distance": {
    "n_roots": 30,
@@ -4995,7 +5275,12 @@
    "count_avg": 6.8798,
    "count_median": 3.0,
    "count_std": 21.66863,
-   "count_skew": 14.23151
+   "count_skew": 14.23151,
+   "mean_context_density": 1.0,
+   "mean_entropy": 8.96472,
+   "mean_evenness_index": 0.85726,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 1.0
   },
   "cosine_distance": {
    "n_roots": 1,
@@ -5084,7 +5369,12 @@
    "count_avg": 5.38155,
    "count_median": 2.0,
    "count_std": 16.32044,
-   "count_skew": 12.44454
+   "count_skew": 12.44454,
+   "mean_context_density": 0.34096,
+   "mean_entropy": 6.69686,
+   "mean_evenness_index": 0.64084,
+   "mean_peer_density": 0.84,
+   "mean_peer_rank": 3.96
   },
   "cosine_distance": {
    "n_roots": 5,
@@ -5173,7 +5463,12 @@
    "count_avg": 4.47637,
    "count_median": 2.0,
    "count_std": 14.83657,
-   "count_skew": 20.48947
+   "count_skew": 20.48947,
+   "mean_context_density": 0.32712,
+   "mean_entropy": 5.95874,
+   "mean_evenness_index": 0.56745,
+   "mean_peer_density": 0.64,
+   "mean_peer_rank": 7.73333
   },
   "cosine_distance": {
    "n_roots": 5,
@@ -5262,7 +5557,12 @@
    "count_avg": 3.28171,
    "count_median": 1.0,
    "count_std": 7.68986,
-   "count_skew": 9.70507
+   "count_skew": 9.70507,
+   "mean_context_density": 0.23601,
+   "mean_entropy": 6.57485,
+   "mean_evenness_index": 0.62595,
+   "mean_peer_density": 0.63314,
+   "mean_peer_rank": 10.44971
   },
   "cosine_distance": {
    "n_roots": 13,
@@ -5351,7 +5651,12 @@
    "count_avg": 4.0164,
    "count_median": 2.0,
    "count_std": 11.09664,
-   "count_skew": 13.44388
+   "count_skew": 13.44388,
+   "mean_context_density": 0.20131,
+   "mean_entropy": 6.0055,
+   "mean_evenness_index": 0.56978,
+   "mean_peer_density": 0.5625,
+   "mean_peer_rank": 5.28241
   },
   "cosine_distance": {
    "n_roots": 12,
@@ -5440,7 +5745,12 @@
    "count_avg": 4.05351,
    "count_median": 2.0,
    "count_std": 10.94276,
-   "count_skew": 13.33147
+   "count_skew": 13.33147,
+   "mean_context_density": 0.136,
+   "mean_entropy": 4.56014,
+   "mean_evenness_index": 0.43381,
+   "mean_peer_density": 0.30859,
+   "mean_peer_rank": 5.40335
   },
   "cosine_distance": {
    "n_roots": 16,
@@ -5529,7 +5839,12 @@
    "count_avg": 4.68338,
    "count_median": 2.0,
    "count_std": 13.76463,
-   "count_skew": 10.54423
+   "count_skew": 10.54423,
+   "mean_context_density": 0.12581,
+   "mean_entropy": 5.89648,
+   "mean_evenness_index": 0.56492,
+   "mean_peer_density": 0.49609,
+   "mean_peer_rank": 6.39933
   },
   "cosine_distance": {
    "n_roots": 16,
@@ -5618,7 +5933,12 @@
    "count_avg": 3.73405,
    "count_median": 2.0,
    "count_std": 7.54617,
-   "count_skew": 10.63991
+   "count_skew": 10.63991,
+   "mean_context_density": 0.0872,
+   "mean_entropy": 4.47957,
+   "mean_evenness_index": 0.42381,
+   "mean_peer_density": 0.18229,
+   "mean_peer_rank": 4.49304
   },
   "cosine_distance": {
    "n_roots": 24,
@@ -5707,7 +6027,12 @@
    "count_avg": 2.74754,
    "count_median": 2.0,
    "count_std": 6.21203,
-   "count_skew": 17.03674
+   "count_skew": 17.03674,
+   "mean_context_density": 0.10929,
+   "mean_entropy": 4.71066,
+   "mean_evenness_index": 0.44746,
+   "mean_peer_density": 0.28656,
+   "mean_peer_rank": 4.95796
   },
   "cosine_distance": {
    "n_roots": 29,
@@ -5796,7 +6121,12 @@
    "count_avg": 3.28488,
    "count_median": 2.0,
    "count_std": 7.69465,
-   "count_skew": 24.12684
+   "count_skew": 24.12684,
+   "mean_context_density": 0.07527,
+   "mean_entropy": 4.309,
+   "mean_evenness_index": 0.40863,
+   "mean_peer_density": 0.17004,
+   "mean_peer_rank": 3.83392
   },
   "cosine_distance": {
    "n_roots": 29,
@@ -5885,7 +6215,12 @@
    "count_avg": 2.77555,
    "count_median": 2.0,
    "count_std": 5.93739,
-   "count_skew": 14.343
+   "count_skew": 14.343,
+   "mean_context_density": 0.10622,
+   "mean_entropy": 5.18659,
+   "mean_evenness_index": 0.49127,
+   "mean_peer_density": 0.3074,
+   "mean_peer_rank": 5.34645
   },
   "cosine_distance": {
    "n_roots": 28,
@@ -5974,7 +6309,12 @@
    "count_avg": 7.58552,
    "count_median": 4.0,
    "count_std": 16.4316,
-   "count_skew": 8.92813
+   "count_skew": 8.92813,
+   "mean_context_density": 0.28703,
+   "mean_entropy": 6.3058,
+   "mean_evenness_index": 0.5981,
+   "mean_peer_density": 0.3125,
+   "mean_peer_rank": 7.375
   },
   "cosine_distance": {
    "n_roots": 4,
@@ -6063,7 +6403,12 @@
    "count_avg": 3.32821,
    "count_median": 2.0,
    "count_std": 6.73575,
-   "count_skew": 10.08293
+   "count_skew": 10.08293,
+   "mean_context_density": 0.12538,
+   "mean_entropy": 5.57202,
+   "mean_evenness_index": 0.52836,
+   "mean_peer_density": 0.3632,
+   "mean_peer_rank": 5.02271
   },
   "cosine_distance": {
    "n_roots": 25,
@@ -6152,7 +6497,12 @@
    "count_avg": 3.37624,
    "count_median": 2.0,
    "count_std": 8.71492,
-   "count_skew": 14.60442
+   "count_skew": 14.60442,
+   "mean_context_density": 0.1228,
+   "mean_entropy": 5.59026,
+   "mean_evenness_index": 0.53191,
+   "mean_peer_density": 0.36364,
+   "mean_peer_rank": 6.94614
   },
   "cosine_distance": {
    "n_roots": 22,
@@ -6241,7 +6591,12 @@
    "count_avg": 2.51893,
    "count_median": 1.0,
    "count_std": 4.23724,
-   "count_skew": 8.14193
+   "count_skew": 8.14193,
+   "mean_context_density": 0.12007,
+   "mean_entropy": 5.65667,
+   "mean_evenness_index": 0.53757,
+   "mean_peer_density": 0.40137,
+   "mean_peer_rank": 6.36792
   },
   "cosine_distance": {
    "n_roots": 32,
@@ -6330,7 +6685,12 @@
    "count_avg": 4.17654,
    "count_median": 2.0,
    "count_std": 9.24799,
-   "count_skew": 10.87728
+   "count_skew": 10.87728,
+   "mean_context_density": 0.23498,
+   "mean_entropy": 5.88784,
+   "mean_evenness_index": 0.55724,
+   "mean_peer_density": 0.44444,
+   "mean_peer_rank": 6.15035
   },
   "cosine_distance": {
    "n_roots": 9,
@@ -6419,7 +6779,12 @@
    "count_avg": 3.94827,
    "count_median": 2.0,
    "count_std": 11.33023,
-   "count_skew": 17.23606
+   "count_skew": 17.23606,
+   "mean_context_density": 0.34681,
+   "mean_entropy": 6.91278,
+   "mean_evenness_index": 0.65682,
+   "mean_peer_density": 0.81633,
+   "mean_peer_rank": 5.54762
   },
   "cosine_distance": {
    "n_roots": 7,
@@ -6508,7 +6873,12 @@
    "count_avg": 4.2,
    "count_median": 2.0,
    "count_std": 10.70836,
-   "count_skew": 10.22884
+   "count_skew": 10.22884,
+   "mean_context_density": 0.20342,
+   "mean_entropy": 5.71252,
+   "mean_evenness_index": 0.54258,
+   "mean_peer_density": 0.49587,
+   "mean_peer_rank": 7.06552
   },
   "cosine_distance": {
    "n_roots": 11,
@@ -6597,7 +6967,12 @@
    "count_avg": 6.31454,
    "count_median": 3.0,
    "count_std": 15.71858,
-   "count_skew": 13.2246
+   "count_skew": 13.2246,
+   "mean_context_density": 0.18502,
+   "mean_entropy": 5.63798,
+   "mean_evenness_index": 0.53388,
+   "mean_peer_density": 0.53125,
+   "mean_peer_rank": 3.69792
   },
   "cosine_distance": {
    "n_roots": 8,
@@ -6686,7 +7061,12 @@
    "count_avg": 3.2397,
    "count_median": 2.0,
    "count_std": 7.26381,
-   "count_skew": 16.47298
+   "count_skew": 16.47298,
+   "mean_context_density": 0.16196,
+   "mean_entropy": 6.00995,
+   "mean_evenness_index": 0.57088,
+   "mean_peer_density": 0.3775,
+   "mean_peer_rank": 6.779
   },
   "cosine_distance": {
    "n_roots": 20,
@@ -6775,7 +7155,12 @@
    "count_avg": 3.98601,
    "count_median": 2.0,
    "count_std": 11.21821,
-   "count_skew": 12.12847
+   "count_skew": 12.12847,
+   "mean_context_density": 0.25738,
+   "mean_entropy": 6.59452,
+   "mean_evenness_index": 0.62981,
+   "mean_peer_density": 0.67901,
+   "mean_peer_rank": 9.02623
   },
   "cosine_distance": {
    "n_roots": 9,
@@ -6864,7 +7249,12 @@
    "count_avg": 3.53556,
    "count_median": 2.0,
    "count_std": 10.07327,
-   "count_skew": 17.81545
+   "count_skew": 17.81545,
+   "mean_context_density": 0.13057,
+   "mean_entropy": 4.87484,
+   "mean_evenness_index": 0.46432,
+   "mean_peer_density": 0.37891,
+   "mean_peer_rank": 5.93225
   },
   "cosine_distance": {
    "n_roots": 16,
@@ -6953,7 +7343,12 @@
    "count_avg": 5.21503,
    "count_median": 2.0,
    "count_std": 15.2622,
-   "count_skew": 14.68658
+   "count_skew": 14.68658,
+   "mean_context_density": 0.17358,
+   "mean_entropy": 5.65156,
+   "mean_evenness_index": 0.5359,
+   "mean_peer_density": 0.57,
+   "mean_peer_rank": 5.49556
   },
   "cosine_distance": {
    "n_roots": 10,
@@ -7042,7 +7437,12 @@
    "count_avg": 6.02029,
    "count_median": 3.0,
    "count_std": 13.38691,
-   "count_skew": 14.98219
+   "count_skew": 14.98219,
+   "mean_context_density": 0.34802,
+   "mean_entropy": 6.47761,
+   "mean_evenness_index": 0.61468,
+   "mean_peer_density": 0.6875,
+   "mean_peer_rank": 4.0
   },
   "cosine_distance": {
    "n_roots": 4,
@@ -7131,7 +7531,12 @@
    "count_avg": 5.25676,
    "count_median": 3.0,
    "count_std": 13.08979,
-   "count_skew": 21.26632
+   "count_skew": 21.26632,
+   "mean_context_density": 0.5846,
+   "mean_entropy": 8.19034,
+   "mean_evenness_index": 0.77495,
+   "mean_peer_density": 0.88889,
+   "mean_peer_rank": 2.94444
   },
   "cosine_distance": {
    "n_roots": 3,
@@ -7220,7 +7625,12 @@
    "count_avg": 3.32161,
    "count_median": 2.0,
    "count_std": 5.15392,
-   "count_skew": 6.51949
+   "count_skew": 6.51949,
+   "mean_context_density": 0.18024,
+   "mean_entropy": 5.97989,
+   "mean_evenness_index": 0.56734,
+   "mean_peer_density": 0.34375,
+   "mean_peer_rank": 7.84728
   },
   "cosine_distance": {
    "n_roots": 16,
@@ -7309,7 +7719,12 @@
    "count_avg": 5.13491,
    "count_median": 2.0,
    "count_std": 15.87207,
-   "count_skew": 16.29224
+   "count_skew": 16.29224,
+   "mean_context_density": 0.22484,
+   "mean_entropy": 5.77726,
+   "mean_evenness_index": 0.55311,
+   "mean_peer_density": 0.67347,
+   "mean_peer_rank": 6.61905
   },
   "cosine_distance": {
    "n_roots": 7,
@@ -7398,7 +7813,12 @@
    "count_avg": 4.00352,
    "count_median": 2.0,
    "count_std": 10.50811,
-   "count_skew": 10.09511
+   "count_skew": 10.09511,
+   "mean_context_density": 0.2621,
+   "mean_entropy": 6.60536,
+   "mean_evenness_index": 0.62921,
+   "mean_peer_density": 0.77778,
+   "mean_peer_rank": 7.71296
   },
   "cosine_distance": {
    "n_roots": 9,
@@ -7487,7 +7907,12 @@
    "count_avg": 3.24973,
    "count_median": 2.0,
    "count_std": 6.42271,
-   "count_skew": 9.51446
+   "count_skew": 9.51446,
+   "mean_context_density": 0.20429,
+   "mean_entropy": 5.87725,
+   "mean_evenness_index": 0.55664,
+   "mean_peer_density": 0.36889,
+   "mean_peer_rank": 8.00198
   },
   "cosine_distance": {
    "n_roots": 15,
@@ -7576,7 +8001,12 @@
    "count_avg": 3.48598,
    "count_median": 2.0,
    "count_std": 6.65092,
-   "count_skew": 10.89217
+   "count_skew": 10.89217,
+   "mean_context_density": 0.17242,
+   "mean_entropy": 5.67884,
+   "mean_evenness_index": 0.53641,
+   "mean_peer_density": 0.39844,
+   "mean_peer_rank": 5.27545
   },
   "cosine_distance": {
    "n_roots": 16,
@@ -7665,7 +8095,12 @@
    "count_avg": 6.87928,
    "count_median": 3.0,
    "count_std": 14.81808,
-   "count_skew": 9.73093
+   "count_skew": 9.73093,
+   "mean_context_density": 0.11102,
+   "mean_entropy": 4.94367,
+   "mean_evenness_index": 0.46809,
+   "mean_peer_density": 0.32639,
+   "mean_peer_rank": 3.88009
   },
   "cosine_distance": {
    "n_roots": 12,
@@ -7754,7 +8189,12 @@
    "count_avg": 4.56885,
    "count_median": 2.0,
    "count_std": 13.61073,
-   "count_skew": 18.07088
+   "count_skew": 18.07088,
+   "mean_context_density": 0.21081,
+   "mean_entropy": 5.93352,
+   "mean_evenness_index": 0.56295,
+   "mean_peer_density": 0.5679,
+   "mean_peer_rank": 7.26235
   },
   "cosine_distance": {
    "n_roots": 9,
@@ -7843,7 +8283,12 @@
    "count_avg": 3.70257,
    "count_median": 2.0,
    "count_std": 9.77766,
-   "count_skew": 8.64944
+   "count_skew": 8.64944,
+   "mean_context_density": 0.21059,
+   "mean_entropy": 5.91974,
+   "mean_evenness_index": 0.56726,
+   "mean_peer_density": 0.59722,
+   "mean_peer_rank": 7.40356
   },
   "cosine_distance": {
    "n_roots": 12,
@@ -7932,7 +8377,12 @@
    "count_avg": 3.81285,
    "count_median": 2.0,
    "count_std": 9.2777,
-   "count_skew": 10.77443
+   "count_skew": 10.77443,
+   "mean_context_density": 0.20769,
+   "mean_entropy": 6.4297,
+   "mean_evenness_index": 0.61342,
+   "mean_peer_density": 0.61111,
+   "mean_peer_rank": 7.78388
   },
   "cosine_distance": {
    "n_roots": 12,
@@ -8021,7 +8471,12 @@
    "count_avg": 2.99534,
    "count_median": 2.0,
    "count_std": 6.30845,
-   "count_skew": 13.52263
+   "count_skew": 13.52263,
+   "mean_context_density": 0.10006,
+   "mean_entropy": 4.97336,
+   "mean_evenness_index": 0.47048,
+   "mean_peer_density": 0.3257,
+   "mean_peer_rank": 4.74137
   },
   "cosine_distance": {
    "n_roots": 31,
@@ -8110,7 +8565,12 @@
    "count_avg": 3.6308,
    "count_median": 1.0,
    "count_std": 9.12397,
-   "count_skew": 10.91671
+   "count_skew": 10.91671,
+   "mean_context_density": 0.13965,
+   "mean_entropy": 5.79459,
+   "mean_evenness_index": 0.55384,
+   "mean_peer_density": 0.405,
+   "mean_peer_rank": 7.37315
   },
   "cosine_distance": {
    "n_roots": 20,
@@ -8199,7 +8659,12 @@
    "count_avg": 3.81925,
    "count_median": 2.0,
    "count_std": 7.87956,
-   "count_skew": 10.80303
+   "count_skew": 10.80303,
+   "mean_context_density": 0.14351,
+   "mean_entropy": 5.73391,
+   "mean_evenness_index": 0.54142,
+   "mean_peer_density": 0.38408,
+   "mean_peer_rank": 5.38425
   },
   "cosine_distance": {
    "n_roots": 17,
@@ -8288,7 +8753,12 @@
    "count_avg": 2.84881,
    "count_median": 1.0,
    "count_std": 6.17817,
-   "count_skew": 12.00735
+   "count_skew": 12.00735,
+   "mean_context_density": 0.153,
+   "mean_entropy": 5.85949,
+   "mean_evenness_index": 0.55711,
+   "mean_peer_density": 0.41588,
+   "mean_peer_rank": 7.76791
   },
   "cosine_distance": {
    "n_roots": 23,
@@ -8377,7 +8847,12 @@
    "count_avg": 1.96509,
    "count_median": 1.0,
    "count_std": 2.92272,
-   "count_skew": 11.45231
+   "count_skew": 11.45231,
+   "mean_context_density": 0.0283,
+   "mean_entropy": 3.82772,
+   "mean_evenness_index": 0.3696,
+   "mean_peer_density": 0.07182,
+   "mean_peer_rank": 3.19601
   },
   "cosine_distance": {
    "n_roots": 122,
@@ -8466,7 +8941,12 @@
    "count_avg": 2.84096,
    "count_median": 1.0,
    "count_std": 7.06596,
-   "count_skew": 11.93563
+   "count_skew": 11.93563,
+   "mean_context_density": 0.03749,
+   "mean_entropy": 3.46661,
+   "mean_evenness_index": 0.33735,
+   "mean_peer_density": 0.09482,
+   "mean_peer_rank": 3.11837
   },
   "cosine_distance": {
    "n_roots": 71,
@@ -8555,7 +9035,12 @@
    "count_avg": 2.05917,
    "count_median": 1.0,
    "count_std": 3.38169,
-   "count_skew": 11.28423
+   "count_skew": 11.28423,
+   "mean_context_density": 0.02782,
+   "mean_entropy": 3.4965,
+   "mean_evenness_index": 0.34084,
+   "mean_peer_density": 0.07055,
+   "mean_peer_rank": 3.1252
   },
   "cosine_distance": {
    "n_roots": 119,
@@ -8644,7 +9129,12 @@
    "count_avg": 4.32476,
    "count_median": 2.0,
    "count_std": 12.58562,
-   "count_skew": 12.99628
+   "count_skew": 12.99628,
+   "mean_context_density": 0.17347,
+   "mean_entropy": 5.55029,
+   "mean_evenness_index": 0.53003,
+   "mean_peer_density": 0.52083,
+   "mean_peer_rank": 5.36616
   },
   "cosine_distance": {
    "n_roots": 12,
@@ -8733,7 +9223,12 @@
    "count_avg": 6.74307,
    "count_median": 3.0,
    "count_std": 19.16377,
-   "count_skew": 10.08709
+   "count_skew": 10.08709,
+   "mean_context_density": 0.44761,
+   "mean_entropy": 7.67521,
+   "mean_evenness_index": 0.73651,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 4.44444
   },
   "cosine_distance": {
    "n_roots": 3,
@@ -8822,7 +9317,12 @@
    "count_avg": 4.68045,
    "count_median": 2.0,
    "count_std": 14.28308,
-   "count_skew": 12.58342
+   "count_skew": 12.58342,
+   "mean_context_density": 0.19693,
+   "mean_entropy": 5.38736,
+   "mean_evenness_index": 0.51548,
+   "mean_peer_density": 0.58,
+   "mean_peer_rank": 6.775
   },
   "cosine_distance": {
    "n_roots": 10,
@@ -8911,7 +9411,12 @@
    "count_avg": 3.54234,
    "count_median": 1.0,
    "count_std": 8.82841,
-   "count_skew": 9.32052
+   "count_skew": 9.32052,
+   "mean_context_density": 0.18902,
+   "mean_entropy": 6.35254,
+   "mean_evenness_index": 0.60837,
+   "mean_peer_density": 0.70222,
+   "mean_peer_rank": 7.89078
   },
   "cosine_distance": {
    "n_roots": 15,
@@ -9000,7 +9505,12 @@
    "count_avg": 6.2166,
    "count_median": 3.0,
    "count_std": 18.46433,
-   "count_skew": 11.39252
+   "count_skew": 11.39252,
+   "mean_context_density": 0.25602,
+   "mean_entropy": 6.39732,
+   "mean_evenness_index": 0.61086,
+   "mean_peer_density": 0.88,
+   "mean_peer_rank": 4.19
   },
   "cosine_distance": {
    "n_roots": 5,
@@ -9089,7 +9599,12 @@
    "count_avg": 1.90604,
    "count_median": 1.0,
    "count_std": 2.40158,
-   "count_skew": 16.35761
+   "count_skew": 16.35761,
+   "mean_context_density": 0.03365,
+   "mean_entropy": 4.02651,
+   "mean_evenness_index": 0.38697,
+   "mean_peer_density": 0.06021,
+   "mean_peer_rank": 3.0969
   },
   "cosine_distance": {
    "n_roots": 94,
@@ -9178,7 +9693,12 @@
    "count_avg": 4.99452,
    "count_median": 2.0,
    "count_std": 17.25117,
-   "count_skew": 17.32234
+   "count_skew": 17.32234,
+   "mean_context_density": 0.1981,
+   "mean_entropy": 5.78314,
+   "mean_evenness_index": 0.54823,
+   "mean_peer_density": 0.70312,
+   "mean_peer_rank": 3.41042
   },
   "cosine_distance": {
    "n_roots": 8,
@@ -9267,7 +9787,12 @@
    "count_avg": 4.00926,
    "count_median": 2.0,
    "count_std": 10.76987,
-   "count_skew": 12.13621
+   "count_skew": 12.13621,
+   "mean_context_density": 0.13047,
+   "mean_entropy": 5.39905,
+   "mean_evenness_index": 0.51304,
+   "mean_peer_density": 0.39815,
+   "mean_peer_rank": 6.50475
   },
   "cosine_distance": {
    "n_roots": 18,
@@ -9356,7 +9881,12 @@
    "count_avg": 2.62168,
    "count_median": 2.0,
    "count_std": 3.86867,
-   "count_skew": 10.20431
+   "count_skew": 10.20431,
+   "mean_context_density": 0.11097,
+   "mean_entropy": 5.51879,
+   "mean_evenness_index": 0.52157,
+   "mean_peer_density": 0.29469,
+   "mean_peer_rank": 5.0487
   },
   "cosine_distance": {
    "n_roots": 35,
@@ -9445,7 +9975,12 @@
    "count_avg": 3.27758,
    "count_median": 2.0,
    "count_std": 6.75349,
-   "count_skew": 8.88406
+   "count_skew": 8.88406,
+   "mean_context_density": 0.21295,
+   "mean_entropy": 6.37237,
+   "mean_evenness_index": 0.60386,
+   "mean_peer_density": 0.4898,
+   "mean_peer_rank": 8.53422
   },
   "cosine_distance": {
    "n_roots": 14,
@@ -9534,7 +10069,12 @@
    "count_avg": 4.85433,
    "count_median": 2.0,
    "count_std": 12.9332,
-   "count_skew": 14.01422
+   "count_skew": 14.01422,
+   "mean_context_density": 0.1958,
+   "mean_entropy": 5.77872,
+   "mean_evenness_index": 0.54892,
+   "mean_peer_density": 0.42,
+   "mean_peer_rank": 6.28492
   },
   "cosine_distance": {
    "n_roots": 10,
@@ -9623,7 +10163,12 @@
    "count_avg": 4.19492,
    "count_median": 2.0,
    "count_std": 10.86761,
-   "count_skew": 10.74806
+   "count_skew": 10.74806,
+   "mean_context_density": 0.33534,
+   "mean_entropy": 7.06862,
+   "mean_evenness_index": 0.6747,
+   "mean_peer_density": 0.87755,
+   "mean_peer_rank": 7.34014
   },
   "cosine_distance": {
    "n_roots": 7,
@@ -9712,7 +10257,12 @@
    "count_avg": 3.10219,
    "count_median": 1.0,
    "count_std": 6.61915,
-   "count_skew": 9.30827
+   "count_skew": 9.30827,
+   "mean_context_density": 0.13284,
+   "mean_entropy": 5.93573,
+   "mean_evenness_index": 0.5664,
+   "mean_peer_density": 0.48521,
+   "mean_peer_rank": 6.59984
   },
   "cosine_distance": {
    "n_roots": 26,
@@ -9801,7 +10351,12 @@
    "count_avg": 3.57494,
    "count_median": 2.0,
    "count_std": 8.75059,
-   "count_skew": 13.07879
+   "count_skew": 13.07879,
+   "mean_context_density": 0.19194,
+   "mean_entropy": 6.01426,
+   "mean_evenness_index": 0.57087,
+   "mean_peer_density": 0.57988,
+   "mean_peer_rank": 6.82433
   },
   "cosine_distance": {
    "n_roots": 13,
@@ -9890,7 +10445,12 @@
    "count_avg": 2.39697,
    "count_median": 1.0,
    "count_std": 3.40429,
-   "count_skew": 8.63244
+   "count_skew": 8.63244,
+   "mean_context_density": 0.10835,
+   "mean_entropy": 5.38015,
+   "mean_evenness_index": 0.50725,
+   "mean_peer_density": 0.28472,
+   "mean_peer_rank": 5.04788
   },
   "cosine_distance": {
    "n_roots": 36,
@@ -9979,7 +10539,12 @@
    "count_avg": 3.99797,
    "count_median": 1.0,
    "count_std": 10.9442,
-   "count_skew": 10.97455
+   "count_skew": 10.97455,
+   "mean_context_density": 0.14608,
+   "mean_entropy": 5.50881,
+   "mean_evenness_index": 0.53452,
+   "mean_peer_density": 0.60938,
+   "mean_peer_rank": 7.11688
   },
   "cosine_distance": {
    "n_roots": 16,
@@ -10068,7 +10633,12 @@
    "count_avg": 4.19346,
    "count_median": 2.0,
    "count_std": 13.07533,
-   "count_skew": 11.42942
+   "count_skew": 11.42942,
+   "mean_context_density": 0.31471,
+   "mean_entropy": 6.44415,
+   "mean_evenness_index": 0.61485,
+   "mean_peer_density": 0.79592,
+   "mean_peer_rank": 7.32653
   },
   "cosine_distance": {
    "n_roots": 7,
@@ -10157,7 +10727,12 @@
    "count_avg": 4.21294,
    "count_median": 2.0,
    "count_std": 12.58931,
-   "count_skew": 12.98218
+   "count_skew": 12.98218,
+   "mean_context_density": 0.17376,
+   "mean_entropy": 6.14677,
+   "mean_evenness_index": 0.58553,
+   "mean_peer_density": 0.59028,
+   "mean_peer_rank": 6.02381
   },
   "cosine_distance": {
    "n_roots": 12,
@@ -10246,7 +10821,12 @@
    "count_avg": 3.49422,
    "count_median": 2.0,
    "count_std": 6.71131,
-   "count_skew": 12.61501
+   "count_skew": 12.61501,
+   "mean_context_density": 0.13324,
+   "mean_entropy": 5.56219,
+   "mean_evenness_index": 0.52647,
+   "mean_peer_density": 0.34467,
+   "mean_peer_rank": 5.6736
   },
   "cosine_distance": {
    "n_roots": 21,
@@ -10335,7 +10915,12 @@
    "count_avg": 3.27554,
    "count_median": 2.0,
    "count_std": 8.25687,
-   "count_skew": 14.5319
+   "count_skew": 14.5319,
+   "mean_context_density": 0.14831,
+   "mean_entropy": 5.20351,
+   "mean_evenness_index": 0.4952,
+   "mean_peer_density": 0.41797,
+   "mean_peer_rank": 5.42909
   },
   "cosine_distance": {
    "n_roots": 16,
@@ -10424,7 +11009,12 @@
    "count_avg": 8.00205,
    "count_median": 4.0,
    "count_std": 25.94835,
-   "count_skew": 17.49938
+   "count_skew": 17.49938,
+   "mean_context_density": 1.0,
+   "mean_entropy": 9.05904,
+   "mean_evenness_index": 0.86164,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 2.0
   },
   "cosine_distance": {
    "n_roots": 1,
@@ -10513,7 +11103,12 @@
    "count_avg": 7.77029,
    "count_median": 4.0,
    "count_std": 19.55663,
-   "count_skew": 13.8156
+   "count_skew": 13.8156,
+   "mean_context_density": 0.356,
+   "mean_entropy": 6.33181,
+   "mean_evenness_index": 0.60013,
+   "mean_peer_density": 0.66667,
+   "mean_peer_rank": 6.22222
   },
   "cosine_distance": {
    "n_roots": 3,
@@ -10602,7 +11197,12 @@
    "count_avg": 6.11348,
    "count_median": 2.0,
    "count_std": 19.88502,
-   "count_skew": 13.53412
+   "count_skew": 13.53412,
+   "mean_context_density": 0.29063,
+   "mean_entropy": 6.47385,
+   "mean_evenness_index": 0.61829,
+   "mean_peer_density": 0.68,
+   "mean_peer_rank": 5.76
   },
   "cosine_distance": {
    "n_roots": 5,
@@ -10691,7 +11291,12 @@
    "count_avg": 7.49274,
    "count_median": 3.0,
    "count_std": 24.06714,
-   "count_skew": 15.60548
+   "count_skew": 15.60548,
+   "mean_context_density": 0.26119,
+   "mean_entropy": 5.20492,
+   "mean_evenness_index": 0.49876,
+   "mean_peer_density": 0.5,
+   "mean_peer_rank": 3.20833
   },
   "cosine_distance": {
    "n_roots": 4,
@@ -10780,7 +11385,12 @@
    "count_avg": 2.93164,
    "count_median": 1.0,
    "count_std": 9.17122,
-   "count_skew": 23.43901
+   "count_skew": 23.43901,
+   "mean_context_density": 0.15166,
+   "mean_entropy": 5.76331,
+   "mean_evenness_index": 0.55075,
+   "mean_peer_density": 0.6025,
+   "mean_peer_rank": 6.56518
   },
   "cosine_distance": {
    "n_roots": 20,
@@ -10869,7 +11479,12 @@
    "count_avg": 6.27935,
    "count_median": 3.0,
    "count_std": 25.15958,
-   "count_skew": 19.8815
+   "count_skew": 19.8815,
+   "mean_context_density": 0.50645,
+   "mean_entropy": 6.43326,
+   "mean_evenness_index": 0.61579,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 1.25
   },
   "cosine_distance": {
    "n_roots": 2,
@@ -10958,7 +11573,12 @@
    "count_avg": 4.48942,
    "count_median": 2.0,
    "count_std": 11.01671,
-   "count_skew": 9.6889
+   "count_skew": 9.6889,
+   "mean_context_density": 0.18177,
+   "mean_entropy": 5.75298,
+   "mean_evenness_index": 0.54552,
+   "mean_peer_density": 0.57639,
+   "mean_peer_rank": 5.05387
   },
   "cosine_distance": {
    "n_roots": 12,
@@ -11047,7 +11667,12 @@
    "count_avg": 3.12182,
    "count_median": 1.0,
    "count_std": 7.15646,
-   "count_skew": 12.0596
+   "count_skew": 12.0596,
+   "mean_context_density": 0.07878,
+   "mean_entropy": 4.7956,
+   "mean_evenness_index": 0.45651,
+   "mean_peer_density": 0.25231,
+   "mean_peer_rank": 4.79709
   },
   "cosine_distance": {
    "n_roots": 36,
@@ -11136,7 +11761,12 @@
    "count_avg": 2.64839,
    "count_median": 1.0,
    "count_std": 4.71895,
-   "count_skew": 9.77638
+   "count_skew": 9.77638,
+   "mean_context_density": 0.11097,
+   "mean_entropy": 5.92628,
+   "mean_evenness_index": 0.56038,
+   "mean_peer_density": 0.28245,
+   "mean_peer_rank": 5.93164
   },
   "cosine_distance": {
    "n_roots": 35,
@@ -11225,7 +11855,12 @@
    "count_avg": 4.88023,
    "count_median": 3.0,
    "count_std": 14.1606,
-   "count_skew": 18.91904
+   "count_skew": 18.91904,
+   "mean_context_density": 0.18435,
+   "mean_entropy": 5.7588,
+   "mean_evenness_index": 0.54577,
+   "mean_peer_density": 0.71429,
+   "mean_peer_rank": 3.84014
   },
   "cosine_distance": {
    "n_roots": 7,
@@ -11314,7 +11949,12 @@
    "count_avg": 3.2308,
    "count_median": 2.0,
    "count_std": 6.42622,
-   "count_skew": 8.04836
+   "count_skew": 8.04836,
+   "mean_context_density": 0.17264,
+   "mean_entropy": 6.17837,
+   "mean_evenness_index": 0.58815,
+   "mean_peer_density": 0.48753,
+   "mean_peer_rank": 7.446
   },
   "cosine_distance": {
    "n_roots": 19,
@@ -11403,7 +12043,12 @@
    "count_avg": 3.66971,
    "count_median": 2.0,
    "count_std": 7.63268,
-   "count_skew": 9.37529
+   "count_skew": 9.37529,
+   "mean_context_density": 0.17438,
+   "mean_entropy": 6.09172,
+   "mean_evenness_index": 0.57785,
+   "mean_peer_density": 0.49609,
+   "mean_peer_rank": 6.35728
   },
   "cosine_distance": {
    "n_roots": 16,
@@ -11492,7 +12137,12 @@
    "count_avg": 7.10737,
    "count_median": 3.0,
    "count_std": 21.39695,
-   "count_skew": 9.75839
+   "count_skew": 9.75839,
+   "mean_context_density": 0.34725,
+   "mean_entropy": 5.95163,
+   "mean_evenness_index": 0.57287,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 2.33333
   },
   "cosine_distance": {
    "n_roots": 3,
@@ -11581,7 +12231,12 @@
    "count_avg": 3.48569,
    "count_median": 2.0,
    "count_std": 8.63194,
-   "count_skew": 12.23423
+   "count_skew": 12.23423,
+   "mean_context_density": 0.15117,
+   "mean_entropy": 6.35138,
+   "mean_evenness_index": 0.6049,
+   "mean_peer_density": 0.47645,
+   "mean_peer_rank": 6.98452
   },
   "cosine_distance": {
    "n_roots": 19,
@@ -11670,7 +12325,12 @@
    "count_avg": 4.04701,
    "count_median": 1.0,
    "count_std": 11.2938,
-   "count_skew": 10.81933
+   "count_skew": 10.81933,
+   "mean_context_density": 0.13056,
+   "mean_entropy": 5.67352,
+   "mean_evenness_index": 0.54394,
+   "mean_peer_density": 0.51903,
+   "mean_peer_rank": 6.94009
   },
   "cosine_distance": {
    "n_roots": 17,
@@ -11759,7 +12419,12 @@
    "count_avg": 5.67237,
    "count_median": 2.0,
    "count_std": 13.77176,
-   "count_skew": 11.40569
+   "count_skew": 11.40569,
+   "mean_context_density": 0.3017,
+   "mean_entropy": 6.73564,
+   "mean_evenness_index": 0.64011,
+   "mean_peer_density": 0.68,
+   "mean_peer_rank": 6.02
   },
   "cosine_distance": {
    "n_roots": 5,
@@ -11848,7 +12513,12 @@
    "count_avg": 3.05887,
    "count_median": 2.0,
    "count_std": 5.76885,
-   "count_skew": 9.56895
+   "count_skew": 9.56895,
+   "mean_context_density": 0.08018,
+   "mean_entropy": 4.68565,
+   "mean_evenness_index": 0.4448,
+   "mean_peer_density": 0.24059,
+   "mean_peer_rank": 4.22881
   },
   "cosine_distance": {
    "n_roots": 33,
@@ -11937,7 +12607,12 @@
    "count_avg": 5.86627,
    "count_median": 3.0,
    "count_std": 14.83866,
-   "count_skew": 11.15898
+   "count_skew": 11.15898,
+   "mean_context_density": 0.39716,
+   "mean_entropy": 6.12731,
+   "mean_evenness_index": 0.58192,
+   "mean_peer_density": 0.625,
+   "mean_peer_rank": 5.8125
   },
   "cosine_distance": {
    "n_roots": 4,
@@ -12026,7 +12701,12 @@
    "count_avg": 4.20763,
    "count_median": 2.0,
    "count_std": 13.7772,
-   "count_skew": 25.61961
+   "count_skew": 25.61961,
+   "mean_context_density": 0.1566,
+   "mean_entropy": 5.32929,
+   "mean_evenness_index": 0.50479,
+   "mean_peer_density": 0.43787,
+   "mean_peer_rank": 4.89106
   },
   "cosine_distance": {
    "n_roots": 13,
@@ -12115,7 +12795,12 @@
    "count_avg": 3.89712,
    "count_median": 2.0,
    "count_std": 9.78089,
-   "count_skew": 8.50157
+   "count_skew": 8.50157,
+   "mean_context_density": 0.23026,
+   "mean_entropy": 6.36129,
+   "mean_evenness_index": 0.61049,
+   "mean_peer_density": 0.7686,
+   "mean_peer_rank": 6.7022
   },
   "cosine_distance": {
    "n_roots": 11,
@@ -12204,7 +12889,12 @@
    "count_avg": 3.41882,
    "count_median": 2.0,
    "count_std": 7.77295,
-   "count_skew": 13.92643
+   "count_skew": 13.92643,
+   "mean_context_density": 0.22821,
+   "mean_entropy": 6.60125,
+   "mean_evenness_index": 0.62728,
+   "mean_peer_density": 0.63314,
+   "mean_peer_rank": 7.85524
   },
   "cosine_distance": {
    "n_roots": 13,
@@ -12293,7 +12983,12 @@
    "count_avg": 5.69167,
    "count_median": 2.0,
    "count_std": 14.98703,
-   "count_skew": 7.95369
+   "count_skew": 7.95369,
+   "mean_context_density": 0.24022,
+   "mean_entropy": 5.9022,
+   "mean_evenness_index": 0.56282,
+   "mean_peer_density": 0.5102,
+   "mean_peer_rank": 7.67857
   },
   "cosine_distance": {
    "n_roots": 7,
@@ -12382,7 +13077,12 @@
    "count_avg": 3.3949,
    "count_median": 2.0,
    "count_std": 9.22644,
-   "count_skew": 17.39351
+   "count_skew": 17.39351,
+   "mean_context_density": 0.11919,
+   "mean_entropy": 5.66906,
+   "mean_evenness_index": 0.53785,
+   "mean_peer_density": 0.30624,
+   "mean_peer_rank": 6.43944
   },
   "cosine_distance": {
    "n_roots": 23,
@@ -12471,7 +13171,12 @@
    "count_avg": 7.55679,
    "count_median": 3.0,
    "count_std": 20.42718,
-   "count_skew": 10.82273
+   "count_skew": 10.82273,
+   "mean_context_density": 0.58641,
+   "mean_entropy": 8.25422,
+   "mean_evenness_index": 0.78494,
+   "mean_peer_density": 0.75,
+   "mean_peer_rank": 4.0
   },
   "cosine_distance": {
    "n_roots": 2,
@@ -12560,7 +13265,12 @@
    "count_avg": 5.76153,
    "count_median": 3.0,
    "count_std": 17.64454,
-   "count_skew": 15.16591
+   "count_skew": 15.16591,
+   "mean_context_density": 0.69504,
+   "mean_entropy": 8.54053,
+   "mean_evenness_index": 0.81316,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 2.5
   },
   "cosine_distance": {
    "n_roots": 2,
@@ -12649,7 +13359,12 @@
    "count_avg": 4.4754,
    "count_median": 2.0,
    "count_std": 13.68644,
-   "count_skew": 15.21679
+   "count_skew": 15.21679,
+   "mean_context_density": 0.17785,
+   "mean_entropy": 4.83958,
+   "mean_evenness_index": 0.46027,
+   "mean_peer_density": 0.47,
+   "mean_peer_rank": 5.0719
   },
   "cosine_distance": {
    "n_roots": 10,
@@ -12738,7 +13453,12 @@
    "count_avg": 7.27747,
    "count_median": 4.0,
    "count_std": 21.06616,
-   "count_skew": 15.34779
+   "count_skew": 15.34779,
+   "mean_context_density": 0.50207,
+   "mean_entropy": 5.83696,
+   "mean_evenness_index": 0.5558,
+   "mean_peer_density": 0.75,
+   "mean_peer_rank": 13.25
   },
   "cosine_distance": {
    "n_roots": 2,
@@ -12827,7 +13547,12 @@
    "count_avg": 6.0345,
    "count_median": 3.0,
    "count_std": 13.1454,
-   "count_skew": 10.06728
+   "count_skew": 10.06728,
+   "mean_context_density": 0.05512,
+   "mean_entropy": 4.02213,
+   "mean_evenness_index": 0.38157,
+   "mean_peer_density": 0.10938,
+   "mean_peer_rank": 3.64132
   },
   "cosine_distance": {
    "n_roots": 24,
@@ -12916,7 +13641,12 @@
    "count_avg": 4.67474,
    "count_median": 2.0,
    "count_std": 14.57765,
-   "count_skew": 13.23304
+   "count_skew": 13.23304,
+   "mean_context_density": 0.12491,
+   "mean_entropy": 5.36977,
+   "mean_evenness_index": 0.5157,
+   "mean_peer_density": 0.41797,
+   "mean_peer_rank": 5.51562
   },
   "cosine_distance": {
    "n_roots": 16,
@@ -13005,7 +13735,12 @@
    "count_avg": 4.24085,
    "count_median": 2.0,
    "count_std": 11.69703,
-   "count_skew": 14.74802
+   "count_skew": 14.74802,
+   "mean_context_density": 0.20746,
+   "mean_entropy": 5.81539,
+   "mean_evenness_index": 0.55454,
+   "mean_peer_density": 0.55,
+   "mean_peer_rank": 8.27429
   },
   "cosine_distance": {
    "n_roots": 10,
@@ -13094,7 +13829,12 @@
    "count_avg": 5.56835,
    "count_median": 3.0,
    "count_std": 14.76626,
-   "count_skew": 11.42536
+   "count_skew": 11.42536,
+   "mean_context_density": 0.2936,
+   "mean_entropy": 6.72804,
+   "mean_evenness_index": 0.63856,
+   "mean_peer_density": 0.8,
+   "mean_peer_rank": 3.61
   },
   "cosine_distance": {
    "n_roots": 5,
@@ -13183,7 +13923,12 @@
    "count_avg": 4.42107,
    "count_median": 2.0,
    "count_std": 10.88206,
-   "count_skew": 9.07868
+   "count_skew": 9.07868,
+   "mean_context_density": 0.27181,
+   "mean_entropy": 6.16949,
+   "mean_evenness_index": 0.58973,
+   "mean_peer_density": 0.65625,
+   "mean_peer_rank": 7.1875
   },
   "cosine_distance": {
    "n_roots": 8,
@@ -13272,7 +14017,12 @@
    "count_avg": 3.20992,
    "count_median": 2.0,
    "count_std": 6.10383,
-   "count_skew": 8.05998
+   "count_skew": 8.05998,
+   "mean_context_density": 0.11809,
+   "mean_entropy": 5.58095,
+   "mean_evenness_index": 0.5294,
+   "mean_peer_density": 0.33136,
+   "mean_peer_rank": 5.66301
   },
   "cosine_distance": {
    "n_roots": 26,
@@ -13361,7 +14111,12 @@
    "count_avg": 6.32805,
    "count_median": 3.0,
    "count_std": 13.54766,
-   "count_skew": 13.31033
+   "count_skew": 13.31033,
+   "mean_context_density": 0.4059,
+   "mean_entropy": 7.82808,
+   "mean_evenness_index": 0.74181,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 2.77778
   },
   "cosine_distance": {
    "n_roots": 3,
@@ -13450,7 +14205,12 @@
    "count_avg": 3.15447,
    "count_median": 2.0,
    "count_std": 6.26561,
-   "count_skew": 9.95472
+   "count_skew": 9.95472,
+   "mean_context_density": 0.13671,
+   "mean_entropy": 5.61813,
+   "mean_evenness_index": 0.53273,
+   "mean_peer_density": 0.33333,
+   "mean_peer_rank": 6.38368
   },
   "cosine_distance": {
    "n_roots": 21,
@@ -13539,7 +14299,12 @@
    "count_avg": 5.30867,
    "count_median": 2.0,
    "count_std": 12.52809,
-   "count_skew": 10.5173
+   "count_skew": 10.5173,
+   "mean_context_density": 0.08783,
+   "mean_entropy": 4.85427,
+   "mean_evenness_index": 0.45942,
+   "mean_peer_density": 0.27,
+   "mean_peer_rank": 4.29556
   },
   "cosine_distance": {
    "n_roots": 20,
@@ -13628,7 +14393,12 @@
    "count_avg": 1.94738,
    "count_median": 1.0,
    "count_std": 2.65762,
-   "count_skew": 10.3969
+   "count_skew": 10.3969,
+   "mean_context_density": 0.0427,
+   "mean_entropy": 4.47445,
+   "mean_evenness_index": 0.42792,
+   "mean_peer_density": 0.11918,
+   "mean_peer_rank": 3.59965
   },
   "cosine_distance": {
    "n_roots": 89,
@@ -13717,7 +14487,12 @@
    "count_avg": 3.25355,
    "count_median": 2.0,
    "count_std": 8.31446,
-   "count_skew": 18.39906
+   "count_skew": 18.39906,
+   "mean_context_density": 0.19528,
+   "mean_entropy": 6.3606,
+   "mean_evenness_index": 0.60358,
+   "mean_peer_density": 0.54688,
+   "mean_peer_rank": 7.4355
   },
   "cosine_distance": {
    "n_roots": 16,
@@ -13806,7 +14581,12 @@
    "count_avg": 2.34843,
    "count_median": 1.0,
    "count_std": 4.17501,
-   "count_skew": 9.99719
+   "count_skew": 9.99719,
+   "mean_context_density": 0.08513,
+   "mean_entropy": 4.92093,
+   "mean_evenness_index": 0.46636,
+   "mean_peer_density": 0.23016,
+   "mean_peer_rank": 5.00448
   },
   "cosine_distance": {
    "n_roots": 42,
@@ -13895,7 +14675,12 @@
    "count_avg": 3.96253,
    "count_median": 2.0,
    "count_std": 11.39168,
-   "count_skew": 13.91556
+   "count_skew": 13.91556,
+   "mean_context_density": 0.57917,
+   "mean_entropy": 8.35119,
+   "mean_evenness_index": 0.79597,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 4.0
   },
   "cosine_distance": {
    "n_roots": 4,
@@ -13984,7 +14769,12 @@
    "count_avg": 3.19001,
    "count_median": 2.0,
    "count_std": 6.41373,
-   "count_skew": 9.17955
+   "count_skew": 9.17955,
+   "mean_context_density": 0.13478,
+   "mean_entropy": 6.08742,
+   "mean_evenness_index": 0.57808,
+   "mean_peer_density": 0.38194,
+   "mean_peer_rank": 6.01067
   },
   "cosine_distance": {
    "n_roots": 24,
@@ -14073,7 +14863,12 @@
    "count_avg": 8.94361,
    "count_median": 5.0,
    "count_std": 17.23103,
-   "count_skew": 11.19758
+   "count_skew": 11.19758,
+   "mean_context_density": 1.0,
+   "mean_entropy": 9.59515,
+   "mean_evenness_index": 0.90738,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 1.0
   },
   "cosine_distance": {
    "n_roots": 1,
@@ -14162,7 +14957,12 @@
    "count_avg": 3.94703,
    "count_median": 2.0,
    "count_std": 10.56917,
-   "count_skew": 12.19254
+   "count_skew": 12.19254,
+   "mean_context_density": 0.18165,
+   "mean_entropy": 5.80705,
+   "mean_evenness_index": 0.55269,
+   "mean_peer_density": 0.53254,
+   "mean_peer_rank": 6.74454
   },
   "cosine_distance": {
    "n_roots": 13,
@@ -14251,7 +15051,12 @@
    "count_avg": 5.17617,
    "count_median": 2.0,
    "count_std": 11.4803,
-   "count_skew": 6.70359
+   "count_skew": 6.70359,
+   "mean_context_density": 0.12839,
+   "mean_entropy": 5.19398,
+   "mean_evenness_index": 0.49683,
+   "mean_peer_density": 0.22667,
+   "mean_peer_rank": 6.74667
   },
   "cosine_distance": {
    "n_roots": 15,
@@ -14340,7 +15145,12 @@
    "count_avg": 3.54943,
    "count_median": 2.0,
    "count_std": 9.02402,
-   "count_skew": 8.76487
+   "count_skew": 8.76487,
+   "mean_context_density": 0.25241,
+   "mean_entropy": 6.57891,
+   "mean_evenness_index": 0.62645,
+   "mean_peer_density": 0.71074,
+   "mean_peer_rank": 8.6135
   },
   "cosine_distance": {
    "n_roots": 11,
@@ -14429,7 +15239,12 @@
    "count_avg": 3.68154,
    "count_median": 2.0,
    "count_std": 12.94202,
-   "count_skew": 22.18435
+   "count_skew": 22.18435,
+   "mean_context_density": 0.35465,
+   "mean_entropy": 6.68669,
+   "mean_evenness_index": 0.63435,
+   "mean_peer_density": 0.7551,
+   "mean_peer_rank": 4.47279
   },
   "cosine_distance": {
    "n_roots": 7,
@@ -14518,7 +15333,12 @@
    "count_avg": 4.04723,
    "count_median": 2.0,
    "count_std": 12.00853,
-   "count_skew": 19.75187
+   "count_skew": 19.75187,
+   "mean_context_density": 0.14844,
+   "mean_entropy": 5.47491,
+   "mean_evenness_index": 0.51987,
+   "mean_peer_density": 0.42578,
+   "mean_peer_rank": 5.87634
   },
   "cosine_distance": {
    "n_roots": 16,
@@ -14607,7 +15427,12 @@
    "count_avg": 4.31832,
    "count_median": 2.0,
    "count_std": 10.06201,
-   "count_skew": 8.12243
+   "count_skew": 8.12243,
+   "mean_context_density": 0.10974,
+   "mean_entropy": 5.11043,
+   "mean_evenness_index": 0.48575,
+   "mean_peer_density": 0.34349,
+   "mean_peer_rank": 5.58857
   },
   "cosine_distance": {
    "n_roots": 19,
@@ -14696,7 +15521,12 @@
    "count_avg": 3.58692,
    "count_median": 2.0,
    "count_std": 8.59423,
-   "count_skew": 10.66092
+   "count_skew": 10.66092,
+   "mean_context_density": 0.08252,
+   "mean_entropy": 4.6222,
+   "mean_evenness_index": 0.43805,
+   "mean_peer_density": 0.22333,
+   "mean_peer_rank": 4.76705
   },
   "cosine_distance": {
    "n_roots": 30,
@@ -14785,7 +15615,12 @@
    "count_avg": 2.93087,
    "count_median": 1.0,
    "count_std": 6.81726,
-   "count_skew": 11.72358
+   "count_skew": 11.72358,
+   "mean_context_density": 0.08963,
+   "mean_entropy": 5.09289,
+   "mean_evenness_index": 0.48346,
+   "mean_peer_density": 0.26662,
+   "mean_peer_rank": 5.52546
   },
   "cosine_distance": {
    "n_roots": 37,
@@ -14874,7 +15709,12 @@
    "count_avg": 7.60456,
    "count_median": 4.0,
    "count_std": 20.78588,
-   "count_skew": 11.0477
+   "count_skew": 11.0477,
+   "mean_context_density": 0.20509,
+   "mean_entropy": 4.2594,
+   "mean_evenness_index": 0.40539,
+   "mean_peer_density": 0.32,
+   "mean_peer_rank": 3.84
   },
   "cosine_distance": {
    "n_roots": 5,
@@ -14963,7 +15803,12 @@
    "count_avg": 5.13081,
    "count_median": 2.0,
    "count_std": 12.22058,
-   "count_skew": 9.67516
+   "count_skew": 9.67516,
+   "mean_context_density": 0.05903,
+   "mean_entropy": 3.76278,
+   "mean_evenness_index": 0.35982,
+   "mean_peer_density": 0.19274,
+   "mean_peer_rank": 3.27319
   },
   "cosine_distance": {
    "n_roots": 21,
@@ -15052,7 +15897,12 @@
    "count_avg": 8.40878,
    "count_median": 4.0,
    "count_std": 19.24498,
-   "count_skew": 11.0657
+   "count_skew": 11.0657,
+   "mean_context_density": 1.0,
+   "mean_entropy": 9.31486,
+   "mean_evenness_index": 0.8863,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 1.0
   },
   "cosine_distance": {
    "n_roots": 1,
@@ -15141,7 +15991,12 @@
    "count_avg": 3.14587,
    "count_median": 2.0,
    "count_std": 7.21173,
-   "count_skew": 12.78627
+   "count_skew": 12.78627,
+   "mean_context_density": 0.06551,
+   "mean_entropy": 4.55121,
+   "mean_evenness_index": 0.43204,
+   "mean_peer_density": 0.20821,
+   "mean_peer_rank": 4.00238
   },
   "cosine_distance": {
    "n_roots": 41,
@@ -15230,7 +16085,12 @@
    "count_avg": 2.43789,
    "count_median": 1.0,
    "count_std": 3.798,
-   "count_skew": 8.57442
+   "count_skew": 8.57442,
+   "mean_context_density": 0.05972,
+   "mean_entropy": 4.30497,
+   "mean_evenness_index": 0.4084,
+   "mean_peer_density": 0.15913,
+   "mean_peer_rank": 3.88596
   },
   "cosine_distance": {
    "n_roots": 57,
@@ -15319,7 +16179,12 @@
    "count_avg": 2.66306,
    "count_median": 1.0,
    "count_std": 4.74168,
-   "count_skew": 10.39655
+   "count_skew": 10.39655,
+   "mean_context_density": 0.03194,
+   "mean_entropy": 3.84634,
+   "mean_evenness_index": 0.36759,
+   "mean_peer_density": 0.07763,
+   "mean_peer_rank": 3.28495
   },
   "cosine_distance": {
    "n_roots": 82,
@@ -15408,7 +16273,12 @@
    "count_avg": 2.45106,
    "count_median": 1.0,
    "count_std": 4.99086,
-   "count_skew": 13.35946
+   "count_skew": 13.35946,
+   "mean_context_density": 0.04795,
+   "mean_entropy": 4.03735,
+   "mean_evenness_index": 0.3914,
+   "mean_peer_density": 0.11951,
+   "mean_peer_rank": 3.2043
   },
   "cosine_distance": {
    "n_roots": 47,
@@ -15497,7 +16367,12 @@
    "count_avg": 3.23195,
    "count_median": 2.0,
    "count_std": 5.95305,
-   "count_skew": 8.86792
+   "count_skew": 8.86792,
+   "mean_context_density": 0.169,
+   "mean_entropy": 6.16646,
+   "mean_evenness_index": 0.58314,
+   "mean_peer_density": 0.4321,
+   "mean_peer_rank": 7.05085
   },
   "cosine_distance": {
    "n_roots": 18,
@@ -15586,7 +16461,12 @@
    "count_avg": 3.15308,
    "count_median": 2.0,
    "count_std": 6.82454,
-   "count_skew": 11.26673
+   "count_skew": 11.26673,
+   "mean_context_density": 0.15766,
+   "mean_entropy": 5.58432,
+   "mean_evenness_index": 0.52919,
+   "mean_peer_density": 0.4175,
+   "mean_peer_rank": 6.2859
   },
   "cosine_distance": {
    "n_roots": 20,
@@ -15675,7 +16555,12 @@
    "count_avg": 1.90278,
    "count_median": 1.0,
    "count_std": 1.67641,
-   "count_skew": 5.72109
+   "count_skew": 5.72109,
+   "mean_context_density": 0.08692,
+   "mean_entropy": 5.67358,
+   "mean_evenness_index": 0.53469,
+   "mean_peer_density": 0.17028,
+   "mean_peer_rank": 3.82427
   },
   "cosine_distance": {
    "n_roots": 60,
@@ -15764,7 +16649,12 @@
    "count_avg": 5.1247,
    "count_median": 2.0,
    "count_std": 13.25699,
-   "count_skew": 13.41745
+   "count_skew": 13.41745,
+   "mean_context_density": 0.09752,
+   "mean_entropy": 4.92164,
+   "mean_evenness_index": 0.46711,
+   "mean_peer_density": 0.34602,
+   "mean_peer_rank": 4.1319
   },
   "cosine_distance": {
    "n_roots": 17,
@@ -15853,7 +16743,12 @@
    "count_avg": 4.10514,
    "count_median": 2.0,
    "count_std": 8.93511,
-   "count_skew": 21.95397
+   "count_skew": 21.95397,
+   "mean_context_density": 0.05042,
+   "mean_entropy": 4.24904,
+   "mean_evenness_index": 0.40121,
+   "mean_peer_density": 0.13062,
+   "mean_peer_rank": 3.23488
   },
   "cosine_distance": {
    "n_roots": 40,
@@ -15942,7 +16837,12 @@
    "count_avg": 6.6528,
    "count_median": 3.0,
    "count_std": 15.52219,
-   "count_skew": 12.54718
+   "count_skew": 12.54718,
+   "mean_context_density": 0.12989,
+   "mean_entropy": 4.73878,
+   "mean_evenness_index": 0.44918,
+   "mean_peer_density": 0.25,
+   "mean_peer_rank": 5.53
   },
   "cosine_distance": {
    "n_roots": 10,
@@ -16031,7 +16931,12 @@
    "count_avg": 2.64573,
    "count_median": 1.0,
    "count_std": 5.86318,
-   "count_skew": 18.05191
+   "count_skew": 18.05191,
+   "mean_context_density": 0.04981,
+   "mean_entropy": 4.7298,
+   "mean_evenness_index": 0.44704,
+   "mean_peer_density": 0.10216,
+   "mean_peer_rank": 3.49773
   },
   "cosine_distance": {
    "n_roots": 71,
@@ -16120,7 +17025,12 @@
    "count_avg": 1.64412,
    "count_median": 1.0,
    "count_std": 1.08686,
-   "count_skew": 3.45446
+   "count_skew": 3.45446,
+   "mean_context_density": 0.03645,
+   "mean_entropy": 4.51645,
+   "mean_evenness_index": 0.42579,
+   "mean_peer_density": 0.06108,
+   "mean_peer_rank": 2.75903
   },
   "cosine_distance": {
    "n_roots": 143,
@@ -16209,7 +17119,12 @@
    "count_avg": 3.36514,
    "count_median": 2.0,
    "count_std": 9.90612,
-   "count_skew": 20.57951
+   "count_skew": 20.57951,
+   "mean_context_density": 0.15958,
+   "mean_entropy": 5.952,
+   "mean_evenness_index": 0.56883,
+   "mean_peer_density": 0.55247,
+   "mean_peer_rank": 6.61931
   },
   "cosine_distance": {
    "n_roots": 18,
@@ -16298,7 +17213,12 @@
    "count_avg": 2.4967,
    "count_median": 2.0,
    "count_std": 3.14623,
-   "count_skew": 7.67216
+   "count_skew": 7.67216,
+   "mean_context_density": 0.09648,
+   "mean_entropy": 5.05725,
+   "mean_evenness_index": 0.47812,
+   "mean_peer_density": 0.20293,
+   "mean_peer_rank": 4.12856
   },
   "cosine_distance": {
    "n_roots": 36,
@@ -16387,7 +17307,12 @@
    "count_avg": 3.44535,
    "count_median": 2.0,
    "count_std": 8.06617,
-   "count_skew": 11.1672
+   "count_skew": 11.1672,
+   "mean_context_density": 0.22168,
+   "mean_entropy": 6.53866,
+   "mean_evenness_index": 0.62036,
+   "mean_peer_density": 0.59172,
+   "mean_peer_rank": 9.44984
   },
   "cosine_distance": {
    "n_roots": 13,
@@ -16476,7 +17401,12 @@
    "count_avg": 6.62582,
    "count_median": 3.0,
    "count_std": 15.89991,
-   "count_skew": 7.83678
+   "count_skew": 7.83678,
+   "mean_context_density": 0.28471,
+   "mean_entropy": 5.47004,
+   "mean_evenness_index": 0.52375,
+   "mean_peer_density": 0.6,
+   "mean_peer_rank": 4.64
   },
   "cosine_distance": {
    "n_roots": 5,
@@ -16565,7 +17495,12 @@
    "count_avg": 6.02347,
    "count_median": 2.0,
    "count_std": 17.55703,
-   "count_skew": 10.27334
+   "count_skew": 10.27334,
+   "mean_context_density": 0.3488,
+   "mean_entropy": 6.52519,
+   "mean_evenness_index": 0.62597,
+   "mean_peer_density": 0.8125,
+   "mean_peer_rank": 3.0625
   },
   "cosine_distance": {
    "n_roots": 4,
@@ -16654,7 +17589,12 @@
    "count_avg": 4.87034,
    "count_median": 2.0,
    "count_std": 13.07959,
-   "count_skew": 10.21756
+   "count_skew": 10.21756,
+   "mean_context_density": 0.18323,
+   "mean_entropy": 5.91169,
+   "mean_evenness_index": 0.56498,
+   "mean_peer_density": 0.50413,
+   "mean_peer_rank": 6.55356
   },
   "cosine_distance": {
    "n_roots": 11,
@@ -16743,7 +17683,12 @@
    "count_avg": 3.97682,
    "count_median": 2.0,
    "count_std": 10.7064,
-   "count_skew": 10.30327
+   "count_skew": 10.30327,
+   "mean_context_density": 0.21053,
+   "mean_entropy": 5.84984,
+   "mean_evenness_index": 0.56163,
+   "mean_peer_density": 0.70139,
+   "mean_peer_rank": 5.8351
   },
   "cosine_distance": {
    "n_roots": 12,
@@ -16832,7 +17777,12 @@
    "count_avg": 3.92493,
    "count_median": 2.0,
    "count_std": 9.0927,
-   "count_skew": 10.29693
+   "count_skew": 10.29693,
+   "mean_context_density": 0.11848,
+   "mean_entropy": 5.40187,
+   "mean_evenness_index": 0.51284,
+   "mean_peer_density": 0.32025,
+   "mean_peer_rank": 5.59698
   },
   "cosine_distance": {
    "n_roots": 22,
@@ -16921,7 +17871,12 @@
    "count_avg": 3.26966,
    "count_median": 2.0,
    "count_std": 7.38407,
-   "count_skew": 11.24204
+   "count_skew": 11.24204,
+   "mean_context_density": 0.12889,
+   "mean_entropy": 4.95117,
+   "mean_evenness_index": 0.47075,
+   "mean_peer_density": 0.34014,
+   "mean_peer_rank": 6.13532
   },
   "cosine_distance": {
    "n_roots": 21,
@@ -17010,7 +17965,12 @@
    "count_avg": 2.18521,
    "count_median": 1.0,
    "count_std": 4.41027,
-   "count_skew": 14.18928
+   "count_skew": 14.18928,
+   "mean_context_density": 0.07901,
+   "mean_entropy": 3.78759,
+   "mean_evenness_index": 0.36446,
+   "mean_peer_density": 0.17284,
+   "mean_peer_rank": 3.76106
   },
   "cosine_distance": {
    "n_roots": 27,
@@ -17099,7 +18059,12 @@
    "count_avg": 2.32961,
    "count_median": 1.0,
    "count_std": 6.00619,
-   "count_skew": 14.51546
+   "count_skew": 14.51546,
+   "mean_context_density": 0.04101,
+   "mean_entropy": 3.53669,
+   "mean_evenness_index": 0.3456,
+   "mean_peer_density": 0.09483,
+   "mean_peer_rank": 3.34914
   },
   "cosine_distance": {
    "n_roots": 58,
@@ -17188,7 +18153,12 @@
    "count_avg": 4.19889,
    "count_median": 2.0,
    "count_std": 14.6174,
-   "count_skew": 18.23166
+   "count_skew": 18.23166,
+   "mean_context_density": 0.20712,
+   "mean_entropy": 4.45582,
+   "mean_evenness_index": 0.42588,
+   "mean_peer_density": 0.46875,
+   "mean_peer_rank": 5.51042
   },
   "cosine_distance": {
    "n_roots": 8,
@@ -17277,7 +18247,12 @@
    "count_avg": 3.48402,
    "count_median": 2.0,
    "count_std": 11.01877,
-   "count_skew": 19.88214
+   "count_skew": 19.88214,
+   "mean_context_density": 0.06968,
+   "mean_entropy": 3.81512,
+   "mean_evenness_index": 0.36621,
+   "mean_peer_density": 0.19421,
+   "mean_peer_rank": 4.0114
   },
   "cosine_distance": {
    "n_roots": 22,
@@ -17366,7 +18341,12 @@
    "count_avg": 3.47938,
    "count_median": 2.0,
    "count_std": 9.19637,
-   "count_skew": 16.57752
+   "count_skew": 16.57752,
+   "mean_context_density": 0.11713,
+   "mean_entropy": 4.47834,
+   "mean_evenness_index": 0.42713,
+   "mean_peer_density": 0.24852,
+   "mean_peer_rank": 4.68787
   },
   "cosine_distance": {
    "n_roots": 13,
@@ -17455,7 +18435,12 @@
    "count_avg": 4.06434,
    "count_median": 2.0,
    "count_std": 10.80425,
-   "count_skew": 23.44877
+   "count_skew": 23.44877,
+   "mean_context_density": 0.06837,
+   "mean_entropy": 4.65171,
+   "mean_evenness_index": 0.43931,
+   "mean_peer_density": 0.17586,
+   "mean_peer_rank": 3.70063
   },
   "cosine_distance": {
    "n_roots": 31,
@@ -17544,7 +18529,12 @@
    "count_avg": 3.16452,
    "count_median": 2.0,
    "count_std": 6.594,
-   "count_skew": 10.33039
+   "count_skew": 10.33039,
+   "mean_context_density": 0.06384,
+   "mean_entropy": 4.32481,
+   "mean_evenness_index": 0.4148,
+   "mean_peer_density": 0.14464,
+   "mean_peer_rank": 4.08392
   },
   "cosine_distance": {
    "n_roots": 31,
@@ -17633,7 +18623,12 @@
    "count_avg": 2.22484,
    "count_median": 1.0,
    "count_std": 4.31162,
-   "count_skew": 12.51503
+   "count_skew": 12.51503,
+   "mean_context_density": 0.03297,
+   "mean_entropy": 3.41262,
+   "mean_evenness_index": 0.32698,
+   "mean_peer_density": 0.04719,
+   "mean_peer_rank": 2.76238
   },
   "cosine_distance": {
    "n_roots": 80,
@@ -17722,7 +18717,12 @@
    "count_avg": 3.304,
    "count_median": 2.0,
    "count_std": 6.70648,
-   "count_skew": 10.93185
+   "count_skew": 10.93185,
+   "mean_context_density": 0.12602,
+   "mean_entropy": 4.48458,
+   "mean_evenness_index": 0.42451,
+   "mean_peer_density": 0.24377,
+   "mean_peer_rank": 5.54642
   },
   "cosine_distance": {
    "n_roots": 19,
@@ -17811,7 +18811,12 @@
    "count_avg": 4.1238,
    "count_median": 2.0,
    "count_std": 13.66308,
-   "count_skew": 24.87576
+   "count_skew": 24.87576,
+   "mean_context_density": 0.13189,
+   "mean_entropy": 5.69564,
+   "mean_evenness_index": 0.54113,
+   "mean_peer_density": 0.38667,
+   "mean_peer_rank": 5.92437
   },
   "cosine_distance": {
    "n_roots": 15,
@@ -17900,7 +18905,12 @@
    "count_avg": 3.95558,
    "count_median": 2.0,
    "count_std": 12.95972,
-   "count_skew": 27.89573
+   "count_skew": 27.89573,
+   "mean_context_density": 0.13321,
+   "mean_entropy": 5.08572,
+   "mean_evenness_index": 0.48202,
+   "mean_peer_density": 0.41016,
+   "mean_peer_rank": 5.63946
   },
   "cosine_distance": {
    "n_roots": 16,
@@ -17989,7 +18999,12 @@
    "count_avg": 2.27412,
    "count_median": 1.0,
    "count_std": 4.51277,
-   "count_skew": 14.32421
+   "count_skew": 14.32421,
+   "mean_context_density": 0.02305,
+   "mean_entropy": 3.293,
+   "mean_evenness_index": 0.31743,
+   "mean_peer_density": 0.03924,
+   "mean_peer_rank": 3.02117
   },
   "cosine_distance": {
    "n_roots": 122,
@@ -18078,7 +19093,12 @@
    "count_avg": 3.01075,
    "count_median": 2.0,
    "count_std": 6.45759,
-   "count_skew": 13.07307
+   "count_skew": 13.07307,
+   "mean_context_density": 0.16093,
+   "mean_entropy": 5.83706,
+   "mean_evenness_index": 0.55369,
+   "mean_peer_density": 0.47922,
+   "mean_peer_rank": 5.97882
   },
   "cosine_distance": {
    "n_roots": 19,
@@ -18167,7 +19187,12 @@
    "count_avg": 5.58728,
    "count_median": 2.0,
    "count_std": 17.45811,
-   "count_skew": 15.71422
+   "count_skew": 15.71422,
+   "mean_context_density": 0.18088,
+   "mean_entropy": 6.05832,
+   "mean_evenness_index": 0.57716,
+   "mean_peer_density": 0.65625,
+   "mean_peer_rank": 5.14836
   },
   "cosine_distance": {
    "n_roots": 8,
@@ -18256,7 +19281,12 @@
    "count_avg": 2.27733,
    "count_median": 1.0,
    "count_std": 3.81242,
-   "count_skew": 11.5812
+   "count_skew": 11.5812,
+   "mean_context_density": 0.04033,
+   "mean_entropy": 3.92419,
+   "mean_evenness_index": 0.37956,
+   "mean_peer_density": 0.13866,
+   "mean_peer_rank": 3.24711
   },
   "cosine_distance": {
    "n_roots": 62,
@@ -18345,7 +19375,12 @@
    "count_avg": 3.50942,
    "count_median": 2.0,
    "count_std": 10.126,
-   "count_skew": 21.47681
+   "count_skew": 21.47681,
+   "mean_context_density": 0.20317,
+   "mean_entropy": 6.31607,
+   "mean_evenness_index": 0.60275,
+   "mean_peer_density": 0.72189,
+   "mean_peer_rank": 6.2609
   },
   "cosine_distance": {
    "n_roots": 13,
@@ -18434,7 +19469,12 @@
    "count_avg": 3.89039,
    "count_median": 2.0,
    "count_std": 9.02432,
-   "count_skew": 11.04781
+   "count_skew": 11.04781,
+   "mean_context_density": 0.24903,
+   "mean_entropy": 6.66869,
+   "mean_evenness_index": 0.63258,
+   "mean_peer_density": 0.73,
+   "mean_peer_rank": 6.86583
   },
   "cosine_distance": {
    "n_roots": 10,
@@ -18523,7 +19563,12 @@
    "count_avg": 2.65386,
    "count_median": 1.0,
    "count_std": 5.43165,
-   "count_skew": 11.09343
+   "count_skew": 11.09343,
+   "mean_context_density": 0.06996,
+   "mean_entropy": 4.63439,
+   "mean_evenness_index": 0.44226,
+   "mean_peer_density": 0.2093,
+   "mean_peer_rank": 4.4821
   },
   "cosine_distance": {
    "n_roots": 43,
@@ -18612,7 +19657,12 @@
    "count_avg": 4.91876,
    "count_median": 2.0,
    "count_std": 13.95497,
-   "count_skew": 12.63921
+   "count_skew": 12.63921,
+   "mean_context_density": 0.26586,
+   "mean_entropy": 6.63601,
+   "mean_evenness_index": 0.63041,
+   "mean_peer_density": 0.79592,
+   "mean_peer_rank": 4.9932
   },
   "cosine_distance": {
    "n_roots": 7,
@@ -18701,7 +19751,12 @@
    "count_avg": 2.39342,
    "count_median": 1.0,
    "count_std": 3.70182,
-   "count_skew": 11.32991
+   "count_skew": 11.32991,
+   "mean_context_density": 0.05682,
+   "mean_entropy": 4.3415,
+   "mean_evenness_index": 0.4106,
+   "mean_peer_density": 0.15283,
+   "mean_peer_rank": 3.69505
   },
   "cosine_distance": {
    "n_roots": 59,
@@ -18790,7 +19845,12 @@
    "count_avg": 3.35796,
    "count_median": 2.0,
    "count_std": 5.90613,
-   "count_skew": 8.74004
+   "count_skew": 8.74004,
+   "mean_context_density": 0.17939,
+   "mean_entropy": 5.9044,
+   "mean_evenness_index": 0.55987,
+   "mean_peer_density": 0.42969,
+   "mean_peer_rank": 5.73542
   },
   "cosine_distance": {
    "n_roots": 16,
@@ -18879,7 +19939,12 @@
    "count_avg": 4.47576,
    "count_median": 2.0,
    "count_std": 9.93385,
-   "count_skew": 10.02757
+   "count_skew": 10.02757,
+   "mean_context_density": 0.13444,
+   "mean_entropy": 5.22844,
+   "mean_evenness_index": 0.49573,
+   "mean_peer_density": 0.30469,
+   "mean_peer_rank": 5.80391
   },
   "cosine_distance": {
    "n_roots": 16,
@@ -18968,7 +20033,12 @@
    "count_avg": 4.26196,
    "count_median": 2.0,
    "count_std": 9.63601,
-   "count_skew": 15.51511
+   "count_skew": 15.51511,
+   "mean_context_density": 0.15436,
+   "mean_entropy": 4.94547,
+   "mean_evenness_index": 0.46916,
+   "mean_peer_density": 0.30556,
+   "mean_peer_rank": 5.27847
   },
   "cosine_distance": {
    "n_roots": 12,
@@ -19057,7 +20127,12 @@
    "count_avg": 6.21296,
    "count_median": 3.0,
    "count_std": 14.74004,
-   "count_skew": 9.49436
+   "count_skew": 9.49436,
+   "mean_context_density": 0.24457,
+   "mean_entropy": 6.21488,
+   "mean_evenness_index": 0.58883,
+   "mean_peer_density": 0.66667,
+   "mean_peer_rank": 5.13333
   },
   "cosine_distance": {
    "n_roots": 6,
@@ -19146,7 +20221,12 @@
    "count_avg": 6.02291,
    "count_median": 3.0,
    "count_std": 14.92526,
-   "count_skew": 16.19092
+   "count_skew": 16.19092,
+   "mean_context_density": 0.14795,
+   "mean_entropy": 5.23766,
+   "mean_evenness_index": 0.49606,
+   "mean_peer_density": 0.53086,
+   "mean_peer_rank": 3.86706
   },
   "cosine_distance": {
    "n_roots": 9,
@@ -19235,7 +20315,12 @@
    "count_avg": 7.29014,
    "count_median": 4.0,
    "count_std": 20.66152,
-   "count_skew": 14.31627
+   "count_skew": 14.31627,
+   "mean_context_density": 0.25645,
+   "mean_entropy": 4.95334,
+   "mean_evenness_index": 0.46897,
+   "mean_peer_density": 0.4375,
+   "mean_peer_rank": 4.875
   },
   "cosine_distance": {
    "n_roots": 4,
@@ -19324,7 +20409,12 @@
    "count_avg": 5.38731,
    "count_median": 3.0,
    "count_std": 12.4356,
-   "count_skew": 11.74632
+   "count_skew": 11.74632,
+   "mean_context_density": 0.21969,
+   "mean_entropy": 5.44727,
+   "mean_evenness_index": 0.51601,
+   "mean_peer_density": 0.5102,
+   "mean_peer_rank": 5.44694
   },
   "cosine_distance": {
    "n_roots": 7,
@@ -19413,7 +20503,12 @@
    "count_avg": 3.56837,
    "count_median": 2.0,
    "count_std": 9.47072,
-   "count_skew": 16.80897
+   "count_skew": 16.80897,
+   "mean_context_density": 0.09673,
+   "mean_entropy": 5.12481,
+   "mean_evenness_index": 0.48533,
+   "mean_peer_density": 0.288,
+   "mean_peer_rank": 5.39139
   },
   "cosine_distance": {
    "n_roots": 25,
@@ -19502,7 +20597,12 @@
    "count_avg": 4.83621,
    "count_median": 2.0,
    "count_std": 12.6336,
-   "count_skew": 9.64502
+   "count_skew": 9.64502,
+   "mean_context_density": 0.21699,
+   "mean_entropy": 5.93669,
+   "mean_evenness_index": 0.56611,
+   "mean_peer_density": 0.48438,
+   "mean_peer_rank": 7.125
   },
   "cosine_distance": {
    "n_roots": 8,
@@ -19591,7 +20691,12 @@
    "count_avg": 3.73607,
    "count_median": 2.0,
    "count_std": 8.648,
-   "count_skew": 13.07708
+   "count_skew": 13.07708,
+   "mean_context_density": 0.14305,
+   "mean_entropy": 5.45821,
+   "mean_evenness_index": 0.51672,
+   "mean_peer_density": 0.32812,
+   "mean_peer_rank": 6.53042
   },
   "cosine_distance": {
    "n_roots": 16,
@@ -19680,7 +20785,12 @@
    "count_avg": 4.33019,
    "count_median": 2.0,
    "count_std": 11.93929,
-   "count_skew": 17.96505
+   "count_skew": 17.96505,
+   "mean_context_density": 0.42468,
+   "mean_entropy": 7.90719,
+   "mean_evenness_index": 0.74951,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 4.0
   },
   "cosine_distance": {
    "n_roots": 5,
@@ -19769,7 +20879,12 @@
    "count_avg": 3.34391,
    "count_median": 1.0,
    "count_std": 9.66716,
-   "count_skew": 22.30457
+   "count_skew": 22.30457,
+   "mean_context_density": 0.16762,
+   "mean_entropy": 5.93129,
+   "mean_evenness_index": 0.56409,
+   "mean_peer_density": 0.47222,
+   "mean_peer_rank": 7.08403
   },
   "cosine_distance": {
    "n_roots": 18,
@@ -19858,7 +20973,12 @@
    "count_avg": 3.87214,
    "count_median": 2.0,
    "count_std": 9.79458,
-   "count_skew": 10.45211
+   "count_skew": 10.45211,
+   "mean_context_density": 0.21306,
+   "mean_entropy": 6.48235,
+   "mean_evenness_index": 0.61708,
+   "mean_peer_density": 0.63194,
+   "mean_peer_rank": 7.87434
   },
   "cosine_distance": {
    "n_roots": 12,
@@ -19947,7 +21067,12 @@
    "count_avg": 5.23604,
    "count_median": 2.0,
    "count_std": 18.41242,
-   "count_skew": 17.22522
+   "count_skew": 17.22522,
+   "mean_context_density": 0.1742,
+   "mean_entropy": 5.01371,
+   "mean_evenness_index": 0.47897,
+   "mean_peer_density": 0.53086,
+   "mean_peer_rank": 3.81481
   },
   "cosine_distance": {
    "n_roots": 9,
@@ -20036,7 +21161,12 @@
    "count_avg": 3.43315,
    "count_median": 2.0,
    "count_std": 10.86922,
-   "count_skew": 21.61346
+   "count_skew": 21.61346,
+   "mean_context_density": 0.32544,
+   "mean_entropy": 7.2647,
+   "mean_evenness_index": 0.69341,
+   "mean_peer_density": 0.89062,
+   "mean_peer_rank": 6.79167
   },
   "cosine_distance": {
    "n_roots": 8,
@@ -20125,7 +21255,12 @@
    "count_avg": 5.32805,
    "count_median": 2.0,
    "count_std": 13.49533,
-   "count_skew": 9.45347
+   "count_skew": 9.45347,
+   "mean_context_density": 0.13941,
+   "mean_entropy": 5.35623,
+   "mean_evenness_index": 0.5111,
+   "mean_peer_density": 0.36686,
+   "mean_peer_rank": 5.98914
   },
   "cosine_distance": {
    "n_roots": 13,
@@ -20214,7 +21349,12 @@
    "count_avg": 3.93722,
    "count_median": 2.0,
    "count_std": 10.08125,
-   "count_skew": 10.41185
+   "count_skew": 10.41185,
+   "mean_context_density": 0.19402,
+   "mean_entropy": 6.40343,
+   "mean_evenness_index": 0.61032,
+   "mean_peer_density": 0.68047,
+   "mean_peer_rank": 6.87673
   },
   "cosine_distance": {
    "n_roots": 13,
@@ -20303,7 +21443,12 @@
    "count_avg": 5.42306,
    "count_median": 2.0,
    "count_std": 13.55707,
-   "count_skew": 9.83912
+   "count_skew": 9.83912,
+   "mean_context_density": 0.12053,
+   "mean_entropy": 4.92383,
+   "mean_evenness_index": 0.46776,
+   "mean_peer_density": 0.30612,
+   "mean_peer_rank": 4.79838
   },
   "cosine_distance": {
    "n_roots": 14,
@@ -20392,7 +21537,12 @@
    "count_avg": 5.61526,
    "count_median": 3.0,
    "count_std": 12.2892,
-   "count_skew": 10.32436
+   "count_skew": 10.32436,
+   "mean_context_density": 0.18282,
+   "mean_entropy": 5.54829,
+   "mean_evenness_index": 0.52412,
+   "mean_peer_density": 0.51852,
+   "mean_peer_rank": 4.7284
   },
   "cosine_distance": {
    "n_roots": 9,
@@ -20481,7 +21631,12 @@
    "count_avg": 3.12613,
    "count_median": 2.0,
    "count_std": 6.05843,
-   "count_skew": 12.97284
+   "count_skew": 12.97284,
+   "mean_context_density": 0.12997,
+   "mean_entropy": 5.09096,
+   "mean_evenness_index": 0.48287,
+   "mean_peer_density": 0.3316,
+   "mean_peer_rank": 5.38585
   },
   "cosine_distance": {
    "n_roots": 24,
@@ -20570,7 +21725,12 @@
    "count_avg": 3.88031,
    "count_median": 2.0,
    "count_std": 10.17941,
-   "count_skew": 14.89324
+   "count_skew": 14.89324,
+   "mean_context_density": 0.12936,
+   "mean_entropy": 5.45018,
+   "mean_evenness_index": 0.51624,
+   "mean_peer_density": 0.4321,
+   "mean_peer_rank": 5.03834
   },
   "cosine_distance": {
    "n_roots": 18,
@@ -20659,7 +21819,12 @@
    "count_avg": 4.41605,
    "count_median": 2.0,
    "count_std": 10.11568,
-   "count_skew": 7.36454
+   "count_skew": 7.36454,
+   "mean_context_density": 0.24564,
+   "mean_entropy": 6.09729,
+   "mean_evenness_index": 0.58289,
+   "mean_peer_density": 0.61728,
+   "mean_peer_rank": 9.24339
   },
   "cosine_distance": {
    "n_roots": 9,
@@ -20748,7 +21913,12 @@
    "count_avg": 4.08993,
    "count_median": 2.0,
    "count_std": 12.93753,
-   "count_skew": 19.95144
+   "count_skew": 19.95144,
+   "mean_context_density": 0.0931,
+   "mean_entropy": 4.53421,
+   "mean_evenness_index": 0.43082,
+   "mean_peer_density": 0.26304,
+   "mean_peer_rank": 4.82623
   },
   "cosine_distance": {
    "n_roots": 21,
@@ -20837,7 +22007,12 @@
    "count_avg": 1.94626,
    "count_median": 1.0,
    "count_std": 2.94505,
-   "count_skew": 9.15184
+   "count_skew": 9.15184,
+   "mean_context_density": 0.02407,
+   "mean_entropy": 3.51536,
+   "mean_evenness_index": 0.34648,
+   "mean_peer_density": 0.04114,
+   "mean_peer_rank": 2.73549
   },
   "cosine_distance": {
    "n_roots": 131,
@@ -20926,7 +22101,12 @@
    "count_avg": 3.46904,
    "count_median": 2.0,
    "count_std": 8.06388,
-   "count_skew": 12.48668
+   "count_skew": 12.48668,
+   "mean_context_density": 0.07697,
+   "mean_entropy": 4.6775,
+   "mean_evenness_index": 0.44229,
+   "mean_peer_density": 0.14141,
+   "mean_peer_rank": 4.69454
   },
   "cosine_distance": {
    "n_roots": 33,
@@ -21015,7 +22195,12 @@
    "count_avg": 4.1843,
    "count_median": 2.0,
    "count_std": 11.85712,
-   "count_skew": 14.87806
+   "count_skew": 14.87806,
+   "mean_context_density": 0.13766,
+   "mean_entropy": 5.62486,
+   "mean_evenness_index": 0.53197,
+   "mean_peer_density": 0.48,
+   "mean_peer_rank": 4.87825
   },
   "cosine_distance": {
    "n_roots": 15,
@@ -21104,7 +22289,12 @@
    "count_avg": 4.37897,
    "count_median": 2.0,
    "count_std": 9.8037,
-   "count_skew": 9.03927
+   "count_skew": 9.03927,
+   "mean_context_density": 0.3169,
+   "mean_entropy": 6.83361,
+   "mean_evenness_index": 0.64918,
+   "mean_peer_density": 0.71429,
+   "mean_peer_rank": 8.0881
   },
   "cosine_distance": {
    "n_roots": 7,
@@ -21193,7 +22383,12 @@
    "count_avg": 3.39175,
    "count_median": 2.0,
    "count_std": 7.15531,
-   "count_skew": 8.30346
+   "count_skew": 8.30346,
+   "mean_context_density": 0.17604,
+   "mean_entropy": 6.22779,
+   "mean_evenness_index": 0.59076,
+   "mean_peer_density": 0.52941,
+   "mean_peer_rank": 6.66606
   },
   "cosine_distance": {
    "n_roots": 17,
@@ -21282,7 +22477,12 @@
    "count_avg": 3.44221,
    "count_median": 2.0,
    "count_std": 8.06797,
-   "count_skew": 13.00802
+   "count_skew": 13.00802,
+   "mean_context_density": 0.04363,
+   "mean_entropy": 3.78283,
+   "mean_evenness_index": 0.35976,
+   "mean_peer_density": 0.09398,
+   "mean_peer_rank": 3.72344
   },
   "cosine_distance": {
    "n_roots": 53,
@@ -21371,7 +22571,12 @@
    "count_avg": 8.75437,
    "count_median": 5.0,
    "count_std": 17.85464,
-   "count_skew": 11.04511
+   "count_skew": 11.04511,
+   "mean_context_density": 0.25803,
+   "mean_entropy": 5.21192,
+   "mean_evenness_index": 0.49421,
+   "mean_peer_density": 0.4375,
+   "mean_peer_rank": 4.125
   },
   "cosine_distance": {
    "n_roots": 4,
@@ -21460,7 +22665,12 @@
    "count_avg": 5.01231,
    "count_median": 2.0,
    "count_std": 12.46494,
-   "count_skew": 8.49875
+   "count_skew": 8.49875,
+   "mean_context_density": 0.10008,
+   "mean_entropy": 5.00959,
+   "mean_evenness_index": 0.47693,
+   "mean_peer_density": 0.27978,
+   "mean_peer_rank": 5.00982
   },
   "cosine_distance": {
    "n_roots": 19,
@@ -21549,7 +22759,12 @@
    "count_avg": 4.89174,
    "count_median": 2.0,
    "count_std": 14.9339,
-   "count_skew": 12.39885
+   "count_skew": 12.39885,
+   "mean_context_density": 0.15218,
+   "mean_entropy": 5.63407,
+   "mean_evenness_index": 0.54236,
+   "mean_peer_density": 0.56805,
+   "mean_peer_rank": 5.34918
   },
   "cosine_distance": {
    "n_roots": 13,
@@ -21638,7 +22853,12 @@
    "count_avg": 7.14549,
    "count_median": 3.0,
    "count_std": 18.00892,
-   "count_skew": 9.96758
+   "count_skew": 9.96758,
+   "mean_context_density": 0.17931,
+   "mean_entropy": 4.74756,
+   "mean_evenness_index": 0.45152,
+   "mean_peer_density": 0.44444,
+   "mean_peer_rank": 3.50556
   },
   "cosine_distance": {
    "n_roots": 6,
@@ -21727,7 +22947,12 @@
    "count_avg": 3.64966,
    "count_median": 2.0,
    "count_std": 7.71629,
-   "count_skew": 8.64776
+   "count_skew": 8.64776,
+   "mean_context_density": 0.10746,
+   "mean_entropy": 5.7613,
+   "mean_evenness_index": 0.54531,
+   "mean_peer_density": 0.30769,
+   "mean_peer_rank": 5.30603
   },
   "cosine_distance": {
    "n_roots": 26,
@@ -21816,7 +23041,12 @@
    "count_avg": 2.87288,
    "count_median": 2.0,
    "count_std": 4.48991,
-   "count_skew": 7.34612
+   "count_skew": 7.34612,
+   "mean_context_density": 0.12219,
+   "mean_entropy": 5.7495,
+   "mean_evenness_index": 0.5443,
+   "mean_peer_density": 0.33111,
+   "mean_peer_rank": 5.12336
   },
   "cosine_distance": {
    "n_roots": 30,
@@ -21905,7 +23135,12 @@
    "count_avg": 3.16228,
    "count_median": 2.0,
    "count_std": 6.37124,
-   "count_skew": 11.19753
+   "count_skew": 11.19753,
+   "mean_context_density": 0.15376,
+   "mean_entropy": 5.75972,
+   "mean_evenness_index": 0.54686,
+   "mean_peer_density": 0.36281,
+   "mean_peer_rank": 6.64663
   },
   "cosine_distance": {
    "n_roots": 21,
@@ -21994,7 +23229,12 @@
    "count_avg": 3.84457,
    "count_median": 2.0,
    "count_std": 7.7897,
-   "count_skew": 10.37513
+   "count_skew": 10.37513,
+   "mean_context_density": 0.20829,
+   "mean_entropy": 6.50841,
+   "mean_evenness_index": 0.61772,
+   "mean_peer_density": 0.56805,
+   "mean_peer_rank": 7.16154
   },
   "cosine_distance": {
    "n_roots": 13,
@@ -22083,7 +23323,12 @@
    "count_avg": 4.48433,
    "count_median": 2.0,
    "count_std": 11.84625,
-   "count_skew": 14.80366
+   "count_skew": 14.80366,
+   "mean_context_density": 0.15545,
+   "mean_entropy": 6.0115,
+   "mean_evenness_index": 0.57076,
+   "mean_peer_density": 0.41327,
+   "mean_peer_rank": 6.27788
   },
   "cosine_distance": {
    "n_roots": 14,
@@ -22172,7 +23417,12 @@
    "count_avg": 6.86269,
    "count_median": 3.0,
    "count_std": 14.18246,
-   "count_skew": 6.67191
+   "count_skew": 6.67191,
+   "mean_context_density": 0.11882,
+   "mean_entropy": 5.14168,
+   "mean_evenness_index": 0.48658,
+   "mean_peer_density": 0.29167,
+   "mean_peer_rank": 5.48889
   },
   "cosine_distance": {
    "n_roots": 12,
@@ -22261,7 +23511,12 @@
    "count_avg": 2.82783,
    "count_median": 1.0,
    "count_std": 5.80131,
-   "count_skew": 9.70306
+   "count_skew": 9.70306,
+   "mean_context_density": 0.1034,
+   "mean_entropy": 5.62228,
+   "mean_evenness_index": 0.53421,
+   "mean_peer_density": 0.32407,
+   "mean_peer_rank": 5.39908
   },
   "cosine_distance": {
    "n_roots": 36,
@@ -22350,7 +23605,12 @@
    "count_avg": 3.65958,
    "count_median": 2.0,
    "count_std": 5.89007,
-   "count_skew": 7.4981
+   "count_skew": 7.4981,
+   "mean_context_density": 0.28245,
+   "mean_entropy": 6.51965,
+   "mean_evenness_index": 0.6161,
+   "mean_peer_density": 0.5,
+   "mean_peer_rank": 8.78635
   },
   "cosine_distance": {
    "n_roots": 10,
@@ -22439,7 +23699,12 @@
    "count_avg": 3.12445,
    "count_median": 2.0,
    "count_std": 4.77765,
-   "count_skew": 8.07095
+   "count_skew": 8.07095,
+   "mean_context_density": 0.19294,
+   "mean_entropy": 6.35887,
+   "mean_evenness_index": 0.60075,
+   "mean_peer_density": 0.46713,
+   "mean_peer_rank": 6.41542
   },
   "cosine_distance": {
    "n_roots": 17,
@@ -22528,7 +23793,12 @@
    "count_avg": 3.28208,
    "count_median": 2.0,
    "count_std": 7.10558,
-   "count_skew": 10.50223
+   "count_skew": 10.50223,
+   "mean_context_density": 0.16273,
+   "mean_entropy": 5.98638,
+   "mean_evenness_index": 0.56729,
+   "mean_peer_density": 0.43767,
+   "mean_peer_rank": 6.62474
   },
   "cosine_distance": {
    "n_roots": 19,
@@ -22617,7 +23887,12 @@
    "count_avg": 3.12172,
    "count_median": 2.0,
    "count_std": 5.54498,
-   "count_skew": 7.63645
+   "count_skew": 7.63645,
+   "mean_context_density": 0.12103,
+   "mean_entropy": 5.38869,
+   "mean_evenness_index": 0.51,
+   "mean_peer_density": 0.31276,
+   "mean_peer_rank": 5.41102
   },
   "cosine_distance": {
    "n_roots": 27,
@@ -22706,7 +23981,12 @@
    "count_avg": 4.95453,
    "count_median": 2.0,
    "count_std": 13.47932,
-   "count_skew": 18.33198
+   "count_skew": 18.33198,
+   "mean_context_density": 0.45909,
+   "mean_entropy": 7.78836,
+   "mean_evenness_index": 0.7392,
+   "mean_peer_density": 0.875,
+   "mean_peer_rank": 17.625
   },
   "cosine_distance": {
    "n_roots": 4,
@@ -22795,7 +24075,12 @@
    "count_avg": 4.66909,
    "count_median": 2.0,
    "count_std": 9.41659,
-   "count_skew": 9.88146
+   "count_skew": 9.88146,
+   "mean_context_density": 0.39894,
+   "mean_entropy": 7.67421,
+   "mean_evenness_index": 0.72637,
+   "mean_peer_density": 0.64,
+   "mean_peer_rank": 14.90667
   },
   "cosine_distance": {
    "n_roots": 5,
@@ -22884,7 +24169,12 @@
    "count_avg": 2.10103,
    "count_median": 1.0,
    "count_std": 3.19641,
-   "count_skew": 9.98638
+   "count_skew": 9.98638,
+   "mean_context_density": 0.04747,
+   "mean_entropy": 4.36998,
+   "mean_evenness_index": 0.41736,
+   "mean_peer_density": 0.11844,
+   "mean_peer_rank": 3.88324
   },
   "cosine_distance": {
    "n_roots": 72,
@@ -22973,7 +24263,12 @@
    "count_avg": 2.22274,
    "count_median": 1.0,
    "count_std": 3.41706,
-   "count_skew": 12.88409
+   "count_skew": 12.88409,
+   "mean_context_density": 0.0572,
+   "mean_entropy": 4.82837,
+   "mean_evenness_index": 0.45591,
+   "mean_peer_density": 0.11873,
+   "mean_peer_rank": 3.78498
   },
   "cosine_distance": {
    "n_roots": 68,
@@ -23062,7 +24357,12 @@
    "count_avg": 2.56793,
    "count_median": 1.0,
    "count_std": 4.37299,
-   "count_skew": 9.21771
+   "count_skew": 9.21771,
+   "mean_context_density": 0.07451,
+   "mean_entropy": 4.88113,
+   "mean_evenness_index": 0.46205,
+   "mean_peer_density": 0.2051,
+   "mean_peer_rank": 4.51042
   },
   "cosine_distance": {
    "n_roots": 46,
@@ -23151,7 +24451,12 @@
    "count_avg": 5.43683,
    "count_median": 2.0,
    "count_std": 13.16507,
-   "count_skew": 8.04186
+   "count_skew": 8.04186,
+   "mean_context_density": 0.28178,
+   "mean_entropy": 5.72436,
+   "mean_evenness_index": 0.5455,
+   "mean_peer_density": 0.52778,
+   "mean_peer_rank": 6.22222
   },
   "cosine_distance": {
    "n_roots": 6,
@@ -23240,7 +24545,12 @@
    "count_avg": 3.80781,
    "count_median": 2.0,
    "count_std": 15.57741,
-   "count_skew": 17.17062
+   "count_skew": 17.17062,
+   "mean_context_density": 0.16395,
+   "mean_entropy": 4.19823,
+   "mean_evenness_index": 0.39999,
+   "mean_peer_density": 0.50694,
+   "mean_peer_rank": 5.23135
   },
   "cosine_distance": {
    "n_roots": 12,
@@ -23329,7 +24639,12 @@
    "count_avg": 4.05134,
    "count_median": 2.0,
    "count_std": 10.50931,
-   "count_skew": 10.18425
+   "count_skew": 10.18425,
+   "mean_context_density": 0.16027,
+   "mean_entropy": 5.71828,
+   "mean_evenness_index": 0.54634,
+   "mean_peer_density": 0.54592,
+   "mean_peer_rank": 6.46735
   },
   "cosine_distance": {
    "n_roots": 14,
@@ -23418,7 +24733,12 @@
    "count_avg": 3.38533,
    "count_median": 2.0,
    "count_std": 7.91765,
-   "count_skew": 9.79269
+   "count_skew": 9.79269,
+   "mean_context_density": 0.21482,
+   "mean_entropy": 6.69358,
+   "mean_evenness_index": 0.63677,
+   "mean_peer_density": 0.7449,
+   "mean_peer_rank": 6.32873
   },
   "cosine_distance": {
    "n_roots": 14,
@@ -23507,7 +24827,12 @@
    "count_avg": 5.27554,
    "count_median": 2.0,
    "count_std": 16.59508,
-   "count_skew": 13.75032
+   "count_skew": 13.75032,
+   "mean_context_density": 0.24628,
+   "mean_entropy": 6.90803,
+   "mean_evenness_index": 0.65829,
+   "mean_peer_density": 0.87755,
+   "mean_peer_rank": 5.82993
   },
   "cosine_distance": {
    "n_roots": 7,
@@ -23596,7 +24921,12 @@
    "count_avg": 5.27456,
    "count_median": 2.0,
    "count_std": 14.47757,
-   "count_skew": 15.85711
+   "count_skew": 15.85711,
+   "mean_context_density": 0.29904,
+   "mean_entropy": 7.26905,
+   "mean_evenness_index": 0.68946,
+   "mean_peer_density": 0.77778,
+   "mean_peer_rank": 4.6
   },
   "cosine_distance": {
    "n_roots": 6,
@@ -23685,7 +25015,12 @@
    "count_avg": 8.29297,
    "count_median": 4.0,
    "count_std": 18.64984,
-   "count_skew": 8.29308
+   "count_skew": 8.29308,
+   "mean_context_density": 0.34548,
+   "mean_entropy": 6.15915,
+   "mean_evenness_index": 0.58473,
+   "mean_peer_density": 0.66667,
+   "mean_peer_rank": 2.11111
   },
   "cosine_distance": {
    "n_roots": 3,
@@ -23774,7 +25109,12 @@
    "count_avg": 4.97582,
    "count_median": 2.0,
    "count_std": 12.27343,
-   "count_skew": 10.49487
+   "count_skew": 10.49487,
+   "mean_context_density": 0.29294,
+   "mean_entropy": 6.62496,
+   "mean_evenness_index": 0.62757,
+   "mean_peer_density": 0.69444,
+   "mean_peer_rank": 8.22222
   },
   "cosine_distance": {
    "n_roots": 6,
@@ -23863,7 +25203,12 @@
    "count_avg": 3.70189,
    "count_median": 2.0,
    "count_std": 9.30874,
-   "count_skew": 10.39586
+   "count_skew": 10.39586,
+   "mean_context_density": 0.0936,
+   "mean_entropy": 4.50656,
+   "mean_evenness_index": 0.43298,
+   "mean_peer_density": 0.2544,
+   "mean_peer_rank": 5.08683
   },
   "cosine_distance": {
    "n_roots": 25,
@@ -23952,7 +25297,12 @@
    "count_avg": 5.23068,
    "count_median": 2.0,
    "count_std": 15.53105,
-   "count_skew": 11.84545
+   "count_skew": 11.84545,
+   "mean_context_density": 0.22569,
+   "mean_entropy": 5.81272,
+   "mean_evenness_index": 0.55323,
+   "mean_peer_density": 0.6875,
+   "mean_peer_rank": 4.28646
   },
   "cosine_distance": {
    "n_roots": 8,
@@ -24041,7 +25391,12 @@
    "count_avg": 4.9749,
    "count_median": 2.0,
    "count_std": 11.02674,
-   "count_skew": 11.17261
+   "count_skew": 11.17261,
+   "mean_context_density": 0.15385,
+   "mean_entropy": 5.7369,
+   "mean_evenness_index": 0.54208,
+   "mean_peer_density": 0.42604,
+   "mean_peer_rank": 5.3887
   },
   "cosine_distance": {
    "n_roots": 13,
@@ -24130,7 +25485,12 @@
    "count_avg": 4.78473,
    "count_median": 3.0,
    "count_std": 9.91561,
-   "count_skew": 13.51061
+   "count_skew": 13.51061,
+   "mean_context_density": 0.04234,
+   "mean_entropy": 4.0214,
+   "mean_evenness_index": 0.37982,
+   "mean_peer_density": 0.08218,
+   "mean_peer_rank": 2.832
   },
   "cosine_distance": {
    "n_roots": 39,
@@ -24219,7 +25579,12 @@
    "count_avg": 4.65789,
    "count_median": 2.0,
    "count_std": 11.23344,
-   "count_skew": 11.36373
+   "count_skew": 11.36373,
+   "mean_context_density": 0.17786,
+   "mean_entropy": 5.46144,
+   "mean_evenness_index": 0.51792,
+   "mean_peer_density": 0.47934,
+   "mean_peer_rank": 6.64587
   },
   "cosine_distance": {
    "n_roots": 11,
@@ -24308,7 +25673,12 @@
    "count_avg": 5.40261,
    "count_median": 2.0,
    "count_std": 18.20984,
-   "count_skew": 13.92168
+   "count_skew": 13.92168,
+   "mean_context_density": 0.22765,
+   "mean_entropy": 5.79225,
+   "mean_evenness_index": 0.55411,
+   "mean_peer_density": 0.72222,
+   "mean_peer_rank": 4.52778
   },
   "cosine_distance": {
    "n_roots": 6,
@@ -24397,7 +25767,12 @@
    "count_avg": 3.52382,
    "count_median": 2.0,
    "count_std": 9.44352,
-   "count_skew": 12.35549
+   "count_skew": 12.35549,
+   "mean_context_density": 0.15756,
+   "mean_entropy": 5.35111,
+   "mean_evenness_index": 0.5092,
+   "mean_peer_density": 0.44141,
+   "mean_peer_rank": 7.06844
   },
   "cosine_distance": {
    "n_roots": 16,
@@ -24486,7 +25861,12 @@
    "count_avg": 8.2256,
    "count_median": 4.0,
    "count_std": 19.45781,
-   "count_skew": 9.46097
+   "count_skew": 9.46097,
+   "mean_context_density": 0.35637,
+   "mean_entropy": 6.29996,
+   "mean_evenness_index": 0.60006,
+   "mean_peer_density": 0.66667,
+   "mean_peer_rank": 5.16667
   },
   "cosine_distance": {
    "n_roots": 3,
@@ -24575,7 +25955,12 @@
    "count_avg": 4.10287,
    "count_median": 2.0,
    "count_std": 11.39379,
-   "count_skew": 14.33008
+   "count_skew": 14.33008,
+   "mean_context_density": 0.13727,
+   "mean_entropy": 5.82587,
+   "mean_evenness_index": 0.55528,
+   "mean_peer_density": 0.48,
+   "mean_peer_rank": 5.82794
   },
   "cosine_distance": {
    "n_roots": 15,
@@ -24664,7 +26049,12 @@
    "count_avg": 4.86424,
    "count_median": 3.0,
    "count_std": 14.71479,
-   "count_skew": 16.26031
+   "count_skew": 16.26031,
+   "mean_context_density": 0.1427,
+   "mean_entropy": 4.41608,
+   "mean_evenness_index": 0.41956,
+   "mean_peer_density": 0.41975,
+   "mean_peer_rank": 5.2985
   },
   "cosine_distance": {
    "n_roots": 9,
@@ -24753,7 +26143,12 @@
    "count_avg": 3.14014,
    "count_median": 2.0,
    "count_std": 6.33071,
-   "count_skew": 9.17924
+   "count_skew": 9.17924,
+   "mean_context_density": 0.12941,
+   "mean_entropy": 5.11995,
+   "mean_evenness_index": 0.48598,
+   "mean_peer_density": 0.33837,
+   "mean_peer_rank": 6.01942
   },
   "cosine_distance": {
    "n_roots": 23,
@@ -24842,7 +26237,12 @@
    "count_avg": 8.7605,
    "count_median": 4.0,
    "count_std": 22.89581,
-   "count_skew": 10.55673
+   "count_skew": 10.55673,
+   "mean_context_density": 1.0,
+   "mean_entropy": 9.09288,
+   "mean_evenness_index": 0.86559,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 4.0
   },
   "cosine_distance": {
    "n_roots": 1,
@@ -24931,7 +26331,12 @@
    "count_avg": 2.72861,
    "count_median": 1.0,
    "count_std": 6.82048,
-   "count_skew": 15.5275
+   "count_skew": 15.5275,
+   "mean_context_density": 0.07974,
+   "mean_entropy": 5.35503,
+   "mean_evenness_index": 0.50792,
+   "mean_peer_density": 0.25086,
+   "mean_peer_rank": 5.33938
   },
   "cosine_distance": {
    "n_roots": 45,
@@ -25020,7 +26425,12 @@
    "count_avg": 3.51457,
    "count_median": 2.0,
    "count_std": 9.24203,
-   "count_skew": 11.97754
+   "count_skew": 11.97754,
+   "mean_context_density": 0.11213,
+   "mean_entropy": 5.40421,
+   "mean_evenness_index": 0.5132,
+   "mean_peer_density": 0.44618,
+   "mean_peer_rank": 5.40157
   },
   "cosine_distance": {
    "n_roots": 24,
@@ -25109,7 +26519,12 @@
    "count_avg": 3.56275,
    "count_median": 2.0,
    "count_std": 7.57471,
-   "count_skew": 8.94986
+   "count_skew": 8.94986,
+   "mean_context_density": 0.17493,
+   "mean_entropy": 5.75711,
+   "mean_evenness_index": 0.55021,
+   "mean_peer_density": 0.40278,
+   "mean_peer_rank": 6.18889
   },
   "cosine_distance": {
    "n_roots": 12,
@@ -25198,7 +26613,12 @@
    "count_avg": 4.23876,
    "count_median": 2.0,
    "count_std": 10.97894,
-   "count_skew": 19.44274
+   "count_skew": 19.44274,
+   "mean_context_density": 0.22243,
+   "mean_entropy": 6.49001,
+   "mean_evenness_index": 0.61625,
+   "mean_peer_density": 0.55,
+   "mean_peer_rank": 8.06722
   },
   "cosine_distance": {
    "n_roots": 10,
@@ -25287,7 +26707,12 @@
    "count_avg": 5.77783,
    "count_median": 2.0,
    "count_std": 17.00978,
-   "count_skew": 10.30845
+   "count_skew": 10.30845,
+   "mean_context_density": 0.31159,
+   "mean_entropy": 5.61261,
+   "mean_evenness_index": 0.53946,
+   "mean_peer_density": 0.6,
+   "mean_peer_rank": 7.44
   },
   "cosine_distance": {
    "n_roots": 5,
@@ -25376,7 +26801,12 @@
    "count_avg": 3.44793,
    "count_median": 2.0,
    "count_std": 6.66821,
-   "count_skew": 8.529
+   "count_skew": 8.529,
+   "mean_context_density": 0.10945,
+   "mean_entropy": 5.39287,
+   "mean_evenness_index": 0.51318,
+   "mean_peer_density": 0.30612,
+   "mean_peer_rank": 5.44415
   },
   "cosine_distance": {
    "n_roots": 28,
@@ -25465,7 +26895,12 @@
    "count_avg": 7.99865,
    "count_median": 4.0,
    "count_std": 20.83791,
-   "count_skew": 16.86149
+   "count_skew": 16.86149,
+   "mean_context_density": 1.0,
+   "mean_entropy": 9.30501,
+   "mean_evenness_index": 0.88331,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 1.0
   },
   "cosine_distance": {
    "n_roots": 1,
@@ -25554,7 +26989,12 @@
    "count_avg": 6.52374,
    "count_median": 3.0,
    "count_std": 26.44077,
-   "count_skew": 17.6615
+   "count_skew": 17.6615,
+   "mean_context_density": 1.0,
+   "mean_entropy": 8.77085,
+   "mean_evenness_index": 0.84005,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 2.0
   },
   "cosine_distance": {
    "n_roots": 1,
@@ -25643,7 +27083,12 @@
    "count_avg": 4.86289,
    "count_median": 2.0,
    "count_std": 15.09782,
-   "count_skew": 18.76414
+   "count_skew": 18.76414,
+   "mean_context_density": 0.41913,
+   "mean_entropy": 6.46713,
+   "mean_evenness_index": 0.61563,
+   "mean_peer_density": 0.75,
+   "mean_peer_rank": 6.875
   },
   "cosine_distance": {
    "n_roots": 4,
@@ -25732,7 +27177,12 @@
    "count_avg": 3.21917,
    "count_median": 2.0,
    "count_std": 7.74261,
-   "count_skew": 19.50912
+   "count_skew": 19.50912,
+   "mean_context_density": 0.06606,
+   "mean_entropy": 4.79068,
+   "mean_evenness_index": 0.45934,
+   "mean_peer_density": 0.15778,
+   "mean_peer_rank": 4.39867
   },
   "cosine_distance": {
    "n_roots": 30,
@@ -25821,7 +27271,12 @@
    "count_avg": 2.44216,
    "count_median": 1.0,
    "count_std": 4.07969,
-   "count_skew": 10.71081
+   "count_skew": 10.71081,
+   "mean_context_density": 0.04509,
+   "mean_entropy": 4.18206,
+   "mean_evenness_index": 0.39759,
+   "mean_peer_density": 0.08179,
+   "mean_peer_rank": 3.36249
   },
   "cosine_distance": {
    "n_roots": 72,
@@ -25910,7 +27365,12 @@
    "count_avg": 6.98302,
    "count_median": 3.0,
    "count_std": 15.99213,
-   "count_skew": 12.23833
+   "count_skew": 12.23833,
+   "mean_context_density": 0.20759,
+   "mean_entropy": 6.05749,
+   "mean_evenness_index": 0.57593,
+   "mean_peer_density": 0.44444,
+   "mean_peer_rank": 4.22222
   },
   "cosine_distance": {
    "n_roots": 6,
@@ -25999,7 +27459,12 @@
    "count_avg": 4.38872,
    "count_median": 2.0,
    "count_std": 12.76632,
-   "count_skew": 15.6531
+   "count_skew": 15.6531,
+   "mean_context_density": 0.27905,
+   "mean_entropy": 6.62697,
+   "mean_evenness_index": 0.62932,
+   "mean_peer_density": 0.69388,
+   "mean_peer_rank": 6.35204
   },
   "cosine_distance": {
    "n_roots": 7,
@@ -26088,7 +27553,12 @@
    "count_avg": 3.20772,
    "count_median": 1.0,
    "count_std": 8.04627,
-   "count_skew": 11.98074
+   "count_skew": 11.98074,
+   "mean_context_density": 0.21259,
+   "mean_entropy": 6.50435,
+   "mean_evenness_index": 0.61807,
+   "mean_peer_density": 0.64286,
+   "mean_peer_rank": 6.81174
   },
   "cosine_distance": {
    "n_roots": 14,
@@ -26177,7 +27647,12 @@
    "count_avg": 4.4968,
    "count_median": 2.0,
    "count_std": 13.94273,
-   "count_skew": 11.1012
+   "count_skew": 11.1012,
+   "mean_context_density": 0.09902,
+   "mean_entropy": 5.53171,
+   "mean_evenness_index": 0.52754,
+   "mean_peer_density": 0.37397,
+   "mean_peer_rank": 5.39467
   },
   "cosine_distance": {
    "n_roots": 22,
@@ -26266,7 +27741,12 @@
    "count_avg": 6.7879,
    "count_median": 3.0,
    "count_std": 19.87948,
-   "count_skew": 12.2999
+   "count_skew": 12.2999,
+   "mean_context_density": 0.27219,
+   "mean_entropy": 5.57685,
+   "mean_evenness_index": 0.53144,
+   "mean_peer_density": 0.625,
+   "mean_peer_rank": 5.3125
   },
   "cosine_distance": {
    "n_roots": 4,
@@ -26355,7 +27835,12 @@
    "count_avg": 3.9598,
    "count_median": 2.0,
    "count_std": 12.23681,
-   "count_skew": 11.37954
+   "count_skew": 11.37954,
+   "mean_context_density": 0.1648,
+   "mean_entropy": 5.79792,
+   "mean_evenness_index": 0.55586,
+   "mean_peer_density": 0.58673,
+   "mean_peer_rank": 7.04881
   },
   "cosine_distance": {
    "n_roots": 14,
@@ -26444,7 +27929,12 @@
    "count_avg": 4.84977,
    "count_median": 2.0,
    "count_std": 17.69216,
-   "count_skew": 19.51133
+   "count_skew": 19.51133,
+   "mean_context_density": 0.77445,
+   "mean_entropy": 8.55273,
+   "mean_evenness_index": 0.81827,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 1.5
   },
   "cosine_distance": {
    "n_roots": 2,
@@ -26533,7 +28023,12 @@
    "count_avg": 2.95841,
    "count_median": 2.0,
    "count_std": 8.62005,
-   "count_skew": 22.61636
+   "count_skew": 22.61636,
+   "mean_context_density": 0.10204,
+   "mean_entropy": 4.02953,
+   "mean_evenness_index": 0.38298,
+   "mean_peer_density": 0.29932,
+   "mean_peer_rank": 4.35397
   },
   "cosine_distance": {
    "n_roots": 21,
@@ -26622,7 +28117,12 @@
    "count_avg": 3.1572,
    "count_median": 1.0,
    "count_std": 7.46894,
-   "count_skew": 10.56955
+   "count_skew": 10.56955,
+   "mean_context_density": 0.18343,
+   "mean_entropy": 6.32217,
+   "mean_evenness_index": 0.60037,
+   "mean_peer_density": 0.60208,
+   "mean_peer_rank": 6.53016
   },
   "cosine_distance": {
    "n_roots": 17,
@@ -26711,7 +28211,12 @@
    "count_avg": 5.242,
    "count_median": 2.0,
    "count_std": 14.57458,
-   "count_skew": 14.61868
+   "count_skew": 14.61868,
+   "mean_context_density": 0.27789,
+   "mean_entropy": 6.6715,
+   "mean_evenness_index": 0.63679,
+   "mean_peer_density": 0.77778,
+   "mean_peer_rank": 4.09167
   },
   "cosine_distance": {
    "n_roots": 6,
@@ -26800,7 +28305,12 @@
    "count_avg": 4.46239,
    "count_median": 2.0,
    "count_std": 14.45427,
-   "count_skew": 15.14726
+   "count_skew": 15.14726,
+   "mean_context_density": 0.16128,
+   "mean_entropy": 5.80226,
+   "mean_evenness_index": 0.55474,
+   "mean_peer_density": 0.5625,
+   "mean_peer_rank": 7.25936
   },
   "cosine_distance": {
    "n_roots": 12,
@@ -26889,7 +28399,12 @@
    "count_avg": 3.24722,
    "count_median": 2.0,
    "count_std": 7.77489,
-   "count_skew": 16.64915
+   "count_skew": 16.64915,
+   "mean_context_density": 0.10525,
+   "mean_entropy": 5.47983,
+   "mean_evenness_index": 0.52005,
+   "mean_peer_density": 0.37586,
+   "mean_peer_rank": 5.42472
   },
   "cosine_distance": {
    "n_roots": 27,
@@ -26978,7 +28493,12 @@
    "count_avg": 4.20402,
    "count_median": 2.0,
    "count_std": 9.39457,
-   "count_skew": 10.27864
+   "count_skew": 10.27864,
+   "mean_context_density": 0.30075,
+   "mean_entropy": 6.70343,
+   "mean_evenness_index": 0.63472,
+   "mean_peer_density": 0.73469,
+   "mean_peer_rank": 6.68639
   },
   "cosine_distance": {
    "n_roots": 7,
@@ -27067,7 +28587,12 @@
    "count_avg": 3.72376,
    "count_median": 2.0,
    "count_std": 8.20816,
-   "count_skew": 10.95109
+   "count_skew": 10.95109,
+   "mean_context_density": 0.12856,
+   "mean_entropy": 5.18341,
+   "mean_evenness_index": 0.4921,
+   "mean_peer_density": 0.30471,
+   "mean_peer_rank": 5.6763
   },
   "cosine_distance": {
    "n_roots": 19,
@@ -27156,7 +28681,12 @@
    "count_avg": 3.02636,
    "count_median": 1.0,
    "count_std": 8.00677,
-   "count_skew": 12.60907
+   "count_skew": 12.60907,
+   "mean_context_density": 0.14971,
+   "mean_entropy": 6.02069,
+   "mean_evenness_index": 0.57473,
+   "mean_peer_density": 0.52381,
+   "mean_peer_rank": 7.82864
   },
   "cosine_distance": {
    "n_roots": 21,
@@ -27245,7 +28775,12 @@
    "count_avg": 6.16073,
    "count_median": 3.0,
    "count_std": 21.17295,
-   "count_skew": 16.43439
+   "count_skew": 16.43439,
+   "mean_context_density": 0.22843,
+   "mean_entropy": 5.35395,
+   "mean_evenness_index": 0.51228,
+   "mean_peer_density": 0.6,
+   "mean_peer_rank": 4.25333
   },
   "cosine_distance": {
    "n_roots": 5,
@@ -27334,7 +28869,12 @@
    "count_avg": 3.26343,
    "count_median": 2.0,
    "count_std": 7.13661,
-   "count_skew": 15.30892
+   "count_skew": 15.30892,
+   "mean_context_density": 0.10137,
+   "mean_entropy": 5.30105,
+   "mean_evenness_index": 0.50299,
+   "mean_peer_density": 0.21333,
+   "mean_peer_rank": 4.9624
   },
   "cosine_distance": {
    "n_roots": 30,
@@ -27423,7 +28963,12 @@
    "count_avg": 5.27248,
    "count_median": 2.0,
    "count_std": 15.62854,
-   "count_skew": 15.2858
+   "count_skew": 15.2858,
+   "mean_context_density": 0.19883,
+   "mean_entropy": 5.71508,
+   "mean_evenness_index": 0.54624,
+   "mean_peer_density": 0.59259,
+   "mean_peer_rank": 5.96164
   },
   "cosine_distance": {
    "n_roots": 9,
@@ -27512,7 +29057,12 @@
    "count_avg": 2.78518,
    "count_median": 1.0,
    "count_std": 5.53082,
-   "count_skew": 10.69289
+   "count_skew": 10.69289,
+   "mean_context_density": 0.14319,
+   "mean_entropy": 6.0911,
+   "mean_evenness_index": 0.57822,
+   "mean_peer_density": 0.41716,
+   "mean_peer_rank": 7.05479
   },
   "cosine_distance": {
    "n_roots": 26,
@@ -27601,7 +29151,12 @@
    "count_avg": 3.36804,
    "count_median": 2.0,
    "count_std": 6.96681,
-   "count_skew": 9.01412
+   "count_skew": 9.01412,
+   "mean_context_density": 0.11661,
+   "mean_entropy": 5.58569,
+   "mean_evenness_index": 0.53133,
+   "mean_peer_density": 0.29492,
+   "mean_peer_rank": 5.89141
   },
   "cosine_distance": {
    "n_roots": 27,
@@ -27690,7 +29245,12 @@
    "count_avg": 7.32479,
    "count_median": 3.0,
    "count_std": 17.79553,
-   "count_skew": 8.37266
+   "count_skew": 8.37266,
+   "mean_context_density": 0.25314,
+   "mean_entropy": 5.53251,
+   "mean_evenness_index": 0.52538,
+   "mean_peer_density": 0.44,
+   "mean_peer_rank": 3.88
   },
   "cosine_distance": {
    "n_roots": 5,
@@ -27779,7 +29339,12 @@
    "count_avg": 6.00792,
    "count_median": 2.0,
    "count_std": 17.12466,
-   "count_skew": 10.52431
+   "count_skew": 10.52431,
+   "mean_context_density": 0.11749,
+   "mean_entropy": 5.08891,
+   "mean_evenness_index": 0.48668,
+   "mean_peer_density": 0.49704,
+   "mean_peer_rank": 4.57671
   },
   "cosine_distance": {
    "n_roots": 13,
@@ -27868,7 +29433,12 @@
    "count_avg": 4.29713,
    "count_median": 2.0,
    "count_std": 16.78908,
-   "count_skew": 13.93427
+   "count_skew": 13.93427,
+   "mean_context_density": 0.54541,
+   "mean_entropy": 6.55273,
+   "mean_evenness_index": 0.6242,
+   "mean_peer_density": 0.77778,
+   "mean_peer_rank": 5.77778
   },
   "cosine_distance": {
    "n_roots": 3,
@@ -27957,7 +29527,12 @@
    "count_avg": 2.61545,
    "count_median": 1.0,
    "count_std": 5.19571,
-   "count_skew": 9.0652
+   "count_skew": 9.0652,
+   "mean_context_density": 0.10634,
+   "mean_entropy": 5.5219,
+   "mean_evenness_index": 0.52299,
+   "mean_peer_density": 0.36188,
+   "mean_peer_rank": 5.77558
   },
   "cosine_distance": {
    "n_roots": 36,
@@ -28046,7 +29621,12 @@
    "count_avg": 4.55629,
    "count_median": 2.0,
    "count_std": 14.13604,
-   "count_skew": 14.60695
+   "count_skew": 14.60695,
+   "mean_context_density": 0.2882,
+   "mean_entropy": 6.66459,
+   "mean_evenness_index": 0.63184,
+   "mean_peer_density": 0.81633,
+   "mean_peer_rank": 3.7551
   },
   "cosine_distance": {
    "n_roots": 7,
@@ -28135,7 +29715,12 @@
    "count_avg": 3.13317,
    "count_median": 1.0,
    "count_std": 6.70202,
-   "count_skew": 9.94469
+   "count_skew": 9.94469,
+   "mean_context_density": 0.14204,
+   "mean_entropy": 5.64816,
+   "mean_evenness_index": 0.53667,
+   "mean_peer_density": 0.40289,
+   "mean_peer_rank": 6.83109
   },
   "cosine_distance": {
    "n_roots": 22,
@@ -28224,7 +29809,12 @@
    "count_avg": 3.91343,
    "count_median": 2.0,
    "count_std": 8.27183,
-   "count_skew": 8.40016
+   "count_skew": 8.40016,
+   "mean_context_density": 0.13442,
+   "mean_entropy": 5.12064,
+   "mean_evenness_index": 0.48623,
+   "mean_peer_density": 0.32716,
+   "mean_peer_rank": 5.81198
   },
   "cosine_distance": {
    "n_roots": 18,
@@ -28313,7 +29903,12 @@
    "count_avg": 5.428,
    "count_median": 2.0,
    "count_std": 13.97096,
-   "count_skew": 10.98143
+   "count_skew": 10.98143,
+   "mean_context_density": 0.34078,
+   "mean_entropy": 7.20009,
+   "mean_evenness_index": 0.68502,
+   "mean_peer_density": 0.84,
+   "mean_peer_rank": 6.48
   },
   "cosine_distance": {
    "n_roots": 5,
@@ -28402,7 +29997,12 @@
    "count_avg": 2.73905,
    "count_median": 2.0,
    "count_std": 5.79298,
-   "count_skew": 16.51288
+   "count_skew": 16.51288,
+   "mean_context_density": 0.07638,
+   "mean_entropy": 5.02605,
+   "mean_evenness_index": 0.47483,
+   "mean_peer_density": 0.17769,
+   "mean_peer_rank": 4.15641
   },
   "cosine_distance": {
    "n_roots": 44,
@@ -28491,7 +30091,12 @@
    "count_avg": 5.06718,
    "count_median": 2.0,
    "count_std": 14.51135,
-   "count_skew": 13.00551
+   "count_skew": 13.00551,
+   "mean_context_density": 0.20252,
+   "mean_entropy": 5.97508,
+   "mean_evenness_index": 0.57054,
+   "mean_peer_density": 0.65432,
+   "mean_peer_rank": 6.33488
   },
   "cosine_distance": {
    "n_roots": 9,
@@ -28580,7 +30185,12 @@
    "count_avg": 4.90367,
    "count_median": 2.0,
    "count_std": 10.96882,
-   "count_skew": 11.02209
+   "count_skew": 11.02209,
+   "mean_context_density": 0.27559,
+   "mean_entropy": 6.7822,
+   "mean_evenness_index": 0.64305,
+   "mean_peer_density": 0.69388,
+   "mean_peer_rank": 6.4551
   },
   "cosine_distance": {
    "n_roots": 7,
@@ -28669,7 +30279,12 @@
    "count_avg": 4.0461,
    "count_median": 2.0,
    "count_std": 8.28932,
-   "count_skew": 7.35648
+   "count_skew": 7.35648,
+   "mean_context_density": 0.10475,
+   "mean_entropy": 4.43843,
+   "mean_evenness_index": 0.42153,
+   "mean_peer_density": 0.22314,
+   "mean_peer_rank": 5.67059
   },
   "cosine_distance": {
    "n_roots": 22,
@@ -28758,7 +30373,12 @@
    "count_avg": 3.7014,
    "count_median": 2.0,
    "count_std": 13.32794,
-   "count_skew": 20.19367
+   "count_skew": 20.19367,
+   "mean_context_density": 0.12732,
+   "mean_entropy": 4.08258,
+   "mean_evenness_index": 0.39067,
+   "mean_peer_density": 0.30078,
+   "mean_peer_rank": 4.75576
   },
   "cosine_distance": {
    "n_roots": 16,
@@ -28847,7 +30467,12 @@
    "count_avg": 3.75257,
    "count_median": 2.0,
    "count_std": 15.61761,
-   "count_skew": 18.0833
+   "count_skew": 18.0833,
+   "mean_context_density": 0.39344,
+   "mean_entropy": 5.89202,
+   "mean_evenness_index": 0.5619,
+   "mean_peer_density": 0.68,
+   "mean_peer_rank": 2.23333
   },
   "cosine_distance": {
    "n_roots": 5,
@@ -28936,7 +30561,12 @@
    "count_avg": 3.35334,
    "count_median": 2.0,
    "count_std": 16.20419,
-   "count_skew": 22.67283
+   "count_skew": 22.67283,
+   "mean_context_density": 0.30155,
+   "mean_entropy": 6.1698,
+   "mean_evenness_index": 0.59034,
+   "mean_peer_density": 0.88889,
+   "mean_peer_rank": 4.47778
   },
   "cosine_distance": {
    "n_roots": 6,
@@ -29025,7 +30655,12 @@
    "count_avg": 4.76102,
    "count_median": 2.0,
    "count_std": 15.64936,
-   "count_skew": 14.96963
+   "count_skew": 14.96963,
+   "mean_context_density": 0.55424,
+   "mean_entropy": 8.15175,
+   "mean_evenness_index": 0.77756,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 2.33333
   },
   "cosine_distance": {
    "n_roots": 3,
@@ -29114,7 +30749,12 @@
    "count_avg": 7.25228,
    "count_median": 3.0,
    "count_std": 26.89743,
-   "count_skew": 18.29902
+   "count_skew": 18.29902,
+   "mean_context_density": 0.50354,
+   "mean_entropy": 5.95485,
+   "mean_evenness_index": 0.56905,
+   "mean_peer_density": 0.75,
+   "mean_peer_rank": 3.25
   },
   "cosine_distance": {
    "n_roots": 2,
@@ -29203,7 +30843,12 @@
    "count_avg": 4.56217,
    "count_median": 2.0,
    "count_std": 17.58898,
-   "count_skew": 17.66047
+   "count_skew": 17.66047,
+   "mean_context_density": 0.54357,
+   "mean_entropy": 7.73219,
+   "mean_evenness_index": 0.74123,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 2.44444
   },
   "cosine_distance": {
    "n_roots": 3,
@@ -29292,7 +30937,12 @@
    "count_avg": 4.59843,
    "count_median": 2.0,
    "count_std": 16.50548,
-   "count_skew": 17.38509
+   "count_skew": 17.38509,
+   "mean_context_density": 0.34082,
+   "mean_entropy": 6.23141,
+   "mean_evenness_index": 0.5953,
+   "mean_peer_density": 0.84,
+   "mean_peer_rank": 2.99
   },
   "cosine_distance": {
    "n_roots": 5,
@@ -29381,7 +31031,12 @@
    "count_avg": 3.64081,
    "count_median": 2.0,
    "count_std": 16.88886,
-   "count_skew": 18.15919
+   "count_skew": 18.15919,
+   "mean_context_density": 0.61693,
+   "mean_entropy": 7.94067,
+   "mean_evenness_index": 0.75874,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 2.33333
   },
   "cosine_distance": {
    "n_roots": 3,
@@ -29470,7 +31125,12 @@
    "count_avg": 6.41849,
    "count_median": 3.0,
    "count_std": 24.75833,
-   "count_skew": 20.60883
+   "count_skew": 20.60883,
+   "mean_context_density": 0.59819,
+   "mean_entropy": 8.20457,
+   "mean_evenness_index": 0.7782,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 1.5
   },
   "cosine_distance": {
    "n_roots": 2,
@@ -29559,7 +31219,12 @@
    "count_avg": 5.81444,
    "count_median": 3.0,
    "count_std": 28.27397,
-   "count_skew": 23.7489
+   "count_skew": 23.7489,
+   "mean_context_density": 1.0,
+   "mean_entropy": 8.80943,
+   "mean_evenness_index": 0.84416,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 2.0
   },
   "cosine_distance": {
    "n_roots": 1,
@@ -29648,7 +31313,12 @@
    "count_avg": 3.56049,
    "count_median": 2.0,
    "count_std": 16.88612,
-   "count_skew": 16.68515
+   "count_skew": 16.68515,
+   "mean_context_density": 0.57079,
+   "mean_entropy": 7.62198,
+   "mean_evenness_index": 0.73358,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 2.77778
   },
   "cosine_distance": {
    "n_roots": 3,
@@ -29737,7 +31407,12 @@
    "count_avg": 4.31709,
    "count_median": 2.0,
    "count_std": 17.20058,
-   "count_skew": 21.87484
+   "count_skew": 21.87484,
+   "mean_context_density": 0.40849,
+   "mean_entropy": 7.11437,
+   "mean_evenness_index": 0.68025,
+   "mean_peer_density": 0.875,
+   "mean_peer_rank": 3.5
   },
   "cosine_distance": {
    "n_roots": 4,
@@ -29826,7 +31501,12 @@
    "count_avg": 4.76894,
    "count_median": 2.0,
    "count_std": 27.15863,
-   "count_skew": 26.80986
+   "count_skew": 26.80986,
+   "mean_context_density": 1.0,
+   "mean_entropy": 8.48581,
+   "mean_evenness_index": 0.81859,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 2.0
   },
   "cosine_distance": {
    "n_roots": 1,
@@ -29915,7 +31595,12 @@
    "count_avg": 6.5,
    "count_median": 3.0,
    "count_std": 24.9964,
-   "count_skew": 18.67801
+   "count_skew": 18.67801,
+   "mean_context_density": 0.25464,
+   "mean_entropy": 4.33582,
+   "mean_evenness_index": 0.41478,
+   "mean_peer_density": 0.5625,
+   "mean_peer_rank": 3.79167
   },
   "cosine_distance": {
    "n_roots": 4,
@@ -30004,7 +31689,12 @@
    "count_avg": 7.5422,
    "count_median": 3.0,
    "count_std": 18.38437,
-   "count_skew": 11.1535
+   "count_skew": 11.1535,
+   "mean_context_density": 1.0,
+   "mean_entropy": 9.15365,
+   "mean_evenness_index": 0.87602,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 1.0
   },
   "cosine_distance": {
    "n_roots": 1,
@@ -30093,7 +31783,12 @@
    "count_avg": 3.42618,
    "count_median": 1.0,
    "count_std": 18.11724,
-   "count_skew": 17.19139
+   "count_skew": 17.19139,
+   "mean_context_density": 0.40277,
+   "mean_entropy": 6.49021,
+   "mean_evenness_index": 0.62497,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 3.0625
   },
   "cosine_distance": {
    "n_roots": 4,
@@ -30182,7 +31877,12 @@
    "count_avg": 4.89246,
    "count_median": 2.0,
    "count_std": 25.3939,
-   "count_skew": 25.88042
+   "count_skew": 25.88042,
+   "mean_context_density": 1.0,
+   "mean_entropy": 8.57574,
+   "mean_evenness_index": 0.82563,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 1.0
   },
   "cosine_distance": {
    "n_roots": 1,
@@ -30271,7 +31971,12 @@
    "count_avg": 3.81439,
    "count_median": 2.0,
    "count_std": 19.78829,
-   "count_skew": 16.63679
+   "count_skew": 16.63679,
+   "mean_context_density": 0.52935,
+   "mean_entropy": 6.78979,
+   "mean_evenness_index": 0.65135,
+   "mean_peer_density": 0.88889,
+   "mean_peer_rank": 3.11111
   },
   "cosine_distance": {
    "n_roots": 3,
@@ -30360,7 +32065,12 @@
    "count_avg": 5.14093,
    "count_median": 3.0,
    "count_std": 14.17895,
-   "count_skew": 14.35172
+   "count_skew": 14.35172,
+   "mean_context_density": 0.83836,
+   "mean_entropy": 9.00642,
+   "mean_evenness_index": 0.8568,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 1.5
   },
   "cosine_distance": {
    "n_roots": 2,
@@ -30449,7 +32159,12 @@
    "count_avg": 4.38738,
    "count_median": 2.0,
    "count_std": 22.08501,
-   "count_skew": 22.09993
+   "count_skew": 22.09993,
+   "mean_context_density": 0.44172,
+   "mean_entropy": 6.98277,
+   "mean_evenness_index": 0.66899,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 2.0
   },
   "cosine_distance": {
    "n_roots": 3,
@@ -30538,7 +32253,12 @@
    "count_avg": 3.88152,
    "count_median": 2.0,
    "count_std": 16.19306,
-   "count_skew": 22.70977
+   "count_skew": 22.70977,
+   "mean_context_density": 0.08689,
+   "mean_entropy": 3.23581,
+   "mean_evenness_index": 0.3097,
+   "mean_peer_density": 0.20408,
+   "mean_peer_rank": 4.01464
   },
   "cosine_distance": {
    "n_roots": 21,
@@ -30627,7 +32347,12 @@
    "count_avg": 3.80653,
    "count_median": 2.0,
    "count_std": 13.31461,
-   "count_skew": 21.1738
+   "count_skew": 21.1738,
+   "mean_context_density": 0.16725,
+   "mean_entropy": 5.02811,
+   "mean_evenness_index": 0.48021,
+   "mean_peer_density": 0.47917,
+   "mean_peer_rank": 5.64788
   },
   "cosine_distance": {
    "n_roots": 12,
@@ -30716,7 +32441,12 @@
    "count_avg": 3.61881,
    "count_median": 2.0,
    "count_std": 19.64357,
-   "count_skew": 18.51175
+   "count_skew": 18.51175,
+   "mean_context_density": 0.42865,
+   "mean_entropy": 7.00936,
+   "mean_evenness_index": 0.67221,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 3.1875
   },
   "cosine_distance": {
    "n_roots": 4,
@@ -30805,7 +32535,12 @@
    "count_avg": 3.62365,
    "count_median": 2.0,
    "count_std": 17.14808,
-   "count_skew": 22.4214
+   "count_skew": 22.4214,
+   "mean_context_density": 0.39608,
+   "mean_entropy": 6.14755,
+   "mean_evenness_index": 0.59179,
+   "mean_peer_density": 0.6875,
+   "mean_peer_rank": 2.625
   },
   "cosine_distance": {
    "n_roots": 4,
@@ -30894,7 +32629,12 @@
    "count_avg": 5.64716,
    "count_median": 3.0,
    "count_std": 24.44944,
-   "count_skew": 18.74151
+   "count_skew": 18.74151,
+   "mean_context_density": 0.41125,
+   "mean_entropy": 7.02643,
+   "mean_evenness_index": 0.67237,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 3.0
   },
   "cosine_distance": {
    "n_roots": 3,
@@ -30983,7 +32723,12 @@
    "count_avg": 6.02093,
    "count_median": 3.0,
    "count_std": 20.59753,
-   "count_skew": 21.61022
+   "count_skew": 21.61022,
+   "mean_context_density": 0.6495,
+   "mean_entropy": 8.39933,
+   "mean_evenness_index": 0.80383,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 3.25
   },
   "cosine_distance": {
    "n_roots": 2,
@@ -31072,7 +32817,12 @@
    "count_avg": 3.73882,
    "count_median": 2.0,
    "count_std": 17.1667,
-   "count_skew": 17.16629
+   "count_skew": 17.16629,
+   "mean_context_density": 0.33409,
+   "mean_entropy": 5.51806,
+   "mean_evenness_index": 0.52772,
+   "mean_peer_density": 0.76,
+   "mean_peer_rank": 2.48333
   },
   "cosine_distance": {
    "n_roots": 5,
@@ -31161,7 +32911,12 @@
    "count_avg": 4.74893,
    "count_median": 2.0,
    "count_std": 26.40085,
-   "count_skew": 22.76585
+   "count_skew": 22.76585,
+   "mean_context_density": 0.52675,
+   "mean_entropy": 6.66916,
+   "mean_evenness_index": 0.64288,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 2.0
   },
   "cosine_distance": {
    "n_roots": 2,
@@ -31250,7 +33005,12 @@
    "count_avg": 7.80376,
    "count_median": 4.0,
    "count_std": 23.90085,
-   "count_skew": 15.07824
+   "count_skew": 15.07824,
+   "mean_context_density": 1.0,
+   "mean_entropy": 9.09446,
+   "mean_evenness_index": 0.86292,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 1.0
   },
   "cosine_distance": {
    "n_roots": 1,
@@ -31339,7 +33099,12 @@
    "count_avg": 4.3164,
    "count_median": 2.0,
    "count_std": 8.54545,
-   "count_skew": 9.48822
+   "count_skew": 9.48822,
+   "mean_context_density": 0.16128,
+   "mean_entropy": 5.54622,
+   "mean_evenness_index": 0.52467,
+   "mean_peer_density": 0.48521,
+   "mean_peer_rank": 5.82912
   },
   "cosine_distance": {
    "n_roots": 13,
@@ -31428,7 +33193,12 @@
    "count_avg": 6.21943,
    "count_median": 3.0,
    "count_std": 29.18331,
-   "count_skew": 23.33382
+   "count_skew": 23.33382,
+   "mean_context_density": 1.0,
+   "mean_entropy": 8.77619,
+   "mean_evenness_index": 0.8372,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 1.0
   },
   "cosine_distance": {
    "n_roots": 1,
@@ -31517,7 +33287,12 @@
    "count_avg": 3.76856,
    "count_median": 2.0,
    "count_std": 17.36264,
-   "count_skew": 20.42205
+   "count_skew": 20.42205,
+   "mean_context_density": 0.61798,
+   "mean_entropy": 8.04033,
+   "mean_evenness_index": 0.76752,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 2.0
   },
   "cosine_distance": {
    "n_roots": 3,
@@ -31606,7 +33381,12 @@
    "count_avg": 6.75247,
    "count_median": 3.0,
    "count_std": 19.9359,
-   "count_skew": 11.85387
+   "count_skew": 11.85387,
+   "mean_context_density": 0.51451,
+   "mean_entropy": 6.92035,
+   "mean_evenness_index": 0.66361,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 2.75
   },
   "cosine_distance": {
    "n_roots": 2,
@@ -31695,7 +33475,12 @@
    "count_avg": 6.02268,
    "count_median": 3.0,
    "count_std": 24.72097,
-   "count_skew": 25.58381
+   "count_skew": 25.58381,
+   "mean_context_density": 1.0,
+   "mean_entropy": 8.98048,
+   "mean_evenness_index": 0.85835,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 1.0
   },
   "cosine_distance": {
    "n_roots": 1,
@@ -31784,7 +33569,12 @@
    "count_avg": 4.83487,
    "count_median": 2.0,
    "count_std": 24.68978,
-   "count_skew": 20.65657
+   "count_skew": 20.65657,
+   "mean_context_density": 0.26683,
+   "mean_entropy": 4.44689,
+   "mean_evenness_index": 0.42888,
+   "mean_peer_density": 0.6875,
+   "mean_peer_rank": 4.14583
   },
   "cosine_distance": {
    "n_roots": 4,
@@ -31873,7 +33663,12 @@
    "count_avg": 6.15372,
    "count_median": 3.0,
    "count_std": 19.41637,
-   "count_skew": 16.62338
+   "count_skew": 16.62338,
+   "mean_context_density": 0.62118,
+   "mean_entropy": 8.38336,
+   "mean_evenness_index": 0.79904,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 2.0
   },
   "cosine_distance": {
    "n_roots": 2,
@@ -31962,7 +33757,12 @@
    "count_avg": 5.54482,
    "count_median": 3.0,
    "count_std": 24.3181,
-   "count_skew": 17.95869
+   "count_skew": 17.95869,
+   "mean_context_density": 0.34518,
+   "mean_entropy": 5.38846,
+   "mean_evenness_index": 0.51666,
+   "mean_peer_density": 0.88889,
+   "mean_peer_rank": 2.94444
   },
   "cosine_distance": {
    "n_roots": 3,
@@ -32051,7 +33851,12 @@
    "count_avg": 3.63573,
    "count_median": 2.0,
    "count_std": 24.69414,
-   "count_skew": 26.1971
+   "count_skew": 26.1971,
+   "mean_context_density": 0.68301,
+   "mean_entropy": 7.46029,
+   "mean_evenness_index": 0.72484,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 1.5
   },
   "cosine_distance": {
    "n_roots": 2,
@@ -32140,7 +33945,12 @@
    "count_avg": 7.78504,
    "count_median": 3.0,
    "count_std": 24.03525,
-   "count_skew": 16.43243
+   "count_skew": 16.43243,
+   "mean_context_density": 0.50339,
+   "mean_entropy": 6.20761,
+   "mean_evenness_index": 0.58977,
+   "mean_peer_density": 0.75,
+   "mean_peer_rank": 1.25
   },
   "cosine_distance": {
    "n_roots": 2,
@@ -32229,7 +34039,12 @@
    "count_avg": 3.8112,
    "count_median": 2.0,
    "count_std": 10.68037,
-   "count_skew": 14.98645
+   "count_skew": 14.98645,
+   "mean_context_density": 0.47855,
+   "mean_entropy": 7.93973,
+   "mean_evenness_index": 0.75308,
+   "mean_peer_density": 0.96,
+   "mean_peer_rank": 3.5
   },
   "cosine_distance": {
    "n_roots": 5,
@@ -32318,7 +34133,12 @@
    "count_avg": 5.88052,
    "count_median": 2.0,
    "count_std": 21.51426,
-   "count_skew": 21.02764
+   "count_skew": 21.02764,
+   "mean_context_density": 0.20929,
+   "mean_entropy": 5.48628,
+   "mean_evenness_index": 0.52743,
+   "mean_peer_density": 0.55556,
+   "mean_peer_rank": 4.01389
   },
   "cosine_distance": {
    "n_roots": 6,
@@ -32407,7 +34227,12 @@
    "count_avg": 6.77911,
    "count_median": 4.0,
    "count_std": 26.58144,
-   "count_skew": 29.51875
+   "count_skew": 29.51875,
+   "mean_context_density": 1.0,
+   "mean_entropy": 9.09276,
+   "mean_evenness_index": 0.86857,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 1.0
   },
   "cosine_distance": {
    "n_roots": 1,
@@ -32496,7 +34321,12 @@
    "count_avg": 8.44041,
    "count_median": 4.0,
    "count_std": 20.1773,
-   "count_skew": 12.78555
+   "count_skew": 12.78555,
+   "mean_context_density": 0.51501,
+   "mean_entropy": 7.38686,
+   "mean_evenness_index": 0.70019,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 1.5
   },
   "cosine_distance": {
    "n_roots": 2,
@@ -32585,7 +34415,12 @@
    "count_avg": 5.84457,
    "count_median": 2.0,
    "count_std": 19.15023,
-   "count_skew": 18.68629
+   "count_skew": 18.68629,
+   "mean_context_density": 0.59157,
+   "mean_entropy": 8.01924,
+   "mean_evenness_index": 0.77391,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 2.5
   },
   "cosine_distance": {
    "n_roots": 2,
@@ -32674,7 +34509,12 @@
    "count_avg": 4.39225,
    "count_median": 2.0,
    "count_std": 18.17556,
-   "count_skew": 20.73033
+   "count_skew": 20.73033,
+   "mean_context_density": 0.26348,
+   "mean_entropy": 6.03957,
+   "mean_evenness_index": 0.57771,
+   "mean_peer_density": 0.86111,
+   "mean_peer_rank": 3.98889
   },
   "cosine_distance": {
    "n_roots": 6,
@@ -32763,7 +34603,12 @@
    "count_avg": 6.55075,
    "count_median": 3.0,
    "count_std": 22.50336,
-   "count_skew": 18.77554
+   "count_skew": 18.77554,
+   "mean_context_density": 1.0,
+   "mean_entropy": 8.83306,
+   "mean_evenness_index": 0.85031,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 1.0
   },
   "cosine_distance": {
    "n_roots": 1,
@@ -32852,7 +34697,12 @@
    "count_avg": 3.73586,
    "count_median": 2.0,
    "count_std": 15.0725,
-   "count_skew": 19.52087
+   "count_skew": 19.52087,
+   "mean_context_density": 0.46839,
+   "mean_entropy": 7.60599,
+   "mean_evenness_index": 0.72337,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 3.4375
   },
   "cosine_distance": {
    "n_roots": 4,
@@ -32941,7 +34791,12 @@
    "count_avg": 5.66459,
    "count_median": 3.0,
    "count_std": 27.72106,
-   "count_skew": 23.75002
+   "count_skew": 23.75002,
+   "mean_context_density": 0.50279,
+   "mean_entropy": 5.72569,
+   "mean_evenness_index": 0.54599,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 1.5
   },
   "cosine_distance": {
    "n_roots": 2,
@@ -33030,7 +34885,12 @@
    "count_avg": 5.95675,
    "count_median": 3.0,
    "count_std": 24.16516,
-   "count_skew": 20.85631
+   "count_skew": 20.85631,
+   "mean_context_density": 1.0,
+   "mean_entropy": 8.73302,
+   "mean_evenness_index": 0.8406,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 1.0
   },
   "cosine_distance": {
    "n_roots": 1,
@@ -33119,7 +34979,12 @@
    "count_avg": 6.31267,
    "count_median": 3.0,
    "count_std": 17.50593,
-   "count_skew": 18.16118
+   "count_skew": 18.16118,
+   "mean_context_density": 0.63467,
+   "mean_entropy": 8.50013,
+   "mean_evenness_index": 0.80757,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 2.25
   },
   "cosine_distance": {
    "n_roots": 2,
@@ -33208,7 +35073,12 @@
    "count_avg": 5.24188,
    "count_median": 3.0,
    "count_std": 29.56349,
-   "count_skew": 23.24509
+   "count_skew": 23.24509,
+   "mean_context_density": 1.0,
+   "mean_entropy": 8.48843,
+   "mean_evenness_index": 0.81341,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 1.0
   },
   "cosine_distance": {
    "n_roots": 1,
@@ -33297,7 +35167,12 @@
    "count_avg": 5.21768,
    "count_median": 2.0,
    "count_std": 25.04471,
-   "count_skew": 23.79682
+   "count_skew": 23.79682,
+   "mean_context_density": 0.59291,
+   "mean_entropy": 7.73857,
+   "mean_evenness_index": 0.7417,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 1.5
   },
   "cosine_distance": {
    "n_roots": 2,
@@ -33386,7 +35261,12 @@
    "count_avg": 4.66203,
    "count_median": 2.0,
    "count_std": 15.23284,
-   "count_skew": 16.9975
+   "count_skew": 16.9975,
+   "mean_context_density": 0.80667,
+   "mean_entropy": 8.72605,
+   "mean_evenness_index": 0.8329,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 2.0
   },
   "cosine_distance": {
    "n_roots": 2,
@@ -33475,7 +35355,12 @@
    "count_avg": 4.70187,
    "count_median": 2.0,
    "count_std": 13.13366,
-   "count_skew": 14.28542
+   "count_skew": 14.28542,
+   "mean_context_density": 0.23574,
+   "mean_entropy": 5.92012,
+   "mean_evenness_index": 0.56394,
+   "mean_peer_density": 0.5625,
+   "mean_peer_rank": 7.65104
   },
   "cosine_distance": {
    "n_roots": 8,
@@ -33564,7 +35449,12 @@
    "count_avg": 7.1229,
    "count_median": 4.0,
    "count_std": 21.21381,
-   "count_skew": 21.85007
+   "count_skew": 21.85007,
+   "mean_context_density": 1.0,
+   "mean_entropy": 9.30579,
+   "mean_evenness_index": 0.88289,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 1.0
   },
   "cosine_distance": {
    "n_roots": 1,
@@ -33653,7 +35543,12 @@
    "count_avg": 4.85376,
    "count_median": 2.0,
    "count_std": 24.19871,
-   "count_skew": 21.72468
+   "count_skew": 21.72468,
+   "mean_context_density": 0.65493,
+   "mean_entropy": 8.03462,
+   "mean_evenness_index": 0.76727,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 2.5
   },
   "cosine_distance": {
    "n_roots": 2,
@@ -33742,7 +35637,12 @@
    "count_avg": 3.26173,
    "count_median": 2.0,
    "count_std": 14.92331,
-   "count_skew": 20.77688
+   "count_skew": 20.77688,
+   "mean_context_density": 0.39487,
+   "mean_entropy": 6.63301,
+   "mean_evenness_index": 0.63448,
+   "mean_peer_density": 0.92,
+   "mean_peer_rank": 2.90667
   },
   "cosine_distance": {
    "n_roots": 5,
@@ -33831,7 +35731,12 @@
    "count_avg": 3.04982,
    "count_median": 2.0,
    "count_std": 4.02606,
-   "count_skew": 5.77519
+   "count_skew": 5.77519,
+   "mean_context_density": 0.04335,
+   "mean_entropy": 4.47639,
+   "mean_evenness_index": 0.4215,
+   "mean_peer_density": 0.07342,
+   "mean_peer_rank": 2.50365
   },
   "cosine_distance": {
    "n_roots": 75,
@@ -33920,7 +35825,12 @@
    "count_avg": 3.48553,
    "count_median": 2.0,
    "count_std": 10.92271,
-   "count_skew": 13.87767
+   "count_skew": 13.87767,
+   "mean_context_density": 0.14517,
+   "mean_entropy": 4.52982,
+   "mean_evenness_index": 0.43517,
+   "mean_peer_density": 0.40306,
+   "mean_peer_rank": 5.40348
   },
   "cosine_distance": {
    "n_roots": 14,
@@ -34009,7 +35919,12 @@
    "count_avg": 6.17365,
    "count_median": 3.0,
    "count_std": 24.61109,
-   "count_skew": 19.30379
+   "count_skew": 19.30379,
+   "mean_context_density": 0.35331,
+   "mean_entropy": 5.80721,
+   "mean_evenness_index": 0.55467,
+   "mean_peer_density": 0.77778,
+   "mean_peer_rank": 2.33333
   },
   "cosine_distance": {
    "n_roots": 3,
@@ -34098,7 +36013,12 @@
    "count_avg": 8.5465,
    "count_median": 4.0,
    "count_std": 19.83779,
-   "count_skew": 9.51705
+   "count_skew": 9.51705,
+   "mean_context_density": 1.0,
+   "mean_entropy": 9.28612,
+   "mean_evenness_index": 0.88233,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 1.0
   },
   "cosine_distance": {
    "n_roots": 1,
@@ -34187,7 +36107,12 @@
    "count_avg": 5.58401,
    "count_median": 3.0,
    "count_std": 27.30039,
-   "count_skew": 31.2947
+   "count_skew": 31.2947,
+   "mean_context_density": 1.0,
+   "mean_entropy": 8.84781,
+   "mean_evenness_index": 0.84972,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 1.0
   },
   "cosine_distance": {
    "n_roots": 1,
@@ -34276,7 +36201,12 @@
    "count_avg": 4.55216,
    "count_median": 2.0,
    "count_std": 22.59087,
-   "count_skew": 18.40974
+   "count_skew": 18.40974,
+   "mean_context_density": 0.42776,
+   "mean_entropy": 6.26134,
+   "mean_evenness_index": 0.602,
+   "mean_peer_density": 0.88889,
+   "mean_peer_rank": 2.5
   },
   "cosine_distance": {
    "n_roots": 3,
@@ -34365,7 +36295,12 @@
    "count_avg": 3.91424,
    "count_median": 2.0,
    "count_std": 19.41026,
-   "count_skew": 20.49961
+   "count_skew": 20.49961,
+   "mean_context_density": 0.20549,
+   "mean_entropy": 4.79281,
+   "mean_evenness_index": 0.45969,
+   "mean_peer_density": 0.60938,
+   "mean_peer_rank": 4.7619
   },
   "cosine_distance": {
    "n_roots": 8,
@@ -34454,7 +36389,12 @@
    "count_avg": 6.39278,
    "count_median": 3.0,
    "count_std": 23.32996,
-   "count_skew": 14.08971
+   "count_skew": 14.08971,
+   "mean_context_density": 0.50597,
+   "mean_entropy": 6.29,
+   "mean_evenness_index": 0.60544,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 3.5
   },
   "cosine_distance": {
    "n_roots": 2,
@@ -34543,7 +36483,12 @@
    "count_avg": 4.0149,
    "count_median": 2.0,
    "count_std": 20.21215,
-   "count_skew": 17.96591
+   "count_skew": 17.96591,
+   "mean_context_density": 0.37186,
+   "mean_entropy": 5.012,
+   "mean_evenness_index": 0.48178,
+   "mean_peer_density": 0.75,
+   "mean_peer_rank": 4.8125
   },
   "cosine_distance": {
    "n_roots": 4,
@@ -34632,7 +36577,12 @@
    "count_avg": 4.57473,
    "count_median": 2.0,
    "count_std": 21.55497,
-   "count_skew": 22.05562
+   "count_skew": 22.05562,
+   "mean_context_density": 0.44379,
+   "mean_entropy": 7.0656,
+   "mean_evenness_index": 0.67829,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 1.77778
   },
   "cosine_distance": {
    "n_roots": 3,
@@ -34721,7 +36671,12 @@
    "count_avg": 4.28008,
    "count_median": 2.0,
    "count_std": 22.43279,
-   "count_skew": 18.95676
+   "count_skew": 18.95676,
+   "mean_context_density": 0.39823,
+   "mean_entropy": 5.68945,
+   "mean_evenness_index": 0.54913,
+   "mean_peer_density": 0.77778,
+   "mean_peer_rank": 5.33333
   },
   "cosine_distance": {
    "n_roots": 3,
@@ -34810,7 +36765,12 @@
    "count_avg": 6.24838,
    "count_median": 3.0,
    "count_std": 21.27359,
-   "count_skew": 16.36055
+   "count_skew": 16.36055,
+   "mean_context_density": 0.5861,
+   "mean_entropy": 8.17025,
+   "mean_evenness_index": 0.77828,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 1.75
   },
   "cosine_distance": {
    "n_roots": 2,
@@ -34899,7 +36859,12 @@
    "count_avg": 5.75413,
    "count_median": 2.0,
    "count_std": 24.23412,
-   "count_skew": 21.4525
+   "count_skew": 21.4525,
+   "mean_context_density": 0.30904,
+   "mean_entropy": 6.60183,
+   "mean_evenness_index": 0.63345,
+   "mean_peer_density": 0.875,
+   "mean_peer_rank": 3.8125
   },
   "cosine_distance": {
    "n_roots": 4,
@@ -34988,7 +36953,12 @@
    "count_avg": 5.15757,
    "count_median": 2.0,
    "count_std": 12.69085,
-   "count_skew": 10.3234
+   "count_skew": 10.3234,
+   "mean_context_density": 0.18938,
+   "mean_entropy": 5.77791,
+   "mean_evenness_index": 0.55065,
+   "mean_peer_density": 0.5,
+   "mean_peer_rank": 5.32722
   },
   "cosine_distance": {
    "n_roots": 10,
@@ -35077,7 +37047,12 @@
    "count_avg": 4.22838,
    "count_median": 2.0,
    "count_std": 10.40465,
-   "count_skew": 10.63661
+   "count_skew": 10.63661,
+   "mean_context_density": 0.16672,
+   "mean_entropy": 5.49876,
+   "mean_evenness_index": 0.52425,
+   "mean_peer_density": 0.35204,
+   "mean_peer_rank": 6.60811
   },
   "cosine_distance": {
    "n_roots": 14,
@@ -35166,7 +37141,12 @@
    "count_avg": 3.08808,
    "count_median": 2.0,
    "count_std": 8.07279,
-   "count_skew": 16.40283
+   "count_skew": 16.40283,
+   "mean_context_density": 0.1522,
+   "mean_entropy": 5.87786,
+   "mean_evenness_index": 0.55715,
+   "mean_peer_density": 0.48753,
+   "mean_peer_rank": 5.87486
   },
   "cosine_distance": {
    "n_roots": 21,
@@ -35255,7 +37235,12 @@
    "count_avg": 4.80548,
    "count_median": 2.0,
    "count_std": 12.85765,
-   "count_skew": 11.89655
+   "count_skew": 11.89655,
+   "mean_context_density": 0.1618,
+   "mean_entropy": 5.58576,
+   "mean_evenness_index": 0.53059,
+   "mean_peer_density": 0.46281,
+   "mean_peer_rank": 5.79291
   },
   "cosine_distance": {
    "n_roots": 11,
@@ -35344,7 +37329,12 @@
    "count_avg": 2.35015,
    "count_median": 1.0,
    "count_std": 6.22594,
-   "count_skew": 21.53746
+   "count_skew": 21.53746,
+   "mean_context_density": 0.03905,
+   "mean_entropy": 3.4111,
+   "mean_evenness_index": 0.33116,
+   "mean_peer_density": 0.05877,
+   "mean_peer_rank": 2.68043
   },
   "cosine_distance": {
    "n_roots": 66,
@@ -35433,7 +37423,12 @@
    "count_avg": 2.93287,
    "count_median": 2.0,
    "count_std": 5.21373,
-   "count_skew": 9.89196
+   "count_skew": 9.89196,
+   "mean_context_density": 0.09073,
+   "mean_entropy": 4.699,
+   "mean_evenness_index": 0.44549,
+   "mean_peer_density": 0.20242,
+   "mean_peer_rank": 4.77993
   },
   "cosine_distance": {
    "n_roots": 34,
@@ -35522,7 +37517,12 @@
    "count_avg": 2.85806,
    "count_median": 2.0,
    "count_std": 5.91755,
-   "count_skew": 17.19234
+   "count_skew": 17.19234,
+   "mean_context_density": 0.09244,
+   "mean_entropy": 4.96939,
+   "mean_evenness_index": 0.4696,
+   "mean_peer_density": 0.24327,
+   "mean_peer_rank": 4.39437
   },
   "cosine_distance": {
    "n_roots": 35,
@@ -35611,7 +37611,12 @@
    "count_avg": 2.90377,
    "count_median": 2.0,
    "count_std": 8.72577,
-   "count_skew": 22.75298
+   "count_skew": 22.75298,
+   "mean_context_density": 0.04498,
+   "mean_entropy": 3.35197,
+   "mean_evenness_index": 0.31903,
+   "mean_peer_density": 0.09642,
+   "mean_peer_rank": 2.96167
   },
   "cosine_distance": {
    "n_roots": 47,
@@ -35700,7 +37705,12 @@
    "count_avg": 4.99174,
    "count_median": 3.0,
    "count_std": 15.88205,
-   "count_skew": 23.57612
+   "count_skew": 23.57612,
+   "mean_context_density": 0.17014,
+   "mean_entropy": 4.75057,
+   "mean_evenness_index": 0.44977,
+   "mean_peer_density": 0.40625,
+   "mean_peer_rank": 5.39583
   },
   "cosine_distance": {
    "n_roots": 8,
@@ -35789,7 +37799,12 @@
    "count_avg": 3.37151,
    "count_median": 2.0,
    "count_std": 7.68939,
-   "count_skew": 15.8807
+   "count_skew": 15.8807,
+   "mean_context_density": 0.12979,
+   "mean_entropy": 5.80499,
+   "mean_evenness_index": 0.55136,
+   "mean_peer_density": 0.3724,
+   "mean_peer_rank": 6.37077
   },
   "cosine_distance": {
    "n_roots": 23,
@@ -35878,7 +37893,12 @@
    "count_avg": 2.80522,
    "count_median": 1.0,
    "count_std": 4.8011,
-   "count_skew": 9.13116
+   "count_skew": 9.13116,
+   "mean_context_density": 0.13507,
+   "mean_entropy": 6.04766,
+   "mean_evenness_index": 0.57257,
+   "mean_peer_density": 0.28944,
+   "mean_peer_rank": 7.4807
   },
   "cosine_distance": {
    "n_roots": 27,
@@ -35967,7 +37987,12 @@
    "count_avg": 4.31248,
    "count_median": 2.0,
    "count_std": 11.38937,
-   "count_skew": 29.1167
+   "count_skew": 29.1167,
+   "mean_context_density": 0.21038,
+   "mean_entropy": 6.07502,
+   "mean_evenness_index": 0.57522,
+   "mean_peer_density": 0.55556,
+   "mean_peer_rank": 6.12099
   },
   "cosine_distance": {
    "n_roots": 9,
@@ -36056,7 +38081,12 @@
    "count_avg": 2.55391,
    "count_median": 2.0,
    "count_std": 4.60526,
-   "count_skew": 14.99605
+   "count_skew": 14.99605,
+   "mean_context_density": 0.07809,
+   "mean_entropy": 4.48135,
+   "mean_evenness_index": 0.42405,
+   "mean_peer_density": 0.1511,
+   "mean_peer_rank": 4.02611
   },
   "cosine_distance": {
    "n_roots": 41,
@@ -36145,7 +38175,12 @@
    "count_avg": 2.33774,
    "count_median": 1.0,
    "count_std": 3.5552,
-   "count_skew": 8.29582
+   "count_skew": 8.29582,
+   "mean_context_density": 0.06772,
+   "mean_entropy": 4.44957,
+   "mean_evenness_index": 0.42266,
+   "mean_peer_density": 0.1776,
+   "mean_peer_rank": 4.08291
   },
   "cosine_distance": {
    "n_roots": 50,
@@ -36234,7 +38269,12 @@
    "count_avg": 2.94852,
    "count_median": 1.0,
    "count_std": 7.47728,
-   "count_skew": 14.95749
+   "count_skew": 14.95749,
+   "mean_context_density": 0.10251,
+   "mean_entropy": 4.87797,
+   "mean_evenness_index": 0.46409,
+   "mean_peer_density": 0.32778,
+   "mean_peer_rank": 5.40523
   },
   "cosine_distance": {
    "n_roots": 30,
@@ -36323,7 +38363,12 @@
    "count_avg": 7.1068,
    "count_median": 3.0,
    "count_std": 20.77608,
-   "count_skew": 13.64889
+   "count_skew": 13.64889,
+   "mean_context_density": 0.40258,
+   "mean_entropy": 6.65406,
+   "mean_evenness_index": 0.63224,
+   "mean_peer_density": 0.55556,
+   "mean_peer_rank": 9.0
   },
   "cosine_distance": {
    "n_roots": 3,
@@ -36412,7 +38457,12 @@
    "count_avg": 6.24515,
    "count_median": 2.0,
    "count_std": 15.95819,
-   "count_skew": 8.30027
+   "count_skew": 8.30027,
+   "mean_context_density": 0.34938,
+   "mean_entropy": 6.52332,
+   "mean_evenness_index": 0.62629,
+   "mean_peer_density": 0.625,
+   "mean_peer_rank": 9.1875
   },
   "cosine_distance": {
    "n_roots": 4,
@@ -36501,7 +38551,12 @@
    "count_avg": 2.95522,
    "count_median": 2.0,
    "count_std": 6.10566,
-   "count_skew": 10.97833
+   "count_skew": 10.97833,
+   "mean_context_density": 0.09451,
+   "mean_entropy": 5.00611,
+   "mean_evenness_index": 0.47324,
+   "mean_peer_density": 0.23529,
+   "mean_peer_rank": 5.0215
   },
   "cosine_distance": {
    "n_roots": 34,
@@ -36590,7 +38645,12 @@
    "count_avg": 3.99259,
    "count_median": 1.0,
    "count_std": 12.05985,
-   "count_skew": 11.51612
+   "count_skew": 11.51612,
+   "mean_context_density": 0.17219,
+   "mean_entropy": 6.01623,
+   "mean_evenness_index": 0.57891,
+   "mean_peer_density": 0.64286,
+   "mean_peer_rank": 6.70106
   },
   "cosine_distance": {
    "n_roots": 14,
@@ -36679,7 +38739,12 @@
    "count_avg": 2.63442,
    "count_median": 1.0,
    "count_std": 5.30216,
-   "count_skew": 15.09742
+   "count_skew": 15.09742,
+   "mean_context_density": 0.14947,
+   "mean_entropy": 6.16634,
+   "mean_evenness_index": 0.58498,
+   "mean_peer_density": 0.49306,
+   "mean_peer_rank": 6.91071
   },
   "cosine_distance": {
    "n_roots": 24,
@@ -36768,7 +38833,12 @@
    "count_avg": 4.40477,
    "count_median": 2.0,
    "count_std": 10.19596,
-   "count_skew": 13.30434
+   "count_skew": 13.30434,
+   "mean_context_density": 0.04783,
+   "mean_entropy": 4.19842,
+   "mean_evenness_index": 0.39771,
+   "mean_peer_density": 0.08744,
+   "mean_peer_rank": 3.34756
   },
   "cosine_distance": {
    "n_roots": 39,
@@ -36857,7 +38927,12 @@
    "count_avg": 3.53611,
    "count_median": 2.0,
    "count_std": 7.61289,
-   "count_skew": 14.36288
+   "count_skew": 14.36288,
+   "mean_context_density": 0.18,
+   "mean_entropy": 6.35507,
+   "mean_evenness_index": 0.60233,
+   "mean_peer_density": 0.45703,
+   "mean_peer_rank": 7.06815
   },
   "cosine_distance": {
    "n_roots": 16,
@@ -36946,7 +39021,12 @@
    "count_avg": 5.39853,
    "count_median": 2.0,
    "count_std": 13.76293,
-   "count_skew": 9.81872
+   "count_skew": 9.81872,
+   "mean_context_density": 0.28762,
+   "mean_entropy": 6.03515,
+   "mean_evenness_index": 0.57622,
+   "mean_peer_density": 0.66667,
+   "mean_peer_rank": 5.58333
   },
   "cosine_distance": {
    "n_roots": 6,
@@ -37035,7 +39115,12 @@
    "count_avg": 3.93803,
    "count_median": 2.0,
    "count_std": 10.25527,
-   "count_skew": 12.39858
+   "count_skew": 12.39858,
+   "mean_context_density": 0.3758,
+   "mean_entropy": 7.09083,
+   "mean_evenness_index": 0.67189,
+   "mean_peer_density": 0.69444,
+   "mean_peer_rank": 9.22222
   },
   "cosine_distance": {
    "n_roots": 6,
@@ -37124,7 +39209,12 @@
    "count_avg": 4.20274,
    "count_median": 2.0,
    "count_std": 10.34143,
-   "count_skew": 12.56152
+   "count_skew": 12.56152,
+   "mean_context_density": 0.41883,
+   "mean_entropy": 7.29772,
+   "mean_evenness_index": 0.6918,
+   "mean_peer_density": 0.88,
+   "mean_peer_rank": 7.44
   },
   "cosine_distance": {
    "n_roots": 5,
@@ -37213,7 +39303,12 @@
    "count_avg": 6.52581,
    "count_median": 3.0,
    "count_std": 18.3358,
-   "count_skew": 11.09373
+   "count_skew": 11.09373,
+   "mean_context_density": 0.41124,
+   "mean_entropy": 6.6888,
+   "mean_evenness_index": 0.6382,
+   "mean_peer_density": 0.66667,
+   "mean_peer_rank": 5.22222
   },
   "cosine_distance": {
    "n_roots": 3,
@@ -37302,7 +39397,12 @@
    "count_avg": 4.10168,
    "count_median": 2.0,
    "count_std": 9.88121,
-   "count_skew": 12.73751
+   "count_skew": 12.73751,
+   "mean_context_density": 0.36786,
+   "mean_entropy": 6.76889,
+   "mean_evenness_index": 0.64121,
+   "mean_peer_density": 0.75,
+   "mean_peer_rank": 6.67222
   },
   "cosine_distance": {
    "n_roots": 6,
@@ -37391,7 +39491,12 @@
    "count_avg": 5.02758,
    "count_median": 2.0,
    "count_std": 13.59022,
-   "count_skew": 13.33663
+   "count_skew": 13.33663,
+   "mean_context_density": 0.22434,
+   "mean_entropy": 6.36837,
+   "mean_evenness_index": 0.60277,
+   "mean_peer_density": 0.64062,
+   "mean_peer_rank": 7.72411
   },
   "cosine_distance": {
    "n_roots": 8,
@@ -37480,7 +39585,12 @@
    "count_avg": 6.3424,
    "count_median": 3.0,
    "count_std": 18.82248,
-   "count_skew": 16.91589
+   "count_skew": 16.91589,
+   "mean_context_density": 0.11742,
+   "mean_entropy": 3.66035,
+   "mean_evenness_index": 0.351,
+   "mean_peer_density": 0.36,
+   "mean_peer_rank": 3.97857
   },
   "cosine_distance": {
    "n_roots": 10,
@@ -37569,7 +39679,12 @@
    "count_avg": 2.29593,
    "count_median": 1.0,
    "count_std": 3.63672,
-   "count_skew": 9.10879
+   "count_skew": 9.10879,
+   "mean_context_density": 0.08004,
+   "mean_entropy": 5.15131,
+   "mean_evenness_index": 0.48909,
+   "mean_peer_density": 0.258,
+   "mean_peer_rank": 4.9034
   },
   "cosine_distance": {
    "n_roots": 50,
@@ -37658,7 +39773,12 @@
    "count_avg": 7.2642,
    "count_median": 3.0,
    "count_std": 18.19571,
-   "count_skew": 11.27957
+   "count_skew": 11.27957,
+   "mean_context_density": 0.59411,
+   "mean_entropy": 8.27718,
+   "mean_evenness_index": 0.79136,
+   "mean_peer_density": 0.75,
+   "mean_peer_rank": 1.25
   },
   "cosine_distance": {
    "n_roots": 2,
@@ -37747,7 +39867,12 @@
    "count_avg": 7.7495,
    "count_median": 3.0,
    "count_std": 18.88767,
-   "count_skew": 7.66029
+   "count_skew": 7.66029,
+   "mean_context_density": 0.26562,
+   "mean_entropy": 5.62454,
+   "mean_evenness_index": 0.53691,
+   "mean_peer_density": 0.5625,
+   "mean_peer_rank": 3.9375
   },
   "cosine_distance": {
    "n_roots": 4,
@@ -37836,7 +39961,12 @@
    "count_avg": 5.19394,
    "count_median": 2.0,
    "count_std": 11.50552,
-   "count_skew": 10.43577
+   "count_skew": 10.43577,
+   "mean_context_density": 0.09622,
+   "mean_entropy": 4.60144,
+   "mean_evenness_index": 0.43561,
+   "mean_peer_density": 0.22491,
+   "mean_peer_rank": 4.77629
   },
   "cosine_distance": {
    "n_roots": 17,
@@ -37925,7 +40055,12 @@
    "count_avg": 5.27107,
    "count_median": 2.0,
    "count_std": 24.21171,
-   "count_skew": 24.81406
+   "count_skew": 24.81406,
+   "mean_context_density": 0.23386,
+   "mean_entropy": 5.89969,
+   "mean_evenness_index": 0.56428,
+   "mean_peer_density": 0.66667,
+   "mean_peer_rank": 4.40556
   },
   "cosine_distance": {
    "n_roots": 6,
@@ -38014,7 +40149,12 @@
    "count_avg": 7.24427,
    "count_median": 3.0,
    "count_std": 17.22877,
-   "count_skew": 9.57622
+   "count_skew": 9.57622,
+   "mean_context_density": 0.29221,
+   "mean_entropy": 6.38697,
+   "mean_evenness_index": 0.60777,
+   "mean_peer_density": 0.625,
+   "mean_peer_rank": 7.8125
   },
   "cosine_distance": {
    "n_roots": 4,
@@ -38103,7 +40243,12 @@
    "count_avg": 3.32425,
    "count_median": 1.0,
    "count_std": 8.06153,
-   "count_skew": 11.57347
+   "count_skew": 11.57347,
+   "mean_context_density": 0.11462,
+   "mean_entropy": 5.68034,
+   "mean_evenness_index": 0.54166,
+   "mean_peer_density": 0.3786,
+   "mean_peer_rank": 6.35956
   },
   "cosine_distance": {
    "n_roots": 27,
@@ -38192,7 +40337,12 @@
    "count_avg": 2.38249,
    "count_median": 1.0,
    "count_std": 4.83115,
-   "count_skew": 8.13692
+   "count_skew": 8.13692,
+   "mean_context_density": 0.03787,
+   "mean_entropy": 3.57215,
+   "mean_evenness_index": 0.36805,
+   "mean_peer_density": 0.07579,
+   "mean_peer_rank": 3.40792
   },
   "cosine_distance": {
    "n_roots": 95,
@@ -38281,7 +40431,12 @@
    "count_avg": 7.07814,
    "count_median": 4.0,
    "count_std": 17.23429,
-   "count_skew": 9.84284
+   "count_skew": 9.84284,
+   "mean_context_density": 0.27539,
+   "mean_entropy": 5.59681,
+   "mean_evenness_index": 0.5311,
+   "mean_peer_density": 0.5,
+   "mean_peer_rank": 7.04167
   },
   "cosine_distance": {
    "n_roots": 4,
@@ -38370,7 +40525,12 @@
    "count_avg": 3.47114,
    "count_median": 2.0,
    "count_std": 8.08544,
-   "count_skew": 17.55157
+   "count_skew": 17.55157,
+   "mean_context_density": 0.15865,
+   "mean_entropy": 6.22483,
+   "mean_evenness_index": 0.58908,
+   "mean_peer_density": 0.38889,
+   "mean_peer_rank": 6.23676
   },
   "cosine_distance": {
    "n_roots": 18,
@@ -38459,7 +40619,12 @@
    "count_avg": 3.77083,
    "count_median": 2.0,
    "count_std": 9.32748,
-   "count_skew": 11.68727
+   "count_skew": 11.68727,
+   "mean_context_density": 0.09352,
+   "mean_entropy": 4.05429,
+   "mean_evenness_index": 0.38569,
+   "mean_peer_density": 0.22917,
+   "mean_peer_rank": 3.83648
   },
   "cosine_distance": {
    "n_roots": 24,
@@ -38548,7 +40713,12 @@
    "count_avg": 5.23882,
    "count_median": 2.0,
    "count_std": 11.55749,
-   "count_skew": 9.46896
+   "count_skew": 9.46896,
+   "mean_context_density": 0.17136,
+   "mean_entropy": 5.60046,
+   "mean_evenness_index": 0.53105,
+   "mean_peer_density": 0.49587,
+   "mean_peer_rank": 4.3183
   },
   "cosine_distance": {
    "n_roots": 11,
@@ -38637,7 +40807,12 @@
    "count_avg": 5.545,
    "count_median": 2.0,
    "count_std": 17.82785,
-   "count_skew": 13.8609
+   "count_skew": 13.8609,
+   "mean_context_density": 0.14897,
+   "mean_entropy": 5.33507,
+   "mean_evenness_index": 0.51273,
+   "mean_peer_density": 0.50413,
+   "mean_peer_rank": 3.97176
   },
   "cosine_distance": {
    "n_roots": 11,
@@ -38726,7 +40901,12 @@
    "count_avg": 2.94808,
    "count_median": 2.0,
    "count_std": 6.11704,
-   "count_skew": 12.53213
+   "count_skew": 12.53213,
+   "mean_context_density": 0.08687,
+   "mean_entropy": 5.24883,
+   "mean_evenness_index": 0.49771,
+   "mean_peer_density": 0.21631,
+   "mean_peer_rank": 5.33276
   },
   "cosine_distance": {
    "n_roots": 39,
@@ -38815,7 +40995,12 @@
    "count_avg": 4.50238,
    "count_median": 2.0,
    "count_std": 15.6244,
-   "count_skew": 13.57047
+   "count_skew": 13.57047,
+   "mean_context_density": 0.04132,
+   "mean_entropy": 3.35585,
+   "mean_evenness_index": 0.32796,
+   "mean_peer_density": 0.10942,
+   "mean_peer_rank": 3.32727
   },
   "cosine_distance": {
    "n_roots": 38,
@@ -38904,7 +41089,12 @@
    "count_avg": 6.43121,
    "count_median": 3.0,
    "count_std": 17.98439,
-   "count_skew": 10.93852
+   "count_skew": 10.93852,
+   "mean_context_density": 0.20169,
+   "mean_entropy": 6.03389,
+   "mean_evenness_index": 0.57418,
+   "mean_peer_density": 0.59184,
+   "mean_peer_rank": 6.5102
   },
   "cosine_distance": {
    "n_roots": 7,
@@ -38993,7 +41183,12 @@
    "count_avg": 4.15885,
    "count_median": 2.0,
    "count_std": 10.26397,
-   "count_skew": 10.80994
+   "count_skew": 10.80994,
+   "mean_context_density": 0.13416,
+   "mean_entropy": 5.99951,
+   "mean_evenness_index": 0.57188,
+   "mean_peer_density": 0.4537,
+   "mean_peer_rank": 6.09799
   },
   "cosine_distance": {
    "n_roots": 18,
@@ -39082,7 +41277,12 @@
    "count_avg": 3.78838,
    "count_median": 2.0,
    "count_std": 9.64685,
-   "count_skew": 9.38496
+   "count_skew": 9.38496,
+   "mean_context_density": 0.25332,
+   "mean_entropy": 6.13756,
+   "mean_evenness_index": 0.58807,
+   "mean_peer_density": 0.62,
+   "mean_peer_rank": 7.26444
   },
   "cosine_distance": {
    "n_roots": 10,
@@ -39171,7 +41371,12 @@
    "count_avg": 4.4607,
    "count_median": 2.0,
    "count_std": 11.06269,
-   "count_skew": 12.87711
+   "count_skew": 12.87711,
+   "mean_context_density": 0.19053,
+   "mean_entropy": 5.86849,
+   "mean_evenness_index": 0.55719,
+   "mean_peer_density": 0.44628,
+   "mean_peer_rank": 7.91219
   },
   "cosine_distance": {
    "n_roots": 11,
@@ -39260,7 +41465,12 @@
    "count_avg": 4.60386,
    "count_median": 2.0,
    "count_std": 11.68609,
-   "count_skew": 11.3015
+   "count_skew": 11.3015,
+   "mean_context_density": 0.13247,
+   "mean_entropy": 5.57073,
+   "mean_evenness_index": 0.52848,
+   "mean_peer_density": 0.33984,
+   "mean_peer_rank": 5.72187
   },
   "cosine_distance": {
    "n_roots": 16,
@@ -39349,7 +41559,12 @@
    "count_avg": 4.28243,
    "count_median": 2.0,
    "count_std": 12.35223,
-   "count_skew": 16.42118
+   "count_skew": 16.42118,
+   "mean_context_density": 0.22814,
+   "mean_entropy": 5.8571,
+   "mean_evenness_index": 0.556,
+   "mean_peer_density": 0.69136,
+   "mean_peer_rank": 4.61177
   },
   "cosine_distance": {
    "n_roots": 9,
@@ -39438,7 +41653,12 @@
    "count_avg": 3.67572,
    "count_median": 2.0,
    "count_std": 9.01305,
-   "count_skew": 10.19628
+   "count_skew": 10.19628,
+   "mean_context_density": 0.19764,
+   "mean_entropy": 6.11762,
+   "mean_evenness_index": 0.58253,
+   "mean_peer_density": 0.52551,
+   "mean_peer_rank": 8.86794
   },
   "cosine_distance": {
    "n_roots": 14,
@@ -39527,7 +41747,12 @@
    "count_avg": 3.62276,
    "count_median": 2.0,
    "count_std": 10.38116,
-   "count_skew": 20.95897
+   "count_skew": 20.95897,
+   "mean_context_density": 0.13539,
+   "mean_entropy": 5.61741,
+   "mean_evenness_index": 0.5352,
+   "mean_peer_density": 0.4125,
+   "mean_peer_rank": 6.69914
   },
   "cosine_distance": {
    "n_roots": 20,
@@ -39616,7 +41841,12 @@
    "count_avg": 3.73874,
    "count_median": 1.0,
    "count_std": 10.97168,
-   "count_skew": 10.85114
+   "count_skew": 10.85114,
+   "mean_context_density": 0.23264,
+   "mean_entropy": 6.25043,
+   "mean_evenness_index": 0.59877,
+   "mean_peer_density": 0.73554,
+   "mean_peer_rank": 6.78444
   },
   "cosine_distance": {
    "n_roots": 11,
@@ -39705,7 +41935,12 @@
    "count_avg": 2.80897,
    "count_median": 2.0,
    "count_std": 6.87518,
-   "count_skew": 20.67801
+   "count_skew": 20.67801,
+   "mean_context_density": 0.10282,
+   "mean_entropy": 5.32688,
+   "mean_evenness_index": 0.50438,
+   "mean_peer_density": 0.29719,
+   "mean_peer_rank": 4.82577
   },
   "cosine_distance": {
    "n_roots": 28,
@@ -39794,7 +42029,12 @@
    "count_avg": 4.73667,
    "count_median": 2.0,
    "count_std": 12.74049,
-   "count_skew": 10.71951
+   "count_skew": 10.71951,
+   "mean_context_density": 0.21497,
+   "mean_entropy": 6.39732,
+   "mean_evenness_index": 0.61062,
+   "mean_peer_density": 0.75309,
+   "mean_peer_rank": 5.94409
   },
   "cosine_distance": {
    "n_roots": 9,
@@ -39883,7 +42123,12 @@
    "count_avg": 2.49847,
    "count_median": 1.0,
    "count_std": 3.82191,
-   "count_skew": 8.7368
+   "count_skew": 8.7368,
+   "mean_context_density": 0.11098,
+   "mean_entropy": 5.78228,
+   "mean_evenness_index": 0.5474,
+   "mean_peer_density": 0.30752,
+   "mean_peer_rank": 5.43434
   },
   "cosine_distance": {
    "n_roots": 37,
@@ -39972,7 +42217,12 @@
    "count_avg": 3.31962,
    "count_median": 2.0,
    "count_std": 7.51507,
-   "count_skew": 11.75764
+   "count_skew": 11.75764,
+   "mean_context_density": 0.11177,
+   "mean_entropy": 5.57737,
+   "mean_evenness_index": 0.52916,
+   "mean_peer_density": 0.36538,
+   "mean_peer_rank": 5.95455
   },
   "cosine_distance": {
    "n_roots": 26,
@@ -40061,7 +42311,12 @@
    "count_avg": 2.47263,
    "count_median": 1.0,
    "count_std": 4.2477,
-   "count_skew": 11.09023
+   "count_skew": 11.09023,
+   "mean_context_density": 0.07386,
+   "mean_entropy": 4.74283,
+   "mean_evenness_index": 0.45019,
+   "mean_peer_density": 0.22259,
+   "mean_peer_rank": 4.90166
   },
   "cosine_distance": {
    "n_roots": 46,
@@ -40150,7 +42405,12 @@
    "count_avg": 9.23406,
    "count_median": 4.0,
    "count_std": 20.92942,
-   "count_skew": 6.49064
+   "count_skew": 6.49064,
+   "mean_context_density": 0.33879,
+   "mean_entropy": 5.31631,
+   "mean_evenness_index": 0.50848,
+   "mean_peer_density": 0.44444,
+   "mean_peer_rank": 7.22222
   },
   "cosine_distance": {
    "n_roots": 3,
@@ -40239,7 +42499,12 @@
    "count_avg": 4.75813,
    "count_median": 2.0,
    "count_std": 16.90721,
-   "count_skew": 19.01115
+   "count_skew": 19.01115,
+   "mean_context_density": 0.27039,
+   "mean_entropy": 6.19409,
+   "mean_evenness_index": 0.59278,
+   "mean_peer_density": 0.67347,
+   "mean_peer_rank": 5.0
   },
   "cosine_distance": {
    "n_roots": 7,
@@ -40328,7 +42593,12 @@
    "count_avg": 3.64013,
    "count_median": 1.0,
    "count_std": 10.31875,
-   "count_skew": 12.80008
+   "count_skew": 12.80008,
+   "mean_context_density": 0.18299,
+   "mean_entropy": 5.656,
+   "mean_evenness_index": 0.54166,
+   "mean_peer_density": 0.47556,
+   "mean_peer_rank": 9.23148
   },
   "cosine_distance": {
    "n_roots": 15,
@@ -40417,7 +42687,12 @@
    "count_avg": 6.2108,
    "count_median": 2.0,
    "count_std": 18.60205,
-   "count_skew": 12.0914
+   "count_skew": 12.0914,
+   "mean_context_density": 0.27204,
+   "mean_entropy": 5.76993,
+   "mean_evenness_index": 0.55197,
+   "mean_peer_density": 0.44,
+   "mean_peer_rank": 7.52
   },
   "cosine_distance": {
    "n_roots": 5,
@@ -40506,7 +42781,12 @@
    "count_avg": 2.90589,
    "count_median": 2.0,
    "count_std": 5.68935,
-   "count_skew": 11.03504
+   "count_skew": 11.03504,
+   "mean_context_density": 0.0924,
+   "mean_entropy": 4.78295,
+   "mean_evenness_index": 0.45429,
+   "mean_peer_density": 0.22363,
+   "mean_peer_rank": 4.89046
   },
   "cosine_distance": {
    "n_roots": 32,
@@ -40595,7 +42875,12 @@
    "count_avg": 5.47794,
    "count_median": 2.0,
    "count_std": 13.46965,
-   "count_skew": 10.11327
+   "count_skew": 10.11327,
+   "mean_context_density": 0.22505,
+   "mean_entropy": 6.89245,
+   "mean_evenness_index": 0.65339,
+   "mean_peer_density": 0.70312,
+   "mean_peer_rank": 6.52515
   },
   "cosine_distance": {
    "n_roots": 8,
@@ -40684,7 +42969,12 @@
    "count_avg": 6.01742,
    "count_median": 2.0,
    "count_std": 17.12705,
-   "count_skew": 9.19193
+   "count_skew": 9.19193,
+   "mean_context_density": 0.13352,
+   "mean_entropy": 5.17911,
+   "mean_evenness_index": 0.49914,
+   "mean_peer_density": 0.61983,
+   "mean_peer_rank": 4.53017
   },
   "cosine_distance": {
    "n_roots": 11,
@@ -40773,7 +43063,12 @@
    "count_avg": 2.76816,
    "count_median": 2.0,
    "count_std": 5.83182,
-   "count_skew": 16.16475
+   "count_skew": 16.16475,
+   "mean_context_density": 0.13613,
+   "mean_entropy": 5.36011,
+   "mean_evenness_index": 0.50612,
+   "mean_peer_density": 0.3316,
+   "mean_peer_rank": 5.98831
   },
   "cosine_distance": {
    "n_roots": 24,
@@ -40862,7 +43157,12 @@
    "count_avg": 4.09635,
    "count_median": 2.0,
    "count_std": 11.90478,
-   "count_skew": 11.06809
+   "count_skew": 11.06809,
+   "mean_context_density": 0.38382,
+   "mean_entropy": 6.74804,
+   "mean_evenness_index": 0.64761,
+   "mean_peer_density": 0.75,
+   "mean_peer_rank": 6.36111
   },
   "cosine_distance": {
    "n_roots": 6,
@@ -40951,7 +43251,12 @@
    "count_avg": 4.86536,
    "count_median": 2.0,
    "count_std": 11.86062,
-   "count_skew": 11.91064
+   "count_skew": 11.91064,
+   "mean_context_density": 0.38876,
+   "mean_entropy": 6.9712,
+   "mean_evenness_index": 0.66109,
+   "mean_peer_density": 0.72,
+   "mean_peer_rank": 8.54
   },
   "cosine_distance": {
    "n_roots": 5,
@@ -41040,7 +43345,12 @@
    "count_avg": 3.6492,
    "count_median": 2.0,
    "count_std": 9.64667,
-   "count_skew": 17.49509
+   "count_skew": 17.49509,
+   "mean_context_density": 0.16013,
+   "mean_entropy": 5.75628,
+   "mean_evenness_index": 0.54735,
+   "mean_peer_density": 0.40484,
+   "mean_peer_rank": 7.14915
   },
   "cosine_distance": {
    "n_roots": 17,
@@ -41129,7 +43439,12 @@
    "count_avg": 4.85786,
    "count_median": 2.0,
    "count_std": 9.03424,
-   "count_skew": 7.19485
+   "count_skew": 7.19485,
+   "mean_context_density": 0.05268,
+   "mean_entropy": 3.91691,
+   "mean_evenness_index": 0.37064,
+   "mean_peer_density": 0.08778,
+   "mean_peer_rank": 3.57659
   },
   "cosine_distance": {
    "n_roots": 30,
@@ -41218,7 +43533,12 @@
    "count_avg": 5.40913,
    "count_median": 2.0,
    "count_std": 14.23071,
-   "count_skew": 11.26378
+   "count_skew": 11.26378,
+   "mean_context_density": 0.22366,
+   "mean_entropy": 6.26154,
+   "mean_evenness_index": 0.5972,
+   "mean_peer_density": 0.6875,
+   "mean_peer_rank": 6.23363
   },
   "cosine_distance": {
    "n_roots": 8,
@@ -41307,7 +43627,12 @@
    "count_avg": 6.13725,
    "count_median": 3.0,
    "count_std": 13.8176,
-   "count_skew": 9.94063
+   "count_skew": 9.94063,
+   "mean_context_density": 0.23627,
+   "mean_entropy": 5.99237,
+   "mean_evenness_index": 0.56739,
+   "mean_peer_density": 0.44444,
+   "mean_peer_rank": 4.13889
   },
   "cosine_distance": {
    "n_roots": 6,
@@ -41396,7 +43721,12 @@
    "count_avg": 7.78936,
    "count_median": 3.0,
    "count_std": 22.85417,
-   "count_skew": 12.77447
+   "count_skew": 12.77447,
+   "mean_context_density": 0.50352,
+   "mean_entropy": 6.14382,
+   "mean_evenness_index": 0.58676,
+   "mean_peer_density": 0.5,
+   "mean_peer_rank": 5.75
   },
   "cosine_distance": {
    "n_roots": 2,
@@ -41485,7 +43815,12 @@
    "count_avg": 3.82051,
    "count_median": 2.0,
    "count_std": 10.04663,
-   "count_skew": 10.98759
+   "count_skew": 10.98759,
+   "mean_context_density": 0.15667,
+   "mean_entropy": 5.9757,
+   "mean_evenness_index": 0.56752,
+   "mean_peer_density": 0.52734,
+   "mean_peer_rank": 6.29972
   },
   "cosine_distance": {
    "n_roots": 16,
@@ -41574,7 +43909,12 @@
    "count_avg": 7.35912,
    "count_median": 3.0,
    "count_std": 21.85271,
-   "count_skew": 10.79391
+   "count_skew": 10.79391,
+   "mean_context_density": 0.50418,
+   "mean_entropy": 6.22641,
+   "mean_evenness_index": 0.59368,
+   "mean_peer_density": 0.5,
+   "mean_peer_rank": 2.75
   },
   "cosine_distance": {
    "n_roots": 2,
@@ -41663,7 +44003,12 @@
    "count_avg": 4.28777,
    "count_median": 2.0,
    "count_std": 10.18579,
-   "count_skew": 13.44385
+   "count_skew": 13.44385,
+   "mean_context_density": 0.3093,
+   "mean_entropy": 5.92758,
+   "mean_evenness_index": 0.56192,
+   "mean_peer_density": 0.55556,
+   "mean_peer_rank": 9.35
   },
   "cosine_distance": {
    "n_roots": 6,
@@ -41752,7 +44097,12 @@
    "count_avg": 3.52784,
    "count_median": 2.0,
    "count_std": 9.46305,
-   "count_skew": 14.63451
+   "count_skew": 14.63451,
+   "mean_context_density": 0.18916,
+   "mean_entropy": 4.6697,
+   "mean_evenness_index": 0.44576,
+   "mean_peer_density": 0.35537,
+   "mean_peer_rank": 5.49708
   },
   "cosine_distance": {
    "n_roots": 11,
@@ -41841,7 +44191,12 @@
    "count_avg": 6.48111,
    "count_median": 3.0,
    "count_std": 21.53014,
-   "count_skew": 18.556
+   "count_skew": 18.556,
+   "mean_context_density": 0.18303,
+   "mean_entropy": 4.73258,
+   "mean_evenness_index": 0.45081,
+   "mean_peer_density": 0.47222,
+   "mean_peer_rank": 6.55556
   },
   "cosine_distance": {
    "n_roots": 6,
@@ -41930,7 +44285,12 @@
    "count_avg": 2.82517,
    "count_median": 1.0,
    "count_std": 5.96197,
-   "count_skew": 9.59788
+   "count_skew": 9.59788,
+   "mean_context_density": 0.14546,
+   "mean_entropy": 6.33107,
+   "mean_evenness_index": 0.60257,
+   "mean_peer_density": 0.5824,
+   "mean_peer_rank": 7.73467
   },
   "cosine_distance": {
    "n_roots": 25,
@@ -42019,7 +44379,12 @@
    "count_avg": 5.3267,
    "count_median": 2.0,
    "count_std": 15.88577,
-   "count_skew": 13.88309
+   "count_skew": 13.88309,
+   "mean_context_density": 0.05837,
+   "mean_entropy": 3.7134,
+   "mean_evenness_index": 0.35587,
+   "mean_peer_density": 0.22495,
+   "mean_peer_rank": 3.7704
   },
   "cosine_distance": {
    "n_roots": 23,
@@ -42108,7 +44473,12 @@
    "count_avg": 4.74381,
    "count_median": 2.0,
    "count_std": 15.08099,
-   "count_skew": 18.37651
+   "count_skew": 18.37651,
+   "mean_context_density": 0.15593,
+   "mean_entropy": 4.49305,
+   "mean_evenness_index": 0.42841,
+   "mean_peer_density": 0.32231,
+   "mean_peer_rank": 5.04821
   },
   "cosine_distance": {
    "n_roots": 11,
@@ -42197,7 +44567,12 @@
    "count_avg": 4.40978,
    "count_median": 2.0,
    "count_std": 11.35492,
-   "count_skew": 12.08018
+   "count_skew": 12.08018,
+   "mean_context_density": 0.37923,
+   "mean_entropy": 6.72035,
+   "mean_evenness_index": 0.64084,
+   "mean_peer_density": 0.68,
+   "mean_peer_rank": 9.2
   },
   "cosine_distance": {
    "n_roots": 5,
@@ -42286,7 +44661,12 @@
    "count_avg": 4.69565,
    "count_median": 2.0,
    "count_std": 10.93443,
-   "count_skew": 10.79384
+   "count_skew": 10.79384,
+   "mean_context_density": 0.22626,
+   "mean_entropy": 6.19185,
+   "mean_evenness_index": 0.58827,
+   "mean_peer_density": 0.54688,
+   "mean_peer_rank": 5.26458
   },
   "cosine_distance": {
    "n_roots": 8,
@@ -42375,7 +44755,12 @@
    "count_avg": 3.10774,
    "count_median": 2.0,
    "count_std": 6.49213,
-   "count_skew": 14.56994
+   "count_skew": 14.56994,
+   "mean_context_density": 0.12371,
+   "mean_entropy": 5.48121,
+   "mean_evenness_index": 0.52008,
+   "mean_peer_density": 0.34549,
+   "mean_peer_rank": 5.36075
   },
   "cosine_distance": {
    "n_roots": 24,
@@ -42464,7 +44849,12 @@
    "count_avg": 5.15685,
    "count_median": 2.0,
    "count_std": 13.17569,
-   "count_skew": 15.11616
+   "count_skew": 15.11616,
+   "mean_context_density": 0.16814,
+   "mean_entropy": 5.76012,
+   "mean_evenness_index": 0.54624,
+   "mean_peer_density": 0.51,
+   "mean_peer_rank": 5.39405
   },
   "cosine_distance": {
    "n_roots": 10,
@@ -42553,7 +44943,12 @@
    "count_avg": 3.9833,
    "count_median": 2.0,
    "count_std": 7.91118,
-   "count_skew": 10.47756
+   "count_skew": 10.47756,
+   "mean_context_density": 0.1465,
+   "mean_entropy": 5.70831,
+   "mean_evenness_index": 0.5403,
+   "mean_peer_density": 0.35294,
+   "mean_peer_rank": 5.64948
   },
   "cosine_distance": {
    "n_roots": 17,
@@ -42642,7 +45037,12 @@
    "count_avg": 2.72924,
    "count_median": 2.0,
    "count_std": 4.53649,
-   "count_skew": 8.05451
+   "count_skew": 8.05451,
+   "mean_context_density": 0.09013,
+   "mean_entropy": 5.2582,
+   "mean_evenness_index": 0.4991,
+   "mean_peer_density": 0.31045,
+   "mean_peer_rank": 4.85791
   },
   "cosine_distance": {
    "n_roots": 37,
@@ -42731,7 +45131,12 @@
    "count_avg": 7.63317,
    "count_median": 4.0,
    "count_std": 20.20472,
-   "count_skew": 13.78696
+   "count_skew": 13.78696,
+   "mean_context_density": 1.0,
+   "mean_entropy": 9.2244,
+   "mean_evenness_index": 0.87811,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 1.0
   },
   "cosine_distance": {
    "n_roots": 1,
@@ -42820,7 +45225,12 @@
    "count_avg": 4.91801,
    "count_median": 2.0,
    "count_std": 17.13131,
-   "count_skew": 17.69455
+   "count_skew": 17.69455,
+   "mean_context_density": 0.83402,
+   "mean_entropy": 8.79644,
+   "mean_evenness_index": 0.83721,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 1.5
   },
   "cosine_distance": {
    "n_roots": 2,
@@ -42909,7 +45319,12 @@
    "count_avg": 3.16546,
    "count_median": 1.0,
    "count_std": 10.45004,
-   "count_skew": 21.93222
+   "count_skew": 21.93222,
+   "mean_context_density": 0.0525,
+   "mean_entropy": 3.88298,
+   "mean_evenness_index": 0.37485,
+   "mean_peer_density": 0.14739,
+   "mean_peer_rank": 4.04011
   },
   "cosine_distance": {
    "n_roots": 42,
@@ -42998,7 +45413,12 @@
    "count_avg": 8.45321,
    "count_median": 3.0,
    "count_std": 23.27119,
-   "count_skew": 10.29318
+   "count_skew": 10.29318,
+   "mean_context_density": 0.50387,
+   "mean_entropy": 6.10436,
+   "mean_evenness_index": 0.58288,
+   "mean_peer_density": 0.75,
+   "mean_peer_rank": 1.5
   },
   "cosine_distance": {
    "n_roots": 2,
@@ -43087,7 +45507,12 @@
    "count_avg": 2.77809,
    "count_median": 1.0,
    "count_std": 5.44805,
-   "count_skew": 14.47989
+   "count_skew": 14.47989,
+   "mean_context_density": 0.1037,
+   "mean_entropy": 5.47884,
+   "mean_evenness_index": 0.51872,
+   "mean_peer_density": 0.27163,
+   "mean_peer_rank": 5.15861
   },
   "cosine_distance": {
    "n_roots": 34,
@@ -43176,7 +45601,12 @@
    "count_avg": 3.19759,
    "count_median": 1.0,
    "count_std": 6.07325,
-   "count_skew": 7.05827
+   "count_skew": 7.05827,
+   "mean_context_density": 0.24186,
+   "mean_entropy": 6.70319,
+   "mean_evenness_index": 0.64144,
+   "mean_peer_density": 0.72449,
+   "mean_peer_rank": 8.88209
   },
   "cosine_distance": {
    "n_roots": 14,
@@ -43265,7 +45695,12 @@
    "count_avg": 3.11977,
    "count_median": 2.0,
    "count_std": 7.25732,
-   "count_skew": 13.02151
+   "count_skew": 13.02151,
+   "mean_context_density": 0.1062,
+   "mean_entropy": 5.85366,
+   "mean_evenness_index": 0.55486,
+   "mean_peer_density": 0.28111,
+   "mean_peer_rank": 5.88913
   },
   "cosine_distance": {
    "n_roots": 30,
@@ -43354,7 +45789,12 @@
    "count_avg": 3.63106,
    "count_median": 2.0,
    "count_std": 6.98109,
-   "count_skew": 9.69285
+   "count_skew": 9.69285,
+   "mean_context_density": 0.06568,
+   "mean_entropy": 4.67828,
+   "mean_evenness_index": 0.44193,
+   "mean_peer_density": 0.15559,
+   "mean_peer_rank": 3.80555
   },
   "cosine_distance": {
    "n_roots": 37,
@@ -43443,7 +45883,12 @@
    "count_avg": 4.49424,
    "count_median": 2.0,
    "count_std": 8.99174,
-   "count_skew": 11.50895
+   "count_skew": 11.50895,
+   "mean_context_density": 0.35881,
+   "mean_entropy": 6.95516,
+   "mean_evenness_index": 0.65737,
+   "mean_peer_density": 0.75,
+   "mean_peer_rank": 5.72222
   },
   "cosine_distance": {
    "n_roots": 6,
@@ -43532,7 +45977,12 @@
    "count_avg": 4.90946,
    "count_median": 2.0,
    "count_std": 12.44177,
-   "count_skew": 10.58075
+   "count_skew": 10.58075,
+   "mean_context_density": 0.15223,
+   "mean_entropy": 5.53098,
+   "mean_evenness_index": 0.52524,
+   "mean_peer_density": 0.38462,
+   "mean_peer_rank": 5.69265
   },
   "cosine_distance": {
    "n_roots": 13,
@@ -43621,7 +46071,12 @@
    "count_avg": 7.75683,
    "count_median": 3.0,
    "count_std": 27.94667,
-   "count_skew": 18.3874
+   "count_skew": 18.3874,
+   "mean_context_density": 1.0,
+   "mean_entropy": 8.79769,
+   "mean_evenness_index": 0.83957,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 1.0
   },
   "cosine_distance": {
    "n_roots": 1,
@@ -43710,7 +46165,12 @@
    "count_avg": 7.04048,
    "count_median": 3.0,
    "count_std": 19.84564,
-   "count_skew": 11.90285
+   "count_skew": 11.90285,
+   "mean_context_density": 0.2348,
+   "mean_entropy": 5.61204,
+   "mean_evenness_index": 0.53536,
+   "mean_peer_density": 0.56,
+   "mean_peer_rank": 6.54
   },
   "cosine_distance": {
    "n_roots": 5,
@@ -43799,7 +46259,12 @@
    "count_avg": 4.36367,
    "count_median": 2.0,
    "count_std": 12.11111,
-   "count_skew": 12.77519
+   "count_skew": 12.77519,
+   "mean_context_density": 0.17572,
+   "mean_entropy": 6.15089,
+   "mean_evenness_index": 0.58547,
+   "mean_peer_density": 0.54167,
+   "mean_peer_rank": 7.36597
   },
   "cosine_distance": {
    "n_roots": 12,
@@ -43888,7 +46353,12 @@
    "count_avg": 8.30099,
    "count_median": 4.0,
    "count_std": 23.71528,
-   "count_skew": 10.4283
+   "count_skew": 10.4283,
+   "mean_context_density": 1.0,
+   "mean_entropy": 8.94644,
+   "mean_evenness_index": 0.85501,
+   "mean_peer_density": 1.0,
+   "mean_peer_rank": 6.0
   },
   "cosine_distance": {
    "n_roots": 1,
@@ -43977,7 +46447,12 @@
    "count_avg": 6.70087,
    "count_median": 3.0,
    "count_std": 22.19865,
-   "count_skew": 18.17269
+   "count_skew": 18.17269,
+   "mean_context_density": 0.26746,
+   "mean_entropy": 5.36097,
+   "mean_evenness_index": 0.5128,
+   "mean_peer_density": 0.6875,
+   "mean_peer_rank": 2.22917
   },
   "cosine_distance": {
    "n_roots": 4,
@@ -44066,7 +46541,12 @@
    "count_avg": 2.61253,
    "count_median": 1.0,
    "count_std": 6.08759,
-   "count_skew": 15.32324
+   "count_skew": 15.32324,
+   "mean_context_density": 0.14926,
+   "mean_entropy": 6.32766,
+   "mean_evenness_index": 0.60056,
+   "mean_peer_density": 0.44822,
+   "mean_peer_rank": 7.37386
   },
   "cosine_distance": {
    "n_roots": 26,
@@ -44155,7 +46635,12 @@
    "count_avg": 2.90435,
    "count_median": 2.0,
    "count_std": 5.40481,
-   "count_skew": 8.81311
+   "count_skew": 8.81311,
+   "mean_context_density": 0.0949,
+   "mean_entropy": 5.2347,
+   "mean_evenness_index": 0.49743,
+   "mean_peer_density": 0.19522,
+   "mean_peer_rank": 5.17216
   },
   "cosine_distance": {
    "n_roots": 36,
@@ -44244,7 +46729,12 @@
    "count_avg": 3.78706,
    "count_median": 2.0,
    "count_std": 7.77387,
-   "count_skew": 7.80395
+   "count_skew": 7.80395,
+   "mean_context_density": 0.13381,
+   "mean_entropy": 5.74014,
+   "mean_evenness_index": 0.54571,
+   "mean_peer_density": 0.3675,
+   "mean_peer_rank": 5.90828
   },
   "cosine_distance": {
    "n_roots": 20,

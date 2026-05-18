@@ -9,59 +9,200 @@ import matplotlib.pyplot as plt
 
 ### Gene frequency histogram stats
 
+import numpy as np
+import pandas as pd
+from scipy.stats import skew
+
 def _get_gene_stats(df):
     """
     Analyzes a gene frequency histogram DataFrame.
-    Returns a flat dictionary of results.
+    Returns a flat dictionary of results including context density,
+    entropy, evenness, peer density, and peer ranks.
     """
     # 1. Dimensions & Global Counts
-    total_rows = df.shape[0]
-    total_cols = df.shape[1]
+    total_rows = df.shape[0]  # r (Number of root genes)
+    total_cols = df.shape[1]  # s (Number of source genes)
     total_cells = df.size
     
     # 2. Activity & Sparsity
-    # active_source_pcr: % of columns that have at least one non-zero
     active_cols_count = (df != 0).any(axis=0).sum()
     active_source_pcr = (active_cols_count / total_cols * 100) if total_cols > 0 else 0
     
-    # sparsity_pcr: % of total cells in the matrix that are zero
     zero_cells_count = (df == 0).sum().sum()
     sparsity_pcr = (zero_cells_count / total_cells * 100) if total_cells > 0 else 0
     
-    # 3. Frequency Value Distribution
+    # 3. Frequency Value Distribution (Existing Logic)
     flat_values = df.values.flatten()
     active_vals = flat_values[flat_values > 0]
     
-    # Default values for empty datasets
     c_min = c_max = c_avg = c_med = c_std = c_skew = 0
-    
     if active_vals.size > 0:
         c_max = active_vals.max()
         c_avg = active_vals.mean()
         c_med = np.median(active_vals)
         c_std = active_vals.std()
-        
-        # Skewness requires at least 3 values to be meaningful
         try:
             c_skew = skew(active_vals) if active_vals.size > 2 else 0
         except:
             c_skew = 0
 
-    # 4. Final Flat Dictionary
+    # =========================================================================
+    #  Row-wise Analysis (Context, Entropy, Peer behaviors)
+    # =========================================================================
+    
+    # Identify which columns (source genes) are also root genes (rows)
+    # This assumes df.index contains root gene names and df.columns contains source gene names
+    root_genes_set = set(df.index)
+    is_peer_col = np.array([col in root_genes_set for col in df.columns])
+    
+    # Pre-allocate arrays for row-wise metrics
+    context_densities = []
+    entropies = []
+    evennesses = []
+    peer_densities = []
+    mean_peer_ranks = []
+    
+    # Calculate H_max = log2(s)
+    h_max = np.log2(total_cols) if total_cols > 0 else 0
+    
+    # Convert DataFrame to numpy for faster row-by-row iteration
+    matrix = df.values 
+    
+    for i in range(total_rows):
+        row_frequencies = matrix[i, :]
+        row_sum = row_frequencies.sum()
+        
+        # --- Context Density ---
+        non_zero_mask = row_frequencies > 0
+        non_zero_count = non_zero_mask.sum()
+        c_density_i = (non_zero_count / total_cols) if total_cols > 0 else 0
+        context_densities.append(c_density_i)
+        
+        # --- Shannon Entropy & Evenness ---
+        if row_sum > 0 and total_cols > 0:
+            # Normalize to discrete probability distribution p_ij
+            p_i = row_frequencies / row_sum
+            # Filter out zeros to avoid log2(0)
+            p_i_active = p_i[p_i > 0]
+            entropy_i = -np.sum(p_i_active * np.log2(p_i_active))
+            evenness_i = (entropy_i / h_max) if h_max > 0 else 0
+        else:
+            entropy_i = 0
+            evenness_i = 0
+            
+        entropies.append(entropy_i)
+        evennesses.append(evenness_i)
+        
+        # --- Peer Density & Peer Ranks ---
+        # Peer columns with non-zero values in this specific row (R_i)
+        active_peers_mask = non_zero_mask & is_peer_col
+        r_i_count = active_peers_mask.sum()
+        
+        # peer_density(i) = |R_i| / r
+        p_density_i = (r_i_count / total_rows) if total_rows > 0 else 0
+        peer_densities.append(p_density_i)
+        
+        # Mean Peer Rank
+        if r_i_count > 0:
+            # Rank all genes in the row (method='dense', descending order: highest freq gets rank 1)
+            # Scipy/Pandas equivalents can be slow in a loop, so we use a clean pandas rank approach per row
+            row_series = pd.Series(row_frequencies)
+            # We rank descending so the highest frequency has rank 1.
+            ranks = row_series.rank(method='dense', ascending=False).values
+            
+            # Extract ranks of active peer genes
+            peer_ranks_i = ranks[active_peers_mask]
+            mean_peer_rank_i = peer_ranks_i.mean()
+        else:
+            mean_peer_rank_i = 0
+            
+        mean_peer_ranks.append(mean_peer_rank_i)
+        
+    # --- Matrix-level aggregations (Averages over all r root nodes) ---
+    mean_context_density = np.mean(context_densities) if total_rows > 0 else 0
+    mean_entropy = np.mean(entropies) if total_rows > 0 else 0
+    mean_evenness = np.mean(evennesses) if total_rows > 0 else 0
+    mean_peer_density = np.mean(peer_densities) if total_rows > 0 else 0
+    mean_peer_rank_m = np.mean(mean_peer_ranks) if total_rows > 0 else 0
+
+    # =========================================================================
+    # 5. Final Flat Dictionary
+    # =========================================================================
     stats = {
-        "active_source_pcr": round(float(active_source_pcr),2),
-        "sparsity_pcr": round(float(sparsity_pcr),2),
+        "active_source_pcr": round(float(active_source_pcr), 2),
+        "sparsity_pcr": round(float(sparsity_pcr), 2),
         "total_root_nodes": int(total_rows),
         "total_sources": int(total_cols),
-        "count_min": round(float(c_min),5),
-        "count_max": round(float(c_max),5),
-        "count_avg": round(float(c_avg),5),
-        "count_median": round(float(c_med),5),
-        "count_std": round(float(c_std),5),
-        "count_skew": round(float(c_skew),5)
+        "count_min": round(float(c_min), 5),
+        "count_max": round(float(c_max), 5),
+        "count_avg": round(float(c_avg), 5),
+        "count_median": round(float(c_med), 5),
+        "count_std": round(float(c_std), 5),
+        "count_skew": round(float(c_skew), 5),
+        
+        # New Additions
+        "mean_context_density": round(float(mean_context_density), 5),
+        "mean_entropy": round(float(mean_entropy), 5),
+        "mean_evenness_index": round(float(mean_evenness), 5),
+        "mean_peer_density": round(float(mean_peer_density), 5),
+        "mean_peer_rank": round(float(mean_peer_rank_m), 5)
     }
     
     return stats
+
+# def _get_gene_stats(df):
+#     """
+#     Analyzes a gene frequency histogram DataFrame.
+#     Returns a flat dictionary of results.
+#     """
+#     # 1. Dimensions & Global Counts
+#     total_rows = df.shape[0]
+#     total_cols = df.shape[1]
+#     total_cells = df.size
+    
+#     # 2. Activity & Sparsity
+#     # active_source_pcr: % of columns that have at least one non-zero
+#     active_cols_count = (df != 0).any(axis=0).sum()
+#     active_source_pcr = (active_cols_count / total_cols * 100) if total_cols > 0 else 0
+    
+#     # sparsity_pcr: % of total cells in the matrix that are zero
+#     zero_cells_count = (df == 0).sum().sum()
+#     sparsity_pcr = (zero_cells_count / total_cells * 100) if total_cells > 0 else 0
+    
+#     # 3. Frequency Value Distribution
+#     flat_values = df.values.flatten()
+#     active_vals = flat_values[flat_values > 0]
+    
+#     # Default values for empty datasets
+#     c_min = c_max = c_avg = c_med = c_std = c_skew = 0
+    
+#     if active_vals.size > 0:
+#         c_max = active_vals.max()
+#         c_avg = active_vals.mean()
+#         c_med = np.median(active_vals)
+#         c_std = active_vals.std()
+        
+#         # Skewness requires at least 3 values to be meaningful
+#         try:
+#             c_skew = skew(active_vals) if active_vals.size > 2 else 0
+#         except:
+#             c_skew = 0
+
+#     # 4. Final Flat Dictionary
+#     stats = {
+#         "active_source_pcr": round(float(active_source_pcr),2),
+#         "sparsity_pcr": round(float(sparsity_pcr),2),
+#         "total_root_nodes": int(total_rows),
+#         "total_sources": int(total_cols),
+#         "count_min": round(float(c_min),5),
+#         "count_max": round(float(c_max),5),
+#         "count_avg": round(float(c_avg),5),
+#         "count_median": round(float(c_med),5),
+#         "count_std": round(float(c_std),5),
+#         "count_skew": round(float(c_skew),5)
+#     }
+    
+#     return stats
 
 ## old 
 def gene_frequency_analysis(input, env,options ,args):
