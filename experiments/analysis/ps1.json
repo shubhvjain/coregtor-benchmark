@@ -5,7 +5,14 @@
   "results":[
      {
       "id":"r1",
-      "type":"combined_target_diagram"
+      "type":"combined_target_diagram",
+      "sort_by":"dataset_sample_size"
+    },
+    {
+      "id":"r2",
+      "type":"parameter_config_plot",
+      "result_name":"default",
+      "exp_list":["ps_pit"]
     }
   ]
 }

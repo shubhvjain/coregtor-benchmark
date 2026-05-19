@@ -12,6 +12,9 @@ from src.results.explore import  plot_skewness_dist, plot_metric_boxplot
 
 from src.analysis.gtex import generate_gtex_stats
 
+from src.analysis.target import combined_target_diagram, parameter_config_plot
+
+
 def hello(input, env, options, args):
     target = input.get("target", "world")
     print(f"Hello, {target}!")
@@ -84,7 +87,9 @@ def combined_dataset_target_diagram(input, env, options, args):
 METHOD_REGISTRY = {
     "hello": hello,
     "generate_gtex_stats":generate_gtex_stats,
-    "combined_dataset_target_diagram": combined_dataset_target_diagram
+    "combined_target_diagram":combined_target_diagram,
+    "combined_dataset_target_diagram": combined_dataset_target_diagram,
+    "parameter_config_plot":parameter_config_plot
 }
 
 # CLI entry point

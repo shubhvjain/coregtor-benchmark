@@ -30,7 +30,13 @@ def parameter_selection_plot(input, env, options, args):
     return 
   
   optimal_results_only = options.get("optimal_results_only",False)
-  default_metrics = ['silhouette_score',  'n_source','shared_PPI_partners_score_stringdb', 'shortest_PPI_path_score_stringdb', 'goa_similarity_jc']
+  default_metrics = ['silhouette_score', 
+    'n_source',
+    'shared_PPI_partners_score_stringdb', 
+    'shortest_PPI_path_score_stringdb', 
+    'density_score_stringdb',
+    'lcc_score_stringdb',
+    'tc_score_stringdb'] 
   metrics_list = options.get("metrics_list",default_metrics)
 
   data = pd.read_csv(index_file)
@@ -70,9 +76,18 @@ def plot_landscape_metrics(df, metrics_list, output_name=None, choose_optimal=Fa
         "grn_collectri_precision": {"key": "PRC", "label": "GRN Precision (Collectri)"},
         "grn_collectri_recall": {"key": "RCL", "label": "GRN Recall (Collectri)"},
         "grn_collectri_jaccard": {"key": "JAC", "label": "GRN Jaccard (Collectri)"},
+        "density_score_hippie":{"key": "PPI3 (H)", "label": "  "},
+        "lcc_score_hippie":{"key": "PPI4 (H)", "label": "  "},
+        "tc_score_hippie":{"key": "PPI5 (H)", "label": "  "},
+        "density_score_stringdb":{"key": "PPI3 (S)", "label": "  "},
+        "lcc_score_stringdb":{"key": "PPI4 (S)", "label": "  "},
+        "tc_score_stringdb":{"key": "PPI5 (S)", "label": "  "},
+        "density_score_biogrid":{"key": "PPI3 (B)", "label": "  "},
+        "lcc_score_biogrid":{"key": "PPI4 (B)", "label": "  "},
+        "tc_score_biogrid":{"key": "PPI5 (B)", "label": "  "}
     }
     
-    fig, axes = plt.subplots(nrows=n_rows, ncols=1, figsize=(11.69, 8.27))
+    fig, axes = plt.subplots(nrows=n_rows, ncols=1, figsize=(16.54, 11.69))
     if n_rows == 1: axes = [axes]
 
     # Ensure configs are sorted/consistent even after filtering
@@ -80,17 +95,51 @@ def plot_landscape_metrics(df, metrics_list, output_name=None, choose_optimal=Fa
 
     for i, metric in enumerate(metrics_list):
         ax = axes[i]
-        
+        box_color = ut.color_palette["ice_blue"]
         sns.boxplot(
             data=df, 
             x='config_name', 
             y=metric, 
             ax=ax, 
-            color='skyblue', 
+            color=box_color, 
             showfliers=False,
             linewidth=0.4,
-            order=unique_configs
+            order=unique_configs,
+            width=0.75
         )
+
+        ax.grid(True, axis='y', linewidth=0.4, color='#e0e0e0', zorder=0)
+
+        for spine in ax.spines.values():
+            spine.set_linewidth(0.5)
+
+        # Group by config_name, get the median of the current metric, and drop NaNs
+        medians = df.groupby('config_name')[metric].median().dropna()
+        
+        if not medians.empty:
+            best_config = medians.idxmax()
+            max_median_val = medians.max()
+            line_color = ut.color_palette["dark_navy"]
+            # Draw the horizontal line
+            ax.axhline(
+                y=max_median_val, 
+                color=line_color, 
+                linestyle='--', 
+                linewidth=0.5, 
+                alpha=0.8
+            )
+            
+            # Add text label right above the line on the far right of the plot
+            # (Using transform=ax.get_yaxis_transform() keeps x-position relative to axes frame)
+            ax.text(
+                x=1.01, 
+                y=max_median_val, 
+                s=f"{best_config} ({max_median_val:.3f})", 
+                color=line_color, 
+                fontsize=4, 
+                verticalalignment='center',
+                transform=ax.get_yaxis_transform()
+            )
         
         # --- LOGIC TO GET THE "KEY" ---
         meta = INDEX_META.get(metric, metric)
