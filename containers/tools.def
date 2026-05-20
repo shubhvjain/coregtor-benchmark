@@ -1,0 +1,30 @@
+Bootstrap: docker
+From: bioconductor/bioconductor_docker:RELEASE_3_16
+
+%post
+    # Prevent interactive prompts during package installations
+    export DEBIAN_FRONTEND=noninteractive
+
+    # Install R reticulate
+    R -e "install.packages('reticulate', repos='https://cloud.r-project.org')"
+
+    # Install Python deps via pip
+    python3 -m pip install --no-cache-dir \
+        pandas \
+        python-dotenv \
+        pathlib
+    rm -rf /root/.cache/pip/*
+
+    # Install CoRegNet and RTNDuals together
+    R -e "BiocManager::install(c('CoRegNet', 'RTNDuals'), update = FALSE, ask = FALSE)"
+
+    # Set reticulate to system Python inside the R environment configuration
+    echo "Sys.setenv(RETICULATE_PYTHON = '/usr/bin/python3')" >> /usr/local/lib/R/etc/Rprofile.site
+
+%environment
+    # Set environment variables for runtime
+    export RETICULATE_PYTHON=/usr/bin/python3
+
+%runscript
+    # Default action when executing the container
+    exec R "$@"
