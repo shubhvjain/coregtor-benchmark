@@ -1,7 +1,7 @@
 {
   "about":"Analysis of results of parameter selection experiments ps1",
   "id":"ps1_analysis",
-  "experiments":["ps_amy","ps_bla","ps_bld","ps_cdn","ps_hra","ps_kdc","ps_liv","ps_lun","ps_pit"],
+  "experiments":["ps_amy","ps_bla","ps_bld","ps_cdn","ps_hra","ps_kdc","ps_liv","ps_lun","ps_pit","ps_stm"],
   "results":[
      {
       "id":"r1",
@@ -12,7 +12,8 @@
       "id":"r2",
       "type":"parameter_config_plot",
       "result_name":"default",
-      "exp_list":["ps_pit"]
+      "exp_list":["ps_amy","ps_bld","ps_cdn","ps_hra","ps_kdc","ps_liv","ps_lun","ps_pit","ps_stm"],
+      "exp_list1":["ps_amy"]
     }
   ]
 }
