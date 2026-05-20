@@ -5,12 +5,13 @@ From: bioconductor/bioconductor_docker:RELEASE_3_16
     # Prevent interactive prompts during package installations
     export DEBIAN_FRONTEND=noninteractive
 
-    # Install R reticulate
-    R -e "install.packages('reticulate', repos='https://cloud.r-project.org')"
+    # Install general CRAN packages (Added arrow and jsonlite for file parsing)
+    R -e "install.packages(c('reticulate', 'arrow', 'jsonlite'), repos='https://cloud.r-project.org')"
 
-    # Install Python deps via pip
+    # Install Python deps via pip (Added pyarrow for fast DataFrame serialization)
     python3 -m pip install --no-cache-dir \
         pandas \
+        pyarrow \
         python-dotenv \
         pathlib
     rm -rf /root/.cache/pip/*
@@ -26,5 +27,5 @@ From: bioconductor/bioconductor_docker:RELEASE_3_16
     export RETICULATE_PYTHON=/usr/bin/python3
 
 %runscript
-    # Default action when executing the container
-    exec R "$@"
+    # Overridden to use python3 since Python is now orchestrating the pipeline
+    exec python3 "$@"

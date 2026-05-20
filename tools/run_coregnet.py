@@ -1,0 +1,203 @@
+"""
+assuming this script will be run inside the container which is mounted with the following volumes 
+/app/input : this is where the experiment files are
+/app/output : this is where the results will be stored
+/app/temp: this is the temp result folder
+/app/dataset : this is where bio datasets are stored
+
+"""
+import pandas as pd
+import numpy as np
+import json
+import sys
+import os
+import secrets
+from pathlib import Path
+import argparse
+from dotenv import dotenv_values
+import subprocess
+import util as ut
+
+def get_data(input_details: dict, dataset: pd.DataFrame):
+    """
+    Prepare expression matrix for CoRegNet.
+    """
+    tf_vec     = input_details["source_genes"]
+    target_vec = input_details["target_genes"]
+    
+    # Get unique genes (order doesn't matter)
+    genes = list(set(tf_vec + target_vec))
+    
+    subset = dataset[genes]  # samples x genes
+    subset = subset.loc[:, ~subset.columns.duplicated(keep='first')]
+    matrix = np.log2(subset.values + 1)         
+    matrix = matrix.T                            
+    result = pd.DataFrame(matrix, index=genes, columns=dataset.index)    
+    return result, tf_vec, target_vec
+
+
+
+# def coregnet_results(exp_name,dataset_id):
+#     exp = get_experiment_file(exp_name)
+#     file_prefix = exp.get("tool_result",{}).get("coregnet",{}).get("id","r1")
+
+#     grn_path = Path(os.getenv("EXP_OUTPUT_PATH")) / exp_name/ dataset_id / "coregnet" / "grn.csv"
+#     out_path = Path(os.getenv("EXP_OUTPUT_PATH")) / exp_name/ dataset_id / "coregnet" / f"result_{file_prefix}.csv"
+
+#     if not grn_path.exists():
+#         raise FileNotFoundError(f"GRN file not found: {grn_path}")
+
+#     grn = pd.read_csv(grn_path)
+#     method_label = f"{exp_name}-coregnet"
+
+#     rows = []
+#     for target, group in grn.groupby("Target"):
+#         sources     = sorted(group["Regulator"].tolist())
+#         sources_str = ";".join(sources)
+#         n_sources   = len(sources)
+
+#         rows.append({
+#             "cluster_uid": secrets.token_hex(6),
+#             "target":      target,
+#             "sources":     sources_str,
+#             "n_sources":   n_sources,
+#             "method":      method_label
+#         })
+
+#     results = pd.DataFrame(rows)
+#     results.to_csv(out_path, index=False)
+#     print(f"Saved {len(results)} rows to {out_path}")
+
+
+def run_coregnet(input_data, env):
+    """
+    Orchestrates data preparation, passes parameters to the R worker script,
+    and monitors execution.
+    """
+    print("Initializing CoRegNet Run...")
+    
+    # 1. Fetch paths and setup data using your utilities
+    out_path, temp_path = ut.get_exp_path(input_data, env)
+    i, d = ut.start_experiment(input_data, env)
+    matrix_df, tf_vec, target_vec = get_data(i, d)
+    
+    # 2. Extract options safely with defaults fallback
+    opts = input_data.get("coregnet_options")  
+    threshold = opts.get("discretization_threshold", 1)
+    max_coreg = min(opts.get("maxCoreg", 5), 5)
+    min_coreg_support = opts.get("minCoregSupport", 0.2)
+    min_gene_support = opts.get("minGeneSupport", 0.1)
+    
+    # Define isolated directories within your /app/temp mount
+    # Using secrets to avoid collision if multiple containers run concurrently
+    run_id = secrets.token_hex(4)
+    r_worker_io_dir = temp_path / f"coregnet_{run_id}"
+    r_worker_io_dir.mkdir(parents=True, exist_ok=True)
+    
+    print(f"Staging temporary matrices in: {r_worker_io_dir}")
+    
+    # 3. Serialize data frames using Parquet for fast I/O
+    # Note: index=True preserves your 'genes' names as the row indices for R
+    matrix_df.to_parquet(r_worker_io_dir / "matrix.parquet", index=True)
+    pd.DataFrame({"tfs": tf_vec}).to_parquet(r_worker_io_dir / "tfs.parquet", index=False)
+    pd.DataFrame({"targets": target_vec}).to_parquet(r_worker_io_dir / "targets.parquet", index=False)
+
+    # Save the additional configurations/dictionaries as a JSON file
+    options_payload = {
+        "threshold": threshold,
+        "max_coreg": max_coreg,
+        "min_coreg_support": min_coreg_support,
+        "min_gene_support": min_gene_support,
+    }
+    with open(r_worker_io_dir / "options.json", "w") as f:
+        json.dump(options_payload, f, indent=4)
+    
+    # 4. Construct Command arguments for Rscript
+    # Passing paths and tool parameters explicitly as strings
+    cmd = [
+        "Rscript",
+        "app/script/coregnet.R",
+        str(r_worker_io_dir)
+    ]
+    
+    print(f"Executing worker command: {' '.join(cmd)}")
+
+    # Create the log file path inside your isolated run directory
+    log_file_path = out_path / "worker_run.log"
+    print(f"R output is being redirected to: {log_file_path}")
+        
+    # 5. Run the subprocess
+    with open(log_file_path, "w") as log_file:
+        # Passing log_file to stdout/stderr diverts streams away from the terminal
+        # and flushes them straight to disk in real-time.
+        result = subprocess.run(
+            cmd, 
+            stdout=log_file, 
+            stderr=log_file, 
+            text=True, 
+            check=True
+        )
+    
+    # Output anything the R worker script printed (cat, print, etc.)
+    print("--- R Worker Output ---")
+    print(result.stdout)
+    print("-----------------------")
+    
+    # 6. Read back the results generated by R worker
+    print("R execution complete. Importing results back into Python...")
+    grn_df = pd.read_parquet(r_worker_io_dir / "grn_output.parquet")
+    print(grn_df)
+    cluster_file_name =  f'{input_data.get("result_file_name","default")}.csv'
+    cluster = format_coregnet_results(input_data,grn_df)
+    cluster.to_csv(out_path/cluster_file_name, index=False)
+    # Clean up the runtime temp directory if desired (uncomment if you don't need debug files)
+    import shutil
+    shutil.rmtree(r_worker_io_dir)
+
+
+
+def format_coregnet_results(input_data,grn):
+    method_label = f"exp-{input_data['id']}-tool-coregnet"
+    rows = []
+    for target, group in grn.groupby("Target"):
+        sources     = sorted(group["Regulator"].tolist())
+        sources_str = ";".join(sources)
+        n_sources   = len(sources)
+
+        rows.append({
+            "uid": secrets.token_hex(6),
+            "target":      target,
+            "sources":     sources_str,
+            "n_sources":   n_sources,
+            "note":      method_label
+        })
+
+    results = pd.DataFrame(rows)
+    return results
+
+
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="To run CoRegNet"
+    )
+    parser.add_argument(
+        '--input', 
+        required=True, 
+        help="The path or identifier for the input data"
+    )
+    args = parser.parse_args()
+    try:
+        env =   ut.get_env()
+        input_data = ut.get_input(args.input)
+        run_coregnet(input_data,env)
+        
+    except Exception as e:
+        print(e)
+        print(f"Error: {e}", file=sys.stderr)
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()
