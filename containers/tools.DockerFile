@@ -1,11 +1,12 @@
 FROM --platform=linux/amd64 bioconductor/bioconductor_docker:RELEASE_3_16
 
 # Install R reticulate
-RUN R -e "install.packages('reticulate', repos='https://cloud.r-project.org')"
+RUN R -e "install.packages(c('reticulate','arrow', 'jsonlite'), repos='https://cloud.r-project.org')"
 
 # Install Python deps via pip (faster, no conda solver issues)
 RUN python3 -m pip install --no-cache-dir \
     pandas \
+    pyarrow \
     python-dotenv \
     pathlib \
     && rm -rf /root/.cache/pip/*

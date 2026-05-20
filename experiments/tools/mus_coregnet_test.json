@@ -1,0 +1,39 @@
+{ 
+  "type":"run_coregnet",
+  "id": "coregnet_test", 
+  "about": "To run CoRegNet on MUS", 
+  "dataset": {
+    "name": "MUS",
+    "path": "app/dataset/MUS/gene_tpm_v11_muscle_skeletal.gct",
+    "type": "gct",
+    "convert_gene_names": true
+  }, 
+  "sources": 
+  { "type":"custom","items": [ "ABL1", "ADNP2", "AHR", "AHRR", "AIRE", "ALX1", "ALX3", "ALX4", "APEX1", "AR", "ARID3A", "ARID3B", "ARID5A", "ARID5B", "ARNT", "ARNT2", "ARX", "ASCL1", "ASCL2", "ATF1", "ATF2", "ATF3", "ATF4", "ATF5", "ATF6", "ATF6B", "ATF7", "ATOH1", "ATOH7", "ATOH8", "BACH1", "BACH2", "BARX1", "BARX2", "BATF", "BATF3", "BCL11A", "BCL11B", "BCL3", "BCL6", "BCL6B", "BCLAF1", "BHLHA15", "BHLHE22", "BHLHE23", "BHLHE40", "BHLHE41", "BRCA1", "BSX", "CARF", "CBFB", "CDX1", "CDX2", "CDX4", "CEBPA", "CEBPB", "CEBPD", "CEBPE", "CEBPG", "CEBPZ", "CIC", "CLOCK", "CNOT4", "CREB1", "CREB3", "CREB3L1", "CREB3L2", "CREB3L4", "CREB5", "CREBL2", "CREBZF", "CREM", "CRX", "CTBP1", "CTCF", "CTCFL", "CTNNB1", "CUX1", "CUX2", "CXXC1", "DACH1", "DBP", "DDIT3", "DEAF1", "DLX2", "DLX3", "DLX4", "DLX5", "DLX6", "DMAP1", "DMBX1", "DMRT1", "DMRTA1", "DNMT1", "DNMT3A", "DR1", "DRAP1", "E2F1", "E2F2", "E2F3", "E2F4", "E2F5", "E2F6", "E2F7", "E2F8", "E4F1", "EBF1", "EBF2", "EBF3", "EGR1", "EGR2", "EGR3", "EGR4", "EHF", "ELF1", "ELF2", "ELF3", "ELF4", "ELF5", "ELK1", "ELK3", "ELK4", "EMX1", "EMX2", "EN1", "EN2", "ENO1", "EOMES", "EP300", "EPAS1", "ERF", "ERG", "ESR1", "ESR2", "ESRRA", "ESRRB", "ESRRG", "ESX1", "ETS1", "ETS2", "ETV1", "ETV2", "ETV3", "ETV4", "ETV5", "ETV6", "ETV7", "EVX1", "EVX2", "EWSR1", "EZH2", "FERD3L", "FEV", "FEZF1", "FEZF2", "FHL2", "FIGLA", "FIZ1", "FLI1", "FOS", "FOSB", "FOSL1", "FOSL2", "FOXA1", "FOXA2", "FOXA3", "FOXC1", "FOXC2", "FOXD1", "FOXD2", "FOXD3", "FOXD4", "FOXE1", "FOXF1", "FOXF2", "FOXG1", "FOXH1", "FOXI1", "FOXJ1", "FOXJ3", "FOXK1", "FOXK2", "FOXL1", "FOXL2", "FOXM1", "FOXN1", "FOXN4", "FOXO1", "FOXO3", "FOXO4", "FOXO6", "FOXP1", "FOXP2", "FOXP3", "FOXQ1", "FOXS1", "GABPA", "GATA1", "GATA2", "GATA3", "GATA4", "GATA5", "GATA6", "GBX2", "GCM1", "GCM2", "GFI1", "GFI1B", "GLI1", "GLI2", "GLI3", "GLIS3", "GMEB1", "GRHL1", "GRHL2", "GRHL3", "GSC", "GSX1", "GSX2", "GTF2A1", "GTF2F1" ], "top_expressed_n": 50 }, 
+  "targets": 
+    { "type": "custom", "top_expressed_n": 20, "items": [ "ACTA2", "ACTB", "AKT1", "APOE", "APP", "BCL2L1", "BGLAP", "BMI1", "CARM1", "CASP3", "CCND3", "CD14", "CD44", "CDK4", "CDKN1A", "CDKN1B", "CDKN1C", "CLU", "CREBBP", "CRYAB", "CSF1", "CSF1R", "CXCR4", "DUSP1", "EBP", "ERBB2", "FASN", "FGFR1", "FN1", "GADD45B", "GCLC", "GSTP1", "HBA2", "HBB", "HLA-DRB1", "HLA-E", "HMOX1", "HSP90AA1", "HSPA1A", "HSPA4", "ID3", "IGF1R", "ITGB1", "KAT2B", "KDM1A", "KRAS", "LDLR", "MAPK14" ] }, 
+
+    "coregnet_options":{
+      
+    },
+
+    "result_file_name": "default",
+        
+    "results": [
+      {
+        "id": "r1",
+        "type": "performance_indices1",
+        "result_list": ["default"]
+      },
+      {
+        "id": "r2",
+        "type": "performance_indices_ppi_network",
+        "result_list": ["default"]
+      },
+      {
+        "id": "r3",
+        "type": "performance_indices_combined",
+        "result_list": ["default"]
+      }
+    ]
+  }
