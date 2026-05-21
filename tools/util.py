@@ -14,10 +14,10 @@ from datetime import datetime
 def get_env():
     """this code is run within the container where volumes are mounted as fixed locations"""
     env = {
-        "DATA_PATH": "app/dataset",
-        "EXP_TEMP_PATH": "app/temp",
-        "EXP_OUTPUT_PATH": "app/output",
-        "EXP_INPUT_PATH": "app/input"
+        "DATA_PATH": "/app/dataset",
+        "EXP_TEMP_PATH": "/app/temp",
+        "EXP_OUTPUT_PATH": "/app/output",
+        "EXP_INPUT_PATH": "/app/input"
     }
     return env
 

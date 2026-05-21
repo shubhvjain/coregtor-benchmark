@@ -25,7 +25,7 @@ if (!file.exists(options_file)) {
 opts <- read_json(options_file, simplifyVector = TRUE)
 
 # Parse parameters from the JSON
-threshold         <- as.numeric(opts$threshold)
+dis_sd_threshold         <- as.numeric(opts$dis_sd_threshold)
 max_coreg         <- as.numeric(opts$max_coreg)
 min_coreg_support <- as.numeric(opts$min_coreg_support)
 min_gene_support  <- as.numeric(opts$min_gene_support)
@@ -33,8 +33,8 @@ min_gene_support  <- as.numeric(opts$min_gene_support)
 # You can easily query your custom extra options dictionary like this:
 # my_custom_val  <- opts$extra_config$some_key
 
-cat(sprintf("Parameters - threshold: %s | maxCoreg: %s | minCoregSupport: %s | minGeneSupport: %s\n", 
-            threshold, max_coreg, min_coreg_support, min_gene_support))
+cat(sprintf("Parameters - dis sd threshold: %s | maxCoreg: %s | minCoregSupport: %s | minGeneSupport: %s\n", 
+            dis_sd_threshold, max_coreg, min_coreg_support, min_gene_support))
 
 # ===== Load Staged Datasets =====
 cat("Reading data files using Arrow engine...\n")
@@ -66,7 +66,6 @@ rownames(r_matrix) <- gene_names
 # ===== Data Validation Check & Sanity Print =====
 cat("--- Sanity Check ---\n")
 cat("Matrix dimensions:", nrow(r_matrix), "genes x", ncol(r_matrix), "samples\n")
-cat("First 3 gene names in matrix:", head(rownames(r_matrix), 3), "\n")
 cat("Total TFs requested:", length(tf_vec), " | Total Targets requested:", length(target_vec), "\n")
 
 matched_tfs <- sum(tf_vec %in% rownames(r_matrix))
@@ -78,15 +77,16 @@ if (matched_tfs < 2) {
 if (anyNA(r_matrix)) {
   stop("CRITICAL FAILURE: Expression matrix contains invalid NA inputs.")
 }
-cat("--- Sanity Check Passed Perfectly ---\n")
+cat("------\n")
 
 # ===== Discretize =====
 cat("Discretizing expression matrix...\n")
-disc_matrix <- discretizeExpressionData(r_matrix, threshold = threshold)
+t0  <- proc.time()
+disc_matrix <- discretizeExpressionData(r_matrix, standardDeviationThreshold = dis_sd_threshold)
 
 # ===== Run hLICORN =====
 cat("Running hLICORN...\n")
-t0  <- proc.time()
+
 grn <- hLICORN(
   numericalExpression = r_matrix,
   discreteExpression  = disc_matrix,
@@ -100,10 +100,12 @@ grn <- hLICORN(
 )
 hlicorn_secs <- round((proc.time() - t0)[["elapsed"]], 2)
 
+cat("-------\n")
+cat("Took ", hlicorn_secs, " seconds \n")
 # ===== Export Outputs back to Workspace =====
 grn_df <- coregnetToDataframe(grn)
 cat("Interactions found:", nrow(grn_df), "\n")
 cat("Writing results back to python container mount...\n")
 write_parquet(grn_df, file.path(io_dir, "grn_output.parquet"))
 
-cat("--- R Worker Finished Cleanly ---\n")
+cat("--- R Worker Finished ---\n")

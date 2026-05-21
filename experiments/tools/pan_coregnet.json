@@ -1,10 +1,10 @@
 { 
   "type":"run_coregnet",
-  "id": "coregnet_mus", 
-  "about": "To run CoRegNet on MUS", 
+  "id": "coregnet_pan", 
+  "about": "To run CoRegNet on PAN", 
   "dataset": {
-    "name": "MUS",
-    "path": "/app/dataset/MUS/gene_tpm_v11_muscle_skeletal.gct",
+    "name": "PAN",
+    "path": "/app/dataset/PAN/gene_tpm_v11_pancreas.gct",
     "type": "gct",
     "convert_gene_names": true
   }, 
@@ -18,7 +18,7 @@
     "top_expressed_n": 200
   },
 
-    "coregnet_options":{
+  "coregnet_options":{
       
     },
 
