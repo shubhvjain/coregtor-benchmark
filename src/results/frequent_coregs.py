@@ -2,53 +2,69 @@ import  src.results.util as ut
 
 from mlxtend.preprocessing import TransactionEncoder
 from mlxtend.frequent_patterns import fpgrowth
+import pandas as pd
 
+import pandas as pd
+from mlxtend.preprocessing import TransactionEncoder
+from mlxtend.frequent_patterns import fpgrowth
 
-def gene_frequency_patterns(results,min_support=0.01, result_folder=None,d=None):
-    """"""
+def gene_frequency_patterns(df, min_support=0.01):
+    # 1. Prepare the data
+    transactions = df['sources'].str.split(';').tolist()
 
-    transactions = results["sources"].str.split(";").tolist()
+    # 2. One-hot encode the transactions
     te = TransactionEncoder()
-    te_array = te.fit(transactions).transform(transactions)
-    df_encoded = pd.DataFrame(te_array, columns=te.columns_)
-    frequent_itemsets = fpgrowth(df_encoded, min_support=min_support, use_colnames=True)
-    frequent_itemsets["length"] = frequent_itemsets["itemsets"].apply(len)
-    frequent_itemsets = frequent_itemsets[frequent_itemsets['length']>1]
-    frequent_itemsets["itemsets"] = frequent_itemsets["itemsets"].apply(lambda x : ";".join(x)) 
-    frequent_itemsets = frequent_itemsets.rename(columns={"itemsets":"sources"})
-    frequent_itemsets["dataset"] = d
-    return frequent_itemsets
+    te_ary = te.fit(transactions).transform(transactions)
+    encoded_df = pd.DataFrame(te_ary, columns=te.columns_)
 
+    # 3. Find frequent itemsets
+    frequent_itemsets = fpgrowth(encoded_df, min_support=min_support, use_colnames=True)
 
-def coreg_frequency(exp_name, exp_data, result_data, rerun, n_jobs=1):
-    """"""   
-    result_folder = get_output_path() / exp_name/"_results"/ "coregulators_frequency"
-    result_folder.mkdir(parents=True, exist_ok=True)
+    # Safety Fix: Handle completely empty itemsets immediately
+    if frequent_itemsets.empty:
+        return df.iloc[0:0], pd.DataFrame(columns=['source', 'support_size', 'common_targets'])
 
-    result_file = result_folder / f"{result_data['name']}.csv"
-    if result_file.exists() and not rerun:
-        raise FileExistsError(result_file)
+    # Only keep itemsets containing 2 or more genes (Non-singletons)
+    frequent_pairs_groups = frequent_itemsets[frequent_itemsets['itemsets'].apply(lambda x: len(x) >= 2)]
     
-    ipath = get_output_path()/exp_name/"_results"/"filter_target_genes"/f"{result_data['target_gene_list']}.json"
-    with open(ipath,"r")as f:
-        target_input =  json.load(f)
-        # print(target_input)
-    frequent_genes = []
+    if frequent_pairs_groups.empty:
+        return df.iloc[0:0], pd.DataFrame(columns=['source', 'support_size', 'common_targets'])
 
-    for d in exp_data["datasets"]:
-        print(d)
-        fpath = get_output_path()/exp_name/d/"coregtor"/f"result_{result_data['result_name']}.csv"
-        results = pd.read_csv(fpath)
-        targets = target_input["list"][d]
-        results = results[results['target'].isin(targets)]
-        min_support = result_data.get("min_support",0.01)
-        outputs = gene_frequency_patterns(results,min_support,result_folder,d)
-        frequent_genes.append(outputs)
+    # 4. Extract the unique list/sets of patterns for filtering
+    frequent_sets_list = frequent_pairs_groups['itemsets'].tolist()
 
-    df = pd.concat(frequent_genes)
-    # print(df)
-    df["support_per"] = df["support"]*100
-    df.to_csv(result_file,index=False)
+    # 5. Filter the original DataFrame (Cluster Filtering)
+    # Strict Fix: Keep a row ONLY if a complete frequent pattern is present inside it
+    def has_frequent_combination(source_str):
+        sources_set = set(source_str.split(';'))
+        return any(itemset.issubset(sources_set) for itemset in frequent_sets_list)
+
+    filtered_df = df[df['sources'].apply(has_frequent_combination)].copy()
+
+    # 6. Build the frequent_summary [source | support_size | common_targets]
+    summary_data = []
+    
+    for _, row in frequent_pairs_groups.iterrows():
+        itemset = row['itemsets']
+        source_name = ";".join(sorted(list(itemset)))
+        
+        # Find which rows contain ALL genes in this itemset
+        matches = df[df['sources'].apply(lambda x: itemset.issubset(set(x.split(';'))))]
+        
+        support_size = len(matches)
+        common_targets = ";".join(matches['target'].unique())
+        
+        summary_data.append({
+            'source': source_name,
+            'support_size': support_size,
+            'common_targets': common_targets
+        })
+        
+    frequent_summary = pd.DataFrame(summary_data)
+    frequent_summary = frequent_summary.sort_values(by='support_size', ascending=False).reset_index(drop=True)
+
+    return filtered_df[["cluster_uid","target","sources","n_source"]], frequent_summary
+
 
 
 def find_frequent_coregs(input, env, options, args):
@@ -58,6 +74,7 @@ def find_frequent_coregs(input, env, options, args):
 
     n_jobs = args.njobs if args.njobs is not None else -1
     rerun = args.rerun
+    min_support = options.get("min_support",0.04)
 
     cluster_folder = temp_path/"clusters"
     cluster_folder.mkdir(exist_ok=True, parents=True)
@@ -75,13 +92,21 @@ def find_frequent_coregs(input, env, options, args):
         if result_file_path.exists() and not rerun:
             continue
         result_list.append(r)   
-    
     for r in result_list:
         print(r)
         cluster_file = cluster_folder / f"{r}.csv"
-        index_file = cluster_folder / f"freq_coreg_{r}.csv"
+        
         data = pd.read_csv(cluster_file)
-        data.rename(columns={"uid":"cluster_uid"}, inplace=True)
+        #data.rename(columns={"uid":"cluster_uid"}, inplace=True)
+        filtered_clusters, frequent_summary = gene_frequency_patterns(data,min_support)
+        file2 = cluster_folder / f"freq_coreg_{r}.csv"
+        file1 = cluster_folder / f"freq_clusters_{r}.csv"
+        filtered_clusters.to_csv(file1,index=False)
+        frequent_summary["note"] = r
+        frequent_summary.to_csv(file2,index=False)
+
+
+
 
          
 

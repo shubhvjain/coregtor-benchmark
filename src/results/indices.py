@@ -96,7 +96,7 @@ def performance_indices1(input, env,options ,args):
         cluster_file = cluster_folder / f"{r}.csv"
         index_file = cluster_folder / f"index_{r}.csv"
         data = pd.read_csv(cluster_file)
-        data.rename(columns={"uid":"cluster_uid"}, inplace=True)
+        # data.rename(columns={"uid":"cluster_uid"}, inplace=True)
 
         run_parallel = len(data) > 10
         batch_size = int(len(data)/n_jobs) + 1
@@ -299,7 +299,7 @@ def performance_indices_ppi_network1(input, env,options ,args):
         cluster_file = cluster_folder / f"{r}.csv"
         index_file = cluster_folder / f"index_network_{r}.csv"
         data = pd.read_csv(cluster_file)
-        data.rename(columns={"uid":"cluster_uid"}, inplace=True)
+        #data.rename(columns={"uid":"cluster_uid"}, inplace=True)
 
         ppi_list = ['hippie', 'stringdb', 'biogrid']
 
@@ -357,7 +357,7 @@ def performance_indices_ppi_network(input, env, options, args):
             continue
         cluster_file = cluster_folder / f"{r}.csv"
         df_store[r] = pd.read_csv(cluster_file)
-        df_store[r].rename(columns={"uid": "cluster_uid"}, inplace=True)
+        #df_store[r].rename(columns={"uid": "cluster_uid"}, inplace=True)
 
     # 2. Outer Loop: PPI Networks (The "Heavy" objects)
     for ppi_key in ppi_list:

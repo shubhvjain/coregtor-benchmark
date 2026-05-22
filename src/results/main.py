@@ -11,6 +11,8 @@ from src.results.explore import gene_frequency_analysis, distance_measure_analys
 from src.results.indices import performance_indices1,performance_indices_combined,performance_indices_ppi_network
 from src.results.target import target_info,target_run_diagram
 from src.results.parameter_selection import parameter_selection_plot
+from src.results.frequent_coregs import find_frequent_coregs
+from src.results.clustering import identify_coregulators
 
 def hello(input, env, options, args):
     target = input.get("target", "world")
@@ -28,6 +30,25 @@ def _get_temp_file(temp_path, target):
     file_path = temp_path/"results"/f"{target}.pkl"
     data = load(file_path)
     return data
+
+def get_clustering_results(input,target,cluster_option_name,temp_file,rerun):
+    """get clusters for a given config, generate if already not generated"""
+    if cluster_option_name in temp_file["results"]["clusters"].keys() and not rerun:
+        return temp_file["results"]["clusters"][cluster_option_name]
+    else:
+        coptions = input["clustering"]
+        c = next((d for d in coptions if d.get("id") == cluster_option_name), None)
+        if c is  None:
+            raise ValueError("Invalid cluster options name")
+        id = c["id"]
+        dist_matrix = temp_file["results"]["distance"][c["distance"]]
+        #print(dist_matrix)
+        c_method = c["method"]
+        c_options = c["options"]
+        c_notes = c["note"]
+        res = identify_coregulators(dist_matrix, target, c_method, c_options, c_notes)
+        return res
+
 
 
 def generate_result_file(input, env, options, args):
@@ -52,7 +73,7 @@ def generate_result_file(input, env, options, args):
     #     input_data = json.load(f)
 
     success_target = ut.get_exp_target_list(out_path)
-    # print(success_target)
+    #print(len(success_target))
 
     all_results = [cl["id"] for cl in input["clustering"]]
     result_list_input = options.get("cluster_list", all_results)
@@ -69,8 +90,11 @@ def generate_result_file(input, env, options, args):
     for t in success_target:
         data = _get_temp_file(temp_path, t)
         # print(data)
+        #print(t)
         for r in result_list:
-            result_objs[r].append(data["results"]["clusters"][r])
+            target_cluster_df = get_clustering_results(input,t,r,data,rerun)
+            #print(target_cluster_df)
+            result_objs[r].append(target_cluster_df)
 
     master_file = []
     for r in result_list:
@@ -99,7 +123,8 @@ METHOD_REGISTRY = {
     "target_info":target_info,
     "target_run_diagram":target_run_diagram,
     "parameter_selection_plot":parameter_selection_plot,
-    "performance_indices_ppi_network":performance_indices_ppi_network
+    "performance_indices_ppi_network":performance_indices_ppi_network,
+    "find_frequent_coregs":find_frequent_coregs
 }
 
 # CLI entry point
