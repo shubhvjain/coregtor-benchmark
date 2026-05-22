@@ -55,7 +55,7 @@ def generate_result_file(input, env, options, args):
     # print(success_target)
 
     all_results = [cl["id"] for cl in input["clustering"]]
-    result_list_input = options.get("result_list", all_results)
+    result_list_input = options.get("cluster_list", all_results)
 
     result_list = []  # only that are not already done
     for r in result_list_input:
@@ -72,10 +72,21 @@ def generate_result_file(input, env, options, args):
         for r in result_list:
             result_objs[r].append(data["results"]["clusters"][r])
 
+    master_file = []
     for r in result_list:
         df = pd.concat(result_objs[r], ignore_index=True)
+        master_file.append(df)
         result_file_path = cluster_folder / f"{r}.csv"
         df.to_csv(result_file_path, index=False)
+
+    # this creates a folder with the name and a file inside it titled clusters.csv.gz
+    save_to_output = options.get("save_to_output",True)    
+    if save_to_output:
+        result_folder_out = out_path/f"{options.get('result_name','default')}"
+        result_folder_out.mkdir(exist_ok=True, parents=True)
+        final_df = pd.concat(master_file, ignore_index=True)
+        final_df.to_csv(result_folder_out/"clusters.csv.gz", index=False)
+
 
 
 METHOD_REGISTRY = {

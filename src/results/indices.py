@@ -68,15 +68,21 @@ def performance_indices1(input, env,options ,args):
     out_path, temp_path = ut.get_exp_path(input,env)
     rerun = args.rerun
     n_jobs = args.njobs if args.njobs is not None else 4
-    print(n_jobs)
+    # print(n_jobs)
     bio_path = env["DATA_PATH"]
+
+    # first get the list of cluster files in the result name 
+    cluster_file_list = ut.get_cluster_list_result(input,options.get("result_name","NotFound"))
 
     cluster_folder = temp_path/"clusters"
     cluster_folder.mkdir(exist_ok=True, parents=True)
 
     all_results = [cl["id"] for cl in input["clustering"]]
-    result_list_input = options.get("result_list", all_results)
-
+    
+    result_list_input = all_results
+    if cluster_file_list is not None :
+        result_list_input = cluster_file_list
+    
     result_list = []  # only that are not already done
     for r in result_list_input:
         result_file_path = cluster_folder / f"index_{r}.csv"
@@ -262,11 +268,23 @@ def performance_indices_ppi_network1(input, env,options ,args):
     # print(n_jobs)
     bio_path = env["DATA_PATH"]
 
+    # first get the list of cluster files in the result name 
+    cluster_file_list = ut.get_cluster_list_result(input,options.get("result_name","NotFound"))
+
     cluster_folder = temp_path/"clusters"
     cluster_folder.mkdir(exist_ok=True, parents=True)
 
     all_results = [cl["id"] for cl in input["clustering"]]
-    result_list_input = options.get("result_list", all_results)
+    
+    result_list_input = all_results
+    if cluster_file_list is not None :
+        result_list_input = cluster_file_list
+
+    # cluster_folder = temp_path/"clusters"
+    # cluster_folder.mkdir(exist_ok=True, parents=True)
+
+    # all_results = [cl["id"] for cl in input["clustering"]]
+    # result_list_input = options.get("result_list", all_results)
 
     result_list = []  # only that are not already done
     for r in result_list_input:
@@ -316,11 +334,18 @@ def performance_indices_ppi_network1(input, env,options ,args):
 def performance_indices_ppi_network(input, env, options, args):
     out_path, temp_path = ut.get_exp_path(input, env)
     bio_path = env["DATA_PATH"]
-    cluster_folder = temp_path / "clusters"
     rerun = args.rerun
+    cluster_file_list = ut.get_cluster_list_result(input,options.get("result_name","NotFound"))
+
+    cluster_folder = temp_path/"clusters"
+    cluster_folder.mkdir(exist_ok=True, parents=True)
+
     all_results = [cl["id"] for cl in input["clustering"]]
-    result_list_input = options.get("result_list", all_results)
     
+    result_list_input = all_results
+    if cluster_file_list is not None :
+        result_list_input = cluster_file_list
+        
     ppi_list = ['hippie', 'stringdb', 'biogrid']
     
     # 1. Initialize a dictionary to hold DataFrames for each result ID

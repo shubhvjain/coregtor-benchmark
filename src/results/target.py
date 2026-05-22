@@ -128,9 +128,6 @@ def target_run_diagram(input, env, options, args):
     # Save as SVG 
     plt.savefig(out_file)
 
-    
-
-
 """
 To interactively explore an experiment
 """

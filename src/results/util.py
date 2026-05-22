@@ -35,11 +35,16 @@ def get_result_by_id(input, id):
  
 def get_exp_path(input,env):
     """
+    Use this everywhere to get the path to the experiment results and temp folder. 
     output_path = env.EXP_OUTPUT_PATH/input
     r
     """
-    output_path = Path(env.get("EXP_OUTPUT_PATH"))/ input.get("id")
-    temp_path = Path(env.get("EXP_TEMP_PATH"))/ input.get("id")
+    if input.get("path",None) is not  None:
+        output_path = Path(env.get("EXP_OUTPUT_PATH"))/ input.get("path")
+        temp_path = Path(env.get("EXP_TEMP_PATH"))/ input.get("path")
+    else:
+        output_path = Path(env.get("EXP_OUTPUT_PATH"))/ input.get("id")
+        temp_path = Path(env.get("EXP_TEMP_PATH"))/ input.get("id")
     return output_path,temp_path
 
 def get_exp_target_list(out_path):
@@ -104,3 +109,21 @@ color_palette = {
     "medium_gray": "#9B9C9B",
     "light_gray": "#EBEBEB"
 }
+
+
+
+def get_cluster_list_result(input_data, result_name):
+    """
+    Looks for a result with "type": "generate_result_file" and a matching 
+    "result_name", then returns its "cluster_list". Raises ValueError if not found.
+    """
+    # Safeguard in case the "results" key doesn't exist or is empty
+    results = input_data.get("results", [])
+    
+    for result in results:
+        if result.get("type") == "generate_result_file" and result.get("result_name") == result_name:
+            # Return the cluster list if found
+            return result.get("cluster_list", [])
+            
+    # If the loop finishes without returning, raise the error
+    raise ValueError(f"No result found with type 'generate_result_file' and result_name '{result_name}'")
