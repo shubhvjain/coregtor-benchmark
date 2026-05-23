@@ -1,0 +1,9 @@
+{
+  "about":"The list of genes related to a GO term",
+  "list":[
+    {
+      "title":"coregulators_list",
+      "term":"GO:0003712"
+    }
+]
+}

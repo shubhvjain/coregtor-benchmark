@@ -18,6 +18,8 @@ from pathlib import Path
 import src.results.util as ut
 import pooch
 
+from tfitpy import get_gene_products
+
 
 def load_list() -> list[dict]:
     path = Path(__file__).parent.parent.parent /"experiments"/"analysis"/"gtex.json"
@@ -120,12 +122,27 @@ def list_datasets(env):
         print(f"{ds['id']:<25} {status}")
 
 
+def generate_gene_lists(env):
+    """"""
+    path = Path(__file__).parent.parent.parent/"analysis"/"gene_lists.json"
+    with open(path) as f:
+        data = json.load(f)
+    for d in data["list"]:
+        dataset_dir = Path(env["DATA_PATH"]) / d["title"]
+        dataset_dir.mkdir(parents=True, exist_ok=True)
+        list_file = dataset_dir/"list.csv"
+        df = get_gene_products(env["DATA_PATH"],d["term"])
+        df.to_csv(list_file,index=False)
+
+
+
 def main():
     parser = argparse.ArgumentParser(description="Download datasets")
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument("--all",  action="store_true")
     group.add_argument("--id",   metavar="ID")
     group.add_argument("--list", action="store_true")
+    group.add_argument("--gene_list", action="store_true")
     parser.add_argument("--rerun", action="store_true")
     parser.add_argument("--env",   required=True,
                         metavar="PATH", help="Path to the .env file.")
@@ -138,6 +155,8 @@ def main():
         download_one(env,args.id, rerun=args.rerun)
     elif args.list:
         list_datasets()
+    elif args.gene_list:
+        generate_gene_lists(env)
 
 
 if __name__ == "__main__":

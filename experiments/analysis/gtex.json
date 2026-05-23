@@ -365,6 +365,10 @@
     {
       "id": "r1",
       "type": "generate_gtex_stats"
+    },
+     {
+      "id": "r2",
+      "type": "gtex_stats_diagram"
     }
   ]
 }

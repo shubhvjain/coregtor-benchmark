@@ -31,7 +31,7 @@ def get_mappings(CONFIG, gene_list, source, target, batch_size=900):
     Returns:
         Dictionary mapping {source_value: target_value, ...}
     """
-    db_path = CONFIG["DATA_PATH"]/"gencode"/"gene_name_mapping.db"
+    db_path = Path( os.path.expandvars(  CONFIG["DATA_PATH"])) /"gencode"/"gene_name_mapping.db"
     #print(db_path)
     #print(db_path.exists())
     con = sqlite3.connect(db_path)
@@ -85,9 +85,16 @@ def get_mappings(CONFIG, gene_list, source, target, batch_size=900):
 def get_tflist(CONFIG):
     """
     """
-    tf_path = CONFIG["DATA_PATH"] / "tflist"/ "allTFs_hg38.txt"
+    tf_path = Path(CONFIG["DATA_PATH"]) / "tflist"/ "allTFs_hg38.txt"
     df = pd.read_csv(tf_path, names=["gene_name"], header=None)
     return  df["gene_name"].tolist()
+
+def get_coreglist(CONFIG):
+    """
+    """
+    file_path = Path(CONFIG["DATA_PATH"]) / "coregulators_list"/ "list.csv"
+    df = pd.read_csv(file_path)
+    return  df["symbol"].tolist()
 
 
 def get_protein_coding_genes(gene_list, CONFIG):
@@ -95,7 +102,7 @@ def get_protein_coding_genes(gene_list, CONFIG):
     Fetches all protein-coding genes once and intersects with input list in memory.
     Best for one-time calls with large input lists.
     """
-    db_path = CONFIG["DATA_PATH"] / "gencode" / "gene_name_mapping.db"
+    db_path =  Path(os.path.expandvars(CONFIG["DATA_PATH"])) / "gencode" / "gene_name_mapping.db"
     
     # 1. Fetch all protein-coding genes from the DB
     query = "SELECT DISTINCT gene_name FROM mappings WHERE gene_type = 'protein_coding'"
