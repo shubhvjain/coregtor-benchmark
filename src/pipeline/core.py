@@ -311,17 +311,20 @@ class CoRegTorPipeline:
             results["distance"] = comparison_results
 
             # clustering results
+            add_cluster_results = False
             cluster_results = {}
-            cluster_options = self.options.get("clustering")
-            for c in cluster_options:
-                id = c["id"]
-                dist_matrix = comparison_results[c["distance"]]
-                c_method = c["method"]
-                c_options = c["options"]
-                c_notes = c["note"]
-                res = identify_coregulators(
-                    dist_matrix, target, c_method, c_options, c_notes)
-                cluster_results[id] = res
+            
+            if add_cluster_results:
+                cluster_options = self.options.get("clustering")
+                for c in cluster_options:
+                    id = c["id"]
+                    dist_matrix = comparison_results[c["distance"]]
+                    c_method = c["method"]
+                    c_options = c["options"]
+                    c_notes = c["note"]
+                    res = identify_coregulators(
+                        dist_matrix, target, c_method, c_options, c_notes)
+                    cluster_results[id] = res
 
             results["clusters"] = cluster_results
 

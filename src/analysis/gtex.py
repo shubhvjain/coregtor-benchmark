@@ -320,7 +320,7 @@ def generate_gtex_reference_plots(folder_path):
         'figure.titlesize': 16
     })
     
-    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(calc_width, calc_height), sharex=False)
+    fig,(ax1, ax2, ax3, ax4, ax5) = plt.subplots(5, 1, figsize=(calc_width, calc_height), sharex=False)
     fig.suptitle("GTEx Tissue Dataset Profile", weight="bold", y=0.97)
     
     # Top Panel: Sample Sizes
@@ -397,6 +397,63 @@ def generate_gtex_reference_plots(folder_path):
     
     # Provide upper cushion limit for the log annotations to prevent clipping
     ax2.set_ylim(bottom=1, top=ax2.get_ylim()[1] * 4)
+
+
+    # --- Parse Sparsity Distributions tracking the sorted tissue order ---
+    thresh_records = []
+    for abbr in df["abbr"]:
+        stats = detailed_stats.get(abbr, {})
+        categories = {
+            'PCG': stats.get('pc_sparsity_distribution', {}),
+            'TF': stats.get('tf_sparsity_distribution', {}),
+            'Regulators': stats.get('reg_sparsity_distribution', {})
+        }
+        for cat_name, dist_data in categories.items():
+            if dist_data and 'threshold' in dist_data:
+                for t, pct in zip(dist_data['threshold'], dist_data['percentage']):
+                    thresh_records.append({
+                        'abbr': abbr,
+                        'Category': cat_name,
+                        'Threshold': t,
+                        'Percentage': pct
+                    })
+    
+    thresh_df = pd.DataFrame(thresh_records)
+    color_palette = sns.color_palette("turbo", n_colors=num_datasets)
+
+    # Panel 3: PCG Threshold Distribution
+    sns.lineplot(
+        data=thresh_df[thresh_df['Category'] == 'PCG'],
+        x='Threshold', y='Percentage', hue='abbr', ax=ax3,
+        palette=color_palette, linewidth=1.5, alpha=0.85, legend=False
+    )
+    ax3.set_title("Protein Coding Genes (PCG) Retention Curve", loc="left", weight="semibold")
+    ax3.set_xlabel("Sparsity Cutoff Limit (Fraction of Zeros)")
+    ax3.set_ylabel("Genes Retained (%)")
+    ax3.set_ylim(-5, 105)
+
+    # Panel 4: TF Threshold Distribution
+    sns.lineplot(
+        data=thresh_df[thresh_df['Category'] == 'TF'],
+        x='Threshold', y='Percentage', hue='abbr', ax=ax4,
+        palette=color_palette, linewidth=1.5, alpha=0.85, legend=False
+    )
+    ax4.set_title("Transcription Factors (TF) Retention Curve", loc="left", weight="semibold")
+    ax4.set_xlabel("Sparsity Cutoff Limit (Fraction of Zeros)")
+    ax4.set_ylabel("Genes Retained (%)")
+    ax4.set_ylim(-5, 105)
+
+    # Panel 5: Regulators Threshold Distribution
+    sns.lineplot(
+        data=thresh_df[thresh_df['Category'] == 'Regulators'],
+        x='Threshold', y='Percentage', hue='abbr', ax=ax5,
+        palette=color_palette, linewidth=1.5, alpha=0.85, legend=True
+    )
+    ax5.set_title("Global Regulators (Reg) Retention Curve", loc="left", weight="semibold")
+    ax5.set_xlabel("Sparsity Cutoff Limit (Fraction of Zeros)")
+    ax5.set_ylabel("Genes Retained (%)")
+    ax5.set_ylim(-5, 105)
+    ax5.legend(title="Datasets", bbox_to_anchor=(1.01, 1.0), loc="upper left", borderaxespad=0, frameon=True)
 
     plt.tight_layout(rect=[0.01, 0.01, 0.99, 0.94])
     
