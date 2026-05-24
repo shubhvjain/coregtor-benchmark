@@ -266,8 +266,7 @@ def parameter_config_plot(input, env, options, args):
 
     metrics_list = options.get("metrics_list", default_metrics)
 
-    pconfig_path = apath/"parameter_selection"/"config.csv"
-    pconfig = pd.read_csv(pconfig_path,index_col=0)
+    pconfig =  ut.get_ps_configs()
     plot_landscape_metrics(df, metrics_list, out_file, False)
     result_plot1 = folder / f"param_selection_summary_{options['result_name']}.pdf"
     plot_pe_results(df,pconfig,result_plot1)

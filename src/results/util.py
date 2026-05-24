@@ -127,3 +127,10 @@ def get_cluster_list_result(input_data, result_name):
             
     # If the loop finishes without returning, raise the error
     raise ValueError(f"No result found with type 'generate_result_file' and result_name '{result_name}'")
+
+
+def get_ps_configs():
+    """returns the parameter selection configs by reading the file in the experiments folder"""
+    pconfig_path = Path(__file__).parent.parent.parent /"experiments"/"analysis"/"ps_config.csv"
+    pconfig = pd.read_csv(pconfig_path,index_col=0)
+    return pconfig

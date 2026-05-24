@@ -458,5 +458,5 @@ def generate_gtex_reference_plots(folder_path):
     plt.tight_layout(rect=[0.01, 0.01, 0.99, 0.94])
     
     # Fixed file writer parameters to output authentic vector SVG markup
-    plt.savefig(folder / "gtex_landscape_metrics.svg", format="svg", bbox_inches="tight")
+    plt.savefig(folder / "gtex_info.svg", format="svg", bbox_inches="tight")
     plt.close()
