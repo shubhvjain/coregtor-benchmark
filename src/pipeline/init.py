@@ -4,7 +4,7 @@ from datetime import datetime
 import sqlite3
 import json
 import pandas as pd
-from src.pipeline.util import get_protein_coding_genes, get_tflist, read_dataset, get_exp_path
+from src.pipeline.util import get_protein_coding_genes, get_tflist, read_dataset, get_exp_path, get_coreglist
 
 
 def setup_experiment(exp, config):
@@ -32,14 +32,19 @@ def setup_experiment(exp, config):
     #print(exp)
     dataset = read_dataset(exp["dataset"], config)
     tf_list = get_tflist(config)
+    coreg_list = get_coreglist(config)
 
     input = {**exp}
     # source_list
     
     input["source_genes"] = get_filtered_genes(
-        dataset, exp.get("sources"), tf_list,config)
+        dataset, exp.get("sources"), tf_list,coreg_list,config)
     input["target_genes"] = get_filtered_genes(
-        dataset, exp.get("targets"), tf_list,config)
+        dataset, exp.get("targets"), tf_list,coreg_list,config)
+
+    input["target_genes_len"] = len(input["target_genes"])
+    input["source_genes_len"] = len(input["source_genes"])
+
 
     with open(input_file, "w") as f:
         json.dump(input, f)
@@ -69,16 +74,19 @@ def setup_experiment(exp, config):
     return
 
 
-def get_filtered_genes(df, options, tflist, config):
+def get_filtered_genes(df, options, tflist,coreglist, config):
     """
     Selects and filters genes from df based on type and stats.
     """
     #print(options)
     g_type = options.get("type", "all")
+    all_regulators = list(set(tflist) | set(coreglist))
 
     # 1. Selection
     if g_type == "tf":
         pool = [g for g in tflist if g in df.columns]
+    if g_type == "all_regulators":
+        pool = [g for g in all_regulators if g in df.columns]
     elif g_type == "no_tf":
         pool = [g for g in df.columns if g not in tflist]
     elif g_type == "pc_only":

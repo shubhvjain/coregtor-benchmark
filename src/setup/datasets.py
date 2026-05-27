@@ -26,6 +26,11 @@ def load_list() -> list[dict]:
     with open(path) as f:
         return json.load(f)["datasets"]
 
+def load_gene_list() -> list[dict]:
+    path = Path(__file__).parent.parent.parent /"experiments"/"analysis"/"gene_list.json"
+    with open(path) as f:
+        return json.load(f)
+
 
 def get_data_root(env) -> Path:
     data_path = env["DATA_PATH"]
@@ -124,9 +129,7 @@ def list_datasets(env):
 
 def generate_gene_lists(env):
     """"""
-    path = Path(__file__).parent.parent.parent/"analysis"/"gene_lists.json"
-    with open(path) as f:
-        data = json.load(f)
+    data = load_gene_list()
     for d in data["list"]:
         dataset_dir = Path(env["DATA_PATH"]) / d["title"]
         dataset_dir.mkdir(parents=True, exist_ok=True)

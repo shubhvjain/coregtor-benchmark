@@ -196,3 +196,32 @@ def update_batch_complete(batch_db, db_path, retries: int = 5):
 
     print(f"WARNING: flush failed after {retries} attempts. Worker DB kept at {batch_db}")
     print("Run 'consolidate' to retry later")
+
+
+def reset_claimed(exp, config,worker_id=None):
+    """Reset claimed genes back to pending. If worker_id is None, resets all claimed genes."""
+    #  db_path: Path, worker_id: str = None
+    print(exp)
+    print(config)
+    out_path,temp_path = get_exp_path(exp, config)
+
+    db_file = out_path / "status.db"
+
+    conn = sqlite3.connect(db_file, timeout=30)
+    conn.execute("PRAGMA journal_mode=WAL")
+    if worker_id:
+        conn.execute(
+            "UPDATE genes SET status='pending', worker=NULL, started_at=NULL, finished_at=NULL WHERE status='claimed' AND worker=?",
+            (worker_id,)
+        )
+    else:
+        conn.execute(
+            "UPDATE genes SET status='pending', worker=NULL, started_at=NULL, finished_at=NULL WHERE status='claimed'"
+        )
+    conn.commit()
+    row = conn.execute("SELECT COUNT(*) FROM genes WHERE status='pending'").fetchone()
+    conn.close()
+    if worker_id:
+        print(f"reset genes claimed by '{worker_id}' to pending, total pending now: {row[0]}")
+    else:
+        print(f"reset all claimed genes to pending, total pending now: {row[0]}")

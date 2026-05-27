@@ -50,6 +50,15 @@ def get_clustering_results(input,target,cluster_option_name,temp_file,rerun):
         return res
 
 
+def _process_single_target(t, temp_path, input, result_list, rerun):
+    """Worker function to process all cluster configurations for a single target."""
+    data = _get_temp_file(temp_path, t)
+    target_results = {}
+    for r in result_list:
+        target_cluster_df = get_clustering_results(input, t, r, data, rerun)
+        target_results[r] = target_cluster_df
+    return target_results
+
 
 def generate_result_file(input, env, options, args):
     """
@@ -85,16 +94,27 @@ def generate_result_file(input, env, options, args):
             continue
         result_list.append(r)
 
-    result_objs = {r: [] for r in result_list}
+    # # simple non parallel code
+    # result_objs = {r: [] for r in result_list}
+    # for t in success_target:
+    #     data = _get_temp_file(temp_path, t)
+    #     for r in result_list:
+    #         target_cluster_df = get_clustering_results(input,t,r,data,rerun)
+    #         #print(target_cluster_df)
+    #         result_objs[r].append(target_cluster_df)
 
-    for t in success_target:
-        data = _get_temp_file(temp_path, t)
-        # print(data)
-        #print(t)
+    # --- PARALLEL EXECUTION WITH JOBLIB ---
+    # Run the worker function across multiple cores
+    parallel_outputs = Parallel(n_jobs=n_jobs)(
+        delayed(_process_single_target)(t, temp_path, input, result_list, rerun)
+        for t in success_target
+    )
+    # Reconstruct the result_objs dict from the parallel workers' outputs
+    result_objs = {r: [] for r in result_list}
+    for target_res in parallel_outputs:
         for r in result_list:
-            target_cluster_df = get_clustering_results(input,t,r,data,rerun)
-            #print(target_cluster_df)
-            result_objs[r].append(target_cluster_df)
+            result_objs[r].append(target_res[r])
+    # ---------------------------------------
 
     master_file = []
     for r in result_list:

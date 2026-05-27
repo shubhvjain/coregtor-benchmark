@@ -258,7 +258,8 @@ def hdbscan_clustering(distance_matrix, target_gene, options=None):
         min_samples=min_samples,
         cluster_selection_epsilon=epsilon,
         metric='precomputed',
-        cluster_selection_method='eom'
+        cluster_selection_method='eom',
+        copy=False
     )
     cluster_labels = clusterer.fit_predict(distance_matrix.to_numpy())
 

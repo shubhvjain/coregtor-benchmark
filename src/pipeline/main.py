@@ -11,6 +11,28 @@ import sys
 import argparse
 import sys
 import pandas as pd
+import json
+from dotenv import dotenv_values
+
+from src.pipeline.run import reset_claimed
+
+def get_env(env_path):
+    path = Path(env_path)
+    if not path.exists():
+        print(f"[error] env file not found: {env_path}", file=sys.stderr)
+        sys.exit(1)
+    values = dict(dotenv_values(path))    
+    os.environ.update(values)
+    return values
+
+
+def get_input(input_path):
+    path = Path(input_path)
+    if not path.exists():
+        print(f"[error] input file not found: {input_path}", file=sys.stderr)
+        sys.exit(1)
+    with open(path, "r", encoding="utf-8") as f:
+        return json.load(f)
 
 def run_bulk(extra_args):
     """
@@ -32,6 +54,11 @@ def run_bulk(extra_args):
         
     print(f"Executing: {' '.join(cmd)}") # Helpful for debugging
     subprocess.run(cmd, check=True)
+
+def reset_claimed_genes(exp, config,worker):
+    """
+    """
+    reset_claimed(exp, config,worker)
 
 def run():
     """run small set of targets"""
@@ -60,6 +87,15 @@ def main():
                              help="Subcommands and arguments to pass to Snakemake")
 
 
+    # The 'reset_claimed' command explicitly for Snakemake
+    reset_claimed_parser = subparsers.add_parser("reset_claimed", help="Reset exp")
+    
+    # Use REMAINDER to catch everything after 'bulk' (init, batch, etc.)
+    reset_claimed_parser.add_argument("--env",required=True)
+    reset_claimed_parser.add_argument("--input",required=True)
+    reset_claimed_parser.add_argument("--worker",default=None)
+
+
     test_parser = subparsers.add_parser("hi", help="Just a test")
 
 
@@ -86,6 +122,12 @@ def main():
 
     elif args.command == "bulk":
         run_bulk(args.snakemake_args)
+
+    elif args.command == "reset_claimed":
+        env = get_env(args.env)
+        input = get_input(args.input)
+        worker= args.worker
+        reset_claimed_genes(input,env,worker)
 
     elif args.command == "hi":
         print("hi")
