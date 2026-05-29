@@ -1,0 +1,47 @@
+Bootstrap: docker
+From: rocker/r-ver:4.3.0
+
+%post
+    # Prevent interactive prompts during installation
+    export DEBIAN_FRONTEND=noninteractive
+
+    # Install system dependencies required by TCGAbiolinks
+    apt-get update && apt-get install -y \
+        libcurl4-openssl-dev \
+        libssl-dev \
+        libxml2-dev \
+        libfontconfig1-dev \
+        libharfbuzz-dev \
+        libfribidi-dev \
+        libfreetype6-dev \
+        libpng-dev \
+        libtiff5-dev \
+        libjpeg-dev \
+        make \
+        zlib1g-dev
+    
+    # Clean up apt cache to keep the image lean
+    rm -rf /var/lib/apt/lists/*
+
+    # Install BiocManager and TCGAbiolinks
+    R -e "install.packages('BiocManager', repos='http://cran.rstudio.com/')"
+    R -e "BiocManager::install(c('TCGAbiolinks', 'SummarizedExperiment'))"
+
+    # Create directories inside the container
+    mkdir -p /app /data
+
+%files
+    # If you want to copy your script during the build, uncomment the line below
+    # download_tcga.R /app/download_tcga.R
+
+
+
+%environment
+    export LC_ALL=C
+    # Set the working directory context for runtime environments if needed
+    export WORKDIR=/app
+
+%runscript
+    # This acts like the ENTRYPOINT/CMD. 
+    # Uncomment and adjust when you are ready to use the script.
+    # exec Rscript /app/setup/download_tcga.R "$@"
