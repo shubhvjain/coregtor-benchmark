@@ -130,6 +130,12 @@ def read_dataset(details, config):
     #print(config.get("data_path"))
     if dtype == "gct":
         return read_gct(details.get("path"), config, convert_gene_names=details.get("convert_gene_names", True))
+    elif dtype == "tcga":
+        return read_tcga(
+            file_path=details.get("path"), 
+            CONFIG=config, 
+            convert_gene_names=details.get("convert_gene_names", True)
+        )
 
 
 def read_gct(file_path, CONFIG=None, convert_gene_names=False):
@@ -167,8 +173,7 @@ def read_gct(file_path, CONFIG=None, convert_gene_names=False):
         if convert_gene_names:
             if CONFIG is None:
                 raise ValueError("data_path not provided")
-            mps = get_mappings(CONFIG, gene_list=gene, source='gene_id',
-                               target='gene_name')
+            mps = get_mappings(CONFIG, gene_list=gene, source='gene_id',target='gene_name')
             df["Name"] = df["Name"].map(mps)
         if "Name" not in df.columns or "Description" not in df.columns:
             raise ValueError(
@@ -182,3 +187,32 @@ def read_gct(file_path, CONFIG=None, convert_gene_names=False):
         return df
     except Exception as e:
         raise ValueError(f"Error reading GCT file {file_path}: {str(e)}")
+
+
+def read_tcga(file_path, CONFIG=None, convert_gene_names=False):
+    """
+    Read TCGA expression CSV file into a pandas DataFrame.
+    """
+    file_path = Path(os.path.expandvars(file_path))
+    if not file_path.exists():
+        raise FileNotFoundError(f"File not found: {file_path}")
+
+    try:
+        # Load CSV with the gene IDs as the index
+        df = pd.read_csv(file_path, index_col=0)
+
+        if convert_gene_names:
+            if CONFIG is None:
+                raise ValueError("data_path not provided")
+            
+            gene = df.index.tolist()
+            mps = get_mappings(CONFIG, gene_list=gene, source='gene_id', target='gene_name')
+            
+            # Map the index using a list comprehension to safely handle fallbacks without pandas Index bugs
+            df.index = [mps.get(g, g) for g in gene]
+
+        df.index.name = "gene_name"
+        df = df.transpose().rename_axis("sample_name")
+        return df
+    except Exception as e:
+        raise ValueError(f"Error reading TCGA file {file_path}: {str(e)}")
