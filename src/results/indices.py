@@ -4,8 +4,10 @@ import os
 from pathlib import Path
 import pandas as pd
 import  src.results.util as ut 
+import src.pipeline.util as put
 import numpy as np
 from joblib import Parallel, delayed
+from src.results.dcorr import score_single_module,generate_dcor_caches_parallel
 
 def compute_indices_core(data, bio_data_path):
     """Core computation - single dataframe in, scored dataframe out."""
@@ -382,6 +384,117 @@ def performance_indices_ppi_network(input, env, options, args):
     # 3. Final Step: Save consolidated results
     for r, final_df in df_store.items():
         index_file = cluster_folder / f"index_network_{r}.csv"
+        final_df.to_csv(index_file, index=False)
+        print(f"Saved consolidated results to {index_file}")
+
+
+def compute_dcorr_scores(
+    data_df: pd.DataFrame, 
+    ge_data: pd.DataFrame, 
+    src: list, 
+    tgt: list, 
+    ss_cache: pd.DataFrame, 
+    st_cache: pd.DataFrame, 
+    n_jobs: int
+) -> pd.DataFrame:
+    """
+    Computes distance correlation metrics (dCor_source, dCor_target, DC1, DC2) 
+    parallelly across all modules defined in data_df.
+    
+    Parameters:
+    -----------
+    data_df : pd.DataFrame
+        DataFrame containing cluster/module definitions. Must contain columns
+        representing the target gene and the list of module member genes.
+        Expected columns: 'target' and 'genes' (where 'genes' is a comma-separated string or list).
+    ge_data : pd.DataFrame
+        The raw gene expression DataFrame.
+    src : list of str
+        The source gene list.
+    tgt : list of str
+        The target gene list.
+    ss_cache : pd.DataFrame
+        Precomputed source-to-source distance correlation matrix.
+    st_cache : pd.DataFrame
+        Precomputed source-to-target distance correlation matrix.
+    n_jobs : int
+        Number of worker threads/processes to use.
+        
+    Returns:
+    --------
+    scores_df : pd.DataFrame
+        DataFrame with columns ['dCor_source', 'dCor_target', 'DC1', 'DC2']
+        aligned precisely with the indices of data_df.
+    """
+    print(f"Parallelizing module scoring over {len(data_df)} items using {n_jobs} cores...")
+    
+    # Standardize data_df input columns
+    # Assumes 'target' contains the target gene and 'genes' contains the module members
+    targets = data_df['target'].tolist()
+    
+    # Handle potentially stringified lists from CSV format ("geneA,geneB,geneC")
+    module_lists = []
+    for item in data_df['genes']:
+        if isinstance(item, str):
+            module_lists.append([g.strip() for g in item.split(',')])
+        else:
+            module_lists.append(list(item))
+            
+    # Execute scoring functions in parallel
+    # Using default backend ('loky') to safely handle process isolation and numpy memmapping
+    results = Parallel(n_jobs=n_jobs)(
+        delayed(score_single_module)(
+            module_genes=mod, 
+            target_gene=t, 
+            df_src_src=ss_cache, 
+            df_src_tgt=st_cache, 
+            R=100
+        ) for mod, t in zip(module_lists, targets)
+    )
+    
+    # Reconstruct back into a clean structured DataFrame matching the input index
+    scores_df = pd.DataFrame(results, index=data_df.index)
+    return scores_df
+
+
+def performance_indices_dcorr(input, env, options, args):
+    out_path, temp_path = ut.get_exp_path(input, env)
+    bio_path = env["DATA_PATH"]
+    rerun = args.rerun
+    n_jobs = args.njobs if args.njobs is not None else 4
+    
+    cluster_file_list = ut.get_cluster_list_result(input,options.get("result_name","NotFound"))
+    cluster_folder = temp_path/"clusters"
+    cluster_folder.mkdir(exist_ok=True, parents=True)
+    all_results = [cl["id"] for cl in input["clustering"]]
+    result_list_input = all_results
+    if cluster_file_list is not None :
+        result_list_input = cluster_file_list
+
+    ge_data = put.read_dataset(input["dataset"],env)
+    src,tgt = ut.get_input_source_list(out_path)
+    ss_cache,st_cache = generate_dcor_caches_parallel(ge_data,src,tgt)
+    # print(ss_cache)
+    # ss_cache.to_csv("ss_test.csv")
+    
+    # 1. Initialize a dictionary to hold DataFrames for each result ID
+    # This prevents constant disk I/O for the cluster files
+    df_store = {}
+    for r in result_list_input:
+        result_file_path = cluster_folder / f"index_dcor_{r}.csv"
+        if result_file_path.exists() and not rerun:
+            continue
+        cluster_file = cluster_folder / f"{r}.csv"
+        df_store[r] = pd.read_csv(cluster_file)
+    
+    for r, data_df in df_store.items():
+        print(f"Computing dcor scores for cluster set: {r}")
+        scores_df = compute_dcorr_scores(data_df,ge_data,src,tgt,ss_cache,st_cache,n_jobs)
+        df_store[r] = pd.concat([df_store[r], scores_df], axis=1)
+
+    # Final Step: Save consolidated results
+    for r, final_df in df_store.items():
+        index_file = cluster_folder / f"index_dcorr_{r}.csv"
         final_df.to_csv(index_file, index=False)
         print(f"Saved consolidated results to {index_file}")
 

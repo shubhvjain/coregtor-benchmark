@@ -8,7 +8,7 @@ from joblib import Parallel, delayed, load
 import pandas as pd
 
 from src.results.explore import gene_frequency_analysis, distance_measure_analysis
-from src.results.indices import performance_indices1,performance_indices_combined,performance_indices_ppi_network
+from src.results.indices import performance_indices1,performance_indices_combined,performance_indices_ppi_network,performance_indices_dcorr
 from src.results.target import target_info,target_run_diagram
 from src.results.parameter_selection import parameter_selection_plot
 from src.results.frequent_coregs import find_frequent_coregs
@@ -144,7 +144,8 @@ METHOD_REGISTRY = {
     "target_run_diagram":target_run_diagram,
     "parameter_selection_plot":parameter_selection_plot,
     "performance_indices_ppi_network":performance_indices_ppi_network,
-    "find_frequent_coregs":find_frequent_coregs
+    "find_frequent_coregs":find_frequent_coregs,
+    "performance_indices_dcorr":performance_indices_dcorr
 }
 
 # CLI entry point

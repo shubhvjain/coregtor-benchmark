@@ -369,6 +369,11 @@
      {
       "id": "r2",
       "type": "gtex_stats_diagram"
+    },
+    {
+      "id": "r3",
+      "type": "generate_gtex_dcor_cache",
+      "dataset_list":["AMY"]
     }
   ]
 }

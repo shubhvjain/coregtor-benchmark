@@ -11,6 +11,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+import src.results.dcorr as dc
 
 def generate_gtex_stats(input, env, options, args):
     """generate basic stats about GTEx tissue data"""
@@ -460,3 +461,34 @@ def generate_gtex_reference_plots(folder_path):
     # Fixed file writer parameters to output authentic vector SVG markup
     plt.savefig(folder / "gtex_info.svg", format="svg", bbox_inches="tight")
     plt.close()
+
+def generate_gtex_dcor_cache(input, env, options, args):
+    """generate basic stats about GTEx tissue data"""
+    rerun = args.rerun
+    data_folder = Path(os.path.expandvars(env["DATA_PATH"])) / "dcorr_cache"
+    data_folder.mkdir(exist_ok=True, parents=True)
+
+    all_datasets = sorted(list(input["datasets"].keys()))
+    print(all_datasets)
+
+    selected_datasets = options.get("dataset_list",all_datasets)
+
+    tf = get_tflist(env)
+    coreg = get_coreglist(env)
+    all_sources = list(set(tf) | set(coreg))
+
+    for d in selected_datasets:
+        print(d)
+        ss_file = data_folder/f"{d}_src_src.parquet"
+        if ss_file.exists() and not rerun:
+            print("cache exists")
+            continue
+        
+        dets = input["datasets"][d]
+        dets["path"] = os.path.expandvars(f"$DATA_PATH/{dets['path']}")
+        dets["convert_gene_names"]=True
+        data = read_dataset(dets, env)
+        pc_targets = get_protein_coding_genes(data.columns.tolist(),env)
+        ss_df,st_df = dc.generate_dcor_caches_parallel(data,all_sources,pc_targets)
+        ss_df.to_parquet(ss_file,engine='pyarrow', compression='snappy')
+        st_df.to_parquet(data_folder/f"{d}_src_target.parquet",engine='pyarrow', compression='snappy')

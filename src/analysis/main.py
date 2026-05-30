@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 
 from src.results.explore import  plot_skewness_dist, plot_metric_boxplot
 
-from src.analysis.gtex import generate_gtex_stats,gtex_stats_diagram
+from src.analysis.gtex import generate_gtex_stats,gtex_stats_diagram,generate_gtex_dcor_cache
 
 from src.analysis.target import combined_target_diagram, parameter_config_plot
 
@@ -90,7 +90,8 @@ METHOD_REGISTRY = {
     "combined_target_diagram":combined_target_diagram,
     "combined_dataset_target_diagram": combined_dataset_target_diagram,
     "parameter_config_plot":parameter_config_plot,
-    "gtex_stats_diagram":gtex_stats_diagram
+    "gtex_stats_diagram":gtex_stats_diagram,
+    "generate_gtex_dcor_cache":generate_gtex_dcor_cache
 }
 
 # CLI entry point

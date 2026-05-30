@@ -134,3 +134,11 @@ def get_ps_configs():
     pconfig_path = Path(__file__).parent.parent.parent /"experiments"/"analysis"/"ps_config.csv"
     pconfig = pd.read_csv(pconfig_path,index_col=0)
     return pconfig
+
+
+def get_input_source_list(output_path):
+    """"""
+    input_data = get_input(output_path/"input.json")
+    source_list = input_data["source_genes"]
+    target_list = input_data["target_genes"]
+    return source_list,target_list
