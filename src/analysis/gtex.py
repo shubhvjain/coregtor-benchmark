@@ -10,7 +10,9 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-
+import json
+import pyarrow as pa
+import pyarrow.parquet as pq
 import src.results.dcorr as dc
 
 def generate_gtex_stats(input, env, options, args):
@@ -479,8 +481,9 @@ def generate_gtex_dcor_cache(input, env, options, args):
 
     for d in selected_datasets:
         print(d)
-        ss_file = data_folder/f"{d}_src_src.parquet"
-        if ss_file.exists() and not rerun:
+        cache_file_path = data_folder/f"{d}_pc.parquet"
+        json_path = data_folder/f"{d}_metadata.json"
+        if cache_file_path.exists() and not rerun:
             print("cache exists")
             continue
         
@@ -489,6 +492,28 @@ def generate_gtex_dcor_cache(input, env, options, args):
         dets["convert_gene_names"]=True
         data = read_dataset(dets, env)
         pc_targets = get_protein_coding_genes(data.columns.tolist(),env)
-        ss_df,st_df = dc.generate_dcor_caches_parallel(data,all_sources,pc_targets)
-        ss_df.to_parquet(ss_file,engine='pyarrow', compression='snappy')
-        st_df.to_parquet(data_folder/f"{d}_src_target.parquet",engine='pyarrow', compression='snappy')
+        n = 10500
+        sub = data[pc_targets]
+        stats = pd.DataFrame({"m": sub.mean(), "v": sub.var()})
+        pool = stats.sort_values(
+            ["m", "v"], ascending=False).head(n).index.tolist()
+
+        flat_dcor_cache, gene_to_idx, num_genes = dc.generate_combined_dcor_cache(
+            data, all_sources, pool
+        )
+
+        print(f"Saving 1D cache to {cache_file_path}...")
+        # Save compressed 1D matrix
+        table = pa.Table.from_arrays([pa.array(flat_dcor_cache)], names=['dcor'])
+        pq.write_table(table, cache_file_path, compression='SNAPPY')
+        
+        print(f"Saving gene metadata to {json_path}...")
+        # Save JSON metadata map
+        metadata = {
+            "num_genes": num_genes,
+            "gene_to_idx": gene_to_idx
+        }
+        with open(json_path, 'w') as f:
+            json.dump(metadata, f, indent=2)
+
+

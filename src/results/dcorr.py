@@ -2,6 +2,10 @@ import numpy as np
 import pandas as pd
 import dcor
 from joblib import Parallel, delayed
+import os
+import json
+import pyarrow as pa
+import pyarrow.parquet as pq
 
 def compute_distance_correlation(x: np.ndarray, y: np.ndarray) -> float:
     """
@@ -10,257 +14,251 @@ def compute_distance_correlation(x: np.ndarray, y: np.ndarray) -> float:
     return float(dcor.distance_correlation(x, y))
 
 
-def generate_dcor_cache(df_expression: pd.DataFrame, source_gene_list: list, target_gene_list: list):
+def _compute_combined_triangular_row(i: int, combined_matrix: np.ndarray) -> np.ndarray:
     """
-    Generates a 2D source-target cache matrix and a 2D source-source cache matrix 
-    directly from the expression DataFrame.
+    Computes a single row of the strict upper triangle for the combined master matrix.
+    Excludes the diagonal to match analytical 1D index mapping requirements.
+    """
+    num_genes = combined_matrix.shape[1]
     
-    Parameters:
-    -----------
-    df_expression : pd.DataFrame
-        DataFrame where index is sample_name and columns are gene_name strings.
-    source_gene_list : list of str
-        List of gene names representing the ~3k pool of source genes.
-    target_gene_list : list of str
-        List of gene names representing the target genes.
+    # If it's the last gene, there are no remaining upper triangle elements
+    if i >= num_genes - 1:
+        return np.array([], dtype=np.float64)
         
-    Returns:
-    --------
-    source_target_cache : np.ndarray
-        2D array of shape (num_sources, num_targets), where entry [i, j]
-        is dCor(source_gene_list[i], target_gene_list[j])
-    source_source_cache : np.ndarray
-        2D symmetric matrix of shape (num_sources, num_sources) for pairwise 
-        source relationships.
-    """
-    # 1. Filter lists to ensure genes actually exist in the loaded dataset columns
-    valid_sources = [g for g in source_gene_list if g in df_expression.columns]
-    valid_targets = [g for g in target_gene_list if g in df_expression.columns]
+    # Allocate only for strict upper triangle items (excluding diagonal)
+    row_len = num_genes - 1 - i
+    row_results = np.zeros(row_len)
+    reference_vector = combined_matrix[:, i]
     
-    num_sources = len(valid_sources)
-    num_targets = len(valid_targets)
-    
-    print(f"Generating caches for {num_sources} valid sources and {num_targets} valid targets.")
-    
-    # Initialize cache arrays
-    source_target_cache = np.zeros((num_sources, num_targets))
-    source_source_cache = np.zeros((num_sources, num_sources))
-    
-    # Extract underlying NumPy matrices for fast indexing inside loops
-    # .to_numpy() bypasses slower pandas overhead inside the loops
-    source_matrix = df_expression[valid_sources].to_numpy()
-    target_matrix = df_expression[valid_targets].to_numpy()
-    
-    # 2. Populate Source-to-Target Cache Matrix
-    for j in range(num_targets):
-        target_vector = target_matrix[:, j]
-        
-        for i in range(num_sources):
-            source_vector = source_matrix[:, i]
-            source_target_cache[i, j] = compute_distance_correlation(source_vector, target_vector)
-            
-    # 3. Populate Source-to-Source Cache Matrix
-    for i in range(num_sources):
-        gene_i_vector = source_matrix[:, i]
-        source_source_cache[i, i] = 1.0  # Self-correlation identity
-        
-        for j in range(i + 1, num_sources):
-            gene_j_vector = source_matrix[:, j]
-            score = compute_distance_correlation(gene_i_vector, gene_j_vector)
-            
-            # Symmetrical assignment
-            source_source_cache[i, j] = score
-            source_source_cache[j, i] = score
-            
-    return source_source_cache,source_target_cache
-
-
-def _compute_target_row(i: int, source_matrix: np.ndarray, target_matrix: np.ndarray) -> np.ndarray:
-    """
-    Worker function to compute all target distance correlations for a single source gene.
-    Computing an entire row at once reduces parallel scheduling overhead.
-    """
-    num_targets = target_matrix.shape[1]
-    row_results = np.zeros(num_targets)
-    source_vector = source_matrix[:, i]
-    
-    for j in range(num_targets):
-        row_results[j] = float(dcor.distance_correlation(source_vector, target_matrix[:, j]))
+    for idx, j in enumerate(range(i + 1, num_genes)):
+        row_results[idx] = float(dcor.distance_correlation(reference_vector, combined_matrix[:, j], method='mergesort'))
     return row_results
 
 
-def _compute_source_row(i: int, source_matrix: np.ndarray) -> np.ndarray:
+def generate_combined_dcor_cache(df_expression: pd.DataFrame, source_gene_list: list, target_gene_list: list, n_jobs: int = -1):
     """
-    Worker function to compute distance correlations for a single source gene i
-    against all other source genes j where j >= i (upper triangle).
+    Computes a flat 1D upper-triangular array of pairwise dCor values across all unique 
+    genes. Returns the 1D cache and a dictionary mapping gene names to matrix indices.
     """
-    num_sources = source_matrix.shape[1]
-    row_results = np.zeros(num_sources)
-    source_i_vector = source_matrix[:, i]
-    
-    # Self-correlation identity
-    row_results[i] = 1.0
-    
-    # Only calculate the upper triangle
-    for j in range(i + 1, num_sources):
-        row_results[j] = float(dcor.distance_correlation(source_i_vector, source_matrix[:, j]))
-    return row_results
-
-
-def generate_dcor_caches_parallel(df_expression: pd.DataFrame, source_gene_list: list, target_gene_list: list, n_jobs: int = -1):
-    """
-    Generates a 2D source-target cache matrix and a 2D source-source cache matrix 
-    by distributing computations across cores using joblib.
-    
-    Parameters:
-    -----------
-    df_expression : pd.DataFrame
-        DataFrame where rows are samples and columns are gene_name strings.
-    source_gene_list : list of str
-        List of gene names representing the pool of source genes (~3k).
-    target_gene_list : list of str
-        List of gene names representing the target genes.
-    n_jobs : int, default=-1
-        The number of CPUs to use. -1 means use all available processors.
+    # Handle duplicate gene columns by keeping the one with the highest variance
+    if df_expression.columns.duplicated().any():
+        print("Duplicate genes detected. Selecting representatives with highest variance...")
         
-    Returns:
-    --------
-    source_target_cache : np.ndarray
-        2D array of shape (num_sources, num_targets)
-    source_source_cache : np.ndarray
-        2D symmetric matrix of shape (num_sources, num_sources)
-    valid_sources : list of str
-    valid_targets : list of str
-    """
-    # Filter lists to ensure genes exist in dataset columns
-    valid_sources = [g for g in source_gene_list if g in df_expression.columns]
-    valid_targets = [g for g in target_gene_list if g in df_expression.columns]
-    
-    num_sources = len(valid_sources)
-    num_targets = len(valid_targets)
-    
-    print(f"Parallelizing cache generation via joblib using {n_jobs} core(s)...")
-    print(f"Sources: {num_sources}, Targets: {num_targets}")
-    
-    # Convert to contiguous NumPy arrays. 
-    # Joblib automatically memmaps these when spawning processes.
-    source_matrix = np.ascontiguousarray(df_expression[valid_sources].to_numpy())
-    target_matrix = np.ascontiguousarray(df_expression[valid_targets].to_numpy())
-    
-    # Initialize cache structures
-    source_target_cache = np.zeros((num_sources, num_targets))
-    source_source_cache = np.zeros((num_sources, num_sources))
-    
-    # 1. Compute Source-to-Target Cache
-    print("Computing source-to-target cache...")
-    target_rows = Parallel(n_jobs=n_jobs, backend="loky")(
-        delayed(_compute_target_row)(i, source_matrix, target_matrix) for i in range(num_sources)
-    )
-    # Stack row results into the final 2D array
-    source_target_cache = np.vstack(target_rows)
-    
-    # 2. Compute Source-to-Source Cache (Upper Triangle)
-    print("Computing source-to-source cache...")
-    source_rows = Parallel(n_jobs=n_jobs, backend="loky")(
-        delayed(_compute_source_row)(i, source_matrix) for i in range(num_sources)
-    )
-    
-    #Reconstruct symmetric matrix from the upper triangular row outputs
-    for i, row in enumerate(source_rows):
-        # Assign upper triangle values calculated by the worker
-        source_source_cache[i, i:] = row[i:]
-        # Mirror values to the lower triangle
-        source_source_cache[i:, i] = row[i:]
-            
-    # return source_source_cache,source_target_cache
-    # Wrap raw matrices into beautifully indexed DataFrames
-    df_source_target = pd.DataFrame(
-        source_target_cache, 
-        index=valid_sources, 
-        columns=valid_targets
-    )
-    
-    df_source_source = pd.DataFrame(
-        source_source_cache, 
-        index=valid_sources, 
-        columns=valid_sources
-    )
-    
-    return df_source_source,df_source_target
+        variances = df_expression.var(axis=0)
+        unique_highest_var_genes = variances.sort_values(ascending=False).index.drop_duplicates(keep='first')
+        
+        col_positions = [df_expression.columns.get_loc(gene) for gene in unique_highest_var_genes]
+        final_positions = [pos[0] if isinstance(pos, np.ndarray) or isinstance(pos, slice) else pos for pos in col_positions]
+        
+        df_expression = df_expression.iloc[:, final_positions]
 
-def score_single_module(module_genes: list, target_gene: str, df_src_src: pd.DataFrame, df_src_tgt: pd.DataFrame, R: int = 1000) -> dict:
+    # 2. Consolidate a unique master pool of all genes involved
+    master_genes = list(set(source_gene_list + target_gene_list))
+    valid_genes = [g for g in master_genes if g in df_expression.columns]
+    num_genes = len(valid_genes)
+    
+    # Map gene strings to integer array positions for fast downstream lookup
+    gene_to_idx = {gene: idx for idx, gene in enumerate(valid_genes)}
+    
+    print(f"Total Master Genes for Permutation Pool: {num_genes}")
+    print(f"Parallelizing upper triangle generation using {n_jobs} core(s)...")
+    
+    # Extract contiguous NumPy expression matrix (Samples x Genes)
+    expr_matrix = np.ascontiguousarray(df_expression[valid_genes].to_numpy())
+    
+    # 3. Parallel Pass over Rows using the exact method name provided
+    raw_rows = Parallel(n_jobs=n_jobs, backend="loky")(
+        delayed(_compute_combined_triangular_row)(i, expr_matrix) for i in range(num_genes)
+    )
+    
+    # 4. Concatenate directly into a single flat 1D array
+    flat_dcor_cache = np.concatenate([row for row in raw_rows if len(row) > 0])
+    
+    print(f"Cache generated successfully. Size in RAM: {flat_dcor_cache.nbytes / (1024**3):.2f} GB")
+    
+    return flat_dcor_cache, gene_to_idx, num_genes
+
+
+def compute_module_scores(
+    module_genes: list, 
+    target_gene: str, 
+    source_gene_set: list,
+    flat_cache: np.ndarray, 
+    gene_to_idx: dict, 
+    N: int, 
+    R: int = 500):
     """
-    Computes the observed scores, runs permutation testing, and returns 
-    the four metrics (dCor_source, dCor_target, DC1, DC2) for a single module.
+    Computes observed dCor scores and executes permutation testing to calculate
+    DC1(M) and DC2(M), drawing random modules strictly from the provided source_gene_set.
     
-    Parameters:
-    -----------
-    module_genes : list of str
-        List of gene names belonging to the co-regulatory module M.
-    target_gene : str
-        The target gene name t.
-    df_src_src : pd.DataFrame
-        The precomputed source-to-source cache DataFrame.
-    df_src_tgt : pd.DataFrame
-        The precomputed source-to-target cache DataFrame.
-    R : int
-        Number of permutations.
+    Args:
+        module_genes (list): List of gene names in the module M.
+        target_gene (str): Gene name of the target t.
+        source_gene_set (list): The master list of valid source genes (e.g., TFs/co-regulators).
+        flat_cache (np.ndarray): Loaded 1D flat upper-triangular array.
+        gene_to_idx (dict): Gene-to-index mapping dictionary from JSON metadata.
+        N (int): Total number of unique genes in the cache pool (num_genes).
+        R (int): Number of permutations.
     """
-    # 1. Filter module genes against cache coverage
-    valid_m = [g for g in module_genes if g in df_src_src.index]
-    m_size = len(valid_m)
+    # Helper to convert gene pair (g1, g2) to the strict flat 1D array index
+    def get_flat_idx(g1, g2):
+        i, j = gene_to_idx[g1], gene_to_idx[g2]
+        if i > j: 
+            i, j = j, i  # Symmetrical adjustment for strict upper triangle
+        return int(i * N - (i * (i + 1)) // 2 + (j - i - 1))
+
+    # 1. Clean and validate inputs against our cache universe
+    all_genes_universe = list(gene_to_idx.keys())
+    module_genes = [g for g in module_genes if g in gene_to_idx]
+    n = len(module_genes)
     
-    if m_size < 2 or target_gene not in df_src_tgt.columns:
-        return {"dCor_source": np.nan, "dCor_target": np.nan, "DC1": np.nan, "DC2": np.nan}
+    # Filter the background permutation pool to include ONLY valid source genes present in the cache
+    valid_source_pool = np.array([g for g in source_gene_set if g in gene_to_idx])
+    universe_arr = np.array(all_genes_universe)
     
-    # 2. Extract underlying raw matrices and coordinate index integers
-    src_src_matrix = df_src_src.to_numpy()
-    src_tgt_matrix = df_src_tgt.to_numpy()
+    if n < 2 or target_gene not in gene_to_idx or len(valid_source_pool) < n:
+        return {"dCor_sources": 0.0, "dCor_target": 0.0, "DC1": 0.0, "DC2": 0.0, "error": "Invalid pool size or missing indices"}
+
+    # ==========================================
+    # 2. COMPUTE OBSERVED METRICS FOR MODULE M
+    # ==========================================
+    # Ms: Source-to-Source pairs (i < j)
+    ms_indices = [get_flat_idx(module_genes[k], module_genes[m]) 
+                  for k in range(n) for m in range(k + 1, n)]
+    obs_dcor_source = np.mean(flat_cache[ms_indices])
     
-    # Map names to integer positions
-    src_indices = [df_src_src.index.get_loc(g) for g in valid_m]
-    tgt_idx = df_src_tgt.columns.get_loc(target_gene)
-    all_possible_sources = np.arange(src_src_matrix.shape[0])
+    # Mt: Source-to-Target pairs
+    mt_indices = [get_flat_idx(g, target_gene) for g in module_genes]
+    obs_dcor_target = np.mean(flat_cache[mt_indices])
     
-    # 3. Compute Observed Metrics
-    # Source-to-Target Observed Mean
-    obs_target = np.mean(src_tgt_matrix[src_indices, tgt_idx])
-    
-    # Source-to-Source Observed Mean (extracting unique upper triangular pairs)
-    sub_matrix = src_src_matrix[np.ix_(src_indices, src_indices)]
-    obs_source = np.sum(np.triu(sub_matrix, k=1)) / (m_size * (m_size - 1) / 2)
-    
-    # 4. Permutation Testing Loop
-    better_target_count = 0
+    # ==========================================
+    # 3. PERMUTATION TESTING (R ITERATIONS)
+    # ==========================================
     better_source_count = 0
+    better_target_count = 0
     
-    # Pre-generate random index choices to maximize internal CPU caching
-    # Drawing m_size random source genes uniformly at random without replacement
     for _ in range(R):
-        perm_indices = np.random.choice(all_possible_sources, size=m_size, replace=False)
+        # CORRECTED STEP: Sample random background module M' STRICTLY from the regulatory source pool
+        perm_module = np.random.choice(valid_source_pool, size=n, replace=False)
         
-        # Calculate Permuted Target Mean
-        perm_target = np.mean(src_tgt_matrix[perm_indices, tgt_idx])
-        if perm_target >= obs_target:
+        # Sample random background target t' from the entire gene universe
+        perm_target = np.random.choice(universe_arr)
+        
+        # Calculate Permuted Source-to-Source Mean
+        perm_ms_idx = [get_flat_idx(perm_module[k], perm_module[m]) 
+                       for k in range(n) for m in range(k + 1, n)]
+        perm_dcor_source = np.mean(flat_cache[perm_ms_idx])
+        
+        # Calculate Permuted Source-to-Target Mean
+        perm_mt_idx = [get_flat_idx(g, perm_target) for g in perm_module]
+        perm_dcor_target = np.mean(flat_cache[perm_mt_idx])
+        
+        # Evaluate Indicator Condition: I[m'_i >= m]
+        if perm_dcor_source >= obs_dcor_source:
+            better_source_count += 1
+        if perm_dcor_target >= obs_dcor_target:
             better_target_count += 1
             
-        # Calculate Permuted Source Mean
-        perm_sub = src_src_matrix[np.ix_(perm_indices, perm_indices)]
-        perm_source = np.sum(np.triu(perm_sub, k=1)) / (m_size * (m_size - 1) / 2)
-        if perm_source >= obs_source:
-            better_source_count += 1
-            
-    # 5. Evaluate final P-values and Log Scores
-    p_target = (better_target_count + 1) / (R + 1)
+    # ==========================================
+    # 4. CALCULATE P-VALUES AND DC SCORES
+    # ==========================================
     p_source = (better_source_count + 1) / (R + 1)
+    p_target = (better_target_count + 1) / (R + 1)
     
-    dc1 = -np.log(p_target)
-    dc2 = -np.log(p_source)
+    dc1_score = -np.log(p_target)
+    dc2_score = -np.log(p_source)
     
     return {
-        "dCor_source": obs_source,
-        "dCor_target": obs_target,
-        "DC1": dc1,
-        "DC2": dc2
+        "dCor_sources": round(obs_dcor_source,5),
+        "dCor_target": round(obs_dcor_target,5),
+        "DC1": round(dc1_score,5),
+        "DC2": round(dc2_score,5)
     }
 
+
+
+def compute_common_targets_EC_scores(
+    common_target: list, 
+    flat_cache: np.ndarray, 
+    gene_to_idx: dict, 
+    N: int, 
+    R: int = 500
+) -> dict:
+    """
+    Computes the internal Expression Coherence (EC) score for a set of common targets
+    by comparing their mean pairwise dCor against a randomized background distribution.
+    
+    Args:
+        common_target (list): List of target gene names belonging to a frequent itemset module.
+        flat_cache (np.ndarray): Flattened 1D upper-triangular array of pairwise dCor values.
+        gene_to_idx (dict): Dictionary mapping gene strings to matrix indices.
+        N (int): Total number of unique genes in the cache pool.
+        R (int): Number of permutations.
+        
+    Returns:
+        dict: Containing observed mean target dCor, the empirical P-value, and the ECCT score.
+    """
+    # Helper to convert gene pair (g1, g2) to the strict flat 1D array index
+    def get_flat_idx(g1, g2):
+        i, j = gene_to_idx[g1], gene_to_idx[g2]
+        if i > j: 
+            i, j = j, i  # Symmetrical adjustment for strict upper triangle
+        return int(i * N - (i * (i + 1)) // 2 + (j - i - 1))
+
+    # 1. Clean and validate target list against the cache pool universe
+    all_genes_universe = list(gene_to_idx.keys())
+    universe_arr = np.array(all_genes_universe)
+    
+    valid_targets = [g for g in common_target if g in gene_to_idx]
+    n_targets = len(valid_targets)
+    
+    # Statistical control: Pairwise correlation requires at least 2 elements
+    if n_targets < 2:
+        return {
+            "obs_mean_dCor_targets": 0.0,
+            "p_value": 1.0,
+            "ECCT": 0.0,
+            "error": "Insufficient valid targets in cache universe (minimum 2 required)"
+        }
+
+    # ==========================================
+    # 2. COMPUTE OBSERVED MEAN PAIRWISE TARGET dCor
+    # ==========================================
+    # Get all distinct pairs i < j within the target set
+    target_pair_indices = [
+        get_flat_idx(valid_targets[k], valid_targets[m]) 
+        for k in range(n_targets) for m in range(k + 1, n_targets)
+    ]
+    obs_mean_target_dcor = np.mean(flat_cache[target_pair_indices])
+    
+    # ==========================================
+    # 3. PERMUTATION TESTING (R ITERATIONS)
+    # ==========================================
+    better_target_set_count = 0
+    
+    for _ in range(R):
+        # Sample random background targets of size n_targets from the whole universe
+        perm_targets = np.random.choice(universe_arr, size=n_targets, replace=False)
+        
+        # Calculate Permuted Target-to-Target Mean
+        perm_pair_indices = [
+            get_flat_idx(perm_targets[k], perm_targets[m]) 
+            for k in range(n_targets) for m in range(k + 1, n_targets)
+        ]
+        perm_mean_target_dcor = np.mean(flat_cache[perm_pair_indices])
+        
+        # Evaluate indicator criteria: Did a random shuffle score equal or better?
+        if perm_mean_target_dcor >= obs_mean_target_dcor:
+            better_target_set_count += 1
+            
+    # ==========================================
+    # 4. CALCULATE EMPIRICAL P-VALUE AND ECCT
+    # ==========================================
+    p_value = (better_target_set_count + 1) / (R + 1)
+    ecct_score = -np.log(p_value)
+    
+    return {
+        "obs_mean_dCor_targets": round(obs_mean_target_dcor, 5),
+        "p_value": round(p_value, 5),
+        "ECCT": round(ecct_score, 5)
+    }

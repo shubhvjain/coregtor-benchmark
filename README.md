@@ -100,10 +100,10 @@ ENV_PATH="$PWD/.env"
 EXP_PATH="$PWD/experiments/test1.json"
 
 # Run a batch (run multiple times if needed )
-poetry run coregtor bulk batch  --config env=$ENV_PATH  input=$EXP_PATH items=10
+poetry run coregtor_pipeline bulk batch  --config env=$ENV_PATH  input=$EXP_PATH items=10
 
 # Generate results files
-poetry run coregtor bulk result  --config env=$ENV_PATH  input=$EXP_PATH name=result_name
+poetry run coregtor_pipeline bulk result  --config env=$ENV_PATH  input=$EXP_PATH name=result_name
 ```
 The bulk command gives you the flexibility to run parallel jobs.
 
@@ -136,7 +136,7 @@ poetry run coregtor bulk batch  --config env=$ENV_PATH  input=$EXP_PATH items=25
 The next step is to generate the result files. The options for each result type are defined in the experiment files under the "results" list. 
 
 ```bash
-poetry run python src/results/main.py --env=$ENV_PATH --input=$EXP_PATH --id=r1
+poetry run result --env=$ENV_PATH  --input=$EXP_PATH --id=r1
 ```
 
 Then, we add validation indices to the results generated. 
@@ -194,7 +194,8 @@ export EXP_PATH_PIT="$PWD/experiments/ps1/pit.json"
 
 poetry run coregtor bulk batch  --config env=$ENV_PATH  input=$EXP_PATH_AMY items=500
 
-poetry run python src/results/main.py --env=$ENV_PATH  --input=$EXP_PATH_AMY --id=r0
+poetry run result --env=$ENV_PATH  --input=$EXP_PATH --id=r0
+
 poetry run python src/results/main.py --env=$ENV_PATH  --input=$EXP_PATH_AMY --id=r1
 
 
@@ -210,3 +211,8 @@ poetry run python src/results/main.py --env=$ENV_PATH  --input=$EXP_PATH_AMY --i
 ### Configurations 
 ![Parameters](configs.excalidraw.svg)
 
+
+Random commands:
+```bash
+poetry --no-cache add tfitpy@0.6.8
+```
