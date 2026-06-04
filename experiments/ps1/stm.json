@@ -2,7 +2,7 @@
   "type":"coregtor_parameter_selection",
   "id": "ps_stm",
   "about": "To run CoRegTor on a simple dataset",
-
+  "path":"ps1/stm",
   "dataset": {
     "name": "STM",
     "path": "$DATA_PATH/STM/gene_tpm_v11_stomach.gct",
@@ -43,21 +43,21 @@
     {
       "id": "c1",
       "note": "c1",
-      "distance": "cosine_distance",
+      "distance": "euclidean_distance",
       "method": "hierarchical",
       "options": { "auto_threshold": "inconsistency" }
     },
     {
       "id": "c2",
       "note": "c2",
-      "distance": "cosine_distance",
+      "distance": "euclidean_distance",
       "method": "hierarchical",
       "options": { "n_cluster_size": 10 }
     },
     {
       "id": "c3",
       "note": "c3",
-      "distance": "cosine_distance",
+      "distance": "euclidean_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "threshold_percentile",
@@ -68,7 +68,7 @@
     {
       "id": "c4",
       "note": "c4",
-      "distance": "cosine_distance",
+      "distance": "euclidean_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "threshold_percentile",
@@ -79,7 +79,7 @@
     {
       "id": "c5",
       "note": "c5",
-      "distance": "cosine_distance",
+      "distance": "euclidean_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "threshold_percentile",
@@ -90,7 +90,7 @@
     {
       "id": "c6",
       "note": "c6",
-      "distance": "cosine_distance",
+      "distance": "euclidean_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "threshold_percentile",
@@ -101,7 +101,7 @@
     {
       "id": "c7",
       "note": "c7",
-      "distance": "cosine_distance",
+      "distance": "euclidean_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "threshold_percentile",
@@ -112,7 +112,7 @@
     {
       "id": "c8",
       "note": "c8",
-      "distance": "cosine_distance",
+      "distance": "euclidean_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "threshold_percentile",
@@ -123,7 +123,7 @@
     {
       "id": "c9",
       "note": "c9",
-      "distance": "cosine_distance",
+      "distance": "euclidean_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "knn",
@@ -134,7 +134,7 @@
     {
       "id": "c10",
       "note": "c10",
-      "distance": "cosine_distance",
+      "distance": "euclidean_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "knn",
@@ -145,7 +145,7 @@
     {
       "id": "c11",
       "note": "c11",
-      "distance": "cosine_distance",
+      "distance": "euclidean_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "knn",
@@ -156,28 +156,28 @@
     {
       "id": "c12",
       "note": "c12",
-      "distance": "cosine_distance",
+      "distance": "euclidean_distance",
       "method": "hdbscan",
       "options": {}
     },
     {
       "id": "c13",
       "note": "c13",
-      "distance": "euclidean_distance",
+      "distance": "manhattan_distance",
       "method": "hierarchical",
       "options": { "auto_threshold": "inconsistency" }
     },
     {
       "id": "c14",
       "note": "c14",
-      "distance": "euclidean_distance",
+      "distance": "manhattan_distance",
       "method": "hierarchical",
       "options": { "n_cluster_size": 10 }
     },
     {
       "id": "c15",
       "note": "c15",
-      "distance": "euclidean_distance",
+      "distance": "manhattan_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "threshold_percentile",
@@ -188,7 +188,7 @@
     {
       "id": "c16",
       "note": "c16",
-      "distance": "euclidean_distance",
+      "distance": "manhattan_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "threshold_percentile",
@@ -199,7 +199,7 @@
     {
       "id": "c17",
       "note": "c17",
-      "distance": "euclidean_distance",
+      "distance": "manhattan_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "threshold_percentile",
@@ -210,7 +210,7 @@
     {
       "id": "c18",
       "note": "c18",
-      "distance": "euclidean_distance",
+      "distance": "manhattan_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "threshold_percentile",
@@ -221,7 +221,7 @@
     {
       "id": "c19",
       "note": "c19",
-      "distance": "euclidean_distance",
+      "distance": "manhattan_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "threshold_percentile",
@@ -232,7 +232,7 @@
     {
       "id": "c20",
       "note": "c20",
-      "distance": "euclidean_distance",
+      "distance": "manhattan_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "threshold_percentile",
@@ -243,7 +243,7 @@
     {
       "id": "c21",
       "note": "c21",
-      "distance": "euclidean_distance",
+      "distance": "manhattan_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "knn",
@@ -254,7 +254,7 @@
     {
       "id": "c22",
       "note": "c22",
-      "distance": "euclidean_distance",
+      "distance": "manhattan_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "knn",
@@ -265,7 +265,7 @@
     {
       "id": "c23",
       "note": "c23",
-      "distance": "euclidean_distance",
+      "distance": "manhattan_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "knn",
@@ -276,28 +276,28 @@
     {
       "id": "c24",
       "note": "c24",
-      "distance": "euclidean_distance",
+      "distance": "manhattan_distance",
       "method": "hdbscan",
       "options": {}
     },
     {
       "id": "c25",
       "note": "c25",
-      "distance": "manhattan_distance",
+      "distance": "canberra_distance",
       "method": "hierarchical",
       "options": { "auto_threshold": "inconsistency" }
     },
     {
       "id": "c26",
       "note": "c26",
-      "distance": "manhattan_distance",
+      "distance": "canberra_distance",
       "method": "hierarchical",
       "options": { "n_cluster_size": 10 }
     },
     {
       "id": "c27",
       "note": "c27",
-      "distance": "manhattan_distance",
+      "distance": "canberra_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "threshold_percentile",
@@ -308,7 +308,7 @@
     {
       "id": "c28",
       "note": "c28",
-      "distance": "manhattan_distance",
+      "distance": "canberra_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "threshold_percentile",
@@ -319,7 +319,7 @@
     {
       "id": "c29",
       "note": "c29",
-      "distance": "manhattan_distance",
+      "distance": "canberra_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "threshold_percentile",
@@ -330,7 +330,7 @@
     {
       "id": "c30",
       "note": "c30",
-      "distance": "manhattan_distance",
+      "distance": "canberra_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "threshold_percentile",
@@ -341,7 +341,7 @@
     {
       "id": "c31",
       "note": "c31",
-      "distance": "manhattan_distance",
+      "distance": "canberra_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "threshold_percentile",
@@ -352,7 +352,7 @@
     {
       "id": "c32",
       "note": "c32",
-      "distance": "manhattan_distance",
+      "distance": "canberra_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "threshold_percentile",
@@ -363,7 +363,7 @@
     {
       "id": "c33",
       "note": "c33",
-      "distance": "manhattan_distance",
+      "distance": "canberra_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "knn",
@@ -374,7 +374,7 @@
     {
       "id": "c34",
       "note": "c34",
-      "distance": "manhattan_distance",
+      "distance": "canberra_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "knn",
@@ -385,7 +385,7 @@
     {
       "id": "c35",
       "note": "c35",
-      "distance": "manhattan_distance",
+      "distance": "canberra_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "knn",
@@ -396,28 +396,28 @@
     {
       "id": "c36",
       "note": "c36",
-      "distance": "manhattan_distance",
+      "distance": "canberra_distance",
       "method": "hdbscan",
       "options": {}
     },
     {
       "id": "c37",
       "note": "c37",
-      "distance": "weighted_jaccard",
+      "distance": "chebyshev_distance",
       "method": "hierarchical",
       "options": { "auto_threshold": "inconsistency" }
     },
     {
       "id": "c38",
       "note": "c38",
-      "distance": "weighted_jaccard",
+      "distance": "chebyshev_distance",
       "method": "hierarchical",
       "options": { "n_cluster_size": 10 }
     },
     {
       "id": "c39",
       "note": "c39",
-      "distance": "weighted_jaccard",
+      "distance": "chebyshev_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "threshold_percentile",
@@ -428,7 +428,7 @@
     {
       "id": "c40",
       "note": "c40",
-      "distance": "weighted_jaccard",
+      "distance": "chebyshev_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "threshold_percentile",
@@ -439,7 +439,7 @@
     {
       "id": "c41",
       "note": "c41",
-      "distance": "weighted_jaccard",
+      "distance": "chebyshev_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "threshold_percentile",
@@ -450,7 +450,7 @@
     {
       "id": "c42",
       "note": "c42",
-      "distance": "weighted_jaccard",
+      "distance": "chebyshev_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "threshold_percentile",
@@ -461,7 +461,7 @@
     {
       "id": "c43",
       "note": "c43",
-      "distance": "weighted_jaccard",
+      "distance": "chebyshev_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "threshold_percentile",
@@ -472,7 +472,7 @@
     {
       "id": "c44",
       "note": "c44",
-      "distance": "weighted_jaccard",
+      "distance": "chebyshev_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "threshold_percentile",
@@ -483,7 +483,7 @@
     {
       "id": "c45",
       "note": "c45",
-      "distance": "weighted_jaccard",
+      "distance": "chebyshev_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "knn",
@@ -494,7 +494,7 @@
     {
       "id": "c46",
       "note": "c46",
-      "distance": "weighted_jaccard",
+      "distance": "chebyshev_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "knn",
@@ -505,7 +505,7 @@
     {
       "id": "c47",
       "note": "c47",
-      "distance": "weighted_jaccard",
+      "distance": "chebyshev_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "knn",
@@ -516,28 +516,28 @@
     {
       "id": "c48",
       "note": "c48",
-      "distance": "weighted_jaccard",
+      "distance": "chebyshev_distance",
       "method": "hdbscan",
       "options": {}
     },
     {
       "id": "c49",
       "note": "c49",
-      "distance": "jensenshannon_distance",
+      "distance": "cosine_distance",
       "method": "hierarchical",
       "options": { "auto_threshold": "inconsistency" }
     },
     {
       "id": "c50",
       "note": "c50",
-      "distance": "jensenshannon_distance",
+      "distance": "cosine_distance",
       "method": "hierarchical",
       "options": { "n_cluster_size": 10 }
     },
     {
       "id": "c51",
       "note": "c51",
-      "distance": "jensenshannon_distance",
+      "distance": "cosine_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "threshold_percentile",
@@ -548,7 +548,7 @@
     {
       "id": "c52",
       "note": "c52",
-      "distance": "jensenshannon_distance",
+      "distance": "cosine_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "threshold_percentile",
@@ -559,7 +559,7 @@
     {
       "id": "c53",
       "note": "c53",
-      "distance": "jensenshannon_distance",
+      "distance": "cosine_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "threshold_percentile",
@@ -570,7 +570,7 @@
     {
       "id": "c54",
       "note": "c54",
-      "distance": "jensenshannon_distance",
+      "distance": "cosine_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "threshold_percentile",
@@ -581,7 +581,7 @@
     {
       "id": "c55",
       "note": "c55",
-      "distance": "jensenshannon_distance",
+      "distance": "cosine_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "threshold_percentile",
@@ -592,7 +592,7 @@
     {
       "id": "c56",
       "note": "c56",
-      "distance": "jensenshannon_distance",
+      "distance": "cosine_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "threshold_percentile",
@@ -603,7 +603,7 @@
     {
       "id": "c57",
       "note": "c57",
-      "distance": "jensenshannon_distance",
+      "distance": "cosine_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "knn",
@@ -614,7 +614,7 @@
     {
       "id": "c58",
       "note": "c58",
-      "distance": "jensenshannon_distance",
+      "distance": "cosine_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "knn",
@@ -625,7 +625,7 @@
     {
       "id": "c59",
       "note": "c59",
-      "distance": "jensenshannon_distance",
+      "distance": "cosine_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "knn",
@@ -636,28 +636,28 @@
     {
       "id": "c60",
       "note": "c60",
-      "distance": "jensenshannon_distance",
+      "distance": "cosine_distance",
       "method": "hdbscan",
       "options": {}
     },
     {
       "id": "c61",
       "note": "c61",
-      "distance": "canberra_distance",
+      "distance": "weighted_jaccard",
       "method": "hierarchical",
       "options": { "auto_threshold": "inconsistency" }
     },
     {
       "id": "c62",
       "note": "c62",
-      "distance": "canberra_distance",
+      "distance": "weighted_jaccard",
       "method": "hierarchical",
       "options": { "n_cluster_size": 10 }
     },
     {
       "id": "c63",
       "note": "c63",
-      "distance": "canberra_distance",
+      "distance": "weighted_jaccard",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "threshold_percentile",
@@ -668,7 +668,7 @@
     {
       "id": "c64",
       "note": "c64",
-      "distance": "canberra_distance",
+      "distance": "weighted_jaccard",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "threshold_percentile",
@@ -679,7 +679,7 @@
     {
       "id": "c65",
       "note": "c65",
-      "distance": "canberra_distance",
+      "distance": "weighted_jaccard",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "threshold_percentile",
@@ -690,7 +690,7 @@
     {
       "id": "c66",
       "note": "c66",
-      "distance": "canberra_distance",
+      "distance": "weighted_jaccard",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "threshold_percentile",
@@ -701,7 +701,7 @@
     {
       "id": "c67",
       "note": "c67",
-      "distance": "canberra_distance",
+      "distance": "weighted_jaccard",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "threshold_percentile",
@@ -712,7 +712,7 @@
     {
       "id": "c68",
       "note": "c68",
-      "distance": "canberra_distance",
+      "distance": "weighted_jaccard",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "threshold_percentile",
@@ -723,7 +723,7 @@
     {
       "id": "c69",
       "note": "c69",
-      "distance": "canberra_distance",
+      "distance": "weighted_jaccard",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "knn",
@@ -734,7 +734,7 @@
     {
       "id": "c70",
       "note": "c70",
-      "distance": "canberra_distance",
+      "distance": "weighted_jaccard",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "knn",
@@ -745,7 +745,7 @@
     {
       "id": "c71",
       "note": "c71",
-      "distance": "canberra_distance",
+      "distance": "weighted_jaccard",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "knn",
@@ -756,7 +756,7 @@
     {
       "id": "c72",
       "note": "c72",
-      "distance": "canberra_distance",
+      "distance": "weighted_jaccard",
       "method": "hdbscan",
       "options": {}
     },
@@ -883,21 +883,21 @@
     {
       "id": "c85",
       "note": "c85",
-      "distance": "chebyshev_distance",
+      "distance": "jensenshannon_distance",
       "method": "hierarchical",
       "options": { "auto_threshold": "inconsistency" }
     },
     {
       "id": "c86",
       "note": "c86",
-      "distance": "chebyshev_distance",
+      "distance": "jensenshannon_distance",
       "method": "hierarchical",
       "options": { "n_cluster_size": 10 }
     },
     {
       "id": "c87",
       "note": "c87",
-      "distance": "chebyshev_distance",
+      "distance": "jensenshannon_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "threshold_percentile",
@@ -908,7 +908,7 @@
     {
       "id": "c88",
       "note": "c88",
-      "distance": "chebyshev_distance",
+      "distance": "jensenshannon_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "threshold_percentile",
@@ -919,7 +919,7 @@
     {
       "id": "c89",
       "note": "c89",
-      "distance": "chebyshev_distance",
+      "distance": "jensenshannon_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "threshold_percentile",
@@ -930,7 +930,7 @@
     {
       "id": "c90",
       "note": "c90",
-      "distance": "chebyshev_distance",
+      "distance": "jensenshannon_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "threshold_percentile",
@@ -941,7 +941,7 @@
     {
       "id": "c91",
       "note": "c91",
-      "distance": "chebyshev_distance",
+      "distance": "jensenshannon_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "threshold_percentile",
@@ -952,7 +952,7 @@
     {
       "id": "c92",
       "note": "c92",
-      "distance": "chebyshev_distance",
+      "distance": "jensenshannon_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "threshold_percentile",
@@ -963,7 +963,7 @@
     {
       "id": "c93",
       "note": "c93",
-      "distance": "chebyshev_distance",
+      "distance": "jensenshannon_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "knn",
@@ -974,7 +974,7 @@
     {
       "id": "c94",
       "note": "c94",
-      "distance": "chebyshev_distance",
+      "distance": "jensenshannon_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "knn",
@@ -985,7 +985,7 @@
     {
       "id": "c95",
       "note": "c95",
-      "distance": "chebyshev_distance",
+      "distance": "jensenshannon_distance",
       "method": "community_detection",
       "options": {
         "edge_creation_method": "knn",
@@ -996,7 +996,7 @@
     {
       "id": "c96",
       "note": "c96",
-      "distance": "chebyshev_distance",
+      "distance": "jensenshannon_distance",
       "method": "hdbscan",
       "options": {}
     }
@@ -1016,43 +1016,67 @@
     },
     {
       "id": "r2",
-      "type": "generate_result_file"
+      "type": "generate_result_file",
+      "result_name":"default",
+      "cluster_list":["c1","c2","c3","c4","c5","c6","c7","c8","c9","c10","c11","c12","c13","c14","c15","c16","c17","c18","c19","c20","c21","c22","c23","c24","c25","c26","c27","c28","c29","c30","c31","c32","c33","c34","c35","c36","c37","c38","c39","c40","c41","c42","c43","c44","c45","c46","c47","c48","c49","c50","c51","c52","c53","c54","c55","c56","c57","c58","c59","c60","c61","c62","c63","c64","c65","c66","c67","c68","c69","c70","c71","c72","c73","c74","c75","c76","c77","c78","c79","c80","c81","c82","c83","c84","c85","c86","c87","c88","c89","c90","c91","c92","c93","c94","c95","c96"],
+      "save_to_output":false
     },
-    {
-      "id": "r3",
-      "type": "performance_indices1"
+      {
+      "id": "index1",
+      "type": "performance_indices1",
+      "result_name":"default"
     },
      {
-      "id":"r31",
-      "type":"performance_indices_ppi_network",
-       "result_list":["c1","c2","c3","c4","c5","c6","c7","c8","c9","c10","c11","c12","c13","c14","c15","c16","c17","c18","c19","c20","c21","c22","c23","c24","c25","c26","c27","c28","c29","c30","c31","c32","c33","c34","c35","c36","c37","c38","c39","c40","c41","c42","c43","c44","c45","c46","c47","c48","c49","c50","c51","c52","c53","c54","c55","c56","c57","c58","c59","c60","c61","c62","c63","c64","c65","c66","c67","c68","c69","c70","c71","c72","c73","c74","c75","c76","c77","c78","c79","c80","c81","c82","c83","c84","c85","c86","c87","c88","c89","c90","c91","c92","c93","c94","c95","c96"]
+      "id":"rfreq",
+      "type": "find_frequent_coregs",
+      "result_name":"default",
+      "min_support": 0.02
     },
+     {
+      "id": "temp1",
+      "type": "generate_result_file",
+      "result_name":"temp1",
+      "cluster_list":["c1","c2","c3","c4","c5","c6","c7","c8","c9","c10","c11","c12","c13","c14","c15","c16","c17","c18","c19","c20","c21","c22","c23","c24","c25","c26","c27","c28","c29","c30","c31","c32","c33","c34","c35","c36","c37","c38","c39","c40","c41","c42","c43","c44","c45","c46","c47","c48"],
+      "save_to_output":false
+    },
+    {
+      "id": "temp2",
+      "type": "generate_result_file",
+      "result_name":"temp2",
+      "cluster_list":["c49","c50","c51","c52","c53","c54","c55","c56","c57","c58","c59","c60","c61","c62","c63","c64","c65","c66","c67","c68","c69","c70","c71","c72","c73","c74","c75","c76","c77","c78","c79","c80","c81","c82","c83","c84","c85","c86","c87","c88","c89","c90","c91","c92","c93","c94","c95","c96"],
+      "save_to_output":false
+    },
+    {
+      "id": "ppiindex1",
+      "type": "performance_indices_ppi_network",
+      "result_name":"temp1"
+    },
+    {
+      "id": "ppiindex2",
+      "type": "performance_indices_ppi_network",
+      "result_name":"temp2"
+    },
+    {
+      "id": "dcorrindex",
+      "type": "performance_indices_dcorr",
+      "result_name":"default"
+    },
+    {
+      "id": "freqindex",
+      "type": "performance_indices_freq",
+      "result_name":"default"
+    },
+    {
+      "id": "index_tfbs",
+      "type": "performance_indices_tfbs",
+      "result_name":"default"
+    },
+   
     {
       "id": "r4",
       "type": "performance_indices_combined",
-      "name":"default",
-       "result_list":["c1","c2","c3","c4","c5","c6","c7","c8","c9","c10","c11","c12","c13","c14","c15","c16","c17","c18","c19","c20","c21","c22","c23","c24","c25","c26","c27","c28","c29","c30","c31","c32","c33","c34","c35","c36","c37","c38","c39","c40","c41","c42","c43","c44","c45","c46","c47","c48","c49","c50","c51","c52","c53","c54","c55","c56","c57","c58","c59","c60","c61","c62","c63","c64","c65","c66","c67","c68","c69","c70","c71","c72","c73","c74","c75","c76","c77","c78","c79","c80","c81","c82","c83","c84","c85","c86","c87","c88","c89","c90","c91","c92","c93","c94","c95","c96"]
-    },
-    {
-      "id":"r5",
-      "type":"parameter_selection_plot",
-      "index_file_name":"default",
-      "name":"default_1",
-      "optimal_results_only":false
-    },
-    {
-      "id":"r51",
-      "type":"parameter_selection_plot",
-      "index_file_name":"default",
-      "name":"default_2",
-      "optimal_results_only":true
-    },
-    {
-      "id":"r52",
-      "type":"parameter_selection_plot",
-      "index_file_name":"alt",
-      "name":"alt_1",
-      "optimal_results_only":false
+      "name": "default",
+      "result_name":"default"
     }
   ]
 }

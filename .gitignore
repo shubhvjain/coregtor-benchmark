@@ -222,3 +222,12 @@ __marimo__/
 results/test_run
 
 .DS_Store
+
+*.out
+status.db
+stats.pkl
+
+results/coregnet_test
+# results/
+logs/
+src/test
