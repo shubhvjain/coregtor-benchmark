@@ -80,6 +80,21 @@ def get_exp_gtex_info(dataset_id):
     dets = d[d["abbr"]==dataset_id]
     return dets.to_dict(orient='records')[0]
 
+def get_gtex_key(include_sample_count=False):
+    """
+    return key:value for dataset labels 
+    """
+    path = Path(__file__).parent.parent.parent /"analysis"/"gtex_info"/"stats.csv"
+    d = pd.read_csv(path)
+    dbkey = {}
+    for _, row in d.iterrows():
+        ky = str(row["abbr"])
+        label = str(row["name"])
+        if include_sample_count:
+            label = f"{label} ( {row["n_sample"]} samples)"
+        dbkey[ky] = label
+
+    return dbkey
 
 
 # 15-Color Palette curated for plotting and data visualization

@@ -41,7 +41,7 @@ def target_info(input, env, options, args):
     out_path, temp_path = ut.get_exp_path(input, env)
     rerun = args.rerun
     n_jobs = args.njobs if args.njobs is not None else 4
-    out_file = out_path / "target_stats.json"
+    out_file = out_path / "target_stats.parquet"
 
     if out_file.exists() and not rerun:
         print("File already exists")
@@ -62,76 +62,19 @@ def target_info(input, env, options, args):
     results = Parallel(n_jobs=n_jobs)(
         delayed(process_target)(target) for target in all_targets
     )
-
-    with open(out_file, "w") as f:
-        json.dump(results, f, indent=1)  # results is already a list
-
-    return results
-
-
-def get_target_crm(input, env, options, args):
-    """
-    Returns the set of predicted co-regulatory modules for the target in an experiment as a dataframe 
-    """
-    result_type = options.get("result_name", "default")
-    out_path, temp_path = ut.get_exp_path(input, env)
-
-def target_run_diagram(input, env, options, args):
-    """
-    """
-    out_path, temp_path = ut.get_exp_path(input, env)
-    rerun = args.rerun
-    n_jobs = args.njobs if args.njobs is not None else 4
-    out_file = out_path / "target_run_stats.svg"
-
-    if out_file.exists() and not rerun:
-        print("File already exists")
-        return
     
-    data_file_path = out_path/"target_stats.json"
-    if not data_file_path.exists():
-        print("target_stats.json does not exists")
-        return
+    df = pd.json_normalize(results)
+    df.to_parquet(out_file, index=False, compression="snappy")
 
-    with open(data_file_path) as f:
-        datajs = json.load(f)
-    
-    data = pd.json_normalize(data=datajs)
-    #print(data)
-    data["exp"]= input["id"]
-    data["dataset"]=input["dataset"]["name"]
+    #with open(out_file, "w") as f:
+    #    json.dump(results, f, indent=1)  # results is already a list
 
+    return 
 
-
-    # Setup 4 subplots with width ratios [2, 2, 2, 4] to match [20, 20, 20, 40]
-    fig, axes = plt.subplots(
-        1, 4, 
-        figsize=(10,3), 
-        gridspec_kw={'width_ratios': [2, 2, 2, 4]}
-    )
-
-    # 1. Total Root Nodes (Boxplot)
-    plot_metric_boxplot(data, y_col='stats.n_unique_roots',title="Root node count", ax=axes[0],ylabel="Count")
-    
-    # 2. Active Source Percentage (Boxplot)
-    plot_metric_boxplot(data, y_col='stats.total_time',title="Run time", ax=axes[1],ylabel="Time(Seconds)")
-
-    data["gf_coverage_per"] = 100 - data["gf.sparsity_pcr"]
-    
-    # 3. Sparsity Percentage (Boxplot)
-    plot_metric_boxplot(data, y_col='gf_coverage_per',title="Gene Frequency Coverage", ax=axes[2],ylabel="Percent")
-    
-    # 4. Skewness Distribution (KDE)
-    plot_skewness_dist(data, col_name="gf.count_skew" ,ax=axes[3])
-
-    plt.tight_layout()
-    # Save as SVG 
-    plt.savefig(out_file)
 
 """
 To interactively explore an experiment
 """
-
 
 class Explore:
     def __init__(self, env_path, exp_file_path):
