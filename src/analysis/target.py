@@ -196,15 +196,15 @@ def combined_target_diagram(input, env, options, args):
 
     # print("hello")
 
-    out_file = folder / f"gene_freq_hist.svg"
+    # out_file = folder / f"gene_freq_hist.svg"
 
-    if out_file.exists() and not rerun:
-        print("File already exists")
-        return
+    # if out_file.exists() and not rerun:
+    #     print("File already exists")
+    #     return
 
     data = []
-    for e in input["experiments"]:
-        o, t = ut.get_exp_path({"id": e}, env)
+    for e in input["experiment_results_paths"]:
+        o, t = ut.get_exp_path({"path": e}, env)
         with open(o/"input.json") as f:
             input_data = json.load(f)
         details = _get_exp_stats(input_data, o, t)

@@ -1,14 +1,9 @@
 import  src.results.util as ut 
-
-from mlxtend.preprocessing import TransactionEncoder
-from mlxtend.frequent_patterns import fpgrowth
-import pandas as pd
-
 import pandas as pd
 from mlxtend.preprocessing import TransactionEncoder
 from mlxtend.frequent_patterns import fpgrowth
 
-def gene_frequency_patterns(df, min_support=0.01):
+def gene_frequency_patterns(df, min_support=0.04):
     # 1. Prepare the data
     transactions = df['sources'].str.split(';').tolist()
 
@@ -25,10 +20,25 @@ def gene_frequency_patterns(df, min_support=0.01):
         return df.iloc[0:0], pd.DataFrame(columns=['source', 'support_size', 'common_targets'])
 
     # Only keep itemsets containing 2 or more genes (Non-singletons)
-    frequent_pairs_groups = frequent_itemsets[frequent_itemsets['itemsets'].apply(lambda x: len(x) >= 2)]
+    frequent_pairs_groups = frequent_itemsets[frequent_itemsets['itemsets'].apply(lambda x: len(x) >= 2)].copy()
     
     if frequent_pairs_groups.empty:
         return df.iloc[0:0], pd.DataFrame(columns=['source', 'support_size', 'common_targets'])
+
+    # ===  MAXIMAL FREQUENT ITEMSETS FILTERING ===
+    # Sort by itemset length descending to evaluate largest combinations first
+    frequent_pairs_groups['length'] = frequent_pairs_groups['itemsets'].apply(len)
+    frequent_pairs_groups = frequent_pairs_groups.sort_values(by='length', ascending=False)
+    
+    maximal_itemsets = []
+    for itemset in frequent_pairs_groups['itemsets']:
+        # If this itemset is a subset of any already-saved maximal itemset, skip it
+        if not any(itemset.issubset(max_set) for max_set in maximal_itemsets):
+            maximal_itemsets.append(itemset)
+            
+    # Filter the original DataFrame groups down to just the maximal groups
+    frequent_pairs_groups = frequent_pairs_groups[frequent_pairs_groups['itemsets'].isin(maximal_itemsets)]
+    # =============================================================
 
     # 4. Extract the unique list/sets of patterns for filtering
     frequent_sets_list = frequent_pairs_groups['itemsets'].tolist()
@@ -64,7 +74,6 @@ def gene_frequency_patterns(df, min_support=0.01):
     frequent_summary = frequent_summary.sort_values(by='support_size', ascending=False).reset_index(drop=True)
 
     return filtered_df[["cluster_uid","target","sources","n_source"]], frequent_summary
-
 
 
 def find_frequent_coregs(input, env, options, args):

@@ -7,9 +7,10 @@ import  src.results.util as ut
 import src.pipeline.util as put
 import numpy as np
 from joblib import Parallel, delayed
-from src.results.dcorr import compute_module_scores,generate_combined_dcor_cache
+from src.results.dcorr import compute_module_scores,generate_combined_dcor_cache, compute_common_targets_EC_scores
 import pyarrow as pa
 import pyarrow.parquet as pq
+from src.results.frequent_index import compute_GO_ORA,compute_PPI_shared_partners
 
 def compute_indices_core(data, bio_data_path):
     """Core computation - single dataframe in, scored dataframe out."""
@@ -523,7 +524,179 @@ def performance_indices_dcorr(input, env, options, args):
         print(f"Saved consolidated results to {index_file}")
 
 
-def compute_ct_scores(
+def compute_tfbs_score(target_gene, gene_list, cache_df):
+    """
+    Computes the pure TF found percentage and average TFBS affinity 
+    for a single target gene and a discrete list of input genes.
+    """
+    target_clean = str(target_gene).strip().upper()
+    input_set = {str(g).strip().upper() for g in gene_list if pd.notna(g)}
+    total_input_count = len(input_set)
+
+    if total_input_count == 0:
+        return np.nan
+
+    cache_columns = set(cache_df.columns)
+    matched_tfs = input_set.intersection(cache_columns)
+    n_matched = len(matched_tfs)
+
+    if target_clean not in cache_df.index or n_matched == 0:
+        return np.nan 
+
+    observed_values = cache_df.loc[target_clean, list(matched_tfs)]
+    mean_affinity = np.nanmean(observed_values)
+
+    return mean_affinity
+
+
+def _process_tfbs_chunk(
+    chunk_df,
+    cache_df,
+    all_gene_sources,
+    n_permutations,
+    seed
+):
+    """
+    Processes a sub-batch of data_df rows. Evaluates the observed TFBS affinity,
+    TF found percentage, and runs a gene-set level permutation test.
+    """
+    rng = np.random.default_rng(seed)
+    global_pool = np.array(list(all_gene_sources))
+    cache_columns = set(cache_df.columns)
+    results = []
+
+    for _, row in chunk_df.iterrows():
+        target = str(row["target"]).strip().upper()
+        sources_str = row["sources"]
+
+        if pd.isna(sources_str) or not str(sources_str).strip():
+            results.append({
+                "TFBS_affinity": np.nan,
+                "TF_found_per": 0.0,
+                "TFBS_affinity_score": np.nan
+            })
+            continue
+
+        # Parse unique items from this row's source configuration
+        row_sources = list({g.strip().upper() for g in str(sources_str).split(";") if g.strip()})
+        total_source_count = len(row_sources)
+
+        # Pre-evaluate intersection count for accurate TF_found percentage
+        matched_tfs = [g for g in row_sources if g in cache_columns]
+        n_matched = len(matched_tfs)
+        
+        tf_found_pct = n_matched / total_source_count if total_source_count > 0 else 0.0
+        
+        # Call your original function safely
+        observed_mean = compute_tfbs_score(target, row_sources, cache_df)
+
+        if pd.isna(observed_mean) or n_matched == 0:
+            results.append({
+                "TFBS_affinity": np.nan,
+                "TF_found_per": tf_found_pct,
+                "TFBS_affinity_score": np.nan
+            })
+            continue
+
+        # Permutation Test over All Unique Gene Sources
+        extreme_count = 0
+        for _ in range(n_permutations):
+            simulated_genes = rng.choice(global_pool, size=n_matched, replace=False)
+            simulated_mean = compute_tfbs_score(target, simulated_genes, cache_df)
+            
+            if pd.notna(simulated_mean) and simulated_mean >= observed_mean:
+                extreme_count += 1
+
+        p_value = (extreme_count + 1) / (n_permutations + 1)
+        score = max(0.0, -np.log(p_value))
+        results.append({
+            "TFBS_affinity": round(observed_mean,5),
+            "TF_found_per": round(tf_found_pct,2),
+            "TFBS_affinity_score": round(score,5)
+        })
+
+    return pd.DataFrame(results)
+
+
+def compute_tfbs_scores_df(data_df, cache, all_gene_sources, n_permutations=200, n_jobs=-1, seed=42):
+    """
+    Parallel computation of TFBS affinity metrics where TF_found is calculated 
+    out of the parsed 'sources' row elements.
+    """
+    # 1. Standardize cache labels ONCE globally before passing to workers
+    cache_clean = cache.copy()
+    cache_clean.index = cache_clean.index.astype(str).str.strip().str.upper()
+    cache_clean.columns = cache_clean.columns.astype(str).str.strip().str.upper()
+
+    # Pre-clean the global pool string casing
+    cleaned_global_sources = {str(g).strip().upper() for g in all_gene_sources if pd.notna(g)}
+
+    # 2. Chunk input dataframe based on available workers
+    n_workers = n_jobs if n_jobs > 0 else 4
+    chunks = np.array_split(data_df, n_workers)
+
+    # 3. Leverage Joblib to process batches independently
+    processed_dfs = Parallel(n_jobs=n_jobs, backend="loky")(
+        delayed(_process_tfbs_chunk)(
+            chunk_df=chunk,
+            cache_df=cache_clean,  # Pass the correctly pre-cleaned DataFrame here
+            all_gene_sources=cleaned_global_sources,
+            n_permutations=n_permutations,
+            seed=seed + i  # Shift the seed per block to avoid identical random states across cores
+        )
+        for i, chunk in enumerate(chunks)
+    )
+
+    # 4. Merge results and preserve original indices
+    scores_df = pd.concat(processed_dfs, ignore_index=True)
+    scores_df.index = data_df.index
+    return scores_df
+
+
+def performance_indices_tfbs(input, env, options, args):
+    out_path, temp_path = ut.get_exp_path(input, env)
+    bio_path = Path(os.path.expandvars(env["DATA_PATH"]))
+    rerun = args.rerun
+    n_jobs = args.njobs if args.njobs is not None else 4
+    src,tgt = ut.get_input_source_list(out_path)
+
+
+    cluster_file_list = ut.get_cluster_list_result(input,options.get("result_name","NotFound"))
+    cluster_folder = temp_path/"clusters"
+    cluster_folder.mkdir(exist_ok=True, parents=True)
+    all_results = [cl["id"] for cl in input["clustering"]]
+    result_list_input = all_results
+    if cluster_file_list is not None :
+        result_list_input = cluster_file_list
+
+    cache = pd.read_parquet(bio_path / "tfbs"/ "trap_scores.parquet")
+    # print(cache)
+    # return 
+    # 1. Initialize a dictionary to hold DataFrames for each result ID
+    # This prevents constant disk I/O for the cluster files
+    df_store = {}
+    for r in result_list_input:
+        result_file_path = cluster_folder / f"index_tfbs_{r}.csv"
+        if result_file_path.exists() and not rerun:
+            continue
+        cluster_file = cluster_folder / f"{r}.csv"
+        df_store[r] = pd.read_csv(cluster_file)
+    
+    for r, data_df in df_store.items():
+        print(f"Computing tfbs scores for cluster set: {r}")
+        scores_df = compute_tfbs_scores_df(data_df,cache,src,200,n_jobs)
+        df_store[r] = pd.concat([df_store[r], scores_df], axis=1)
+
+    # Final Step: Save consolidated results
+    for r, final_df in df_store.items():
+        index_file = cluster_folder / f"index_tfbs_{r}.csv"
+        final_df.to_csv(index_file, index=False)
+        print(f"Saved consolidated results to {index_file}")
+
+
+# =======
+
+def compute_freq_scores(
     data_df: pd.DataFrame, 
     ge_data: pd.DataFrame, 
     src: list, 
@@ -531,7 +704,9 @@ def compute_ct_scores(
     flat_cache, 
     gene_map, 
     total_genes,
-    n_jobs=-1):
+    data_path,
+    n_jobs=4
+    ):
     """
     Computes distance correlation metrics (dCor_source, dCor_target, DC1, DC2) 
     parallelly across all modules defined in data_df.
@@ -565,58 +740,41 @@ def compute_ct_scores(
     
     # Standardize data_df input columns
     # Assumes 'target' contains the target gene and 'genes' contains the module members
-    targets = data_df['target'].tolist()
+    # targets = data_df['target'].tolist()
     
     # Handle potentially stringified lists from CSV format ("geneA,geneB,geneC")
     module_lists = []
-    for item in data_df['sources']:
+    for item in data_df['common_targets']:
         if isinstance(item, str):
             module_lists.append([g.strip() for g in item.split(';')])
         else:
             module_lists.append(list(item))
             
-    # Execute scoring functions in parallel
-    # Using default backend ('loky') to safely handle process isolation and numpy memmapping
-    results = Parallel(n_jobs=n_jobs)(
-        delayed(compute_module_scores)(
-            module_genes=mod, 
-            target_gene=t, 
-            source_gene_set = src,
+    results1_raw = Parallel(n_jobs=n_jobs)(
+        delayed(compute_common_targets_EC_scores)(
+            common_target=mod, 
             flat_cache=flat_cache, 
             gene_to_idx=gene_map, 
             N=total_genes
-        ) for mod, t in zip(module_lists, targets)
+        ) for mod in module_lists )
+    results1 = pd.DataFrame(results1_raw, index=data_df.index)
+  
+    results2 = compute_GO_ORA(
+        data=data_df,
+        background_gene_list=tgt, 
+        data_path=data_path,
+        batch=n_jobs
     )
-    
+
+    results3 = compute_PPI_shared_partners(data=data_df,data_path=data_path)
+    # print(results3)
+
     # Reconstruct back into a clean structured DataFrame matching the input index
-    scores_df = pd.DataFrame(results, index=data_df.index)
+    scores_df = pd.concat([results1, results2,results3], axis=1)
     return scores_df
 
-def get_dataset_dcorr_cache(data_path,dataset):
-    """
-    """
-    if dataset.get("type",None) != "gct" :
-        raise ValueError("not found")
-    
-    file1 =  data_path /'dcorr_cache' /f"{dataset['name']}_pc.parquet"
-    file2 = data_path /'dcorr_cache' /f"{dataset['name']}_metadata.json"
 
-    with open(file2, 'r') as f:
-        metadata = json.load(f)
-        
-    num_genes = metadata["num_genes"]
-    gene_to_idx = metadata["gene_to_idx"]
-
-    table = pq.read_table(file1)
-    # Convert the PyArrow column back to a standard flat 1D NumPy array
-    flat_dcor_cache = table.column('dcor').to_numpy()
-    
-    print(f"Cache loaded successfully. Array shape: {flat_dcor_cache.shape}")
-    return flat_dcor_cache, gene_to_idx, num_genes
-
-
-
-def performance_indices_dcorr(input, env, options, args):
+def performance_indices_freq(input, env, options, args):
     out_path, temp_path = ut.get_exp_path(input, env)
     bio_path = Path(os.path.expandvars(env["DATA_PATH"]))
     rerun = args.rerun
@@ -638,23 +796,23 @@ def performance_indices_dcorr(input, env, options, args):
     # This prevents constant disk I/O for the cluster files
     df_store = {}
     for r in result_list_input:
-        result_file_path = cluster_folder / f"index_dcorr_{r}.csv"
+        result_file_path = cluster_folder / f"freq_index_{r}.csv"
         if result_file_path.exists() and not rerun:
             continue
-        cluster_file = cluster_folder / f"{r}.csv"
-        df_store[r] = pd.read_csv(cluster_file)
+        freq_file = cluster_folder / f"freq_coreg_{r}.csv"
+        df_store[r] = pd.read_csv(freq_file)
     
     for r, data_df in df_store.items():
         print(f"Computing dcor scores for cluster set: {r}")
-        scores_df = compute_dcorr_scores(data_df,ge_data,src,tgt,flat_cache, gene_map, total_genes)
+        scores_df = compute_freq_scores(data_df,ge_data,src,tgt,flat_cache, gene_map, total_genes,bio_path)
         df_store[r] = pd.concat([df_store[r], scores_df], axis=1)
 
     # Final Step: Save consolidated results
     for r, final_df in df_store.items():
-        index_file = cluster_folder / f"index_dcorr_{r}.csv"
+        index_file = cluster_folder / f"freq_index_{r}.csv"
         final_df.to_csv(index_file, index=False)
         print(f"Saved consolidated results to {index_file}")
-
+# =======
 
 def performance_indices_combined(input, env,options ,args):
     """
@@ -664,32 +822,37 @@ def performance_indices_combined(input, env,options ,args):
     rerun = args.rerun
     cluster_folder = temp_path/"clusters"
 
+    cluster_file_list = ut.get_cluster_list_result(input,options.get("result_name","NotFound"))
+    all_results = [cl["id"] for cl in input["clustering"]]
+    result_list_input = all_results
+    if cluster_file_list is not None :
+        result_list_input = cluster_file_list
+
+
     dataset_name  = input["dataset"]["name"]
     
     file_name = options.get("name","default")
 
-    result_file =  out_path/ f"{file_name}_indices.csv.gz"
+    result_file =  out_path/ f"cluster_indices_{file_name}.csv.gz"
     if result_file.exists() and not rerun:
         print("already exists")
         return
 
-    all_results = [cl["id"] for cl in input["clustering"]]
-    result_list = options.get("result_list", all_results)
 
     res = []
 
-    for r in result_list:
+    for r in result_list_input:
         print(r)
         index_file = cluster_folder / f"index_{r}.csv"
         if not index_file.exists():
             raise ValueError(f"file {index_file} note yet generated")
         
+        data = pd.read_csv(index_file)
+
         network_file = cluster_folder / f"index_network_{r}.csv"
         if not network_file.exists():
             raise ValueError(f"file {network_file} note yet generated")
         
-        data = pd.read_csv(index_file)
-
         network_score = pd.read_csv(network_file)
         network_cols = [
             "density_hippie", "density_score_hippie", "lcc_hippie", "lcc_score_hippie", 
@@ -700,10 +863,81 @@ def performance_indices_combined(input, env,options ,args):
             "tc_score_biogrid", "node_found_ratio_biogrid"
         ]
 
+        dcor_file = cluster_folder / f"index_dcorr_{r}.csv"
+        if not dcor_file.exists():
+            raise ValueError(f"file {dcor_file} note yet generated")
+        
+        dcorr_score = pd.read_csv(dcor_file)
+        dcorr_cols = ["dCor_sources","dCor_target","DC1","DC2"]
+
+
+        tfbs_file = cluster_folder / f"index_tfbs_{r}.csv"
+        if not tfbs_file.exists():
+            raise ValueError(f"file {tfbs_file} note yet generated")
+        
+        tfbs_score = pd.read_csv(tfbs_file)
+        tfbs_cols = ["TFBS_affinity","TF_found_per","TFBS_affinity_score"]
+        # cluster_uid,target,sources,n_source,silhouette_score,cluster_density,cluster_diameter,note,cluster_note,TFBS_affinity,TF_found_per,TFBS_affinity_score
+
         # Merge the network columns into 'data'
         # If network_score has 1 row and data has many, this broadcasts the values
         # If they align row-for-row, this joins them side-by-side
-        data = pd.concat([data, network_score[network_cols]], axis=1)
+        data = pd.concat([data, network_score[network_cols],dcorr_score[dcorr_cols],tfbs_score[tfbs_cols]], axis=1)
+
+        data["config_name"] = r
+        res.append(data)
+
+    combined_df = pd.concat(res, ignore_index=True)
+    combined_df["dataset"] = dataset_name
+    combined_df.to_csv(result_file,index=False)
+    print("saved")
+
+
+def performance_indices_freq_combined(input, env,options ,args):
+    """
+    compute performance indices for frequently found clusters  
+    """
+    out_path, temp_path = ut.get_exp_path(input,env)
+    rerun = args.rerun
+    cluster_folder = temp_path/"clusters"
+
+    cluster_file_list = ut.get_cluster_list_result(input,options.get("result_name","NotFound"))
+    all_results = [cl["id"] for cl in input["clustering"]]
+    result_list_input = all_results
+    if cluster_file_list is not None :
+        result_list_input = cluster_file_list
+
+
+    dataset_name  = input["dataset"]["name"]
+    
+    file_name = options.get("name","default")
+
+    result_file =  out_path/ f"freq_coreg_indices_{file_name}.csv.gz"
+    if result_file.exists() and not rerun:
+        print("already exists")
+        return
+
+    res = []
+
+    target_columns = [
+        "source", "support_size", "common_targets", "note",
+        "dCor_targets", "dCor_targets_score", 
+        "go_score", "go_pvalue", "go_classes",
+        "ppi_shared_partners_hippie", "ppi_shared_partners_stringdb", "ppi_shared_partners_biogrid"
+    ]
+
+    for r in result_list_input:
+        print(r)
+        index_file = cluster_folder / f"freq_index_{r}.csv"
+        if not index_file.exists():
+            raise ValueError(f"file {index_file} note yet generated")
+        
+        data = pd.read_csv(index_file)
+        data = data.loc[:, ~data.columns.duplicated(keep="first")]
+
+        # Filter down strictly to the clean target schema columns that exist
+        available_cols = [c for c in target_columns if c in data.columns]
+        data = data[available_cols]
 
         data["config_name"] = r
         res.append(data)

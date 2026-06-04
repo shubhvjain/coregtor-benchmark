@@ -258,7 +258,6 @@ def compute_common_targets_EC_scores(
     ecct_score = -np.log(p_value)
     
     return {
-        "obs_mean_dCor_targets": round(obs_mean_target_dcor, 5),
-        "p_value": round(p_value, 5),
-        "ECCT": round(ecct_score, 5)
+        "dCor_targets": round(obs_mean_target_dcor, 5),
+        "dCor_targets_score": round(ecct_score, 5)
     }
