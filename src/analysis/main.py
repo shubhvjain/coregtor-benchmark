@@ -12,7 +12,7 @@ from src.results.explore import  plot_skewness_dist, plot_metric_boxplot
 
 from src.analysis.gtex import generate_gtex_stats,gtex_stats_diagram,generate_gtex_dcor_cache
 
-from src.analysis.target import combined_target_diagram, parameter_config_plot
+from src.analysis.target import combined_gene_freq_diagram, parameter_config_detailed_plot,parameter_config_plot
 
 
 def hello(input, env, options, args):
@@ -87,11 +87,13 @@ def combined_dataset_target_diagram(input, env, options, args):
 METHOD_REGISTRY = {
     "hello": hello,
     "generate_gtex_stats":generate_gtex_stats,
-    "combined_target_diagram":combined_target_diagram,
+    "combined_gene_freq_diagram":combined_gene_freq_diagram,
+
     "combined_dataset_target_diagram": combined_dataset_target_diagram,
-    "parameter_config_plot":parameter_config_plot,
+    "parameter_config_detailed_plot":parameter_config_detailed_plot,
     "gtex_stats_diagram":gtex_stats_diagram,
-    "generate_gtex_dcor_cache":generate_gtex_dcor_cache
+    "generate_gtex_dcor_cache":generate_gtex_dcor_cache,
+    "parameter_config_plot":parameter_config_plot
 }
 
 # CLI entry point

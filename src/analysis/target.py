@@ -1,7 +1,7 @@
 """
 """
 import src.results.util as ut
-from src.results.parameter_selection import plot_landscape_metrics
+from src.analysis.parameter_selection import plot_all_configs_raw,generate_ps_plot1
 import json
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -187,12 +187,7 @@ def _generate_save_runtime_diagram(df, folder_path):
     # Fits safely within half of an A4 page (width: ~6.5", height: 4.8")
     HALF_A4_GRID = (6.5, 4.8)
 
-    plt.rcParams.update({
-        "figure.dpi": 150,
-        "savefig.dpi": 300,
-        "axes.spines.top": False,
-        "axes.spines.right": False,
-    })
+    plt.rcParams.update(ut.default_sns_configs)
 
     # Removed sharex=True to allow manual control of x-ticks per subplot
     fig, axes = plt.subplots(
@@ -248,7 +243,7 @@ def _generate_save_runtime_diagram(df, folder_path):
     fig.savefig(folder_path / "runtime.pdf", bbox_inches="tight")
     plt.close(fig)
 
-def combined_target_diagram(input, env, options, args):
+def combined_gene_freq_diagram(input, env, options, args):
     """
     """
     apath = ut.get_analysis_path(env)
@@ -282,6 +277,89 @@ def combined_target_diagram(input, env, options, args):
     _generate_save_runtime_diagram(df, folder)
 
 
+def parameter_config_detailed_plot(input, env, options, args):
+    """"""
+    apath = ut.get_analysis_path(env)
+    folder = apath/input["id"]
+    folder.mkdir(exist_ok=True, parents=True)
+    rerun = args.rerun
+
+    out_file = folder / f"param_selection_{options['result_name']}.svg"
+
+    if out_file.exists() and not rerun:
+        print("File already exists")
+        return
+
+    data = []
+    freq_data = []
+    
+    for e in input["experiment_results_paths"]:
+        o, t = ut.get_exp_path({"path": e}, env)
+
+        with open(o/"input.json") as f:
+            input_data = json.load(f)
+        dataset_info = ut.get_exp_gtex_info(input_data["dataset"]["name"])
+        
+        details = pd.read_csv(o/f"cluster_indices_{options['result_name']}.csv.gz")
+        details["exp_id"] = e
+        details["dataset_name"] = dataset_info["name"]
+        details["dataset_abbr"] = dataset_info["abbr"]
+        data.append(details)
+
+        details1 = pd.read_csv(o/f"freq_coreg_indices_{options['result_name']}.csv.gz")
+        details1["exp_id"] = e
+        details1["dataset_name"] = dataset_info["name"]
+        details1["dataset_abbr"] = dataset_info["abbr"]
+        freq_data.append(details1)
+
+
+    df = pd.concat(data, ignore_index=True)
+    sf = options.get("save_file", False)
+    if sf:
+        df.to_csv(folder/f"clusters_{options['result_name']}.csv.gz", index=False)
+    
+    freq_df = pd.concat(freq_data, ignore_index=True)
+    # print(freq_df)
+
+    default_metrics = ['silhouette_score','n_source','cluster_density', 'cluster_diameter', 
+       'shortest_PPI_path_score_hippie', 'shortest_PPI_path_score_stringdb',
+       'shortest_PPI_path_score_biogrid', 'shared_PPI_partners_score_hippie',
+       'shared_PPI_partners_score_stringdb',
+       'shared_PPI_partners_score_biogrid', 'goa_similarity_lin',
+       'goa_similarity_resnik', 'goa_similarity_jc', 'density_hippie',
+       'density_score_hippie', 'lcc_hippie', 'lcc_score_hippie', 'tc_hippie',
+       'tc_score_hippie', 'node_found_ratio_hippie', 'density_stringdb',
+       'density_score_stringdb', 'lcc_stringdb', 'lcc_score_stringdb',
+       'tc_stringdb', 'tc_score_stringdb', 'node_found_ratio_stringdb',
+       'density_biogrid', 'density_score_biogrid', 'lcc_biogrid',
+       'lcc_score_biogrid', 'tc_biogrid', 'tc_score_biogrid',
+       'node_found_ratio_biogrid', 'dCor_sources', 'dCor_target', 'DC1', 'DC2',
+       'TFBS_affinity', 'TF_found_per', 'TFBS_affinity_score']
+    
+    freq_metrics = ['dCor_targets_score','ppi_shared_partners_hippie','ppi_shared_partners_biogrid','go_score']
+
+    metrics_list = options.get("metrics_list", default_metrics)
+    pconfig =  ut.get_ps_configs()
+    
+    # raw config comparison 
+    plot_all_configs_raw(df,metrics_list,freq_df, [] ,out_file)
+
+    cfilters = options.get("custom_plots",[])
+
+    for c in cfilters:
+        cd_configs = c.get("configs",[])
+        out_file_cd = folder / f"param_selection_cd_{c['name']}.svg"
+        dfcd  = df[df["config_name"].isin(cd_configs)]
+        plot_all_configs_raw(dfcd,metrics_list,freq_df, [] ,out_file_cd)
+
+
+    # result_plot1 = folder / f"param_selection_{options['result_name']}.pdf"
+    #generate_ps_plot1(df,freq_df,result_plot1)
+    #plot_pe_results(df,pconfig,result_plot1)
+    #result_plot2 = folder / f"param_selection_ppi_{options['result_name']}.pdf"
+    #plot_ps_ppi_grid(df,pconfig,result_plot2)
+
+
 def parameter_config_plot(input, env, options, args):
     """"""
     apath = ut.get_analysis_path(env)
@@ -296,47 +374,47 @@ def parameter_config_plot(input, env, options, args):
         return
 
     data = []
-    all_exp = options.get("experiments", [])
-    exp_list = options.get("exp_list", all_exp)
-    for e in exp_list:
-        o, t = ut.get_exp_path({"id": e}, env)
+    freq_data = []
+    
+    for e in input["experiment_results_paths"]:
+        o, t = ut.get_exp_path({"path": e}, env)
 
         with open(o/"input.json") as f:
             input_data = json.load(f)
-        details = pd.read_csv(o/f"{options['result_name']}_indices.csv.gz")
-        details["exp_id"] = e
         dataset_info = ut.get_exp_gtex_info(input_data["dataset"]["name"])
+        
+        details = pd.read_csv(o/f"cluster_indices_{options['result_name']}.csv.gz")
+        details["exp_id"] = e
         details["dataset_name"] = dataset_info["name"]
         details["dataset_abbr"] = dataset_info["abbr"]
         data.append(details)
 
+        details1 = pd.read_csv(o/f"freq_coreg_indices_{options['result_name']}.csv.gz")
+        details1["exp_id"] = e
+        details1["dataset_name"] = dataset_info["name"]
+        details1["dataset_abbr"] = dataset_info["abbr"]
+        freq_data.append(details1)
+
+
     df = pd.concat(data, ignore_index=True)
     sf = options.get("save_file", False)
     if sf:
-        df.to_csv(
-            folder/f"clusters_{options['result_name']}.csv.gz", index=False)
+        df.to_csv(folder/f"clusters_{options['result_name']}.csv.gz", index=False)
+    
+    freq_df = pd.concat(freq_data, ignore_index=True)
+    # print(freq_df)
 
-    default_metrics = ['silhouette_score',
-                       'n_source',
-                       'shared_PPI_partners_score_stringdb',
-                       'shortest_PPI_path_score_stringdb',
-                       'density_score_stringdb',
-                       'lcc_score_stringdb',
-                       'tc_score_stringdb',
-                       'goa_similarity_lin',
-                       'goa_similarity_resnik',
-                       'goa_similarity_jc'
-                       ]
+    pconfig =  ut.get_ps_configs(input.get("parameter_config_name","ps_configs"))
 
-    metrics_list = options.get("metrics_list", default_metrics)
+    result_plot1 = folder / f"param_{options['result_name']}.pdf"
+    generate_ps_plot1(df,freq_df,pconfig,options,result_plot1)
+    
 
-    pconfig =  ut.get_ps_configs()
-    plot_landscape_metrics(df, metrics_list, out_file, False)
-    result_plot1 = folder / f"param_selection_summary_{options['result_name']}.pdf"
-    plot_pe_results(df,pconfig,result_plot1)
-    result_plot2 = folder / f"param_selection_ppi_{options['result_name']}.pdf"
-    plot_ps_ppi_grid(df,pconfig,result_plot2)
-
+    # result_plot1 = folder / f"param_selection_{options['result_name']}.pdf"
+    #generate_ps_plot1(df,freq_df,result_plot1)
+    #plot_pe_results(df,pconfig,result_plot1)
+    #result_plot2 = folder / f"param_selection_ppi_{options['result_name']}.pdf"
+    #plot_ps_ppi_grid(df,pconfig,result_plot2)
 
 
 def clean_algo_names(row):
