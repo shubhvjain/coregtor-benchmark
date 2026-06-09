@@ -4,19 +4,6 @@ from datetime import datetime
 import sqlite3
 import pandas as pd
 
-def get_exp_path(input,CONFIG):
-    """
-    Use this everywhere to get the path to the experiment results and temp folder. 
-    output_path = env.EXP_OUTPUT_PATH/input
-    r
-    """
-    if input.get("path",None) is not  None:
-        output_path = Path(CONFIG.get("EXP_OUTPUT_PATH"))/ input.get("path")
-        temp_path = Path(CONFIG.get("EXP_TEMP_PATH"))/ input.get("path")
-    else:
-        output_path = Path(CONFIG.get("EXP_OUTPUT_PATH"))/ input.get("id")
-        temp_path = Path(CONFIG.get("EXP_TEMP_PATH"))/ input.get("id")
-    return output_path,temp_path
 
 
 def get_mappings(CONFIG, gene_list, source, target, batch_size=900):

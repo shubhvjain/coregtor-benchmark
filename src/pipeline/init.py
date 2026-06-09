@@ -4,7 +4,8 @@ from datetime import datetime
 import sqlite3
 import json
 import pandas as pd
-from src.pipeline.util import get_protein_coding_genes, get_tflist, read_dataset, get_exp_path, get_coreglist
+from src.pipeline.util import get_protein_coding_genes, get_tflist, read_dataset, get_coreglist
+from src.results.util import get_exp_path
 
 
 def setup_experiment(exp, config):
@@ -78,14 +79,14 @@ def get_filtered_genes(df, options, tflist,coreglist, config):
     """
     Selects and filters genes from df based on type and stats.
     """
-    #print(options)
+    # print(options)
     g_type = options.get("type", "all")
     all_regulators = list(set(tflist) | set(coreglist))
 
     # 1. Selection
     if g_type == "tf":
         pool = [g for g in tflist if g in df.columns]
-    if g_type == "all_regulators":
+    elif g_type == "all_regulators":
         pool = [g for g in all_regulators if g in df.columns]
     elif g_type == "no_tf":
         pool = [g for g in df.columns if g not in tflist]
@@ -94,7 +95,7 @@ def get_filtered_genes(df, options, tflist,coreglist, config):
     elif g_type == "custom":
         pool = [g for g in options.get("items", []) if g in df.columns]
     else:
-        raise ValueError("Invalid selection type provided")
+        raise ValueError(f"Invalid selection type provided- {g_type}")
 
     if not pool:
         return []

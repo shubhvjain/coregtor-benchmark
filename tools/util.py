@@ -10,14 +10,16 @@ from dotenv import dotenv_values
 import sqlite3
 from datetime import datetime
 
+import traceback
+
 
 def get_env():
     """this code is run within the container where volumes are mounted as fixed locations"""
     env = {
-        "DATA_PATH": "/app/dataset",
-        "EXP_TEMP_PATH": "/app/temp",
-        "EXP_OUTPUT_PATH": "/app/output",
-        "EXP_INPUT_PATH": "/app/input"
+        "DATA_PATH": Path("/app/dataset"),
+        "EXP_TEMP_PATH": Path("/app/temp"),
+        "EXP_OUTPUT_PATH": Path("/app/output"),
+        "EXP_INPUT_PATH": Path("/app/input")
     }
     return env
 
@@ -33,23 +35,28 @@ def get_input(input_path):
 
 def get_exp_path(input,env):
     """
+    Use this everywhere to get the path to the experiment results and temp folder. 
     output_path = env.EXP_OUTPUT_PATH/input
     r
     """
-    output_path = Path(env.get("EXP_OUTPUT_PATH"))/ input.get("id")
-    temp_path = Path(env.get("EXP_TEMP_PATH"))/ input.get("id")
+    if input.get("path",None) is not  None:
+        output_path = Path(env.get("EXP_OUTPUT_PATH"))/ input.get("path")
+        temp_path = Path(env.get("EXP_TEMP_PATH"))/ input.get("path")
+    else:
+        output_path = Path(env.get("EXP_OUTPUT_PATH"))/ input.get("id")
+        temp_path = Path(env.get("EXP_TEMP_PATH"))/ input.get("id")
     return output_path,temp_path
 
 
 def setup_experiment(exp, config):
     setup_allowed = exp.get("type") in ["run_coregnet","run_rtnduals"]
-
+    o,t = get_exp_path(exp,config)
     if not  setup_allowed:
         print("invalid tool type")
         return
     # Construct the full path to the experiment folder
-    exp_dir = Path(config["out_path"]) / exp["id"]
-    temp_dir = Path(config["temp_path"]) / exp["id"]
+    exp_dir = o 
+    temp_dir = t
     done_file = temp_dir / "init_done.txt"
     input_file = exp_dir / "input.json"
 
@@ -64,13 +71,11 @@ def setup_experiment(exp, config):
     3. setup the folder structure
     4. create the input.json file in output folder
     """
+    print(config)
     # Create folders if it doesn't exist
     exp_dir.mkdir(parents=True, exist_ok=True)
     temp_dir.mkdir(parents=True, exist_ok=True)
-    #print(exp)
-    print(exp["dataset"])
     dataset = read_dataset(exp["dataset"], config)
-    #print(dataset)
     tf_list = get_tflist(config)
     #print(tf_list)
     input = {**exp}
@@ -98,11 +103,8 @@ def start_experiment(exp_data,env):
     """
     out,temp = get_exp_path(exp_data,env)
     input_file_path = out/"input.json"
-    CONFIG = {
-          "out_path": Path(env.get("EXP_OUTPUT_PATH")),
-          "temp_path": Path(env.get("EXP_TEMP_PATH")),
-          "data_path": Path(env.get("DATA_PATH"))
-    }
+    CONFIG = get_env()
+    # print(CONFIG)
     if not input_file_path.exists():
         print("Experiment not yet setup. Initializing")
         setup_experiment(exp_data,CONFIG)
@@ -112,10 +114,10 @@ def start_experiment(exp_data,env):
 
     
     os.environ.setdefault("DATA_PATH", env.get("DATA_PATH") )
-    print(CONFIG)
+    #print(CONFIG)
     dataset = read_dataset(exp_data["dataset"],CONFIG)
+    #print(111)
     return input_data, dataset
-
 
 
 
@@ -166,22 +168,23 @@ def read_gct(file_path1, CONFIG=None, convert_gene_names=False):
         gene = df["Name"].values.tolist()
         if convert_gene_names:
             if CONFIG is None:
-                raise ValueError("data_path not provided")
+                raise ValueError("DATA_PATH not provided")
             mps = get_mappings(CONFIG, gene_list=gene, source='gene_id',
                                target='gene_name')
             df["Name"] = df["Name"].map(mps)
         if "Name" not in df.columns or "Description" not in df.columns:
             raise ValueError(
                 "GCT file must contain 'Name' and 'Description' columns")
-        print(1)
         # remove Name column, rename Description to gene_name, set as index
         df = df.drop(columns=["Name"]).rename(
             columns={"Description": "gene_name"})
         df = df.set_index("gene_name")
         df = df.transpose().rename_axis("sample_name")
+        print(1111)
         return df
     except Exception as e:
         print(e)
+        traceback.print_exc()
         raise ValueError(f"Error reading GCT file {file_path}: {str(e)}")
 
 
@@ -199,8 +202,7 @@ def get_mappings(CONFIG, gene_list, source, target, batch_size=900):
     Returns:
         Dictionary mapping {source_value: target_value, ...}
     """
-    db_path = Path(CONFIG["data_path"])/"gencode"/"gene_name_mapping.db"
-    #print(db_path)
+    db_path = Path(CONFIG["DATA_PATH"])/"gencode"/"gene_name_mapping.db"
     #print(db_path.exists())
     con = sqlite3.connect(db_path)
 
@@ -244,7 +246,6 @@ def get_mappings(CONFIG, gene_list, source, target, batch_size=900):
         print(f"  Failed to map: {failed_count}")
         print(
             f"  Null results: {null_in_results} ({null_in_results/total*100:.2f}%)")
-
         return mapping_dict
 
     finally:
@@ -253,7 +254,7 @@ def get_mappings(CONFIG, gene_list, source, target, batch_size=900):
 def get_tflist(CONFIG):
     """
     """
-    tf_path = CONFIG["data_path"] / "tflist"/ "allTFs_hg38.txt"
+    tf_path = CONFIG["DATA_PATH"] / "tflist"/ "allTFs_hg38.txt"
     df = pd.read_csv(tf_path, names=["gene_name"], header=None)
     return  df["gene_name"].tolist()
 
@@ -263,7 +264,7 @@ def get_protein_coding_genes(gene_list, CONFIG):
     Fetches all protein-coding genes once and intersects with input list in memory.
     Best for one-time calls with large input lists.
     """
-    db_path = CONFIG["data_path"] / "gencode" / "gene_name_mapping.db"
+    db_path = CONFIG["DATA_PATH"] / "gencode" / "gene_name_mapping.db"
     
     # 1. Fetch all protein-coding genes from the DB
     query = "SELECT DISTINCT gene_name FROM mappings WHERE gene_type = 'protein_coding'"

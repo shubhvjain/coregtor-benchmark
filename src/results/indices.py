@@ -833,7 +833,7 @@ def performance_indices_combined(input, env,options ,args):
     
     file_name = options.get("name","default")
 
-    result_file =  out_path/ f"cluster_indices_{file_name}.csv.gz"
+    result_file =  out_path/ f"cluster_indices_{file_name}.parquet"
     if result_file.exists() and not rerun:
         print("already exists")
         return
@@ -890,6 +890,7 @@ def performance_indices_combined(input, env,options ,args):
     combined_df = pd.concat(res, ignore_index=True)
     combined_df["dataset"] = dataset_name
     combined_df.to_csv(result_file,index=False)
+    combined_df.to_parquet(result_file, index=False, compression="gzip")
     print("saved")
 
 

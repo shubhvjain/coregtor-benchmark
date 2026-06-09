@@ -3,9 +3,10 @@ from dotenv import load_dotenv
 import json
 from pathlib import Path
 
-import src.pipeline.util as ut
 import src.pipeline.init as wf_init
 import src.pipeline.run as wf_run 
+
+import src.results.util as ut
 
 # 1. Get the env file name from the command line: --config env=project.env
 env_file = config.get("env", ".env.local")
@@ -53,9 +54,6 @@ EXP_OUT , EXP_TEMP = ut.get_exp_path(EXP,CONFIG)
 #= os.path.join(OUT_DIR, ID) 
 #EXP_TEMP = os.path.join(TEMP_DIR, ID) 
 # Now exp has all the data about the experiment to run 
-
-
-
 
 INIT_DONE_INDICATOR_FILE = os.path.join(EXP_TEMP, "init_done.txt")
 EXP_INPUT_FILE = exp_path

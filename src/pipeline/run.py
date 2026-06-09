@@ -3,8 +3,8 @@ import json
 import sqlite3
 import time 
 
-from src.pipeline.util import read_dataset,get_tflist,get_exp_path
-
+from src.pipeline.util import read_dataset,get_tflist
+from src.results.util import get_exp_path
 from src.pipeline.core import CoRegTorPipeline
 
 def run_batch(exp, config, items=100, batch_id=None):
@@ -55,6 +55,8 @@ def run_batch(exp, config, items=100, batch_id=None):
         **exp,
         "target_genes": input_data["target_genes"],
     }
+    if "run" not in pipeline_options or pipeline_options["run"] is None:
+        pipeline_options["run"] = {}
     pipeline_options["run"]["temp_path"] = str(temp_path/"results")
     pipeline_options["run"]["output_path"] = str(out_path)
 

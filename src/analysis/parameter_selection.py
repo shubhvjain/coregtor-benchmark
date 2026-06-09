@@ -320,6 +320,8 @@ def generate_ps_plot1(df, freq_df, config_details, options, output_path):
     # Set standard clean aesthetic suitable for journals
     sns.set_theme(style="whitegrid", context="paper", font_scale=0.9)
     plt.rcParams.update(ut.default_sns_configs)
+
+    clustering_method_label= options.get("clustering_method_label","clustering_method2")
     
     # Data Preprocessing & Aggregation
     working_df, cluster_labels = ut.process_and_rename_dataset(df, config_details)
@@ -333,7 +335,7 @@ def generate_ps_plot1(df, freq_df, config_details, options, output_path):
     # 1. First Heatmap: PPI(S) - Panel A
     pivot_b = working_df.pivot_table(
         index="distance_measure", 
-        columns="clustering_method2", 
+        columns=clustering_method_label, 
         values="PPI(S)", 
         aggfunc="mean"
     )
@@ -349,7 +351,7 @@ def generate_ps_plot1(df, freq_df, config_details, options, output_path):
     # 2. Second Heatmap: GO - Panel B
     pivot_h = working_df.pivot_table(
         index="distance_measure", 
-        columns="clustering_method2", 
+        columns=clustering_method_label, 
         values="GO", 
         aggfunc="mean"
     )
@@ -364,7 +366,7 @@ def generate_ps_plot1(df, freq_df, config_details, options, output_path):
     # 3. Third Heatmap: DC - Panel C
     pivot_s = working_df.pivot_table(
         index="distance_measure", 
-        columns="clustering_method2", 
+        columns=clustering_method_label, 
         values="DC", 
         aggfunc="mean"
     )
