@@ -8,12 +8,14 @@ import re
 def natural_keys(text):
     return [int(c) if c.isdigit() else c for c in re.split(r'(\d+)', text)]
 
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pandas as pd
 
-def plot_all_configs_raw(df,metrics_list, freq_df=None, freq_metrics=[] ,output_name=None):
+def plot_all_configs_raw(df, freq_df=None, output_name=None):
     """
     Plots a multi-row boxplot comparison for configs.
     """
-    
     INDEX_META = {
         "silhouette_score": {"key": "SIL", "label": "Silhouette score"},
         "n_source": {"key": "NC", "label": "Cluster size"},
@@ -29,23 +31,67 @@ def plot_all_configs_raw(df,metrics_list, freq_df=None, freq_metrics=[] ,output_
         "grn_collectri_precision": {"key": "PRC", "label": "GRN Precision (Collectri)"},
         "grn_collectri_recall": {"key": "RCL", "label": "GRN Recall (Collectri)"},
         "grn_collectri_jaccard": {"key": "JAC", "label": "GRN Jaccard (Collectri)"},
-        "density_score_hippie":{"key": "PPI3 (H)", "label": "  "},
-        "lcc_score_hippie":{"key": "PPI4 (H)", "label": "  "},
-        "tc_score_hippie":{"key": "PPI5 (H)", "label": "  "},
-        "density_score_stringdb":{"key": "PPI3 (S)", "label": "  "},
-        "lcc_score_stringdb":{"key": "PPI4 (S)", "label": "  "},
-        "tc_score_stringdb":{"key": "PPI5 (S)", "label": "  "},
-        "density_score_biogrid":{"key": "PPI3 (B)", "label": "  "},
-        "lcc_score_biogrid":{"key": "PPI4 (B)", "label": "  "},
-        "tc_score_biogrid":{"key": "PPI5 (B)", "label": "  "}
+        "density_score_hippie": {"key": "PPI3 (H)", "label": "Density Score (Hippie)"},
+        "lcc_score_hippie": {"key": "PPI4 (H)", "label": "LCC Score (Hippie)"},
+        "tc_score_hippie": {"key": "PPI5 (H)", "label": "TC Score (Hippie)"},
+        "density_score_stringdb": {"key": "PPI3 (S)", "label": "Density Score (StringDB)"},
+        "lcc_score_stringdb": {"key": "PPI4 (S)", "label": "LCC Score (StringDB)"},
+        "tc_score_stringdb": {"key": "PPI5 (S)", "label": "TC Score (StringDB)"},
+        "density_score_biogrid": {"key": "PPI3 (B)", "label": "Density Score (Biogrid)"},
+        "lcc_score_biogrid": {"key": "PPI4 (B)", "label": "LCC Score (Biogrid)"},
+        "tc_score_biogrid": {"key": "PPI5 (B)", "label": "TC Score (Biogrid)"},
+        "dCor_targets_score":{"key":"CT DC Score", "label":""},
+        "ppi_shared_partners_stringdb":{"key":"CT PPI Score (S)", "label":""},
+        "ppi_shared_partners_biogrid":{"key":"CT PPI Score (B)", "label":""},
+        "ppi_shared_partners_hippie":{"key":"CT PPI Score (H)", "label":""},
+        "go_score":{"key":"CT GO Score", "label":""}
+
     }
-    n_rows = len(metrics_list) + len(freq_metrics)
+    
+    # Internal hardcoded lists provided by user
+    metrics_list = [
+        'silhouette_score', 'n_source', 'cluster_density', 'cluster_diameter', 
+        'shortest_PPI_path_score_hippie', 'shortest_PPI_path_score_stringdb',
+        'shortest_PPI_path_score_biogrid', 'shared_PPI_partners_score_hippie',
+        'shared_PPI_partners_score_stringdb', 'shared_PPI_partners_score_biogrid', 
+        'goa_similarity_lin', 'goa_similarity_resnik', 'goa_similarity_jc', 
+        'density_hippie', 'density_score_hippie', 'lcc_hippie', 'lcc_score_hippie', 
+        'tc_hippie', 'tc_score_hippie', 'node_found_ratio_hippie', 'density_stringdb',
+        'density_score_stringdb', 'lcc_stringdb', 'lcc_score_stringdb',
+        'tc_stringdb', 'tc_score_stringdb', 'node_found_ratio_stringdb',
+        'density_biogrid', 'density_score_biogrid', 'lcc_biogrid',
+        'lcc_score_biogrid', 'tc_biogrid', 'tc_score_biogrid',
+        'node_found_ratio_biogrid', 'dCor_sources', 'dCor_target', 'DC1', 'DC2',
+        'TFBS_affinity', 'TF_found_per', 'TFBS_affinity_score'
+    ]
+    
+    freq_metrics = [
+        'dCor_targets_score', 'ppi_shared_partners_hippie', 
+        'ppi_shared_partners_biogrid','ppi_shared_partners_stringdb', 'go_score'
+    ]
+    
+    # Define tasks to process sequentially
+    # Format: (associated_dataframe, metric_name)
+    tasks = []
+    for m in metrics_list:
+        if m in df.columns:  # Safety check to avoid KeyErrors if df missing a metric
+            tasks.append((df, m))
+            
+    for m in freq_metrics:
+        if freq_df is not None and m in freq_df.columns:
+            tasks.append((freq_df, m))
+            
+    n_rows = len(tasks)
+    if n_rows == 0:
+        print("No valid metrics found in dataframes.")
+        return
+
     unique_configs = sorted(df["config_name"].unique(), key=natural_keys)
     n_cols = len(unique_configs)
+    
     # --- PURE UNCONSTRAINED DYNAMIC SIZING ---
-    # 6 cm converted to inches = 2.3622 inches per column
     inch_per_col = 3.0 * 0.393701
-    inch_per_row = 3.0  # Extra breathing room for the vertical axis
+    inch_per_row = 3.5  # Room for Max, Med, and Min line info labels
 
     dynamic_width = n_cols * inch_per_col
     dynamic_height = n_rows * inch_per_row
@@ -54,18 +100,16 @@ def plot_all_configs_raw(df,metrics_list, freq_df=None, freq_metrics=[] ,output_
         nrows=n_rows, ncols=1, figsize=(dynamic_width, dynamic_height)
     )
 
-    # fig, axes = plt.subplots(nrows=n_rows, ncols=1, figsize=(16.54, 11.69))
+    if n_rows == 1: 
+        axes = [axes]
 
-    if n_rows == 1: axes = [axes]
-
-    # Ensure configs are sorted/consistent even after filtering
-    unique_configs = sorted(df['config_name'].unique(), key=natural_keys)
-
-    for i, metric in enumerate(metrics_list):
-        ax = axes[i]
+    # --- SINGLE UNIFIED LOOP ---
+    for idx, (current_df, metric) in enumerate(tasks):
+        ax = axes[idx]
         box_color = ut.color_palette["ice_blue"]
+        
         sns.boxplot(
-            data=df, 
+            data=current_df, 
             x='config_name', 
             y=metric, 
             ax=ax, 
@@ -81,76 +125,37 @@ def plot_all_configs_raw(df,metrics_list, freq_df=None, freq_metrics=[] ,output_
         for spine in ax.spines.values():
             spine.set_linewidth(0.5)
 
-        # # Group by config_name, get the median of the current metric, and drop NaNs
-        # medians = df.groupby('config_name')[metric].median().dropna()
+        # --- MIN, MEDIAN, AND MAX CALCULATIONS ---
+        medians = current_df.groupby('config_name')[metric].median().dropna()
+        absolute_max_val = current_df[metric].max()
+        absolute_min_val = current_df[metric].min()
         
-        # if not medians.empty:
-        #     best_config = medians.idxmax()
-        #     max_median_val = medians.max()
-        #     line_color = ut.color_palette["dark_navy"]
-        #     # Draw the horizontal line
-        #     ax.axhline(
-        #         y=max_median_val, 
-        #         color=line_color, 
-        #         linestyle='--', 
-        #         linewidth=0.5, 
-        #         alpha=0.8
-        #     )
-            
-        #     # Add text label right above the line on the far right of the plot
-        #     # (Using transform=ax.get_yaxis_transform() keeps x-position relative to axes frame)
-        #     ax.text(
-        #         x=1.01, 
-        #         y=max_median_val, 
-        #         s=f"{best_config} ({max_median_val:.3f})", 
-        #         color=line_color, 
-        #         fontsize=6, 
-        #         verticalalignment='center',
-        #         transform=ax.get_yaxis_transform()
-        #     )
-
-        # --- MEDIAN AND MAX CALCULATIONS ---
-        # Group by config_name to find the best median
-        medians = df.groupby('config_name')[metric].median().dropna()
-        # Find the absolute max across all configurations for this metric
-        absolute_max_val = df[metric].max()
-        
-        if not medians.empty and not pd.isna(absolute_max_val):
+        if not medians.empty and not pd.isna(absolute_max_val) and not pd.isna(absolute_min_val):
             best_config_med = medians.idxmax()
             max_median_val = medians.max()
             
-            # Find which config holds the absolute maximum value
-            best_config_max = df.loc[df[metric] == absolute_max_val, 'config_name'].iloc[0]
+            best_config_max = current_df.loc[current_df[metric] == absolute_max_val, 'config_name'].iloc[0]
+            best_config_min = current_df.loc[current_df[metric] == absolute_min_val, 'config_name'].iloc[0]
             
             line_color = ut.color_palette["dark_navy"]
             
-            # 1. Draw Max Median Line
-            ax.axhline(
-                y=max_median_val, 
-                color=line_color, 
-                linestyle='--', 
-                linewidth=0.5, 
-                alpha=0.6
-            )
+            # 1. Max Median Line (dashed)
+            ax.axhline(y=max_median_val, color=line_color, linestyle='--', linewidth=0.5, alpha=0.6)
             
-            # 2. Draw Absolute Max Line
-            ax.axhline(
-                y=absolute_max_val, 
-                color=line_color, 
-                linestyle=':', 
-                linewidth=0.5, 
-                alpha=0.6
-            )
+            # 2. Absolute Max Line (dotted)
+            ax.axhline(y=absolute_max_val, color=line_color, linestyle=':', linewidth=0.5, alpha=0.6)
+
+            # 3. Absolute Min Line (dash-dot)
+            ax.axhline(y=absolute_min_val, color=line_color, linestyle='-.', linewidth=0.5, alpha=0.6)
             
-            # 3. Combined Text Label
-            # Format: Config_Med (med_val) | Config_Max (max_val)
+            # 4. Text Label Block
             label_text = (
-                f"Med: {best_config_med} ({max_median_val:.3f}) \n"
-                f"Max: {best_config_max} ({absolute_max_val:.3f})"
+                f"Max: {best_config_max} ({absolute_max_val:.3f})\n"
+                f"Med: {best_config_med} ({max_median_val:.3f})\n"
+                f"Min: {best_config_min} ({absolute_min_val:.3f})"
             )
             
-            # Position the text midway between the two lines to prevent overlap issues
-            text_y_position = (max_median_val + absolute_max_val) / 2
+            text_y_position = (absolute_max_val + absolute_min_val) / 2
             
             ax.text(
                 x=1.01, 
@@ -161,16 +166,15 @@ def plot_all_configs_raw(df,metrics_list, freq_df=None, freq_metrics=[] ,output_
                 verticalalignment='center',
                 transform=ax.get_yaxis_transform()
             )
-        #==========
         
         # --- LOGIC TO GET THE "KEY" ---
         meta = INDEX_META.get(metric, metric)
         if isinstance(meta, dict):
             y_label = meta.get('key', meta.get('label', metric))
         else:
-            y_label = meta
+            # Fallback formatting if metric isn't in INDEX_META dictionary
+            y_label = str(meta).replace('_', ' ').title()
 
-        # Set Y-axis with the short Key
         ax.set_ylabel(y_label, rotation=90, labelpad=10, 
                       fontsize=7, verticalalignment='center')
         ax.set_xlabel('')
@@ -178,361 +182,158 @@ def plot_all_configs_raw(df,metrics_list, freq_df=None, freq_metrics=[] ,output_
         
         # --- X-AXIS LABELS ---
         ax.set_xticks(range(len(unique_configs)))
-        ax.set_xticklabels(unique_configs, rotation=90, fontsize=4) # Slightly smaller for 60 cols
+        ax.set_xticklabels(unique_configs, rotation=90, fontsize=4) 
         ax.tick_params(axis='x', labelbottom=True)
 
-    for i, metric in enumerate(freq_metrics):
-        ax = axes[i]
-        box_color = ut.color_palette["ice_blue"]
-        sns.boxplot(
-            data=freq_df, 
-            x='config_name', 
-            y=metric, 
-            ax=ax, 
-            color=box_color, 
-            showfliers=False,
-            linewidth=0.4,
-            order=unique_configs,
-            width=0.75
-        )
-
-        ax.grid(True, axis='y', linewidth=0.4, color='#e0e0e0', zorder=0)
-
-        for spine in ax.spines.values():
-            spine.set_linewidth(0.5)
-
-        # # Group by config_name, get the median of the current metric, and drop NaNs
-        # medians = df.groupby('config_name')[metric].median().dropna()
-        
-        # if not medians.empty:
-        #     best_config = medians.idxmax()
-        #     max_median_val = medians.max()
-        #     line_color = ut.color_palette["dark_navy"]
-        #     # Draw the horizontal line
-        #     ax.axhline(
-        #         y=max_median_val, 
-        #         color=line_color, 
-        #         linestyle='--', 
-        #         linewidth=0.5, 
-        #         alpha=0.8
-        #     )
-            
-        #     # Add text label right above the line on the far right of the plot
-        #     # (Using transform=ax.get_yaxis_transform() keeps x-position relative to axes frame)
-        #     ax.text(
-        #         x=1.01, 
-        #         y=max_median_val, 
-        #         s=f"{best_config} ({max_median_val:.3f})", 
-        #         color=line_color, 
-        #         fontsize=6, 
-        #         verticalalignment='center',
-        #         transform=ax.get_yaxis_transform()
-        #     )
-
-        # --- MEDIAN AND MAX CALCULATIONS ---
-        # Group by config_name to find the best median
-        medians = freq_df.groupby('config_name')[metric].median().dropna()
-        # Find the absolute max across all configurations for this metric
-        absolute_max_val = freq_df[metric].max()
-        
-        if not medians.empty and not pd.isna(absolute_max_val):
-            best_config_med = medians.idxmax()
-            max_median_val = medians.max()
-            
-            # Find which config holds the absolute maximum value
-            best_config_max = freq_df.loc[freq_df[metric] == absolute_max_val, 'config_name'].iloc[0]
-            
-            line_color = ut.color_palette["dark_navy"]
-            
-            # 1. Draw Max Median Line
-            ax.axhline(
-                y=max_median_val, 
-                color=line_color, 
-                linestyle='--', 
-                linewidth=0.5, 
-                alpha=0.6
-            )
-            
-            # 2. Draw Absolute Max Line
-            ax.axhline(
-                y=absolute_max_val, 
-                color=line_color, 
-                linestyle=':', 
-                linewidth=0.5, 
-                alpha=0.6
-            )
-            
-            # 3. Combined Text Label
-            # Format: Config_Med (med_val) | Config_Max (max_val)
-            label_text = (
-                f"Med: {best_config_med} ({max_median_val:.3f}) \n"
-                f"Max: {best_config_max} ({absolute_max_val:.3f})"
-            )
-            
-            # Position the text midway between the two lines to prevent overlap issues
-            text_y_position = (max_median_val + absolute_max_val) / 2
-            
-            ax.text(
-                x=1.01, 
-                y=text_y_position, 
-                s=label_text, 
-                color=line_color, 
-                fontsize=5, 
-                verticalalignment='center',
-                transform=ax.get_yaxis_transform()
-            )
-        #==========
-        
-        # --- LOGIC TO GET THE "KEY" ---
-        meta = INDEX_META.get(metric, metric)
-        if isinstance(meta, dict):
-            y_label = meta.get('key', meta.get('label', metric))
-        else:
-            y_label = meta
-
-        # Set Y-axis with the short Key
-        ax.set_ylabel(y_label, rotation=90, labelpad=10, 
-                      fontsize=7, verticalalignment='center')
-        ax.set_xlabel('')
-        ax.tick_params(axis='y', labelsize=5)
-        
-        # --- X-AXIS LABELS ---
-        ax.set_xticks(range(len(unique_configs)))
-        ax.set_xticklabels(unique_configs, rotation=90, fontsize=4) # Slightly smaller for 60 cols
-        ax.tick_params(axis='x', labelbottom=True)
-
-
-    # Tightened hspace slightly for a cleaner landscape look
     plt.subplots_adjust(left=0.08, right=0.98, top=0.95, bottom=0.15, hspace=0.6)
     
     if output_name:
         plt.savefig(output_name, bbox_inches='tight', dpi=300)
+
+
+def generate_heatmap(ax, pivot_df, title, letter, show_y_label=True):
+    """
+    Generates a single heatmap panel on a provided matplotlib axis using a pre-pivoted dataframe.
+    """
+    # Skip rendering if pivot data is missing or empty
+    if pivot_df is None or pivot_df.empty:
+        ax.axis('off')
+        return
+
+    # 1. Render Heatmap directly from the passed matrix
+    cbar_options = {"shrink": 0.75, "pad": 0.03}
+    annot_options = {"size": 4}
     
-    # plt.show()
-    # return 
+    sns.heatmap(pivot_df, annot=True, fmt=".2f", cmap="viridis", ax=ax, 
+                cbar_kws=cbar_options, annot_kws=annot_options)
+
+    # 2. Apply Local Typographic Styles
+    ax.set_title(title)
+    ax.set_xlabel("Clustering Method")
+    ax.set_xticklabels(ax.get_xticklabels(), rotation=45, ha='right')
+
+    # 3. Handle Left-Column Specific Formatting Independently
+    if show_y_label:
+        ax.set_ylabel("Distance Measure")
+    else:
+        ax.set_ylabel("")
+        ax.set_yticklabels([])  # Hide tick labels safely
+    
+    panel_label_x = -0.25
+
+    # 4. Add Panel Identifier Label
+    panel_label_y = 1.15 
+    ax.text(panel_label_x, panel_label_y, letter, transform=ax.transAxes, 
+            fontsize=10, va="top")
+
 
 
 def generate_ps_plot1(df, freq_df, config_details, options, output_path):
     """
-    Generates the integrated parameter selection analysis plot (Panels A, B, & C)
-    and saves it as a publication-ready file formatted for a half A4 page.
+    Generates an asymmetric grid layout (Row 1: 3 equal cols | Row 2: 2 cols at 25%/75% width)
+    by calculating matrices centrally and passing them to independent component calls.
     """
     # Set standard clean aesthetic suitable for journals
     sns.set_theme(style="whitegrid", context="paper", font_scale=0.9)
     plt.rcParams.update(ut.default_sns_configs)
-
-    clustering_method_label= options.get("clustering_method_label","clustering_method2")
     
     # Data Preprocessing & Aggregation
     working_df, cluster_labels = ut.process_and_rename_dataset(df, config_details)
 
-    # Academic dimensions: ~8.2 inches wide (A4 width) and 3.2 inches high (half-A4 allocation)
-    fig, axes = plt.subplots(1, 3, figsize=(8.2, 3.2), sharey=True)
+    working_freq_df , freq_cluster_labels = ut.process_and_rename_freq(freq_df, config_details)
+
+    # Establish Figure Container
+    fig = plt.figure(figsize=(8.2, 6.5))
     
-    # Common heatmap appearance configurations for consistent publication style
-    cbar_options = {"shrink": 0.75, "pad": 0.03}
+    # Define a 2-row, 12-column Grid Spec allocation matrix
+    gs = fig.add_gridspec(nrows=3, ncols=12)
     
-    # 1. First Heatmap: PPI(S) - Panel A
+    # -------------------------------------------------------------
+    # ROW 1 PLOTS: 3 Equal Columns (Each spans 4 grid units)
+    # -------------------------------------------------------------
+    # Panel A: PPI(S)
+    pivot_a = working_df.pivot_table(
+        columns ="distance_measure", index="clustering_method2", values="PPI(S)", aggfunc="mean"
+    ) if "PPI(S)" in working_df.columns else None
+    
+    ax_a = fig.add_subplot(gs[0, 0:4])   
+    generate_heatmap(
+        ax=ax_a, pivot_df=pivot_a, title="Overall PPI Score (StringDB)", letter="(A)", show_y_label=True
+    )
+    
+    # Panel B: GO
     pivot_b = working_df.pivot_table(
-        index="distance_measure", 
-        columns=clustering_method_label, 
-        values="PPI(S)", 
-        aggfunc="mean"
-    )
-    sns.heatmap(pivot_b, annot=True, fmt=".2f", cmap="viridis", ax=axes[0], 
-                cbar_kws=cbar_options, annot_kws={"size": 6})
-    axes[0].set_title("Overall PPI Score (StringDB)", fontsize=9, pad=8)
-    axes[0].set_xlabel("Clustering Method", fontsize=8)
-    axes[0].set_ylabel("Distance Measure", fontsize=8)
-    axes[0].tick_params(labelsize=7)
-    # Relative positioning slightly above the top-left boundary of the panel
-    axes[0].text(-0.25, 1.10, "(A)", transform=axes[0].transAxes, fontsize=10, va="top")
+        columns ="distance_measure", index="clustering_method2", values="GO", aggfunc="mean"
+    ) if "GO" in working_df.columns else None
     
-    # 2. Second Heatmap: GO - Panel B
-    pivot_h = working_df.pivot_table(
-        index="distance_measure", 
-        columns=clustering_method_label, 
-        values="GO", 
-        aggfunc="mean"
+    ax_b = fig.add_subplot(gs[0, 4:8])   
+    generate_heatmap(
+        ax=ax_b, pivot_df=pivot_b, title="Overall GO Score", letter="(B)", show_y_label=False
     )
-    sns.heatmap(pivot_h, annot=True, fmt=".2f", cmap="viridis", ax=axes[1], 
-                cbar_kws=cbar_options, annot_kws={"size": 6})
-    axes[1].set_title("Overall GO Score", fontsize=9, pad=8)
-    axes[1].set_xlabel("Clustering Method", fontsize=8)
-    axes[1].set_ylabel("") 
-    axes[1].tick_params(labelsize=7)
-    axes[1].text(-0.08, 1.10, "(B)", transform=axes[1].transAxes, fontsize=10, va="top")
     
-    # 3. Third Heatmap: DC - Panel C
-    pivot_s = working_df.pivot_table(
-        index="distance_measure", 
-        columns=clustering_method_label, 
-        values="DC", 
-        aggfunc="mean"
+    # Panel C: DC
+    pivot_c = working_df.pivot_table(
+        columns ="distance_measure", index="clustering_method2", values="DC", aggfunc="mean"
+    ) if "DC" in working_df.columns else None
+    
+    ax_c = fig.add_subplot(gs[0, 8:12])  
+    generate_heatmap(
+        ax=ax_c, pivot_df=pivot_c, title="Overall Dist Corr Score", letter="(C)", show_y_label=False
     )
-    sns.heatmap(pivot_s, annot=True, fmt=".2f", cmap="viridis", ax=axes[2], 
-                cbar_kws=cbar_options, annot_kws={"size": 6})
-    axes[2].set_title("Overall Dist Corr Score", fontsize=9, pad=8)
-    axes[2].set_xlabel("Clustering Method", fontsize=8)
-    axes[2].set_ylabel("")
-    axes[2].tick_params(labelsize=7)
-    axes[2].text(-0.08, 1.10, "(C)", transform=axes[2].transAxes, fontsize=10, va="top")
+    
+    # -------------------------------------------------------------
+    # ROW 2 PLOTS: Asymmetric Columns (25% vs 75% width split)
+    # -------------------------------------------------------------
+    # Panel D: PPI(H) - Left Panel: 25% Width (Spans 3 units: index 0 to 2)
+    pivot_d = working_df.pivot_table(
+        columns ="distance_measure", index ="clustering_method2", values="TFBS", aggfunc="mean"
+    ) if "TFBS" in working_df.columns else None
+    
+    ax_d = fig.add_subplot(gs[1, 0:4])   
+    generate_heatmap(
+        ax=ax_d, pivot_df=pivot_d, title="TFBS Affinity Score", letter="(D)", show_y_label=True
+    )
+    
+    # Panel E: sil score 
 
-    # Tight adjustments ensuring colorbars and structural sub-labels do not truncate
+    pivot_e = working_df.pivot_table(
+       columns ="distance_measure", index="clustering_method2", values="silhouette_score", aggfunc="mean"
+    ).fillna(0) if working_df is not None and "silhouette_score" in working_df.columns else None
+    # pivot_e = None
+
+    ax_e = fig.add_subplot(gs[1, 4:8])  
+    generate_heatmap(
+        ax=ax_e, pivot_df=pivot_e, title="Silhouette Score", letter="(E)", show_y_label=False
+    )
+
+    # Panel F: go_score (from freq_df) - Right Panel: 75% Width (Spans 9 units: index 3 to 11)
+
+    pivot_f = working_freq_df.pivot_table(
+       columns ="distance_measure", index="clustering_method2", values="CTS", aggfunc="mean"
+    ).fillna(0) if working_freq_df is not None and "CTS" in working_freq_df.columns else None
+    # pivot_e = None
+
+    ax_e = fig.add_subplot(gs[1, 8:12])  
+    generate_heatmap(
+        ax=ax_e, pivot_df=pivot_f, title="Overall Common Targets Score", letter="(F)", show_y_label=False
+    )
+
+    
+    # # Panel F: database vs overall score
+
+    # pivot_f = working_df.pivot_table(
+    #    columns ="dataset", index="clustering_method2", values="OVERALL_SCORE", aggfunc="mean"
+    # ).fillna(0) if working_df is not None and "OVERALL_SCORE" in working_df.columns else None
+    # # pivot_e = None
+
+    # ax_f = fig.add_subplot(gs[1, 7:12])  
+    # generate_heatmap(
+    #     ax=ax_f, pivot_df=pivot_f, title="Overall Score", letter="(F)", show_y_label=False
+    # )
+
+    # Final spatial compilation configurations
     plt.tight_layout()
-    plt.savefig(output_path, dpi=300, bbox_inches="tight")
+    
+    if output_path:
+        plt.savefig(output_path, dpi=300, bbox_inches="tight")
     plt.close()
-
-
-# def generate_ps_plot1(df,freq_df,config_details,options,output_path):
-#     """
-#     Generates the integrated parameter selection analysis plot (Panels A & B)
-#     and saves it as a publication-ready SVG file.
-#     """
-    
-#     # Set standard clean aesthetic suitable for journals
-#     sns.set_theme(style="whitegrid", context="paper", font_scale=1.0)
-#     plt.rcParams.update(ut.default_sns_configs)
-#     # print(df.columns)
-#     # Data Preprocessing & Aggregation
-#     working_df, cluster_labels = ut.process_and_rename_dataset(df,config_details)
-#     #print(working_df.columns)
-#     #print(working_df)
-#     #print(cluster_labels)
-
-
-
-#     fig, axes = plt.subplots(1, 3, figsize=(20, 6), sharey=True)
-    
-#     # 1. First Heatmap: PPI(B)
-#     pivot_b = working_df.pivot_table(
-#         index="distance_measure", 
-#         columns="clustering_method2", 
-#         values="PPI(S)", 
-#         aggfunc="mean"
-#     )
-#     sns.heatmap(pivot_b, annot=True, fmt=".2f", cmap="viridis", ax=axes[0], cbar_kws={"label": "Score"})
-#     axes[0].set_title("Overall PPI Score (StringDB)")
-#     axes[0].set_xlabel("Clustering Method")
-#     axes[0].set_ylabel("Distance Measure")
-    
-#     # 2. Second Heatmap: PPI(H) (Inferred from your columns)
-#     pivot_h = working_df.pivot_table(
-#         index="distance_measure", 
-#         columns="clustering_method2", 
-#         values="GO", 
-#         aggfunc="mean"
-#     )
-#     sns.heatmap(pivot_h, annot=True, fmt=".2f", cmap="viridis", ax=axes[1], cbar_kws={"label": "Score"})
-#     axes[1].set_title("Overall GO")
-#     axes[1].set_xlabel("Clustering Method")
-#     axes[1].set_ylabel("") # Suppressed because sharey=True is active
-    
-#     # 3. Third Heatmap: PPI(S) (Inferred from your columns)
-#     pivot_s = working_df.pivot_table(
-#         index="distance_measure", 
-#         columns="clustering_method2", 
-#         values="DC", 
-#         aggfunc="mean"
-#     )
-#     sns.heatmap(pivot_s, annot=True, fmt=".2f", cmap="viridis", ax=axes[2], cbar_kws={"label": "Score"})
-#     axes[2].set_title("Overall Distance Correlation Score")
-#     axes[2].set_xlabel("Clustering Method")
-#     axes[2].set_ylabel("")
-
-#     # Adjust layout to prevent any label or title truncation
-#     plt.tight_layout()
-#     plt.savefig(output_path, dpi=300)
-#     plt.close()
-
-#     return
-    # Define baseline indices for Panel B tracking
-    # master_indices = {
-    #     'silhouette_score': 'Silhouette Score',
-    #     'cluster_density': 'Cluster Density',
-    #     'PPI_Composite': 'PPI Connectedness',
-    #     'GO_Composite': 'GO Semantic Sim',
-    #     'grn_collectri_jaccard': 'GRN Jaccard',
-    #     'TFBS_affinity_score': 'TFBS Affinity'
-    # }
-    # # Keep only indices present in the dataframe columns
-    # active_indices = {k: v for k, v in master_indices.items() if k in working_df.columns}
-
-    # # Generate Mean Profiles grouped by key parameters
-    # # Group by both hyperparameters for Panel A matrix mapping
-    # interaction_profile = working_df.groupby(['distance_measure', 'clustering_method']).mean(numeric_only=True).reset_index()
-    # # Group independently for Panel B baseline vectors
-    # distance_profile = working_df.groupby('distance_measure').mean(numeric_only=True)
-    # method_profile = working_df.groupby('clustering_method').mean(numeric_only=True)
-
-    # # 3. Structural Canvas Construction (GridSpec Assembly)
-    # fig = plt.figure(figsize=(15, 11))
-    # # 2 Main rows, 6 horizontal grid divisions to easily share spans (2+2+2 for Top, 3+3 for Bottom)
-    # gs = fig.add_gridspec(2, 6, height_ratios=[1, 1], hspace=0.35, wspace=0.45)
-
-    # # Define unique ordering to keep the vertical layout uniform across axes
-    # dist_order = sorted(working_df['distance_measure'].unique())
-    # method_order = sorted(working_df['clustering_method'].unique())
-
-    # # ==========================================
-    # # PANEL A: Targeted Hyperparameter Matrices
-    # # ==========================================
-    # ax_a1 = fig.add_subplot(gs[0, 0:2])
-    # ax_a2 = fig.add_subplot(gs[0, 2:4], sharey=ax_a1)
-    # ax_a3 = fig.add_subplot(gs[0, 4:6], sharey=ax_a1)
-
-    # # A1: PPI Layer
-    # pivot_ppi = interaction_profile.pivot(index='distance_measure', columns='clustering_method', values='PPI_Composite').reindex(index=dist_order, columns=method_order)
-    # sns.heatmap(pivot_ppi, annot=True, fmt=".3f", cmap="YlGnBu", ax=ax_a1, cbar_kws={'label': 'Mean Composite Score'})
-    # ax_a1.set_title('A1: PPI Validation Layer\n(Hippie + StringDB + BioGrid)', fontsize=10, fontweight='bold')
-    # ax_a1.set_ylabel('Distance Measure', fontsize=10)
-
-    # # A2: Gene Ontology Layer
-    # pivot_go = interaction_profile.pivot(index='distance_measure', columns='clustering_method', values='GO_Composite').reindex(index=dist_order, columns=method_order)
-    # sns.heatmap(pivot_go, annot=True, fmt=".3f", cmap="Blues", ax=ax_a2, cbar_kws={'label': 'Mean Functional Similarity'})
-    # ax_a2.set_title('A2: Gene Ontology Layer\n(Lin + Resnik)', fontsize=10, fontweight='bold')
-    # ax_a2.set_xlabel('Clustering Method', fontsize=10, labelpad=8)
-    # ax_a2.tick_params(left=False, labelleft=False) # Hide redundant shared labels
-
-    # # A3: TFBS Layer
-    # if 'TFBS_affinity_score' in working_df.columns:
-    #     pivot_tfbs = interaction_profile.pivot(index='distance_measure', columns='clustering_method', values='TFBS_affinity_score').reindex(index=dist_order, columns=method_order)
-    #     sns.heatmap(pivot_tfbs, annot=True, fmt=".3f", cmap="Oranges", ax=ax_a3, cbar_kws={'label': 'TFBS Affinity Score'})
-    #     ax_a3.set_title('A3: Transcription Factor Layer\n(TFBS Affinity Only)', fontsize=10, fontweight='bold')
-    #     ax_a3.tick_params(left=False, labelleft=False)
-
-    # # Inject Panel A Heading Context
-    # fig.text(0.02, 0.95, "PANEL A: Targeted Hyperparameter Interactions Across Functional Layers", fontsize=13, fontweight='bold', color='#1a1a1a')
-
-    # # ==========================================
-    # # PANEL B: Isolated Profile Vector Baselines
-    # # ==========================================
-    # ax_b1 = fig.add_subplot(gs[1, 0:3])
-    # ax_b2 = fig.add_subplot(gs[1, 3:6])
-
-    # # Extract ordered matrix columns based on active configuration variables
-    # metric_keys = list(active_indices.keys())
-    # metric_labels = list(active_indices.values())
-
-    # # B1: Distance Profile vs Metric Matrix
-    # mat_dist = distance_profile[metric_keys].reindex(dist_order)
-    # sns.heatmap(mat_dist, annot=True, fmt=".3f", cmap="BuPu", ax=ax_b1, xticklabels=metric_labels, cbar_kws={'label': 'Metric Baseline Value'})
-    # ax_b1.set_title('B1: Distance Measures vs All Evaluation Indices', fontsize=10, fontweight='bold')
-    # ax_b1.set_ylabel('Distance Measure', fontsize=10)
-    # ax_b1.tick_params(axis='x', rotation=25, labelsize=9)
-
-    # # B2: Clustering Method Profile vs Metric Matrix
-    # mat_method = method_profile[metric_keys].reindex(method_order)
-    # sns.heatmap(mat_method, annot=True, fmt=".3f", cmap="BuPu", ax=ax_b2, xticklabels=metric_labels, cbar_kws={'label': 'Metric Baseline Value'})
-    # ax_b2.set_title('B2: Clustering Methods vs All Evaluation Indices', fontsize=10, fontweight='bold')
-    # ax_b2.set_ylabel('Clustering Method', fontsize=10)
-    # ax_b2.tick_params(axis='x', rotation=25, labelsize=9)
-
-    # # Inject Panel B Heading Context
-    # fig.text(0.02, 0.47, "PANEL B: Isolated Performance Profiling Against Master Index Suite", fontsize=13, fontweight='bold', color='#1a1a1a')
-
-    # # 4. Save Vector Blueprint Block
-    # plt.savefig(output_path, dpi=300, bbox_inches='tight', format='svg')
-    # plt.close(fig)
-    # # plt.show()
-    # print(f"Publication figure successfully exported to -> {output_path}")

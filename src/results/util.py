@@ -127,10 +127,17 @@ color_palette = {
 }
 
 default_sns_configs = {
+
+    "axes.titlesize": 8,       # Sets all subplot titles globally
+    "axes.labelsize": 6,       # Sets all x and y axis label sizes globally
+    "xtick.labelsize": 6,      # Sets all x-axis tick sizes globally
+    "ytick.labelsize": 6,      # Sets all y-axis tick sizes globally
+
     "figure.dpi": 150,
     "savefig.dpi": 300,
     "axes.spines.top": False,
     "axes.spines.right": False,
+    "axes.titlepad": 8,
     "svg.fonttype": "none",
     "font.family": "sans-serif"
 }
@@ -224,11 +231,7 @@ col_index_map = {
     "DC1":"DC1",
     "DC2":"DC2",
     "TFBS_affinity_score":"TFBS1",
-    "dCor_targets_score":"CTEC",
-    "ppi_shared_partners_hippie":"CTPPI",
-    "ppi_shared_partners_stringdb":"CTPPI",
-    "ppi_shared_partners_biogrid":"CTPPI",
-    "go_score":"CTFE"
+    
 }
 
 distance_map = {
@@ -241,6 +244,23 @@ distance_map = {
         "sorensen_distance": "SR",
         "jensenshannon_distance": "JS",
 }
+
+col_freq = {
+    "dCor_targets_score":"CTEC",
+    "ppi_shared_partners_hippie":"CTPPI",
+    "ppi_shared_partners_stringdb":"CTPPI",
+    "ppi_shared_partners_biogrid":"CTPPI",
+    "go_score":"CTFE"
+}
+
+freq_index_aggregated = [
+    {
+        "key":"CTS",
+        "cols":["dCor_targets_score","ppi_shared_partners_stringdb","go_score"],
+        "label":"Overall Common Targets Score"
+    }
+]
+
 
 def process_and_rename_dataset(df, config_df):
     """
@@ -265,6 +285,9 @@ def process_and_rename_dataset(df, config_df):
     # Step 2: Rename all remaining raw columns to your shorthand map
     processed_df = processed_df.rename(columns=col_index_map)
 
+    # add a total score 
+    all_cols = [ i['key'] for i in index_aggregated]
+    processed_df["OVERALL_SCORE"] = processed_df[all_cols].sum(axis=1, min_count=1)
     # --- Pre-processing for Step 3 & 4 ---
     config_dict = config_df.set_index("config_Id").to_dict(orient="index")
     
@@ -341,6 +364,106 @@ def process_and_rename_dataset(df, config_df):
 
     return processed_df, dynamic_clustering_labels
 
+
+
+def process_and_rename_freq(df, config_df):
+    """
+    1. Computes the custom aggregated scores (Sums instead of Means).
+    2. Renames columns using the standard col_index_map shorthand tokens.
+    3. Adds short-hand 'distance_measure' column based on config mapping.
+    4. Dynamically appends 3 layers of clustering method details.
+    5. Returns both the processed dataframe and the updated clustering labels dictionary.
+    """
+    processed_df = df.copy()
+    
+    # Step 1: Add Aggregations first while raw data column keys exist
+    for agg in freq_index_aggregated:
+        key = agg["key"]
+        cols_to_sum = agg["cols"]
+        valid_cols = [c for c in cols_to_sum if c in processed_df.columns]
+        if valid_cols:
+            processed_df[key] = processed_df[valid_cols].sum(axis=1, min_count=1)
+        else:
+            processed_df[key] = np.nan
+            
+    # Step 2: Rename all remaining raw columns to your shorthand map
+    processed_df = processed_df.rename(columns=col_freq)
+
+    # --- Pre-processing for Step 3 & 4 ---
+    config_dict = config_df.set_index("config_Id").to_dict(orient="index")
+    
+    # Base mapping dictionary
+    dynamic_clustering_labels = {
+        'HC': 'Hierarchical Clustering',
+        'CD': 'Community Detection',
+        'HB': 'HDBSCAN',
+        'HC1': 'Hierarchical (Inconsistency)',
+        'HC2': 'Hierarchical (One Cluster 10)',
+        'CD_TH': 'Community Detection (Threshold)',
+        'CD_KNN': 'Community Detection (KNN)',
+        'HB1': 'HDBSCAN Default'
+    }
+
+    # Isolate community detection configurations to dynamically assign CL tokens
+    cd_mask = config_df["clustering_method"] == "community_detection"
+    unique_cd_combos = (
+        config_df[cd_mask][["clustering_option1", "clustering_option2"]]
+        .drop_duplicates()
+        .reset_index(drop=True)
+    )
+    
+    combo_to_cl_id = {}
+    for idx, row in enumerate(unique_cd_combos.itertuples(index=False), start=1):
+        cl_id = f"CL{idx}"
+        combo_to_cl_id[(row.clustering_option1, row.clustering_option2)] = cl_id
+        
+        # Clean up labels for map (e.g. "threshold_percentile_50" -> "Threshold Percentile 50")
+        opt1_clean = row.clustering_option1.replace('_', ' ').title()
+        dynamic_clustering_labels[cl_id] = f"{opt1_clean} (r={row.clustering_option2})"
+
+    # Step 3: Map Distance Measures
+    raw_distances = processed_df["config_name"].map(
+        lambda x: config_dict.get(x, {}).get("distance_measure")
+    )
+    processed_df["distance_measure"] = raw_distances.map(distance_map).fillna(raw_distances)
+
+    # --- Step 4: Map Clustering Methods ---
+    def get_cfg(cfg_name):
+        return config_dict.get(cfg_name, {})
+
+    # Column 1
+    method1_map = {"hierarchical": "HC", "community_detection": "CD", "hdbscan": "HB"}
+    processed_df["clustering_method1"] = processed_df["config_name"].map(
+        lambda x: method1_map.get(get_cfg(x).get("clustering_method"))
+    )
+
+    # Column 2
+    def map_method2(cfg_name):
+        cfg = get_cfg(cfg_name)
+        method = cfg.get("clustering_method")
+        opt1 = str(cfg.get("clustering_option1"))
+        
+        if method == "hierarchical":
+            return "HC1" if "inconsistency" in opt1 else "HC2"
+        elif method == "community_detection":
+            return "CD_TH" if "threshold" in opt1 else "CD_KNN"
+        elif method == "hdbscan":
+            return "HB1"
+        return None
+
+    processed_df["clustering_method2"] = processed_df["config_name"].map(map_method2)
+
+    # Column 3
+    def map_method3(cfg_name):
+        cfg = get_cfg(cfg_name)
+        if cfg.get("clustering_method") == "community_detection":
+            key = (cfg.get("clustering_option1"), cfg.get("clustering_option2"))
+            return combo_to_cl_id.get(key)
+        return None
+
+    processed_df["clustering_method3"] = processed_df["config_name"].map(map_method3)
+
+    return processed_df, dynamic_clustering_labels
 
 
 

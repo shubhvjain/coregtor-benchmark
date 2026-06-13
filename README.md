@@ -28,7 +28,6 @@ pip install .
 ```
 
 
-
 ## Setup
 
 Create a new `.env` file in the root of the repo 
@@ -58,28 +57,6 @@ Note: Memory requirements at least 7.5 GB space.
 poetry run python code/data_setup.py
 ```
 
-### Dataset info 
-
-
-| Keyword | Description                                | Source |
-| ------- | ------------------------------------------ | ------ |
-| AMY     | Gene TPMs for Brain - Amygdala             | GTEx   |
-| BLA     | Gene TPMs for Bladder                      | GTEx   |
-| BLD     | Gene TPMs for Whole Blood                  | GTEx   |
-| BA9     | Gene TPMs for Brain - Frontal Cortex (BA9) | GTEx   |
-| BRE     | Gene TPMs for Breast - Mammary Tissue      | GTEx   |
-| HYP     | Gene TPMs for Brain - Hypothalamus         | GTEx   |
-| HRV     | Gene TPMs for Heart - Left Ventricle       | GTEx   |
-| HRA     | Gene TPMs for Heart - Atrial Appendage     | GTEx   |
-| KDC     | Gene TPMs for Kidney - Cortex              | GTEx   |
-| LUN     | Gene TPMs for Lung                         | GTEx   |
-| MUS     | Gene TPMs for Muscle - Skeletal            | GTEx   |
-| PAN     | Gene TPMs for Pancreas (Islets)            | GTEx   |
-| THY     | Gene TPMs for Thyroid                      | GTEx   |
-|         |                                            |        |
-
-
- 
 
 ## Running CoRegTor Experiment on a specific gene expression data
 
@@ -205,7 +182,6 @@ poetry run python src/results/main.py --env=$ENV_PATH  --input=$EXP_PATH_AMY --i
 
 poetry run python src/results/main.py --env=$ENV_PATH  --input=$EXP_PATH_AMY --id=r31
 poetry run python src/results/main.py --env=$ENV_PATH  --input=$EXP_PATH_AMY --id=r32
-
 ```
 
 ### Configurations 
@@ -215,4 +191,16 @@ poetry run python src/results/main.py --env=$ENV_PATH  --input=$EXP_PATH_AMY --i
 Random commands:
 ```bash
 poetry --no-cache add tfitpy@0.6.8
+```
+
+To install the 2 dependencies using local copies for development 
+
+```bash
+poetry add --editable ../tfit    
+poetry add --editable ../coregtor
+```
+
+```
+poetry run coregtor_pipeline run --env=$PWD/.env --input=$PWD/experiments/case_studies/ara1.json --rerun
+
 ```

@@ -1,0 +1,33 @@
+{
+  "about":"Analysis of results of parameter selection experiments",
+  "id":"parameter_selection",
+  "experiment_results_paths":["ps/amy","ps/bla","ps/bld","ps/cdn","ps/hra","ps/kdc","ps/lun","ps/pit","ps/stm"],
+  "parameter_config_name":"ps_configs",
+  "results":[
+     {
+      "id":"r1",
+      "type":"combined_gene_freq_diagram",
+      "sort_by":"dataset_sample_size",
+      "saved_combined_stats_file":true,
+      "show_dataset_legend":true
+    },
+    {
+      "id":"r2",
+      "type":"parameter_config_detailed_plot",
+      "result_name":"default",
+      "custom_plots":[
+        {
+          "about":"community_detection for manhattan and canberra distance",
+          "name":"cd_md_cd",
+          "configs":["c15","c16","c17","c18","c19","c20","c21","c22","c23","c27","c28","c29","c30","c31","c32","c33","c34","c35"]
+        }
+      ]
+    },
+    {
+      "id":"r3",
+      "type":"parameter_config_plot",
+      "result_name":"default"
+    }
+    
+  ]
+}

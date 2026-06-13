@@ -76,12 +76,33 @@ def get_tflist(CONFIG):
     df = pd.read_csv(tf_path, names=["gene_name"], header=None)
     return  df["gene_name"].tolist()
 
+def get_tflist_plant(CONFIG):
+    """
+    """
+    tf_path = Path(CONFIG["DATA_PATH"]) / "tflist"/ "Ath_TF_list.txt"
+    df = pd.read_csv(tf_path, delimiter="\t")
+    return  df["Gene_ID"].tolist() 
+
 def get_coreglist(CONFIG):
     """
     """
     file_path = Path(CONFIG["DATA_PATH"]) / "coregulators_list"/ "list.csv"
     df = pd.read_csv(file_path)
     return  df["symbol"].tolist()
+
+def get_source_list(source_list_type,config):
+    """"""
+    if source_list_type == "tf":
+        return get_tflist(config)
+    elif source_list_type == "all_regulators":
+        tf = get_tflist(config)
+        corg = get_coreglist(config)
+        all_regulators = list(set(tf) | set(corg))
+        return all_regulators
+    elif source_list_type == "tf_plants":
+        return get_tflist_plant(config)
+    else:
+        raise ValueError("invalid value")
 
 
 def get_protein_coding_genes(gene_list, CONFIG):
@@ -116,16 +137,23 @@ def read_dataset(details, config):
 
     #print(config.get("data_path"))
     if dtype == "gct":
-        return read_gct(details.get("path"), config, convert_gene_names=details.get("convert_gene_names", True))
+        return read_gct(details.get("path"), config, convert_gene_names=details.get("convert_gene_names", True),transpose= details.get("transpose", True))
     elif dtype == "tcga":
         return read_tcga(
             file_path=details.get("path"), 
             CONFIG=config, 
             convert_gene_names=details.get("convert_gene_names", True)
         )
+    elif dtype == "csv":
+        fpath = Path(os.path.expandvars(details.get("path")))
+        df  = pd.read_csv(fpath,index_col=0)
+        transpose_data = details.get("transpose",True)
+        if transpose_data:
+            df = df.T
+        return df
 
 
-def read_gct(file_path, CONFIG=None, convert_gene_names=False):
+def read_gct(file_path, CONFIG=None, convert_gene_names=False,transpose=True):
     """
     Read Gene Cluster Text (GCT) format file into a pandas DataFrame.
 
@@ -170,7 +198,8 @@ def read_gct(file_path, CONFIG=None, convert_gene_names=False):
         df = df.drop(columns=["Name"]).rename(
             columns={"Description": "gene_name"})
         df = df.set_index("gene_name")
-        df = df.transpose().rename_axis("sample_name")
+        if transpose :
+            df = df.transpose().rename_axis("sample_name")
         return df
     except Exception as e:
         raise ValueError(f"Error reading GCT file {file_path}: {str(e)}")
