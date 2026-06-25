@@ -12,6 +12,8 @@ from src.results.indices import performance_indices1,performance_indices_combine
 from src.results.target import target_info
 from src.results.frequent_coregs import find_frequent_coregs
 from src.results.clustering import identify_coregulators
+from src.results.validation import compute_validation_indices
+
 
 def hello(input, env, options, args):
     target = input.get("target", "world")
@@ -143,7 +145,8 @@ METHOD_REGISTRY = {
     "performance_indices_dcorr":performance_indices_dcorr,
     "performance_indices_tfbs":performance_indices_tfbs,
     "performance_indices_freq":performance_indices_freq,
-    "performance_indices_freq_combined":performance_indices_freq_combined
+    "performance_indices_freq_combined":performance_indices_freq_combined,
+    "compute_validation_indices":compute_validation_indices
 }
 
 # CLI entry point
@@ -168,6 +171,8 @@ def build_parser():
     # Optional arguments — add more as needed
     parser.add_argument("--njobs", type=int, default=-1,
                         help="Number of parallel jobs. Defaults to -1 (all cores).")
+    parser.add_argument("--batch", type=int, default=1000,
+                        help="Batch size")
     parser.add_argument("--rerun", action="store_true", default=False,
                         help="Force rerun even if output already exists.")
     parser.add_argument("--verbose", action="store_true",

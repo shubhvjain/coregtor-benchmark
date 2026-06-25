@@ -9,7 +9,7 @@ from tfitpy.datasets.go import load_go
 
 #ppi 
 from tfitpy.datasets.ppi import PPI_DATASETS
-from tfitpy.indices.ppi import shared_partners
+# from tfitpy.indices.ppi import shared_partners
 
 
 def _process_go_chunk(

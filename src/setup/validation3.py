@@ -5,7 +5,7 @@ import src.results.util as ut
 import argparse
 from pathlib import Path
 import os
-from tfitpy.datasets.setup import install
+from tfitpy.datasets import install
 
 import numpy as np
 import pandas as pd

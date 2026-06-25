@@ -1,4 +1,4 @@
-from tfitpy import compute_indices, load_all_network_data
+from tfitpy import compute_indices
 import json
 import os
 from pathlib import Path
@@ -889,7 +889,7 @@ def performance_indices_combined(input, env,options ,args):
 
     combined_df = pd.concat(res, ignore_index=True)
     combined_df["dataset"] = dataset_name
-    combined_df.to_csv(result_file,index=False)
+    # combined_df.to_csv(result_file,index=False)
     combined_df.to_parquet(result_file, index=False, compression="gzip")
     print("saved")
 
