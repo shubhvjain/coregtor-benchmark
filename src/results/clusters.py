@@ -1,28 +1,7 @@
-import argparse
-import json
-import sys
-from pathlib import Path
-from dotenv import dotenv_values
-import src.results.util as ut
 from joblib import Parallel, delayed, load
-import pandas as pd
-
-from src.results.explore import gene_frequency_analysis, distance_measure_analysis
-from src.results.indices import performance_indices1,performance_indices_combined,performance_indices_ppi_network,performance_indices_dcorr,performance_indices_tfbs,performance_indices_freq,performance_indices_freq_combined
-from src.results.target import target_info
-from src.results.frequent_coregs import find_frequent_coregs
 from src.results.clustering import identify_coregulators
-from src.results.validation import compute_validation_indices
-from src.results.clusters import generate_coregtor_clusters
-
-def hello(input, env, options, args):
-    target = input.get("target", "world")
-    print(f"Hello, {target}!")
-    print(f"  env keys : {list(env.keys())}")
-    print(f"  verbose  : {args.verbose}")
-
-
-
+import src.results.util as ut
+import pandas as pd
 
 def _get_temp_file(temp_path, target):
     """"""
@@ -59,7 +38,7 @@ def _process_single_target(t, temp_path, input, result_list, rerun):
     return target_results
 
 
-def generate_result_file(input, env, options, args):
+def generate_coregtor_clusters(input, env, options, args):
     """
     generate results files
     """
@@ -129,85 +108,3 @@ def generate_result_file(input, env, options, args):
         result_folder_out.mkdir(exist_ok=True, parents=True)
         final_df = pd.concat(master_file, ignore_index=True)
         final_df.to_csv(result_folder_out/"clusters.csv.gz", index=False)
-
-
-
-METHOD_REGISTRY = {
-    "hello": hello,
-    "generate_result_file": generate_result_file,
-    "gene_frequency_analysis": gene_frequency_analysis,
-    "performance_indices1": performance_indices1,
-    "distance_measure_analysis":distance_measure_analysis,
-    "performance_indices_combined":performance_indices_combined,
-    "target_info":target_info,
-    "performance_indices_ppi_network":performance_indices_ppi_network,
-    "find_frequent_coregs":find_frequent_coregs,
-    "performance_indices_dcorr":performance_indices_dcorr,
-    "performance_indices_tfbs":performance_indices_tfbs,
-    "performance_indices_freq":performance_indices_freq,
-    "performance_indices_freq_combined":performance_indices_freq_combined,
-    "compute_validation_indices":compute_validation_indices,
-    "generate_coregtor_clusters":generate_coregtor_clusters
-}
-
-# CLI entry point
-
-def build_parser():
-    parser = argparse.ArgumentParser(
-        description="Generate experiment results",
-        formatter_class=argparse.RawTextHelpFormatter,
-    )
-
-    parser.add_argument("--env",   required=True,
-                        metavar="PATH", help="Path to the .env file.")
-    parser.add_argument("--input", required=True,
-                        metavar="PATH", help="Path to the JSON input file.")
-    parser.add_argument(
-        "--id",
-        required=True,
-        metavar="ID",
-        help="ID of the result object in input['results'] to run.",
-    )
-
-    # Optional arguments — add more as needed
-    parser.add_argument("--njobs", type=int, default=-1,
-                        help="Number of parallel jobs. Defaults to -1 (all cores).")
-    parser.add_argument("--batch", type=int, default=1000,
-                        help="Batch size")
-    parser.add_argument("--rerun", action="store_true", default=False,
-                        help="Force rerun even if output already exists.")
-    parser.add_argument("--verbose", action="store_true",
-                        default=False, help="Enable verbose output.")
-    parser.add_argument("--dry-run", action="store_true",
-                        default=False, help="Load files but skip execution.")
-
-    return parser
-
-
-def main():
-    parser = build_parser()
-    args = parser.parse_args()
-
-    env = ut.get_env(args.env)
-    input_data = ut.get_input(args.input)
-
-    options = ut.get_result_by_id(input_data, args.id)
-
-    result_type = options.get("type")
-    if result_type not in METHOD_REGISTRY:
-        print(
-            f"[error] unknown type '{result_type}'. Registered types: {', '.join(METHOD_REGISTRY.keys())}", file=sys.stderr)
-        sys.exit(1)
-
-    fn = METHOD_REGISTRY[result_type]
-
-    if args.dry_run:
-        print(
-            f"[dry-run] would call '{result_type}' for id '{args.id}' with {len(env)} env key(s).")
-        return
-
-    fn(input_data, env, options, args)
-
-
-if __name__ == "__main__":
-    main()

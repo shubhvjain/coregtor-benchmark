@@ -40,7 +40,8 @@ def add_cluster_indices(cluster_df, data_path, ge_data, organism="human"):
         sources = row["sources"].split(";")
         source_pairs = generate_tf_pairs(sources)
         target = row["target"]
-        print(sources)
+        uid = get_row_uid(row)
+        # print(uid)
         scores, evidence = validate(
             sources,
             target,
@@ -52,7 +53,7 @@ def add_cluster_indices(cluster_df, data_path, ge_data, organism="human"):
             organism=organism
         )
 
-        uid = get_row_uid(row)
+        
 
         # store evidence dict per uid
         evidence_objects[uid] = evidence
@@ -116,13 +117,19 @@ def read_results_file(input, env, options, args):
     out_path, temp_path = ut.get_exp_path(input, env)
     bio_path = Path(os.path.expandvars(env["DATA_PATH"]))
     if input["type"] == "run_coregnet":
-        print()
+        # print()
         f_path = out_path / f"{input['result_file_name']}.csv"
-        print(f_path)
+        # print(f_path)
         data = pd.read_csv(f_path)
         return data
-    elif input["type"] == "test":
-        print()
+    elif input["type"] == "run_coregtor":
+        # print()
+        cname = options.get("cluster_name",None)
+        if cname is None:
+            raise ValueError("no cluster_name in the options")
+        f_path = temp_path / "clusters"/ f"{cname}.csv"
+        data = pd.read_csv(f_path)
+        return data
     else:
         raise ValueError("invalid exp type")
 
@@ -133,14 +140,18 @@ def save_results_file(input, env, options, args,result_df,evidence):
     out_path, temp_path = ut.get_exp_path(input, env)
     bio_path = Path(os.path.expandvars(env["DATA_PATH"]))
     if input["type"] == "run_coregnet":
-
         f_path = out_path / f"{input['result_file_name']}_indices.csv"
-        result_df.to_csv(f_path)
+        result_df.to_csv(f_path,index=False)
 
         f_evid = out_path / f"{input['result_file_name']}_evidence.pkl"
         dump(evidence, f_evid, compress=3)
-    elif input["type"] == "test":
-        print()
+    elif input["type"] == "run_coregtor":
+        cname = options.get("cluster_name",None)
+        f_path = out_path / f"{cname}_indices.csv"
+        result_df.to_csv(f_path,index=False)
+
+        f_evid = out_path / f"{cname}_evidence.pkl"
+        dump(evidence, f_evid, compress=3)
     else:
         raise ValueError("invalid exp type")
 
@@ -166,12 +177,7 @@ def compute_validation_indices(input, env, options, args):
     cluster_df = read_results_file(input, env, options, args)
     #   print(cluster_df)
 
-    results, evidence = add_cluster_indices_main(cluster_df, data_path=bio_path,
-                                                 ge_data=ge_data,
-                                                 organism=organism,
-                                                 parallel=True,
-                                                 n_jobs=njobs,
-                                                 batch_size=batch)
+    results, evidence = add_cluster_indices_main(cluster_df, data_path=bio_path,ge_data=ge_data,organism=organism,parallel=False,n_jobs=njobs,batch_size=batch)
 
     # print(results)
     save_results_file(input, env, options, args,results, evidence)
