@@ -14,6 +14,7 @@ from src.analysis.gtex import generate_gtex_stats,gtex_stats_diagram,generate_gt
 
 from src.analysis.target import combined_gene_freq_diagram, parameter_config_detailed_plot,parameter_config_plot
 
+from src.analysis.benchmarking import generate_combined_indices_file,tool_benchmark_combined_plot
 
 def hello(input, env, options, args):
     target = input.get("target", "world")
@@ -93,7 +94,9 @@ METHOD_REGISTRY = {
     "parameter_config_detailed_plot":parameter_config_detailed_plot,
     "gtex_stats_diagram":gtex_stats_diagram,
     "generate_gtex_dcor_cache":generate_gtex_dcor_cache,
-    "parameter_config_plot":parameter_config_plot
+    "parameter_config_plot":parameter_config_plot,
+    "generate_combined_indices_file":generate_combined_indices_file,
+    "tool_benchmark_combined_plot":tool_benchmark_combined_plot
 }
 
 # CLI entry point

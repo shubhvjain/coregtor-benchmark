@@ -231,7 +231,9 @@ col_index_map = {
     "DC1":"DC1",
     "DC2":"DC2",
     "TFBS_affinity_score":"TFBS1",
-    
+    "TFBS_affinity_sum_score":"TFBS2",
+    "dCor_sources_score":"DC1",
+    "dCor_target_score":"DC2"   
 }
 
 distance_map = {
@@ -252,6 +254,64 @@ col_freq = {
     "ppi_shared_partners_biogrid":"CTPPI",
     "go_score":"CTFE"
 }
+
+index_col1 = [
+    "shared_PPI_partners_score_biogrid",
+    "shortest_PPI_path_score_biogrid",
+    "density_score_biogrid",
+    "lcc_score_biogrid",
+    "tc_score_biogrid",
+    "goa_similarity_jc",
+    "goa_similarity_lin",
+    "goa_similarity_resnik",
+    "TFBS_affinity_score",
+    "TFBS_affinity_sum_score",
+    "dCor_sources_score",
+    "dCor_target_score"
+]
+
+index_col2 = [
+    "shared_PPI_partners_score_stringdb",
+    "shortest_PPI_path_score_stringdb",
+    "density_score_stringdb",
+    "lcc_score_stringdb",
+    "tc_score_stringdb",
+    "goa_similarity_jc",
+    "goa_similarity_lin",
+    "goa_similarity_resnik",
+    "TFBS_affinity_score",
+    "TFBS_affinity_sum_score",
+    "dCor_sources_score",
+    "dCor_target_score"
+]
+
+index_col3 = [
+    "shared_PPI_partners_score_hippie",
+    "shortest_PPI_path_score_hippie",
+    "density_score_hippie",
+    "lcc_score_hippie",
+    "tc_score_hippie",
+    "goa_similarity_jc",
+    "goa_similarity_lin",
+    "goa_similarity_resnik",
+    "TFBS_affinity_score",
+    "TFBS_affinity_sum_score",
+    "dCor_sources_score",
+    "dCor_target_score"
+]
+
+
+tool_map = {
+    "coregnet": {
+        "color": color_palette["bright_yellow"],
+        "label": "CoRegNet",
+    },
+    "coregtor": {
+        "color": color_palette["classic_blue"],
+        "label": "CoReGToR",
+    },
+}
+
 
 freq_index_aggregated = [
     {
