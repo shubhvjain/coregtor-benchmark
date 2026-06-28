@@ -1,0 +1,94 @@
+{
+  "type":"run_coregtor",
+  "id": "mus",
+  "about": "To run CoRegTor on Muscle - Skeletal ",
+  "path":"case_study/mus",
+  "dataset": {
+    "name": "MUS",
+    "path": "$DATA_PATH/MUS/gene_tpm_v11_muscle_skeletal.gct",
+    "type": "gct",
+    "convert_gene_names": true
+  },
+
+  "sources": {
+    "type": "all_regulators",
+    "top_expressed_n": 2250
+  },
+  "targets": {
+    "type": "custom",
+    "items":["PPARGC1A","PPARGC1B","ESRRA","PPARD","MYOD1","MYOG","MEF2C","MEF2A","KLF15","PDK4","CPT1B","NRF1","TFAM","ACTA1","MYH7","CKM","TNNT1","AR","NR3C1","RIP140"]
+  },
+  "ensemble_model": {
+    "method": "rf",
+    "options": {
+      "max_depth": 5,
+      "n_jobs": -1,
+      "n_estimators": 1000,
+      "random_state": 120
+    }
+  },
+  "context_comparison": {
+    "methods": [
+      "manhattan_distance",
+      "canberra_distance"
+    ]
+  },
+  "clustering": [
+    {
+      "id": "c1",
+      "note": "c1",
+      "distance": "canberra_distance",
+      "method": "community_detection",
+      "options": {
+        "edge_creation_method": "threshold_percentile",
+        "edge_creation_value": 0.75,
+        "resolution": 0.50
+      }
+    }
+  ],
+
+  "lit_evidence":[
+    ["PPARGC1A","ESRRA"],
+    ["PPARGC1A","PPARD"],
+    ["PPARGC1A","NRF1"],
+    ["PPARGC1A","SIRT1","AMPK"],
+    ["MED1",""],
+    ["NCOR1",""]
+  ],
+  "run": {
+    "checkpointing": true
+  },
+  "results": [
+    {
+      "id": "step1",
+      "type": "target_info"
+    },
+    {
+      "id": "step2",
+      "type": "generate_coregtor_clusters",
+      "cluster_list": [
+        "c1"
+      ],
+      "save_to_output": false,
+      "result_name":"default"
+    },
+
+     {
+      "id":"step3",
+      "type": "find_frequent_coregs",
+      "result_name":"default",
+      "min_support": 0.01
+    },
+    {
+      "id": "step4",
+      "type": "compute_validation_indices",
+      "cluster_name": "c1"
+    },
+     {
+      "id":"step5",
+      "type": "frequent_coregs_indices",
+      "cluster_name": "c1"
+    }
+    
+  ]
+}

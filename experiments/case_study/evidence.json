@@ -1,0 +1,306 @@
+{
+  "mus": [
+    {
+      "node1": "MYOD1",
+      "node2": "MYOG",
+      "potential_targets": [
+        "MYOG",
+        "CKM",
+        "ACTA1",
+        "TNNT1"
+      ],
+      "about": "MYOD1 and MYOG form a core myogenic regulatory module that cooperatively activates late differentiation and sarcomeric genes in skeletal muscle.",
+      "source": "PubMed: 20716948"
+    },
+    {
+      "node1": "MYOD1",
+      "node2": "MEF2C",
+      "potential_targets": [
+        "CKM",
+        "ACTA1",
+        "MYH7"
+      ],
+      "about": "MYOD1 and MEF2C cooperate on enhancer elements to drive skeletal muscle-specific gene expression and fiber-type programs.",
+      "source": "PubMed: 8939680"
+    },
+    {
+      "node1": "MYOD1",
+      "node2": "SRF",
+      "potential_targets": [
+        "ACTA1",
+        "CKM",
+        "TNNT1"
+      ],
+      "about": "MYOD1 and SRF interact functionally to regulate cytoskeletal and contractile genes during myogenic differentiation.",
+      "source": "PubMed: 20716948"
+    },
+    {
+      "node1": "MYOD1",
+      "node2": "CARM1",
+      "potential_targets": [
+        "MYOG",
+        "CKM"
+      ],
+      "about": "CARM1 acts as a transcriptional coregulator for MYOD1, methylating histone and non-histone substrates to promote myogenic gene activation.",
+      "source": "PubMed: 15361862"
+    },
+    {
+      "node1": "MYOD1",
+      "node2": "SMARCD1",
+      "potential_targets": [
+        "MYOG",
+        "CKM",
+        "ACTA1"
+      ],
+      "about": "The SWI/SNF subunit SMARCD1 is recruited by MYOD1 to muscle gene regulatory regions, contributing to chromatin remodeling during myogenesis.",
+      "source": "PMCID: PMC1283108"
+    },
+    {
+      "node1": "MYOD1",
+      "node2": "TRIM28",
+      "potential_targets": [
+        "MYOG",
+        "PAX3"
+      ],
+      "about": "TRIM28 functions as a corepressor in myogenic cells, modulating MYOD1- and PAX3-controlled gene programs through chromatin regulation.",
+      "source": "PMCID: PMC1283108"
+    },
+    {
+      "node1": "MYOD1",
+      "node2": "GR",
+      "potential_targets": [
+        "fiber_type_specific_genes",
+        "myofiber_stress_response_genes"
+      ],
+      "about": "MYOD1 and glucocorticoid receptor NR3C1 coordinate myofiber-specific transcriptional responses to glucocorticoids in skeletal muscle.",
+      "source": "DOI: 10.1093/nar/gkab216"
+    },
+    {
+      "node1": "MYOD1",
+      "node2": "p68_p72_SRA_complex",
+      "potential_targets": [
+        "MYOG",
+        "late_myogenic_markers"
+      ],
+      "about": "The RNA helicases p68/p72 and the noncoding RNA SRA form a coregulator complex with MYOD1, enhancing skeletal muscle differentiation.",
+      "source": "DOI: 10.1016/j.mce.2007.01.008"
+    },
+    {
+      "node1": "MEF2A",
+      "node2": "HDAC4",
+      "potential_targets": [
+        "MEF2_target_genes",
+        "CKM",
+        "TNNT1"
+      ],
+      "about": "HDAC4 binds MEF2A and represses MEF2-dependent transcription in skeletal muscle; calcium-dependent signaling promotes HDAC4 export and MEF2 activation.",
+      "source": "PMCID: PMC1283108"
+    },
+    {
+      "node1": "MEF2C",
+      "node2": "HDAC5",
+      "potential_targets": [
+        "MEF2_target_genes",
+        "myofibrillar_genes"
+      ],
+      "about": "HDAC5 associates with MEF2C to repress muscle gene expression; exercise and signaling release HDAC5, enabling MEF2-mediated transcription.",
+      "source": "PMCID: PMC1283108"
+    },
+    {
+      "node1": "MEF2A",
+      "node2": "EP300",
+      "potential_targets": [
+        "CKM",
+        "ACTA1",
+        "TNNT1"
+      ],
+      "about": "The histone acetyltransferase EP300 (p300) coactivates MEF2A on muscle promoters, promoting chromatin acetylation and transcription.",
+      "source": "PMCID: PMC1283108"
+    },
+    {
+      "node1": "MEF2C",
+      "node2": "PPARGC1B",
+      "potential_targets": [
+        "oxidative_metabolism_genes",
+        "mitochondrial_genes"
+      ],
+      "about": "PPARGC1B (PGC-1β) coactivates MEF2C to induce mitochondrial biogenesis and oxidative muscle fiber programs.",
+      "source": "DOI: 10.1038/ncomms10210"
+    },
+    {
+      "node1": "MEF2A",
+      "node2": "NCOA2",
+      "potential_targets": [
+        "oxidative_metabolism_genes"
+      ],
+      "about": "NCOA2 (TIF2) functions as a nuclear receptor coactivator interacting with MEF2 pathways to modulate mitochondrial respiration in skeletal muscle.",
+      "source": "PubMed: 21035760"
+    },
+    {
+      "node1": "PPARGC1A",
+      "node2": "ESRRA",
+      "potential_targets": [
+        "TFAM",
+        "CPT1B",
+        "oxidative_fiber_markers"
+      ],
+      "about": "PPARGC1A (PGC-1alpha) coactivates estrogen-related receptor alpha (ESRRA) on promoters of oxidative metabolism and mitochondrial genes in skeletal muscle.",
+      "source": "DOI: 10.1210/en.2015-1284"
+    },
+    {
+      "node1": "PPARGC1A",
+      "node2": "PPARA",
+      "potential_targets": [
+        "fatty_acid_oxidation_genes",
+        "CPT1B",
+        "ACOX1"
+      ],
+      "about": "PPARGC1A acts as a coactivator for PPARA, enhancing transcription of fatty acid oxidation genes in muscle and liver.",
+      "source": "DOI: 10.1016/S15345807(03)00229-4"
+    },
+    {
+      "node1": "PPARGC1A",
+      "node2": "NCOR1",
+      "potential_targets": [
+        "oxidative_metabolism_genes",
+        "TFAM",
+        "electron_transport_genes"
+      ],
+      "about": "PPARGC1A and NCOR1 have opposing co-regulatory roles on oxidative metabolism genes via ESRRA and PPARβ/δ in skeletal muscle.",
+      "source": "Regulation of skeletal muscle plasticity by PGC-1alpha and NCoR1, 2025 thesis"
+    },
+    {
+      "node1": "PPARGC1B",
+      "node2": "ESRRA",
+      "potential_targets": [
+        "mitochondrial_genes",
+        "oxidative_fiber_markers"
+      ],
+      "about": "PPARGC1B (PGC-1β) cooperates with ESRRA to control mitochondrial biogenesis and oxidative capacity in skeletal muscle.",
+      "source": "DOI: 10.1038/ncomms10210"
+    },
+    {
+      "node1": "PPARGC1A",
+      "node2": "NRF1",
+      "potential_targets": [
+        "TFAM",
+        "respiratory_chain_subunits"
+      ],
+      "about": "PPARGC1A coactivates NRF1, leading to induction of TFAM and nuclear-encoded mitochondrial genes required for oxidative phosphorylation.",
+      "source": "DOI: 10.1016/S15345807(03)00229-4"
+    },
+    {
+      "node1": "PPARGC1A",
+      "node2": "SIRT1",
+      "potential_targets": [
+        "PPARGC1A_targets",
+        "oxidative_metabolism_genes"
+      ],
+      "about": "SIRT1 deacetylates PPARGC1A, modulating its coactivator activity on oxidative metabolism genes in skeletal muscle.",
+      "source": "DOI: 10.1016/j.cmet.2005.09.001"
+    },
+    {
+      "node1": "PPARD",
+      "node2": "KLF15",
+      "potential_targets": [
+        "PDK4",
+        "lipid_metabolism_genes"
+      ],
+      "about": "PPARD (PPARβ/δ) and KLF15 cooperatively regulate PDK4 and other metabolic genes in skeletal muscle in response to nutrient cues.",
+      "source": "PubMed: 35413288"
+    },
+    {
+      "node1": "PPARD",
+      "node2": "MEF2B",
+      "potential_targets": [
+        "oxidative_fiber_genes"
+      ],
+      "about": "PPARD and MEF2 family members collaborate to drive oxidative fiber-type gene expression and endurance adaptations.",
+      "source": "PubMed: 35413288"
+    },
+    {
+      "node1": "AR",
+      "node2": "actin_binding_coregulators",
+      "potential_targets": [
+        "myofibrillar_genes",
+        "muscle_hypertrophy_programs"
+      ],
+      "about": "Actin-associated proteins, including gelsolin, function as androgen receptor coregulators in skeletal muscle, modulating AR-dependent transcription.",
+      "source": "DOI: 10.1016/j.jsbmb.2008.09.012"
+    },
+    {
+      "node1": "AR",
+      "node2": "NCOA1",
+      "potential_targets": [
+        "androgen_responsive_genes_in_muscle"
+      ],
+      "about": "SRC-1 (NCOA1) acts as a coactivator for AR on muscle-specific androgen-responsive genes.",
+      "source": "PMCID: PMC5453242"
+    },
+    {
+      "node1": "AR",
+      "node2": "NR3C2",
+      "potential_targets": [
+        "hormone_responsive_muscle_genes"
+      ],
+      "about": "Androgen receptor (AR) and mineralocorticoid receptor (NR3C2) participate in overlapping steroid hormone signaling networks that influence muscle gene expression.",
+      "source": "IUPHAR Guide to Pharmacology: AR and NR3C2 entries"
+    },
+    {
+      "node1": "NR3C1",
+      "node2": "MYOD1",
+      "potential_targets": [
+        "fiber_type_specific_genes",
+        "stress_response_genes"
+      ],
+      "about": "Glucocorticoid receptor NR3C1 and MYOD1 co-regulate myofiber-specific transcriptional programs in response to glucocorticoids.",
+      "source": "DOI: 10.1093/nar/gkab216"
+    },
+    {
+      "node1": "NR3C1",
+      "node2": "NCOR1",
+      "potential_targets": [
+        "glucocorticoid_responsive_genes_in_muscle"
+      ],
+      "about": "NCOR1 serves as a corepressor for NR3C1 on glucocorticoid-responsive genes, modulating catabolic responses in skeletal muscle.",
+      "source": "PMCID: PMC5453242"
+    },
+    {
+      "node1": "RIP140",
+      "node2": "ESRRA",
+      "potential_targets": [
+        "oxidative_metabolism_genes"
+      ],
+      "about": "RIP140 (NRIP1) functions as a transcriptional coregulator that antagonizes ESRRA-mediated activation of oxidative metabolism genes in striated muscle.",
+      "source": "PMCID: PMC12643488"
+    },
+    {
+      "node1": "RIP140",
+      "node2": "PPARGC1A",
+      "potential_targets": [
+        "mitochondrial_and_lipid_genes"
+      ],
+      "about": "RIP140 interacts functionally with PPARGC1A, acting as a negative coregulator to restrain PGC-1alpha-driven metabolic remodeling in skeletal muscle.",
+      "source": "PMCID: PMC12643488"
+    },
+    {
+      "node1": "PAX3",
+      "node2": "MYOD1",
+      "potential_targets": [
+        "MYOG",
+        "early_myogenic_genes"
+      ],
+      "about": "PAX3 and MYOD1 participate in gene regulatory networks that specify muscle progenitors and activate myogenic determination genes.",
+      "source": "PubMed: 24525185"
+    },
+    {
+      "node1": "PAX3",
+      "node2": "MEF2C",
+      "potential_targets": [
+        "muscle_lineage_genes"
+      ],
+      "about": "PAX3 and MEF2C are part of master regulator circuits controlling skeletal muscle lineage specification.",
+      "source": "PMCID: PMC8484369"
+    }
+  ]
+}

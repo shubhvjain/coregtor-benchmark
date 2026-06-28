@@ -177,7 +177,7 @@ def compute_validation_indices(input, env, options, args):
     cluster_df = read_results_file(input, env, options, args)
     #   print(cluster_df)
 
-    results, evidence = add_cluster_indices_main(cluster_df, data_path=bio_path,ge_data=ge_data,organism=organism,parallel=False,n_jobs=njobs,batch_size=batch)
+    results, evidence = add_cluster_indices_main(cluster_df, data_path=bio_path,ge_data=ge_data,organism=organism,parallel=True,n_jobs=njobs,batch_size=batch)
 
     # print(results)
     save_results_file(input, env, options, args,results, evidence)

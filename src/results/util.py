@@ -536,12 +536,12 @@ def get_cluster_list_result(input_data, result_name):
     results = input_data.get("results", [])
     
     for result in results:
-        if result.get("type") == "generate_result_file" and result.get("result_name") == result_name:
+        if result.get("type") == "generate_coregtor_clusters" and result.get("result_name") == result_name:
             # Return the cluster list if found
             return result.get("cluster_list", [])
             
     # If the loop finishes without returning, raise the error
-    raise ValueError(f"No result found with type 'generate_result_file' and result_name '{result_name}'")
+    raise ValueError(f"No result found with type 'generate_coregtor_clusters' and result_name '{result_name}'")
 
 
 def get_ps_configs(config_name="ps_config"):
