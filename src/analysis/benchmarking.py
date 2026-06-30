@@ -58,8 +58,16 @@ def generate_combined_indices_file(input, env, options, args):
         res["tool"] = "coregnet"
         res["experiment"] = cn
         results.append(res)
-      
+    
     combined = pd.concat(results)
+    #  save all results , unedited
+    raw_file = folder / "data_raw.paraquet"
+    combined.to_parquet(raw_file)
+
+    combined["n_source"] = combined["n_source"].fillna(combined["n_sources"])
+    combined["cluster_uid"]  = combined["cluster_uid"].fillna(combined["uid"])
+    combined = combined.drop(columns=["n_sources","uid","Unnamed: 0"])
+    combined = combined[combined["n_source"]<100]
     combined.to_parquet(main_file)
 
 
@@ -144,7 +152,8 @@ def tool_benchmark_combined_plot(input, env, options, args):
 
     data_file = folder / "data.paraquet"
     data = pd.read_parquet(data_file)
-
+    
+    data = data[ data['n_source'] < 75 ]
 
     fig_list = [
         {

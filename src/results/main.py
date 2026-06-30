@@ -10,7 +10,7 @@ import pandas as pd
 from src.results.explore import gene_frequency_analysis, distance_measure_analysis
 from src.results.indices import performance_indices1,performance_indices_combined,performance_indices_ppi_network,performance_indices_dcorr,performance_indices_tfbs,performance_indices_freq,performance_indices_freq_combined
 from src.results.target import target_info
-from src.results.frequent_coregs import find_frequent_coregs
+from src.results.frequent_coregs import find_frequent_coregs, run_tissue_enrich
 from src.results.clustering import identify_coregulators
 from src.results.validation import compute_validation_indices
 from src.results.clusters import generate_coregtor_clusters
@@ -147,7 +147,8 @@ METHOD_REGISTRY = {
     "performance_indices_freq":performance_indices_freq,
     "performance_indices_freq_combined":performance_indices_freq_combined,
     "compute_validation_indices":compute_validation_indices,
-    "generate_coregtor_clusters":generate_coregtor_clusters
+    "generate_coregtor_clusters":generate_coregtor_clusters,
+    "run_tissue_enrich":run_tissue_enrich
 }
 
 # CLI entry point

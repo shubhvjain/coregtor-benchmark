@@ -3,6 +3,12 @@ import pandas as pd
 from mlxtend.preprocessing import TransactionEncoder
 from mlxtend.frequent_patterns import fpgrowth
 
+
+import json
+from pathlib import Path
+import subprocess
+import pandas as pd
+
 def gene_frequency_patterns(df, min_support=0.04):
     # 1. Prepare the data
     transactions = df['sources'].str.split(';').tolist()
@@ -115,8 +121,122 @@ def find_frequent_coregs(input, env, options, args):
         frequent_summary.to_csv(file2,index=False)
 
 
+def run_tissue_enrich(input, env, options, args):
+    """
+    """
+    out_path, temp_path = ut.get_exp_path(input, env)
 
+    n_jobs = args.njobs if args.njobs is not None else -1
+    rerun = args.rerun
+    
+    result_file = out_path / f"freq_coreg_{options['cluster_name']}.json"
+    if result_file.exists() and not rerun:
+        print("file already exits")
+    else:
+        coreg_file_path = temp_path / "clusters"/ f"freq_coreg_{options['cluster_name']}.csv"
+        coreg_file = pd.read_csv(coreg_file_path)
 
-         
+        # print(coreg_file) 
+        
+        if coreg_file.empty:
+            raise ValueError(f"No rows found in {coreg_file_path}")
+
+        
+        project_root = Path(__file__).resolve().parents[2]
+        r_script = project_root/ "src"/"results"/ "run_tissue_enrich.R"
+
+        out_path.mkdir(parents=True, exist_ok=True)
+
+        subprocess.run(
+            [
+                "Rscript",
+                str(r_script),
+                str(project_root),
+                str(coreg_file_path),
+                str(result_file),
+            ],
+            check=True,
+        )
+    heatmap_file = out_path / f"freq_coreg_{options['cluster_name']}_heatmap.svg"
+
+    if heatmap_file.exists() and not rerun:
+        return
+
+    print("diagram")
+
+    with open(result_file) as f:
+        result = json.load(f)
+
+    rows = []
+    for row in result.get("results", []):
+        for tissue_result in row.get("tissue_results", []):
+            rows.append(
+                {
+                    "tissue": tissue_result.get("tissue"),
+                    "Log10PValue": tissue_result.get("Log10PValue"),
+                }
+            )
+
+    tissue_df = pd.DataFrame(rows)
+
+    if tissue_df.empty:
+        raise ValueError(f"No tissue enrichment rows found in {result_file}")
+
+    tissue_df["Log10PValue"] = pd.to_numeric(tissue_df["Log10PValue"], errors="coerce")
+    tissue_df = tissue_df.dropna(subset=["tissue", "Log10PValue"])
+
+    tissue_summary = (
+        tissue_df.groupby("tissue", dropna=True)["Log10PValue"]
+        .agg(["max", "mean"])
+        .rename(columns={"max": "max_log10p", "mean": "mean_log10p"})
+    )
+
+    tissue_summary = tissue_summary.sort_values("max_log10p", ascending=False)
+
+    # Choose intensity metric: max_log10p
+    intensity = tissue_summary["max_log10p"]
+
+    import matplotlib.pyplot as plt
+    import seaborn as sns
+
+    plt.figure(
+        figsize=(
+            max(8, 0.35 * len(intensity.index) + 4),
+            6,
+        )
+    )
+
+    sns.set_theme(style="white")
+
+    # One-dimensional heatmap: color-coded horizontal bars per tissue
+    ax = plt.bar(
+        x=range(len(intensity.index)),
+        height=intensity.values,
+        color=sns.color_palette("Reds", len(intensity.index)),
+    )
+
+    fig, ax = plt.subplots(
+        figsize=(max(8, 0.35 * len(intensity.index) + 4), 6)
+    )
+
+    colors = sns.color_palette("Reds", len(intensity.index))
+    ax.bar(
+        x=range(len(intensity.index)),
+        height=intensity.values,
+        color=colors,
+        edgecolor="white",
+        linewidth=0.5,
+    )
+
+    ax.set_xticks(range(len(intensity.index)))
+    ax.set_xticklabels(intensity.index, rotation=60, ha="right")
+    ax.set_ylabel("Max Log10PValue")
+    ax.set_xlabel("Tissue")
+    ax.set_title(f"GTEx tissue enrichment summary: {options['cluster_name']}")
+
+    plt.tight_layout()
+    plt.savefig(heatmap_file, dpi=300, bbox_inches="tight", format="svg")
+    plt.close()
+
 
 
