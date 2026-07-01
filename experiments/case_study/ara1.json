@@ -1,0 +1,114 @@
+{
+  "type": "run_coregtor",
+  "path": "case_study/ara1",
+  "id": "case_study_ara1",
+  "about": "To run CoRegTor on selected ArabidopsisSC targets ",
+  "dataset": {
+    "path": "$DATA_PATH/ArabidopsisSC/Endodermis_lognorm.csv.gz",
+    "type": "csv",
+    "transpose": false
+  },
+  "organism": "arabidopsis",
+  "sources": {
+    "type": "tf_plants",
+    "top_expressed_n": 1500
+  },
+  "targets": {
+    "type": "custom",
+    "items": [
+      "AT1G04220",
+      "AT2G37360",
+      "AT3G53510",
+      "AT5G52250",
+      "AT3G44540",
+      "AT3G44550",
+      "AT3G11430",
+      "AT5G58860",
+      "AT5G04140",
+      "AT5G43760",
+      "AT2G28670",
+      "AT2G36100",
+      "AT3G11550",
+      "AT5G06200",
+      "AT2G37040",
+      "AT1G51680",
+      "AT2G21730",
+      "AT1G15950",
+      "AT5G42180",
+      "AT5G54160"
+    ]
+  },
+  "ensemble_model": {
+    "method": "rf",
+    "options": {
+      "max_depth": 5,
+      "n_jobs": -1,
+      "n_estimators": 1000,
+      "random_state": 120
+    }
+  },
+  "context_comparison": {
+    "methods": [
+      "manhattan_distance",
+      "canberra_distance"
+    ]
+  },
+  "clustering": [
+    {
+      "id": "c1",
+      "note": "c1",
+      "distance": "canberra_distance",
+      "method": "community_detection",
+      "options": {
+        "edge_creation_method": "knn",
+        "edge_creation_value": 7,
+        "resolution": 0.25
+      }
+    },
+    {
+      "id": "c2",
+      "note": "c2",
+      "distance": "canberra_distance",
+      "method": "community_detection",
+      "options": {
+        "edge_creation_method": "threshold_percentile",
+        "edge_creation_value": 0.75,
+        "resolution": 0.25
+      }
+    }
+  ],
+  "run": {
+    "checkpointing": true
+  },
+  "results": [
+    {
+      "id": "step1",
+      "type": "target_info"
+    },
+    {
+      "id": "step2",
+      "type": "generate_coregtor_clusters",
+      "cluster_list": [
+        "c1"
+      ],
+      "save_to_output": false,
+      "result_name": "default"
+    },
+    {
+      "id": "step3",
+      "type": "find_frequent_coregs",
+      "result_name": "default",
+      "min_support": 0.01
+    },
+    {
+      "id": "step4",
+      "type": "compute_validation_indices",
+      "cluster_name": "c1"
+    },
+    {
+      "id": "step5",
+      "type": "frequent_coregs_indices",
+      "cluster_name": "c1"
+    }
+  ]
+}
