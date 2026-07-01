@@ -157,7 +157,7 @@ def run_tissue_enrich(input, env, options, args):
             ],
             check=True,
         )
-    heatmap_file = out_path / f"freq_coreg_{options['cluster_name']}_heatmap.svg"
+    heatmap_file = out_path / f"freq_coreg_{options['cluster_name']}_summary.svg"
 
     if heatmap_file.exists() and not rerun:
         return

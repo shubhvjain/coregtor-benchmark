@@ -36,6 +36,13 @@ def add_cluster_indices(cluster_df, data_path, ge_data, organism="human"):
         else:
             raise KeyError("Neither 'cluster_uid' nor 'uid' present in row")
 
+    use_pairwise_cache = True
+    go_ea = False
+    if organism == "arabidopsis":
+        use_pairwise_cache = False
+        go_ea = True
+
+
     for _, row in cluster_df.iterrows():
         sources = row["sources"].split(";")
         source_pairs = generate_tf_pairs(sources)
@@ -46,9 +53,9 @@ def add_cluster_indices(cluster_df, data_path, ge_data, organism="human"):
             sources,
             target,
             cache,
-            use_pairwise_cache=True,
+            use_pairwise_cache=use_pairwise_cache,
             data_path=data_path,
-            go_ea=False,
+            go_ea=go_ea,
             pairs=source_pairs,
             organism=organism
         )

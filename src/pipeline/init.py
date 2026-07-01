@@ -4,9 +4,8 @@ from datetime import datetime
 import sqlite3
 import json
 import pandas as pd
-from src.pipeline.util import get_protein_coding_genes, get_tflist, read_dataset, get_coreglist
+from src.pipeline.util import get_protein_coding_genes, get_tflist, read_dataset, get_coreglist , get_source_list
 from src.results.util import get_exp_path
-
 
 def setup_experiment(exp, config):
     # Construct the full path to the experiment folder
@@ -82,10 +81,13 @@ def get_filtered_genes(df, options, tflist,coreglist, config):
     # print(options)
     g_type = options.get("type", "all")
     all_regulators = list(set(tflist) | set(coreglist))
+    tf_plant = get_source_list("tf_plants",config)
 
     # 1. Selection
     if g_type == "tf":
         pool = [g for g in tflist if g in df.columns]
+    elif g_type == "tf_plants":
+        pool = [g for g in tf_plant if g in df.columns]
     elif g_type == "all_regulators":
         pool = [g for g in all_regulators if g in df.columns]
     elif g_type == "no_tf":

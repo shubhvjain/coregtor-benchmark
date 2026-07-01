@@ -15,6 +15,10 @@ import pyarrow as pa
 import pyarrow.parquet as pq
 import src.results.dcorr as dc
 
+import matplotlib.pyplot as plt
+from collections import defaultdict
+
+
 def generate_gtex_stats(input, env, options, args):
     """generate basic stats about GTEx tissue data"""
     apath = ut.get_analysis_path(env)
@@ -517,3 +521,82 @@ def generate_gtex_dcor_cache(input, env, options, args):
             json.dump(metadata, f, indent=2)
 
 
+
+def get_tissue_enrich_results(file_path):
+    file_path = Path(file_path)
+
+    with open(file_path) as f:
+        result = json.load(f)
+
+    tissue_values = defaultdict(list)
+
+    for row in result.get("results", []):
+        for tissue_result in row.get("tissue_results", []):
+            tissue = tissue_result.get("tissue")
+            score = tissue_result.get("Log10PValue")
+
+            if tissue is None or score is None:
+                continue
+
+            try:
+                score = float(score)
+            except (TypeError, ValueError):
+                continue
+
+            tissue_values[tissue].append(score)
+
+    max_scores = {}
+    avg_scores = {}
+
+    for tissue, values in tissue_values.items():
+        if not values:
+            continue
+        max_scores[tissue] = max(values)
+        avg_scores[tissue] = sum(values) / len(values)
+
+    return max_scores, avg_scores
+
+
+def freq_coreg_tissue_enrich_plot(input, env, options, args):
+    """generate basic stats about GTEx tissue data"""
+    rerun = args.rerun
+    apath = ut.get_analysis_path(env)
+    folder = apath/input["id"]
+    folder.mkdir(exist_ok=True, parents=True)
+
+    main_file = folder/"gtex_analysis.pdf"
+
+    if main_file.exists() and not rerun:
+        print("main stats file already exists")
+        return
+    
+    # generate heatmap data 
+    heatmap_file = folder / "tissue_enrich_results.csv"
+    heatmap_file_avg = folder / "tissue_enrich_results_avg.csv"
+    if heatmap_file.exists() and not rerun:
+        heatmap_data = pd.read_csv(heatmap_file)
+    else:
+        exp_folder_root = Path(env.get("EXP_OUTPUT_PATH"))
+        result = []
+        results_avg = []
+        for e in input["results_paths"]:
+            fpath = exp_folder_root / e['exp_path'] / f"freq_coreg_{e['cluster_name']}.json"
+
+            tissues_enriched,tissues_enriched_avg  = get_tissue_enrich_results(fpath)
+            tissues = {
+                "dataset": e['dataset'],
+                "expected_tissue" : e['expected_tissue'],
+                **tissues_enriched
+            }
+            result.append(tissues)
+            tissues_avg = {
+                "dataset": e['dataset'],
+                "expected_tissue" : e['expected_tissue'],
+                **tissues_enriched_avg
+            }
+            results_avg.append(tissues_avg)
+        heatmap_data = pd.DataFrame(result)
+        heatmap_data.to_csv(heatmap_file,index=False)
+        heatmap_data_avg = pd.DataFrame(results_avg)
+        heatmap_data_avg.to_csv(heatmap_file_avg,index=False)
+    

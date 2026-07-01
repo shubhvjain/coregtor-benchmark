@@ -79,9 +79,19 @@ def get_tflist(CONFIG):
 def get_tflist_plant(CONFIG):
     """
     """
-    tf_path = Path(CONFIG["DATA_PATH"]) / "tflist"/ "Ath_TF_list.txt"
+    tf_path = Path(CONFIG["DATA_PATH"]) / "tflist"/ "Ath_TF_list.txt.gz"
     df = pd.read_csv(tf_path, delimiter="\t")
     return  df["Gene_ID"].tolist() 
+
+def get_tflist_mapping_plant(CONFIG):
+    """
+    """
+    url = Path(CONFIG["DATA_PATH"]) / "arabidopsis_genes"/ "gene_aliases_20241001.txt.gz"
+    df = pd.read_csv(url, sep="\t",encoding="latin1" ,names=["locus", "symbol", "full_name", "alias_type"])
+    locus_to_name = dict(zip(df["locus"], df["symbol"]))
+    name_to_locus = dict(zip(df["symbol"],df["locus"]))
+    return locus_to_name,name_to_locus
+
 
 def get_coreglist(CONFIG):
     """
