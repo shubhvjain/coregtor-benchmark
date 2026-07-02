@@ -14,6 +14,7 @@ from src.results.frequent_coregs import find_frequent_coregs, run_tissue_enrich
 from src.results.clustering import identify_coregulators
 from src.results.validation import compute_validation_indices
 from src.results.clusters import generate_coregtor_clusters
+from src.results.plot import generate_network_plot
 
 def hello(input, env, options, args):
     target = input.get("target", "world")
@@ -148,7 +149,8 @@ METHOD_REGISTRY = {
     "performance_indices_freq_combined":performance_indices_freq_combined,
     "compute_validation_indices":compute_validation_indices,
     "generate_coregtor_clusters":generate_coregtor_clusters,
-    "run_tissue_enrich":run_tissue_enrich
+    "run_tissue_enrich":run_tissue_enrich,
+    "generate_network_plot":generate_network_plot
 }
 
 # CLI entry point

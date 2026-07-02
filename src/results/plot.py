@@ -2,6 +2,7 @@
 Plot coregulatory modules 
 """
 import src.results.util as ut
+import src.pipeline.util as utp
 from joblib import load, Parallel, delayed
 import pandas as pd
 from pathlib import Path
@@ -11,7 +12,10 @@ import pandas as pd
 import networkx as nx
 import matplotlib.pyplot as plt
 
-def create_network_diagram(targets_list, details_df, evidence=None, settings=None,figure_path=None):
+
+
+
+def create_network_diagram(targets_list, details_df, evidence=None, settings=None,figure_path=None,env=None,organism="human"):
     """
     Generates a network diagram where primary target-source links are straight lines,
     and multiple PPI + TFBS evidence sources are cleanly stacked as curved arcs next to them.
@@ -95,6 +99,9 @@ def create_network_diagram(targets_list, details_df, evidence=None, settings=Non
         for node in G.nodes()
     ]
     node_labels = {node: node for node in G.nodes()}
+    if organism == "arabidopsis" and current_settings.get("gene_map", False):
+        locus_to_name, _ = utp.get_tflist_mapping_plant(env)
+        node_labels = {node: locus_to_name.get(node, node) for node in G.nodes()}
 
     if current_settings['layout'] == 'spring':
         pos = nx.spring_layout(G, k=1.2, iterations=100, scale=current_settings['layout_scale'], seed=42)
@@ -234,6 +241,7 @@ def generate_network_plot(input, env, options, args):
     evidence_path = out_path / f"{options['cluster_name']}_evidence.pkl"
     indices = pd.read_csv(indices_path)
     evidence = load(evidence_path)
+    organism = input.get("organism","human")
 
     fig_path = out_path / f"{options['result_name']}.pdf"
     
@@ -243,7 +251,7 @@ def generate_network_plot(input, env, options, args):
     
     targets = options["targets"]
     settings = options["settings"]
-    create_network_diagram(targets, indices,evidence,settings,fig_path)
+    create_network_diagram(targets, indices,evidence,settings,fig_path,env,organism)
 
     
 
